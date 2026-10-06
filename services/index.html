@@ -4,7 +4,7 @@
 <meta property="og:type" content="website"><meta property="og:site_name" content="ArkWay Creative"><meta property="og:title" content="Services — Audio Production, Film Sound, Branding & Analytics | ArkWay Creative"><meta property="og:description" content="Recording, mixing & mastering, film and game scoring, brand architecture, and data analytics. Book ArkWay Creative by WhatsApp or email."><meta property="og:url" content="https://arkway-creative.vercel.app/services"><meta property="og:image" content="https://lh3.googleusercontent.com/d/1Kl4dplfcrAjRYt88Wi7aSX_wsFlTuz6z"><meta name="twitter:card" content="summary_large_image">
 <link rel="stylesheet" href="/style.css">
 <style>
-/* Clean Minimal Accordion Styles */
+/* Clean Minimal Accordion Styles with Centered Alignment */
 .service-list { list-style: none; padding: 0; margin: 0 0 24px 0; }
 .service-item { border-bottom: 1px solid rgba(255,255,255,0.08); }
 .service-item:last-child { border-bottom: none; }
@@ -21,19 +21,22 @@
   padding: 18px 0;
   display: flex;
   justify-content: space-between;
-  align-items: center;
+  align-items: center; /* Centers items vertically */
   cursor: pointer;
   transition: color 0.2s;
 }
 .service-toggle:hover { color: #d4af37; }
 
-/* Subtle chevron indicator that gently rotates */
+/* Perfectly vertically centered indicator */
 .service-chevron {
   font-size: 0.85rem;
   color: #888;
   transition: transform 0.3s ease, color 0.3s ease;
   flex-shrink: 0;
-  margin-left: 12px;
+  margin-left: 16px;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
 }
 .service-item.active .service-chevron {
   transform: rotate(180deg);
@@ -275,7 +278,7 @@ function toggleService(btn) {
   const currentItem = btn.parentElement;
   const isActive = currentItem.classList.contains('active');
   
-  // Close any other open service item across the page to keep it clutter-free
+  // Close any other open service item across the page to keep it clean
   document.querySelectorAll('.service-item.active').forEach(item => {
     item.classList.remove('active');
   });
