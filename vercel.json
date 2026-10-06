@@ -1,16 +1,9 @@
 {
-  "version": 2,
   "cleanUrls": true,
   "trailingSlash": false,
-  "headers": [
-    {
-      "source": "/(.*)",
-      "headers": [
-        {
-          "key": "Cache-Control",
-          "value": "public, max-age=0, must-revalidate"
-        }
-      ]
-    }
+  "rewrites": [
+    { "source": "/services", "destination": "/services/index.html" },
+    { "source": "/products", "destination": "/products/index.html" },
+    { "source": "/community", "destination": "/community/index.html" }
   ]
 }
