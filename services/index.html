@@ -7,12 +7,10 @@
 /* Modal Popup Styles */
 .service-modal { display: none; position: fixed; inset: 0; background: rgba(0,0,0,0.85); z-index: 1000; align-items: center; justify-content: center; padding: 20px; backdrop-filter: blur(5px); }
 .service-modal.active { display: flex; }
-.modal-content { background: #121212; border: 1px solid rgba(255,255,255,0.15); border-radius: 12px; width: 100%; max-width: 520px; padding: 30px; position: relative; box-shadow: 0 20px 40px rgba(0,0,0,0.5); max-height: 90vh; overflow-y: auto; color: #f5f5f5; }
+.modal-content { background: #121212; border: 1px solid rgba(255,255,255,0.15); border-radius: 12px; width: 100%; max-width: 480px; padding: 30px; position: relative; box-shadow: 0 20px 40px rgba(0,0,0,0.5); color: #f5f5f5; text-align: left; }
 .modal-close { position: absolute; top: 20px; right: 20px; background: transparent; border: none; color: #fff; font-size: 24px; cursor: pointer; }
 .modal-price { font-size: 1.4rem; font-weight: 700; color: #d4af37; margin: 10px 0 15px 0; }
-.modal-desc { font-size: 0.95rem; line-height: 1.6; color: #ccc; margin-bottom: 20px; }
-.modal-terms { font-size: 0.85rem; background: rgba(255,255,255,0.03); border-left: 3px solid #d4af37; padding: 12px; margin-bottom: 10px; color: #aaa; line-height: 1.5; }
-.modal-terms strong { color: #fff; display: block; margin-bottom: 4px; }
+.modal-desc { font-size: 1rem; line-height: 1.6; color: #ccc; margin-bottom: 0; }
 .clickable-item { cursor: pointer; transition: color 0.2s; }
 .clickable-item:hover { color: #d4af37; }
 </style>
@@ -22,19 +20,19 @@
 <div class="service-groups">
   
   <article class="service-group"><div class="service-group-head"><span class="card-label">01 / AUDIO PRODUCTION</span><span>→</span></div><h3>Record, produce & finish.</h3><p>The core studio work: from the first vocal take to a finished, release-ready record.</p><ul>
-    <li class="clickable-item" onclick="openModal('Quick Vocal Session', 'KSh 3,000', 'Bring your beat, step in the booth, walk out with a clean mix & master.', '50% Deposit locks your slot. Includes 2 free revision rounds. High-quality Mastered WAV & MP3 files included.')">+ Quick Vocal Session</li>
-    <li class="clickable-item" onclick="openModal('External Vocal Mix & Master', 'KSh 2,500', 'Professional mix and mastering for pre-recorded vocal tracks and stems.', '50% Deposit locks your slot. Includes 2 free revision rounds. High-quality Mastered WAV & MP3 files included.')">+ External Vocal Mix & Master</li>
-    <li class="clickable-item" onclick="openModal('Complete Single Package', 'KSh 5,500', 'Full recording + vocal tuning/pitching + deep stem mix + streaming master.', '50% Deposit locks your slot. Includes 2 free revision rounds. Revisions do not cover re-recording new takes or changing the underlying instrumental.')">+ Complete Single Package</li>
-    <li class="clickable-item" onclick="openModal('Full Custom Beat & Song Production', 'KSh 8,500', '100% custom beat built for you + recording + full mix & master.', '50% Deposit locks your slot. Deposits are non-refundable once production begins. Includes 2 free revision rounds.')">+ Full Custom Beat & Song Production</li>
-    <li class="clickable-item" onclick="openModal('Acoustic / Lead Guitar Session', 'KSh 2,500', 'Professional box acoustic or lead guitar tracking tailored to your arrangement.', '50% Deposit locks your slot. High-quality tracked WAV stems delivered upon completion.')">+ Acoustic / Lead Guitar Session</li>
-    <li class="clickable-item" onclick="openModal('Live Bass Tracking', 'KSh 2,500', 'Clean, driving bass guitar performance and tracking to lock in your low end.', '50% Deposit locks your slot. High-quality tracked WAV stems delivered upon completion.')">+ Live Bass Tracking</li>
-    <li class="clickable-item" onclick="openModal('Full Instrumentation Package', 'KSh 12,000', 'Comprehensive custom instrumentation including guitars, bass, keys, and beat production.', '50% Deposit locks your slot. Includes 2 free revision rounds and full stems.')">+ Full Instrumentation Package</li>
+    <li class="clickable-item" onclick="openModal('Quick Vocal Session', 'KSh 3,000', 'Bring your beat, step in the booth, and walk out with a clean mix & master.')">Quick Vocal Session</li>
+    <li class="clickable-item" onclick="openModal('External Vocal Mix & Master', 'KSh 2,500', 'Professional mix and mastering for pre-recorded vocal tracks and stems.')">External Vocal Mix & Master</li>
+    <li class="clickable-item" onclick="openModal('Complete Single Package', 'KSh 5,500', 'Full recording, vocal tuning and pitching, deep stem mix, and streaming-ready master.')">Complete Single Package</li>
+    <li class="clickable-item" onclick="openModal('Full Custom Beat & Song Production', 'KSh 8,500', '100% custom beat built from scratch for you, plus recording, full mix & master.')">Full Custom Beat & Song Production</li>
+    <li class="clickable-item" onclick="openModal('Acoustic / Lead Guitar Session', 'KSh 2,500', 'Professional box acoustic or lead guitar tracking tailored to your arrangement.')">Acoustic / Lead Guitar Session</li>
+    <li class="clickable-item" onclick="openModal('Live Bass Tracking', 'KSh 2,500', 'Clean, driving bass guitar performance and tracking to lock in your low end.')">Live Bass Tracking</li>
+    <li class="clickable-item" onclick="openModal('Full Instrumentation Package', 'KSh 12,000', 'Comprehensive custom instrumentation including guitars, bass, keys, and beat production.')">Full Instrumentation Package</li>
   </ul><button class="outline-action book-service" data-service="Record, produce & finish." data-wa="https://wa.me/254118618199?text=Hi%20ArkWay%2C%20I%20would%20like%20to%20book%20Record%2C%20produce%20%26%20finish..%20Please%20share%20availability%20and%20next%20steps." data-em="mailto:arkwaycreative@gmail.com?subject=ArkWay%20booking%20%E2%80%94%20Record%2C%20produce%20%26%20finish.&body=Hi%20ArkWay%2C%20I%20would%20like%20to%20book%20Record%2C%20produce%20%26%20finish..%20Please%20share%20availability%20and%20next%20steps.">Reach out to book →</button></article>
 
   <article class="service-group"><div class="service-group-head"><span class="card-label">02 / FILM & MEDIA SOUND</span><span>→</span></div><h3>Score the picture.</h3><p>Sound built around the story — not pasted onto it.</p><ul>
-    <li class="clickable-item" onclick="openModal('Radio & Social Media Ads / Jingles', 'KSh 12,000', 'Custom beat/music + professional voiceover + commercial licensing.', 'Ideal for broadcast ads, radio spots, and brand campaigns. Includes commercial licensing rights.')">+ Radio & Social Media Ads / Jingles</li>
-    <li class="clickable-item" onclick="openModal('Film, Series & Video Scoring', 'From KSh 15,000', 'Custom cinematic music composed, synced, and mixed to your picture.', 'Tailored specifically to your narrative structure, pacing, and visual tone.')">+ Film, Series & Video Scoring</li>
-    <li class="clickable-item" onclick="openModal('Voiceover & Podcast Audio Cleaning', 'KSh 5,000', 'Pro recording booth + noise reduction & broadcast polishing.', 'Removes room noise, breathes life into dialogue, and polishes audio to broadcast standards.')">+ Voiceover & Podcast Audio Cleaning</li>
+    <li class="clickable-item" onclick="openModal('Radio & Social Media Ads / Jingles', 'KSh 12,000', 'Custom beat or music score, professional voiceover, and full commercial licensing.')">Radio & Social Media Ads / Jingles</li>
+    <li class="clickable-item" onclick="openModal('Film, Series & Video Scoring', 'From KSh 15,000', 'Custom cinematic music composed, synced, and mixed precisely to your picture.')">Film, Series & Video Scoring</li>
+    <li class="clickable-item" onclick="openModal('Voiceover & Podcast Audio Cleaning', 'KSh 5,000', 'Pro recording booth session, background noise reduction, and broadcast-level polishing.')">Voiceover & Podcast Audio Cleaning</li>
   </ul><button class="outline-action book-service" data-service="Score the picture." data-wa="https://wa.me/254118618199?text=Hi%20ArkWay%2C%20I%20would%20like%20to%20book%20Score%20the%20picture..%20Please%20share%20availability%20and%20next%20steps." data-em="mailto:arkwaycreative@gmail.com?subject=ArkWay%20booking%20%E2%80%94%20Score%20the%20picture.&body=Hi%20ArkWay%2C%20I%20would%20like%20to%20book%20Score%20the%20picture..%20Please%20share%20availability%20and%20next%20steps.">Reach out to book →</button></article>
 
   <article class="service-group"><div class="service-group-head"><span class="card-label">03 / BRAND ARCHITECTURE</span><span>→</span></div><h3>Build the media system.</h3><p>Creative direction, campaign thinking and brand architecture for people and organizations that need their message to move.</p><ul>
@@ -56,14 +54,10 @@
 <div id="serviceModal" class="service-modal" onclick="closeModalOnBg(event)">
   <div class="modal-content">
     <button class="modal-close" onclick="closeModal()">&times;</button>
-    <p class="eyebrow" id="modalCategory" style="margin-bottom: 5px;">PACKAGE DETAILS</p>
-    <h2 id="modalTitle" style="margin: 0; font-size: 1.5rem;">Package Name</h2>
+    <p class="eyebrow" style="margin-bottom: 5px;">PACKAGE DETAILS</p>
+    <h2 id="modalTitle" style="margin: 0; font-size: 1.4rem;">Package Name</h2>
     <div class="modal-price" id="modalPrice">KSh 0</div>
     <p class="modal-desc" id="modalDesc">Description goes here...</p>
-    <div class="modal-terms">
-      <strong>Studio Terms & Policies:</strong>
-      <span id="modalTerms">50% Deposit locks your slot. Includes 2 free revision rounds. Projects close 7 days after master delivery.</span>
-    </div>
   </div>
 </div>
 
@@ -73,14 +67,13 @@
 
 <script src="/site.js"></script>
 <script>
-function openModal(title, price, desc, terms) {
+function openModal(title, price, desc) {
   document.getElementById('modalTitle').innerText = title;
   document.getElementById('modalPrice').innerText = price;
   document.getElementById('modalDesc').innerText = desc;
-  document.getElementById('modalTerms').innerText = terms;
   
   document.getElementById('serviceModal').classList.add('active');
-  document.body.style.overflow = 'hidden'; // Prevent background scrolling
+  document.body.style.overflow = 'hidden';
 }
 
 function closeModal() {
