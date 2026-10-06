@@ -2,25 +2,39 @@
 <html lang="en"><head><meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Services — Audio Production, Film Sound, Branding & Analytics | ArkWay Creative</title><meta name="description" content="Recording, mixing & mastering, film and game scoring, brand architecture, and data analytics. Book ArkWay Creative by WhatsApp or email."><link rel="canonical" href="https://arkway-creative.vercel.app/services">
 <meta property="og:type" content="website"><meta property="og:site_name" content="ArkWay Creative"><meta property="og:title" content="Services — Audio Production, Film Sound, Branding & Analytics | ArkWay Creative"><meta property="og:description" content="Recording, mixing & mastering, film and game scoring, brand architecture, and data analytics. Book ArkWay Creative by WhatsApp or email."><meta property="og:url" content="https://arkway-creative.vercel.app/services"><meta property="og:image" content="https://lh3.googleusercontent.com/d/1Kl4dplfcrAjRYt88Wi7aSX_wsFlTuz6z"><meta name="twitter:card" content="summary_large_image">
-<link rel="stylesheet" href="/style.css"></head><body><div class="site">
+<link rel="stylesheet" href="/style.css">
+<style>
+/* Modal Popup Styles */
+.service-modal { display: none; position: fixed; inset: 0; background: rgba(0,0,0,0.85); z-index: 1000; align-items: center; justify-content: center; padding: 20px; backdrop-filter: blur(5px); }
+.service-modal.active { display: flex; }
+.modal-content { background: #121212; border: 1px solid rgba(255,255,255,0.15); border-radius: 12px; width: 100%; max-width: 520px; padding: 30px; position: relative; box-shadow: 0 20px 40px rgba(0,0,0,0.5); max-height: 90vh; overflow-y: auto; color: #f5f5f5; }
+.modal-close { position: absolute; top: 20px; right: 20px; background: transparent; border: none; color: #fff; font-size: 24px; cursor: pointer; }
+.modal-price { font-size: 1.4rem; font-weight: 700; color: #d4af37; margin: 10px 0 15px 0; }
+.modal-desc { font-size: 0.95rem; line-height: 1.6; color: #ccc; margin-bottom: 20px; }
+.modal-terms { font-size: 0.85rem; background: rgba(255,255,255,0.03); border-left: 3px solid #d4af37; padding: 12px; margin-bottom: 10px; color: #aaa; line-height: 1.5; }
+.modal-terms strong { color: #fff; display: block; margin-bottom: 4px; }
+.clickable-item { cursor: pointer; transition: color 0.2s; }
+.clickable-item:hover { color: #d4af37; }
+</style>
+</head><body><div class="site">
 <header class="nav"><a class="brand" href="/" aria-label="ArkWay Creative home"><img src="https://lh3.googleusercontent.com/d/1jrEFMFWEB7wO19K-_SJBsEcz4azfM9e4" alt="ArkWay Creative"></a><nav class="navlinks" id="navlinks"><a class="navlink" href="/">Home</a><a class="navlink active" href="/services">Services</a><a class="navlink" href="/products">Products</a><a class="navlink" href="/community">Community</a></nav><button class="menu" id="menuBtn" aria-label="Toggle navigation">☰</button></header>
 <main><section class="section"><div class="portal-head"><div><p class="eyebrow">01 · SERVICES</p><h1>Creative work, backed by <em>intelligence.</em></h1></div><p>Tell us what you are building. We group the work by outcome instead of forcing you through a price list. Reach out directly and ArkWay will scope the right service, timeline and quote with you.</p></div>
 <div class="service-groups">
   
   <article class="service-group"><div class="service-group-head"><span class="card-label">01 / AUDIO PRODUCTION</span><span>→</span></div><h3>Record, produce & finish.</h3><p>The core studio work: from the first vocal take to a finished, release-ready record.</p><ul>
-    <li>Quick Vocal Session</li>
-    <li>External Vocal Mix & Master</li>
-    <li>Complete Single Package</li>
-    <li>Full Custom Beat & Song Production</li>
-    <li>Acoustic / Lead Guitar Session</li>
-    <li>Live Bass Tracking</li>
-    <li>Full Instrumentation Package</li>
+    <li class="clickable-item" onclick="openModal('Quick Vocal Session', 'KSh 3,000', 'Bring your beat, step in the booth, walk out with a clean mix & master.', '50% Deposit locks your slot. Includes 2 free revision rounds. High-quality Mastered WAV & MP3 files included.')">+ Quick Vocal Session</li>
+    <li class="clickable-item" onclick="openModal('External Vocal Mix & Master', 'KSh 2,500', 'Professional mix and mastering for pre-recorded vocal tracks and stems.', '50% Deposit locks your slot. Includes 2 free revision rounds. High-quality Mastered WAV & MP3 files included.')">+ External Vocal Mix & Master</li>
+    <li class="clickable-item" onclick="openModal('Complete Single Package', 'KSh 5,500', 'Full recording + vocal tuning/pitching + deep stem mix + streaming master.', '50% Deposit locks your slot. Includes 2 free revision rounds. Revisions do not cover re-recording new takes or changing the underlying instrumental.')">+ Complete Single Package</li>
+    <li class="clickable-item" onclick="openModal('Full Custom Beat & Song Production', 'KSh 8,500', '100% custom beat built for you + recording + full mix & master.', '50% Deposit locks your slot. Deposits are non-refundable once production begins. Includes 2 free revision rounds.')">+ Full Custom Beat & Song Production</li>
+    <li class="clickable-item" onclick="openModal('Acoustic / Lead Guitar Session', 'KSh 2,500', 'Professional box acoustic or lead guitar tracking tailored to your arrangement.', '50% Deposit locks your slot. High-quality tracked WAV stems delivered upon completion.')">+ Acoustic / Lead Guitar Session</li>
+    <li class="clickable-item" onclick="openModal('Live Bass Tracking', 'KSh 2,500', 'Clean, driving bass guitar performance and tracking to lock in your low end.', '50% Deposit locks your slot. High-quality tracked WAV stems delivered upon completion.')">+ Live Bass Tracking</li>
+    <li class="clickable-item" onclick="openModal('Full Instrumentation Package', 'KSh 12,000', 'Comprehensive custom instrumentation including guitars, bass, keys, and beat production.', '50% Deposit locks your slot. Includes 2 free revision rounds and full stems.')">+ Full Instrumentation Package</li>
   </ul><button class="outline-action book-service" data-service="Record, produce & finish." data-wa="https://wa.me/254118618199?text=Hi%20ArkWay%2C%20I%20would%20like%20to%20book%20Record%2C%20produce%20%26%20finish..%20Please%20share%20availability%20and%20next%20steps." data-em="mailto:arkwaycreative@gmail.com?subject=ArkWay%20booking%20%E2%80%94%20Record%2C%20produce%20%26%20finish.&body=Hi%20ArkWay%2C%20I%20would%20like%20to%20book%20Record%2C%20produce%20%26%20finish..%20Please%20share%20availability%20and%20next%20steps.">Reach out to book →</button></article>
 
   <article class="service-group"><div class="service-group-head"><span class="card-label">02 / FILM & MEDIA SOUND</span><span>→</span></div><h3>Score the picture.</h3><p>Sound built around the story — not pasted onto it.</p><ul>
-    <li>Audio Jingles & Sonic Branding</li>
-    <li>Voiceover & Dialogue Production</li>
-    <li>Film, Series & Game Scoring</li>
+    <li class="clickable-item" onclick="openModal('Radio & Social Media Ads / Jingles', 'KSh 12,000', 'Custom beat/music + professional voiceover + commercial licensing.', 'Ideal for broadcast ads, radio spots, and brand campaigns. Includes commercial licensing rights.')">+ Radio & Social Media Ads / Jingles</li>
+    <li class="clickable-item" onclick="openModal('Film, Series & Video Scoring', 'From KSh 15,000', 'Custom cinematic music composed, synced, and mixed to your picture.', 'Tailored specifically to your narrative structure, pacing, and visual tone.')">+ Film, Series & Video Scoring</li>
+    <li class="clickable-item" onclick="openModal('Voiceover & Podcast Audio Cleaning', 'KSh 5,000', 'Pro recording booth + noise reduction & broadcast polishing.', 'Removes room noise, breathes life into dialogue, and polishes audio to broadcast standards.')">+ Voiceover & Podcast Audio Cleaning</li>
   </ul><button class="outline-action book-service" data-service="Score the picture." data-wa="https://wa.me/254118618199?text=Hi%20ArkWay%2C%20I%20would%20like%20to%20book%20Score%20the%20picture..%20Please%20share%20availability%20and%20next%20steps." data-em="mailto:arkwaycreative@gmail.com?subject=ArkWay%20booking%20%E2%80%94%20Score%20the%20picture.&body=Hi%20ArkWay%2C%20I%20would%20like%20to%20book%20Score%20the%20picture..%20Please%20share%20availability%20and%20next%20steps.">Reach out to book →</button></article>
 
   <article class="service-group"><div class="service-group-head"><span class="card-label">03 / BRAND ARCHITECTURE</span><span>→</span></div><h3>Build the media system.</h3><p>Creative direction, campaign thinking and brand architecture for people and organizations that need their message to move.</p><ul>
@@ -37,6 +51,47 @@
 
 </div>
 <div class="services-contact-strip"><div><span class="card-label">DIRECT BOOKING</span><strong>Start with WhatsApp or email.</strong><p>Tell us what you need, your deadline and what you already have. We will take it from there.</p></div><div class="services-contact-actions"><a class="primary large" target="_blank" rel="noopener" href="https://wa.me/254118618199?text=Hi%20ArkWay%2C%20I%20would%20like%20to%20book%20a%20project%20with%20ArkWay.%20Please%20share%20availability%20and%20next%20steps.">WhatsApp →</a><a class="secondary large" href="mailto:arkwaycreative@gmail.com?subject=ArkWay%20booking%20%E2%80%94%20a%20project%20with%20ArkWay&body=Hi%20ArkWay%2C%20I%20would%20like%20to%20book%20a%20project%20with%20ArkWay.%20Please%20share%20availability%20and%20next%20steps.">Email ✉</a></div></div></section></main>
+
+<!-- Modal Structure -->
+<div id="serviceModal" class="service-modal" onclick="closeModalOnBg(event)">
+  <div class="modal-content">
+    <button class="modal-close" onclick="closeModal()">&times;</button>
+    <p class="eyebrow" id="modalCategory" style="margin-bottom: 5px;">PACKAGE DETAILS</p>
+    <h2 id="modalTitle" style="margin: 0; font-size: 1.5rem;">Package Name</h2>
+    <div class="modal-price" id="modalPrice">KSh 0</div>
+    <p class="modal-desc" id="modalDesc">Description goes here...</p>
+    <div class="modal-terms">
+      <strong>Studio Terms & Policies:</strong>
+      <span id="modalTerms">50% Deposit locks your slot. Includes 2 free revision rounds. Projects close 7 days after master delivery.</span>
+    </div>
+  </div>
+</div>
+
 <footer><div class="footer-top"><a class="footer-brand" href="/"><img src="https://lh3.googleusercontent.com/d/1jrEFMFWEB7wO19K-_SJBsEcz4azfM9e4" alt="ArkWay Creative"><div><strong>ARKWAY CREATIVE</strong><span>MEDIA · DATA · CULTURE</span></div></a><div class="footer-contact"><a href="mailto:arkwaycreative@gmail.com">arkwaycreative@gmail.com</a><a href="https://wa.me/254118618199" target="_blank" rel="noopener noreferrer">WhatsApp / Call 0118618199</a></div></div>
 <div class="footer-grid"><div><span class="card-label">ROUTES</span><a href="/">Home</a><a href="/services">Services</a><a href="/products">Products</a><a href="/community">Community</a></div><div><span class="card-label">ARKWAY</span><p>Data-driven media: audio, visual storytelling, brand architecture and culture.</p></div></div>
-<div class="footer-bottom"><span>© 2026 ArkWay Creative</span><span>DESIRE · DEDICATION · DISCIPLINE</span></div></footer></div><script src="/site.js"></script></body></html>
+<div class="footer-bottom"><span>© 2026 ArkWay Creative</span><span>DESIRE · DEDICATION · DISCIPLINE</span></div></footer></div>
+
+<script src="/site.js"></script>
+<script>
+function openModal(title, price, desc, terms) {
+  document.getElementById('modalTitle').innerText = title;
+  document.getElementById('modalPrice').innerText = price;
+  document.getElementById('modalDesc').innerText = desc;
+  document.getElementById('modalTerms').innerText = terms;
+  
+  document.getElementById('serviceModal').classList.add('active');
+  document.body.style.overflow = 'hidden'; // Prevent background scrolling
+}
+
+function closeModal() {
+  document.getElementById('serviceModal').classList.remove('active');
+  document.body.style.overflow = '';
+}
+
+function closeModalOnBg(event) {
+  if (event.target.id === 'serviceModal') {
+    closeModal();
+  }
+}
+</script>
+</body></html>
