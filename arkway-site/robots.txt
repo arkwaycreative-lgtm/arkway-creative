@@ -1,0 +1,3 @@
+User-agent: *
+Allow: /
+Sitemap: https://arkway-creative.vercel.app/sitemap.xml
