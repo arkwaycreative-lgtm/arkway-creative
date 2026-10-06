@@ -4,10 +4,17 @@
 <meta property="og:type" content="website"><meta property="og:site_name" content="ArkWay Creative"><meta property="og:title" content="Services — Audio Production, Film Sound, Branding & Analytics | ArkWay Creative"><meta property="og:description" content="Recording, mixing & mastering, film and game scoring, brand architecture, and data analytics. Book ArkWay Creative by WhatsApp or email."><meta property="og:url" content="https://arkway-creative.vercel.app/services"><meta property="og:image" content="https://lh3.googleusercontent.com/d/1Kl4dplfcrAjRYt88Wi7aSX_wsFlTuz6z"><meta name="twitter:card" content="summary_large_image">
 <link rel="stylesheet" href="/style.css">
 <style>
-/* Clean Minimal Accordion Styles with Centered Alignment */
+/* Clean Minimal Accordion Styles - Kill any rogue global plus signs */
 .service-list { list-style: none; padding: 0; margin: 0 0 24px 0; }
-.service-item { border-bottom: 1px solid rgba(255,255,255,0.08); }
+.service-item { border-bottom: 1px solid rgba(255,255,255,0.08); position: relative; }
 .service-item:last-child { border-bottom: none; }
+
+/* Forcefully remove any pseudo-element plus signs coming from global style.css */
+.service-item::before, .service-item::after,
+.service-toggle::before, .service-toggle::after {
+  content: none !important;
+  display: none !important;
+}
 
 .service-toggle {
   width: 100%;
@@ -21,7 +28,7 @@
   padding: 18px 0;
   display: flex;
   justify-content: space-between;
-  align-items: center; /* Centers items vertically */
+  align-items: center;
   cursor: pointer;
   transition: color 0.2s;
 }
