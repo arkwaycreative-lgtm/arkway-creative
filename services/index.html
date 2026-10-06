@@ -4,35 +4,70 @@
 <meta property="og:type" content="website"><meta property="og:site_name" content="ArkWay Creative"><meta property="og:title" content="Services — Audio Production, Film Sound, Branding & Analytics | ArkWay Creative"><meta property="og:description" content="Recording, mixing & mastering, film and game scoring, brand architecture, and data analytics. Book ArkWay Creative by WhatsApp or email."><meta property="og:url" content="https://arkway-creative.vercel.app/services"><meta property="og:image" content="https://lh3.googleusercontent.com/d/1Kl4dplfcrAjRYt88Wi7aSX_wsFlTuz6z"><meta name="twitter:card" content="summary_large_image">
 <link rel="stylesheet" href="/style.css">
 <style>
-/* Modal Popup Styles */
-.service-modal { display: none; position: fixed; inset: 0; background: rgba(0,0,0,0.85); z-index: 1000; align-items: center; justify-content: center; padding: 20px; backdrop-filter: blur(5px); }
-.service-modal.active { display: flex; }
-.modal-content { background: #121212; border: 1px solid rgba(255,255,255,0.15); border-radius: 12px; width: 100%; max-width: 480px; padding: 30px; position: relative; box-shadow: 0 20px 40px rgba(0,0,0,0.5); color: #f5f5f5; text-align: left; }
-.modal-close { position: absolute; top: 20px; right: 20px; background: transparent; border: none; color: #fff; font-size: 24px; cursor: pointer; }
-.modal-price { font-size: 1.3rem; font-weight: 700; color: #d4af37; margin: 10px 0 15px 0; }
-.modal-desc { font-size: 1rem; line-height: 1.6; color: #ccc; margin-bottom: 0; }
+/* Accordion Service List Styles */
+.service-list { list-style: none; padding: 0; margin: 0 0 20px 0; }
+.service-item { border-bottom: 1px solid rgba(255,255,255,0.08); }
+.service-item:last-child { border-bottom: none; }
 
-/* Clickable list items indicator */
-.clickable-item { 
-  cursor: pointer; 
-  position: relative; 
-  padding-left: 18px; 
-  transition: color 0.2s; 
+.service-toggle {
+  width: 100%;
+  background: transparent;
+  border: none;
+  color: #f5f5f5;
+  font-family: inherit;
+  font-size: 0.95rem;
+  text-align: left;
+  padding: 14px 0;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  cursor: pointer;
+  transition: color 0.2s;
 }
-.clickable-item::before {
-  content: "+";
-  position: absolute;
-  left: 0;
+.service-toggle:hover { color: #d4af37; }
+
+.service-toggle span { flex: 1; padding-right: 15px; }
+
+/* Spinning Plus Icon */
+.service-icon {
+  width: 22px;
+  height: 22px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
   color: #d4af37;
+  font-size: 1.2rem;
   font-weight: 700;
-  opacity: 0.7;
-  transition: opacity 0.2s;
+  transition: transform 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+  flex-shrink: 0;
 }
-.clickable-item:hover { 
-  color: #d4af37; 
+.service-item.active .service-icon {
+  transform: rotate(90deg);
 }
-.clickable-item:hover::before {
-  opacity: 1;
+
+/* Dropdown Content */
+.service-dropdown {
+  max-height: 0;
+  overflow: hidden;
+  transition: max-height 0.35s ease-in-out, padding 0.35s ease-in-out;
+  padding: 0 0;
+}
+.service-item.active .service-dropdown {
+  max-height: 180px; /* enough space for price + short description */
+  padding: 0 0 16px 0;
+}
+
+.dropdown-price {
+  font-size: 1.1rem;
+  font-weight: 700;
+  color: #d4af37;
+  margin-bottom: 6px;
+}
+.dropdown-desc {
+  font-size: 0.9rem;
+  line-height: 1.5;
+  color: #aaa;
+  margin: 0;
 }
 </style>
 </head><body><div class="site">
@@ -40,47 +75,200 @@
 <main><section class="section"><div class="portal-head"><div><p class="eyebrow">01 · SERVICES</p><h1>Creative work, backed by <em>intelligence.</em></h1></div><p>Tell us what you are building. We group the work by outcome instead of forcing you through a price list. Reach out directly and ArkWay will scope the right service, timeline and quote with you.</p></div>
 <div class="service-groups">
   
-  <article class="service-group"><div class="service-group-head"><span class="card-label">01 / AUDIO PRODUCTION</span><span>→</span></div><h3>Record, produce & finish.</h3><p>The core studio work: from the first vocal take to a finished, release-ready record.</p><ul>
-    <li class="clickable-item" onclick="openModal('Quick Vocal Session', 'KSh 3,000', 'Bring your beat, step in the booth, and walk out with a clean mix & master.')">Quick Vocal Session</li>
-    <li class="clickable-item" onclick="openModal('External Vocal Mix & Master', 'KSh 2,500', 'Professional mix and mastering for pre-recorded vocal tracks and stems.')">External Vocal Mix & Master</li>
-    <li class="clickable-item" onclick="openModal('Complete Single Package', 'KSh 5,500', 'Full recording, vocal tuning and pitching, deep stem mix, and streaming-ready master.')">Complete Single Package</li>
-    <li class="clickable-item" onclick="openModal('Full Custom Beat & Song Production', 'KSh 8,500', '100% custom beat built from scratch for you, plus recording, full mix & master.')">Full Custom Beat & Song Production</li>
-    <li class="clickable-item" onclick="openModal('Acoustic / Lead Guitar Session', 'KSh 2,500', 'Professional box acoustic or lead guitar tracking tailored to your arrangement.')">Acoustic / Lead Guitar Session</li>
-    <li class="clickable-item" onclick="openModal('Live Bass Tracking', 'KSh 2,500', 'Clean, driving bass guitar performance and tracking to lock in your low end.')">Live Bass Tracking</li>
-    <li class="clickable-item" onclick="openModal('Full Instrumentation Package', 'KSh 12,000', 'Comprehensive custom instrumentation including guitars, bass, keys, and beat production.')">Full Instrumentation Package</li>
-  </ul><button class="outline-action book-service" data-service="Record, produce & finish." data-wa="https://wa.me/254118618199?text=Hi%20ArkWay%2C%20I%20would%20like%20to%20book%20Record%2C%20produce%20%26%20finish..%20Please%20share%20availability%20and%20next%20steps." data-em="mailto:arkwaycreative@gmail.com?subject=ArkWay%20booking%20%E2%80%94%20Record%2C%20produce%20%26%20finish.&body=Hi%20ArkWay%2C%20I%20would%20like%20to%20book%20Record%2C%20produce%20%26%20finish..%20Please%20share%20availability%20and%20next%20steps.">Reach out to book →</button></article>
+  <!-- 01 / AUDIO PRODUCTION -->
+  <article class="service-group"><div class="service-group-head"><span class="card-label">01 / AUDIO PRODUCTION</span><span>→</span></div><h3>Record, produce & finish.</h3><p>The core studio work: from the first vocal take to a finished, release-ready record.</p>
+  
+  <ul class="service-list">
+    <li class="service-item">
+      <button class="service-toggle" onclick="toggleService(this)">
+        <span>Quick Vocal Session</span>
+        <span class="service-icon">+</span>
+      </button>
+      <div class="service-dropdown">
+        <div class="dropdown-price">KSh 3,000</div>
+        <p class="dropdown-desc">Bring your beat, step in the booth, and walk out with a clean mix & master.</p>
+      </div>
+    </li>
+    <li class="service-item">
+      <button class="service-toggle" onclick="toggleService(this)">
+        <span>External Vocal Mix & Master</span>
+        <span class="service-icon">+</span>
+      </button>
+      <div class="service-dropdown">
+        <div class="dropdown-price">KSh 2,500</div>
+        <p class="dropdown-desc">Professional mix and mastering for pre-recorded vocal tracks and stems.</p>
+      </div>
+    </li>
+    <li class="service-item">
+      <button class="service-toggle" onclick="toggleService(this)">
+        <span>Complete Single Package</span>
+        <span class="service-icon">+</span>
+      </button>
+      <div class="service-dropdown">
+        <div class="dropdown-price">KSh 5,500</div>
+        <p class="dropdown-desc">Full recording, vocal tuning and pitching, deep stem mix, and streaming-ready master.</p>
+      </div>
+    </li>
+    <li class="service-item">
+      <button class="service-toggle" onclick="toggleService(this)">
+        <span>Full Custom Beat & Song Production</span>
+        <span class="service-icon">+</span>
+      </button>
+      <div class="service-dropdown">
+        <div class="dropdown-price">KSh 8,500</div>
+        <p class="dropdown-desc">100% custom beat built from scratch for you, plus recording, full mix & master.</p>
+      </div>
+    </li>
+    <li class="service-item">
+      <button class="service-toggle" onclick="toggleService(this)">
+        <span>Acoustic / Lead Guitar Session</span>
+        <span class="service-icon">+</span>
+      </button>
+      <div class="service-dropdown">
+        <div class="dropdown-price">KSh 2,500</div>
+        <p class="dropdown-desc">Professional box acoustic or lead guitar tracking tailored to your arrangement.</p>
+      </div>
+    </li>
+    <li class="service-item">
+      <button class="service-toggle" onclick="toggleService(this)">
+        <span>Live Bass Tracking</span>
+        <span class="service-icon">+</span>
+      </button>
+      <div class="service-dropdown">
+        <div class="dropdown-price">KSh 2,500</div>
+        <p class="dropdown-desc">Clean, driving bass guitar performance and tracking to lock in your low end.</p>
+      </div>
+    </li>
+    <li class="service-item">
+      <button class="service-toggle" onclick="toggleService(this)">
+        <span>Full Instrumentation Package</span>
+        <span class="service-icon">+</span>
+      </button>
+      <div class="service-dropdown">
+        <div class="dropdown-price">KSh 12,000</div>
+        <p class="dropdown-desc">Comprehensive custom instrumentation including guitars, bass, keys, and beat production.</p>
+      </div>
+    </li>
+  </ul>
+  
+  <button class="outline-action book-service" data-service="Record, produce & finish." data-wa="https://wa.me/254118618199?text=Hi%20ArkWay%2C%20I%20would%20like%20to%20book%20Record%2C%20produce%20%26%20finish..%20Please%20share%20availability%20and%20next%20steps." data-em="mailto:arkwaycreative@gmail.com?subject=ArkWay%20booking%20%E2%80%94%20Record%2C%20produce%20%26%20finish.&body=Hi%20ArkWay%2C%20I%20would%20like%20to%20book%20Record%2C%20produce%20%26%20finish..%20Please%20share%20availability%20and%20next%20steps.">Reach out to book →</button></article>
 
-  <article class="service-group"><div class="service-group-head"><span class="card-label">02 / FILM & MEDIA SOUND</span><span>→</span></div><h3>Score the picture.</h3><p>Sound built around the story — not pasted onto it.</p><ul>
-    <li class="clickable-item" onclick="openModal('Radio & Social Media Ads / Jingles', 'KSh 12,000', 'Custom beat or music score, professional voiceover, and full commercial licensing.')">Radio & Social Media Ads / Jingles</li>
-    <li class="clickable-item" onclick="openModal('Film, Series & Video Scoring', 'From KSh 15,000', 'Custom cinematic music composed, synced, and mixed precisely to your picture.')">Film, Series & Video Scoring</li>
-    <li class="clickable-item" onclick="openModal('Voiceover & Podcast Audio Cleaning', 'KSh 5,000', 'Pro recording booth session, background noise reduction, and broadcast-level polishing.')">Voiceover & Podcast Audio Cleaning</li>
-  </ul><button class="outline-action book-service" data-service="Score the picture." data-wa="https://wa.me/254118618199?text=Hi%20ArkWay%2C%20I%20would%20like%20to%20book%20Score%20the%20picture..%20Please%20share%20availability%20and%20next%20steps." data-em="mailto:arkwaycreative@gmail.com?subject=ArkWay%20booking%20%E2%80%94%20Score%20the%20picture.&body=Hi%20ArkWay%2C%20I%20would%20like%20to%20book%20Score%20the%20picture..%20Please%20share%20availability%20and%20next%20steps.">Reach out to book →</button></article>
+  <!-- 02 / FILM & MEDIA SOUND -->
+  <article class="service-group"><div class="service-group-head"><span class="card-label">02 / FILM & MEDIA SOUND</span><span>→</span></div><h3>Score the picture.</h3><p>Sound built around the story — not pasted onto it.</p>
+  
+  <ul class="service-list">
+    <li class="service-item">
+      <button class="service-toggle" onclick="toggleService(this)">
+        <span>Radio & Social Media Ads / Jingles</span>
+        <span class="service-icon">+</span>
+      </button>
+      <div class="service-dropdown">
+        <div class="dropdown-price">KSh 12,000</div>
+        <p class="dropdown-desc">Custom beat or music score, professional voiceover, and full commercial licensing.</p>
+      </div>
+    </li>
+    <li class="service-item">
+      <button class="service-toggle" onclick="toggleService(this)">
+        <span>Film, Series & Video Scoring</span>
+        <span class="service-icon">+</span>
+      </button>
+      <div class="service-dropdown">
+        <div class="dropdown-price">From KSh 15,000</div>
+        <p class="dropdown-desc">Custom cinematic music composed, synced, and mixed precisely to your picture.</p>
+      </div>
+    </li>
+    <li class="service-item">
+      <button class="service-toggle" onclick="toggleService(this)">
+        <span>Voiceover & Podcast Audio Cleaning</span>
+        <span class="service-icon">+</span>
+      </button>
+      <div class="service-dropdown">
+        <div class="dropdown-price">KSh 5,000</div>
+        <p class="dropdown-desc">Pro recording booth session, background noise reduction, and broadcast-level polishing.</p>
+      </div>
+    </li>
+  </ul>
+  
+  <button class="outline-action book-service" data-service="Score the picture." data-wa="https://wa.me/254118618199?text=Hi%20ArkWay%2C%20I%20would%20like%20to%20book%20Score%20the%20picture..%20Please%20share%20availability%20and%20next%20steps." data-em="mailto:arkwaycreative@gmail.com?subject=ArkWay%20booking%20%E2%80%94%20Score%20the%20picture.&body=Hi%20ArkWay%2C%20I%20would%20like%20to%20book%20Score%20the%20picture..%20Please%20share%20availability%20and%20next%20steps.">Reach out to book →</button></article>
 
-  <article class="service-group"><div class="service-group-head"><span class="card-label">03 / BRAND ARCHITECTURE</span><span>→</span></div><h3>Build the media system.</h3><p>Creative direction, campaign thinking and brand architecture for people and organizations that need their message to move.</p><ul>
-    <li class="clickable-item" onclick="openModal('Brand Identity & Creative Direction', 'Custom Scope / Quote', 'Defining your visual language, tone, positioning, and foundational brand identity assets.')">Brand Identity & Creative Direction</li>
-    <li class="clickable-item" onclick="openModal('Campaign & Content Architecture', 'Custom Scope / Quote', 'Strategic rollout plans, media formatting, and content frameworks for releases or campaigns.')">Campaign & Content Architecture</li>
-    <li class="clickable-item" onclick="openModal('Digital Media Strategy', 'Custom Scope / Quote', 'Mapping out online presence, audience engagement pipelines, and distribution channels.')">Digital Media Strategy</li>
-  </ul><button class="outline-action book-service" data-service="Build the media system." data-wa="https://wa.me/254118618199?text=Hi%20ArkWay%2C%20I%20would%20like%20to%20book%20Build%20the%20media%20system..%20Please%20share%20availability%20and%20next%20steps." data-em="mailto:arkwaycreative@gmail.com?subject=ArkWay%20booking%20%E2%80%94%20Build%20the%20media%20system.&body=Hi%20ArkWay%2C%20I%20would%20like%20to%20book%20Build%20the%20media%20system..%20Please%20share%20availability%20and%20next%20steps.">Reach out to book →</button></article>
+  <!-- 03 / BRAND ARCHITECTURE -->
+  <article class="service-group"><div class="service-group-head"><span class="card-label">03 / BRAND ARCHITECTURE</span><span>→</span></div><h3>Build the media system.</h3><p>Creative direction, campaign thinking and brand architecture for people and organizations that need their message to move.</p>
+  
+  <ul class="service-list">
+    <li class="service-item">
+      <button class="service-toggle" onclick="toggleService(this)">
+        <span>Brand Identity & Creative Direction</span>
+        <span class="service-icon">+</span>
+      </button>
+      <div class="service-dropdown">
+        <div class="dropdown-price">Custom Scope / Quote</div>
+        <p class="dropdown-desc">Defining your visual language, tone, positioning, and foundational brand identity assets.</p>
+      </div>
+    </li>
+    <li class="service-item">
+      <button class="service-toggle" onclick="toggleService(this)">
+        <span>Campaign & Content Architecture</span>
+        <span class="service-icon">+</span>
+      </button>
+      <div class="service-dropdown">
+        <div class="dropdown-price">Custom Scope / Quote</div>
+        <p class="dropdown-desc">Strategic rollout plans, media formatting, and content frameworks for releases or campaigns.</p>
+      </div>
+    </li>
+    <li class="service-item">
+      <button class="service-toggle" onclick="toggleService(this)">
+        <span>Digital Media Strategy</span>
+        <span class="service-icon">+</span>
+      </button>
+      <div class="service-dropdown">
+        <div class="dropdown-price">Custom Scope / Quote</div>
+        <p class="dropdown-desc">Mapping out online presence, audience engagement pipelines, and distribution channels.</p>
+      </div>
+    </li>
+  </ul>
+  
+  <button class="outline-action book-service" data-service="Build the media system." data-wa="https://wa.me/254118618199?text=Hi%20ArkWay%2C%20I%20would%20like%20to%20book%20Build%20the%20media%20system..%20Please%20share%20availability%20and%20next%20steps." data-em="mailto:arkwaycreative@gmail.com?subject=ArkWay%20booking%20%E2%80%94%20Build%20the%20media%20system.&body=Hi%20ArkWay%2C%20I%20would%20like%20to%20book%20Build%20the%20media%20system..%20Please%20share%20availability%20and%20next%20steps.">Reach out to book →</button></article>
 
-  <article class="service-group"><div class="service-group-head"><span class="card-label">04 / DATA & ANALYTICS</span><span>→</span></div><h3>Make creative decisions with evidence.</h3><p>Data analytics is the intelligence layer behind media, audience and business decisions.</p><ul>
-    <li class="clickable-item" onclick="openModal('Market Research & Business Analytics', 'Custom Scope / Quote', 'Gathering and analyzing data to uncover market gaps, trends, and growth metrics.')">Market Research & Business Analytics</li>
-    <li class="clickable-item" onclick="openModal('Audience & Performance Analysis', 'Custom Scope / Quote', 'Deep dives into listener or consumer metrics, stream data, and audience behavior.')">Audience & Performance Analysis</li>
-    <li class="clickable-item" onclick="openModal('Dashboards & Reporting', 'Custom Scope / Quote', 'Building customized tracking dashboards and performance reports for your project or business.')">Dashboards & Reporting</li>
-  </ul><button class="outline-action book-service" data-service="Make creative decisions with evidence." data-wa="https://wa.me/254118618199?text=Hi%20ArkWay%2C%20I%20would%20like%20to%20book%20Make%20creative%20decisions%20with%20evidence..%20Please%20share%20availability%20and%20next%20steps." data-em="mailto:arkwaycreative@gmail.com?subject=ArkWay%20booking%20%E2%80%94%20Make%20creative%20decisions%20with%20evidence.&body=Hi%20ArkWay%2C%20I%20would%20like%20to%20book%20Make%20creative%20decisions%20with%20evidence..%20Please%20share%20availability%20and%20next%20steps.">Reach out to book →</button></article>
+  <!-- 04 / DATA & ANALYTICS -->
+  <article class="service-group"><div class="service-group-head"><span class="card-label">04 / DATA & ANALYTICS</span><span>→</span></div><h3>Make creative decisions with evidence.</h3><p>Data analytics is the intelligence layer behind media, audience and business decisions.</p>
+  
+  <ul class="service-list">
+    <li class="service-item">
+      <button class="service-toggle" onclick="toggleService(this)">
+        <span>Market Research & Business Analytics</span>
+        <span class="service-icon">+</span>
+      </button>
+      <div class="service-dropdown">
+        <div class="dropdown-price">Custom Scope / Quote</div>
+        <p class="dropdown-desc">Gathering and analyzing data to uncover market gaps, trends, and growth metrics.</p>
+      </div>
+    </li>
+    <li class="service-item">
+      <button class="service-toggle" onclick="toggleService(this)">
+        <span>Audience & Performance Analysis</span>
+        <span class="service-icon">+</span>
+      </button>
+      <div class="service-dropdown">
+        <div class="dropdown-price">Custom Scope / Quote</div>
+        <p class="dropdown-desc">Deep dives into listener or consumer metrics, stream data, and audience behavior.</p>
+      </div>
+    </li>
+    <li class="service-item">
+      <button class="service-toggle" onclick="toggleService(this)">
+        <span>Dashboards & Reporting</span>
+        <span class="service-icon">+</span>
+      </button>
+      <div class="service-dropdown">
+        <div class="dropdown-price">Custom Scope / Quote</div>
+        <p class="dropdown-desc">Building customized tracking dashboards and performance reports for your project or business.</p>
+      </div>
+    </li>
+  </ul>
+  
+  <button class="outline-action book-service" data-service="Make creative decisions with evidence." data-wa="https://wa.me/254118618199?text=Hi%20ArkWay%2C%20I%20would%20like%20to%20book%20Make%20creative%20decisions%20with%20evidence..%20Please%20share%20availability%20and%20next%20steps." data-em="mailto:arkwaycreative@gmail.com?subject=ArkWay%20booking%20%E2%80%94%20Make%20creative%20decisions%20with%20evidence.&body=Hi%20ArkWay%2C%20I%20would%20like%20to%20book%20Make%20creative%20decisions%20with%20evidence..%20Please%20share%20availability%20and%20next%20steps.">Reach out to book →</button></article>
 
 </div>
 <div class="services-contact-strip"><div><span class="card-label">DIRECT BOOKING</span><strong>Start with WhatsApp or email.</strong><p>Tell us what you need, your deadline and what you already have. We will take it from there.</p></div><div class="services-contact-actions"><a class="primary large" target="_blank" rel="noopener" href="https://wa.me/254118618199?text=Hi%20ArkWay%2C%20I%20would%20like%20to%20book%20a%20project%20with%20ArkWay.%20Please%20share%20availability%20and%20next%20steps.">WhatsApp →</a><a class="secondary large" href="mailto:arkwaycreative@gmail.com?subject=ArkWay%20booking%20%E2%80%94%20a%20project%20with%20ArkWay&body=Hi%20ArkWay%2C%20I%20would%20like%20to%20book%20a%20project%20with%20ArkWay.%20Please%20share%20availability%20and%20next%20steps.">Email ✉</a></div></div></section></main>
-
-<!-- Modal Structure -->
-<div id="serviceModal" class="service-modal" onclick="closeModalOnBg(event)">
-  <div class="modal-content">
-    <button class="modal-close" onclick="closeModal()">&times;</button>
-    <p class="eyebrow" style="margin-bottom: 5px;">SERVICE OVERVIEW</p>
-    <h2 id="modalTitle" style="margin: 0; font-size: 1.4rem;">Package Name</h2>
-    <div class="modal-price" id="modalPrice">KSh 0</div>
-    <p class="modal-desc" id="modalDesc">Description goes here...</p>
-  </div>
-</div>
 
 <footer><div class="footer-top"><a class="footer-brand" href="/"><img src="https://lh3.googleusercontent.com/d/1jrEFMFWEB7wO19K-_SJBsEcz4azfM9e4" alt="ArkWay Creative"><div><strong>ARKWAY CREATIVE</strong><span>MEDIA · DATA · CULTURE</span></div></a><div class="footer-contact"><a href="mailto:arkwaycreative@gmail.com">arkwaycreative@gmail.com</a><a href="https://wa.me/254118618199" target="_blank" rel="noopener noreferrer">WhatsApp / Call 0118618199</a></div></div>
 <div class="footer-grid"><div><span class="card-label">ROUTES</span><a href="/">Home</a><a href="/services">Services</a><a href="/products">Products</a><a href="/community">Community</a></div><div><span class="card-label">ARKWAY</span><p>Data-driven media: audio, visual storytelling, brand architecture and culture.</p></div></div>
@@ -88,23 +276,18 @@
 
 <script src="/site.js"></script>
 <script>
-function openModal(title, price, desc) {
-  document.getElementById('modalTitle').innerText = title;
-  document.getElementById('modalPrice').innerText = price;
-  document.getElementById('modalDesc').innerText = desc;
+function toggleService(btn) {
+  const currentItem = btn.parentElement;
+  const isActive = currentItem.classList.contains('active');
   
-  document.getElementById('serviceModal').classList.add('active');
-  document.body.style.overflow = 'hidden';
-}
-
-function closeModal() {
-  document.getElementById('serviceModal').classList.remove('active');
-  document.body.style.overflow = '';
-}
-
-function closeModalOnBg(event) {
-  if (event.target.id === 'serviceModal') {
-    closeModal();
+  // Close all other open service items across the page to reduce clutter
+  document.querySelectorAll('.service-item.active').forEach(item => {
+    item.classList.remove('active');
+  });
+  
+  // If it wasn't active before, open it (spinning the plus 90 degrees)
+  if (!isActive) {
+    currentItem.classList.add('active');
   }
 }
 </script>
