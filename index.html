@@ -206,8 +206,10 @@ function setRoute(route,sub=""){
 }
 function route(){
  const raw=location.hash.replace(/^#/,"")||"home";
- const parts=raw.split("/");
- return {root:["services","products","community"].includes(parts[0])?parts[0]:"home",sub:parts[1]||""};
+ const [path, queryStr] = raw.split("?");
+ const parts=path.split("/");
+ const root = ["services","products","community"].includes(parts[0])?parts[0]:"home";
+ return {root, sub:parts[1]||"", query: new URLSearchParams(queryStr||"")};
 }
 function inquiry(service,channel){
  const msg=`Hi ArkWay, I would like to book ${service}. Please share availability and next steps.`;
@@ -251,9 +253,9 @@ function services(){
  <div class="services-contact-strip"><div><span class="card-label">DIRECT BOOKING</span><strong>Start with WhatsApp or email.</strong><p>Tell us what you need, your deadline and what you already have. We will take it from there.</p></div><div class="services-contact-actions"><a class="primary large" target="_blank" rel="noopener" href="${inquiry("a project with ArkWay","whatsapp")}">WhatsApp ${icon("arrow")}</a><a class="secondary large" href="${inquiry("a project with ArkWay","email")}">Email ${icon("mail")}</a></div></div></section>`;
 }
 
-function products(){
+function products(q){
  const filters=["ALL PRODUCTS","BEATS","FILM SCORES","LOOPS","DRUM KITS","FX","FOLEY"];
- const active=new URLSearchParams(location.hash.split("?")[1]||"").get("filter")||"ALL PRODUCTS";
+ const active=q.get("filter")||"ALL PRODUCTS";
  const visible=active==="ALL PRODUCTS"?catalog:catalog.filter(x=>x.category===active);
  return `<section class="section"><div class="portal-head"><div><p class="eyebrow">02 · PRODUCTS</p><h1>Open the <em>sound vault.</em></h1></div><p>Digital tools for producers, filmmakers and artists — curated drops of beats, loops, drums, FX and foley, engineered for independent work.</p></div>
  <div class="product-filter-bar">${filters.map(f=>`<button class="${active===f?"active":""}" data-filter="${f}">${f}</button>`).join("")}</div>
@@ -288,7 +290,7 @@ function reels(){
 }
 function render(){
  const r=route();
- let content=r.root==="home"?home():r.root==="services"?services():r.root==="products"?products():r.sub==="discography"?discography():r.sub==="reels"?reels():community();
+ let content=r.root==="home"?home():r.root==="services"?services():r.root==="products"?products(r.query):r.sub==="discography"?discography():r.sub==="reels"?reels():community();
  document.getElementById("app").innerHTML=content;
  document.querySelectorAll(".navlink").forEach(b=>b.classList.toggle("active",b.dataset.route===r.root));
  document.title="ArkWay Creative — "+(r.root[0].toUpperCase()+r.root.slice(1));
