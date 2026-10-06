@@ -206,8 +206,10 @@ function setRoute(route,sub=""){
 }
 function route(){
  const raw=location.hash.replace(/^#/,"")||"home";
- const parts=raw.split("/");
- return {root:["services","products","community"].includes(parts[0])?parts[0]:"home",sub:parts[1]||""};
+ const clean=raw.split("?")[0];
+ const parts=clean.split("/");
+ const root=["services","products","community"].includes(parts[0])?parts[0]:"home";
+ return {root,sub:parts[1]||""};
 }
 function inquiry(service,channel){
  const msg=`Hi ArkWay, I would like to book ${service}. Please share availability and next steps.`;
@@ -253,7 +255,8 @@ function services(){
 
 function products(){
  const filters=["ALL PRODUCTS","BEATS","FILM SCORES","LOOPS","DRUM KITS","FX","FOLEY"];
- const active=new URLSearchParams(location.hash.split("?")[1]||"").get("filter")||"ALL PRODUCTS";
+ const hashQuery=location.hash.includes("?")?location.hash.split("?")[1]:"";
+ const active=new URLSearchParams(hashQuery).get("filter")||"ALL PRODUCTS";
  const visible=active==="ALL PRODUCTS"?catalog:catalog.filter(x=>x.category===active);
  return `<section class="section"><div class="portal-head"><div><p class="eyebrow">02 · PRODUCTS</p><h1>Open the <em>sound vault.</em></h1></div><p>Digital tools for producers, filmmakers and artists — curated drops of beats, loops, drums, FX and foley, engineered for independent work.</p></div>
  <div class="product-filter-bar">${filters.map(f=>`<button class="${active===f?"active":""}" data-filter="${f}">${f}</button>`).join("")}</div>
@@ -262,16 +265,22 @@ function products(){
 
 function community(){
  const cards=[
- ["01","SOLO CATALOG","Official Discography","Stream Yovan's solo EPs and singles directly.","discography","Explore catalog →"],
- ["02","VISUAL REELS","Showreels & Short Film",'Music Video Showcase & "SURVIVAL" Short Film.',"reels","Watch reels →"],
- ["03","ARTIST CREDITS","Produced Work & Collaborations","Tracks and releases engineered for collaborating artists under ArkWay.","","View credits →"],
- ["04","ON STAGE","Live Sets & Performances","Recorded live arrangements, acoustic sessions, and stage sets.","","Watch live sessions →"],
- ["05","FILM & CULTURE","Between Frames","Film critiques, narrative analysis, and cultural essays by Yovan.","","Read Between Frames →"],
- ["06","STORE","ArkWay Apparel & Merch","Signature streetwear, bandanas, and physical drops engineered by ArkWay Creative.","coming",""],
- ["07","EVENTS","Live Shows & Tickets","Upcoming ArkWay live showcases, concert dates, and ticket releases.","coming",""]
+ {num:"01",kicker:"SOLO CATALOG",title:"Official Discography",desc:"Stream Yovan's solo EPs and singles directly.",target:"discography",cta:"Explore catalog →"},
+ {num:"02",kicker:"VISUAL REELS",title:"Showreels & Short Film",desc:'Music Video Showcase & "SURVIVAL" Short Film.',target:"reels",cta:"Watch reels →"},
+ {num:"03",kicker:"ARTIST CREDITS",title:"Produced Work & Collaborations",desc:"Tracks and releases engineered for collaborating artists under ArkWay.",target:"credits",cta:"View credits →"},
+ {num:"04",kicker:"ON STAGE",title:"Live Sets & Performances",desc:"Recorded live arrangements, acoustic sessions, and stage sets.",target:"live",cta:"Watch live sessions →"},
+ {num:"05",kicker:"FILM & CULTURE",title:"Between Frames",desc:"Film critiques, narrative analysis, and cultural essays by Yovan.",external:"https://yovan.substack.com",cta:"Read Between Frames →"},
+ {num:"06",kicker:"STORE",title:"ArkWay Apparel & Merch",desc:"Signature streetwear, bandanas, and physical drops engineered by ArkWay Creative.",target:"coming"},
+ {num:"07",kicker:"EVENTS",title:"Live Shows & Tickets",desc:"Upcoming ArkWay live showcases, concert dates, and ticket releases.",target:"coming"}
  ];
  return `<section class="section community-landing"><div class="portal-head"><div><p class="eyebrow">03 · COMMUNITY</p><h1>WELCOME TO THE ARKWAY COMMUNITY</h1></div><p>Explore the media catalog engineered under ArkWay Creative—featuring Yovan's solo projects, production credits, featured artist collaborations, live sessions, film critiques, apparel, and live events.</p></div>
- <div class="community-editorial-grid">${cards.map(c=>`<article class="community-editorial-card"><button class="community-editorial-hit" ${c[4]==="coming"?"disabled":`data-community="${c[4]}"`}><div class="community-editorial-top"><span class="community-door-number">${c[0]}</span><span>${icon("arrow")}</span></div><div class="community-editorial-copy"><span class="community-kicker">${c[1]}</span><h2>${c[2]}</h2><p>${c[3]}</p></div><div class="community-editorial-bottom">${c[4]==="coming"?'<span class="status-badge">COMING SOON</span>':`<span>${c[5]}</span>`}</div></button></article>`).join("")}</div></section>`;
+ <div class="community-editorial-grid">${cards.map(c=>{
+   if(c.external){
+     return `<article class="community-editorial-card"><a class="community-editorial-hit" href="${c.external}" target="_blank" rel="noopener"><div class="community-editorial-top"><span class="community-door-number">${c.num}</span><span>${icon("arrow")}</span></div><div class="community-editorial-copy"><span class="community-kicker">${c.kicker}</span><h2>${c.title}</h2><p>${c.desc}</p></div><div class="community-editorial-bottom"><span>${c.cta}</span></div></a></article>`;
+   }
+   const isComing = c.target === "coming";
+   return `<article class="community-editorial-card"><button class="community-editorial-hit" ${isComing ? "disabled" : `data-community="${c.target}"`}><div class="community-editorial-top"><span class="community-door-number">${c.num}</span><span>${icon("arrow")}</span></div><div class="community-editorial-copy"><span class="community-kicker">${c.kicker}</span><h2>${c.title}</h2><p>${c.desc}</p></div><div class="community-editorial-bottom">${isComing ? '<span class="status-badge">COMING SOON</span>' : `<span>${c.cta}</span>`}</div></button></article>`;
+ }).join("")}</div></section>`;
 }
 
 function discography(){
@@ -279,32 +288,61 @@ function discography(){
  <div class="discography-toggle"><button class="active" data-mode="stream">Stream</button><button data-mode="download">Download for Offline</button></div>
  <div id="discographyContent" class="discography-grid">${releases.map(r=>`<article class="release-card"><iframe src="${r[1]}" title="${r[0]} on Spotify" loading="lazy" allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture"></iframe></article>`).join("")}</div></section>`;
 }
+
 function downloads(){
  return `<div class="hustlesasa-grid">${hustlesasa.map(p=>`<article class="hustlesasa-card"><div class="hustlesasa-topline"><h3>${p[0]}</h3><span class="price-badge">${p[2]}</span></div><span class="download-category">${p[1]}</span><a class="primary small hustle-cta" href="${p[3]}" target="_blank" rel="noopener">Buy &amp; Download on Hustlesasa ${icon("bag")}</a></article>`).join("")}</div>`;
 }
+
 function reels(){
  return `<section class="subview"><a class="back" href="#community">← Back to Community</a><div class="portal-head"><div><p class="eyebrow">VISUAL REELS</p><h1>Showreels & <em>Short Film.</em></h1></div><p>Music Video Showcase & "SURVIVAL" Short Film.</p></div>
  <div class="community-reel-grid"><article class="universe-media-card"><div class="universe-video"><iframe src="https://www.youtube.com/embed/" title="ArkWay Music & Production Reel" loading="lazy"></iframe></div><div class="universe-media-copy"><span class="card-label">MUSIC PRODUCTION REEL</span><h3>ArkWay Music & Production Reel</h3><p>Showcase of music production, scoring, and original compositions engineered under ArkWay Creative.</p></div></article><article class="universe-media-card"><div class="universe-video"><iframe src="https://www.youtube.com/embed/" title="SURVIVAL Short Film" loading="lazy"></iframe></div><div class="universe-media-copy"><span class="card-label">SURVIVAL · SHORT FILM</span><h3>SURVIVAL | Short Film</h3><p>Cinematic narrative short film produced and scored under ArkWay Creative.</p></div></article></div></section>`;
 }
+
 function render(){
  const r=route();
- let content=r.root==="home"?home():r.root==="services"?services():r.root==="products"?products():r.sub==="discography"?discography():r.sub==="reels"?reels():community();
+ let content="";
+ if(r.root==="home") content=home();
+ else if(r.root==="services") content=services();
+ else if(r.root==="products") content=products();
+ else if(r.root==="community"){
+   if(r.sub==="discography") content=discography();
+   else if(r.sub==="reels") content=reels();
+   else content=community();
+ } else {
+   content=home();
+ }
+ 
  document.getElementById("app").innerHTML=content;
  document.querySelectorAll(".navlink").forEach(b=>b.classList.toggle("active",b.dataset.route===r.root));
  document.title="ArkWay Creative — "+(r.root[0].toUpperCase()+r.root.slice(1));
  bind();
  window.scrollTo({top:0,behavior:"smooth"});
 }
+
 function bind(){
  document.querySelectorAll("[data-route]").forEach(el=>el.addEventListener("click",()=>{setRoute(el.dataset.route);document.getElementById("navlinks").classList.remove("open")}));
  document.querySelectorAll("[data-href]").forEach(el=>el.addEventListener("click",()=>location.hash=el.dataset.href));
  document.querySelectorAll(".book-service").forEach(el=>el.addEventListener("click",()=>showModal(el.dataset.service)));
  document.querySelectorAll("[data-filter]").forEach(el=>el.addEventListener("click",()=>{location.hash="#products?filter="+encodeURIComponent(el.dataset.filter)}));
- document.querySelectorAll("[data-play]").forEach(el=>el.addEventListener("click",()=>{el.closest(".product-preview").querySelector(".waveform").classList.toggle("playing");el.innerHTML=el.closest(".product-preview").querySelector(".waveform").classList.contains("playing")?"Ⅱ Pause Demo":"▶ Play Demo"}));
- document.querySelectorAll("[data-share]").forEach(el=>el.addEventListener("click",async()=>{const u=location.origin+location.pathname+"#products?id="+el.dataset.share;try{await navigator.clipboard.writeText(u);el.textContent="Link Copied"}catch{window.prompt("Copy this ArkWay product link:",u)}setTimeout(()=>el.textContent="Share Link →",1800)}));
+ document.querySelectorAll("[data-play]").forEach(el=>el.addEventListener("click",()=>{
+   const preview = el.closest(".product-preview");
+   const wave = preview.querySelector(".waveform");
+   wave.classList.toggle("playing");
+   el.innerHTML = wave.classList.contains("playing") ? "Ⅱ Pause Demo" : "▶ Play Demo";
+ }));
+ document.querySelectorAll("[data-share]").forEach(el=>el.addEventListener("click",async()=>{
+   const u=location.origin+location.pathname+"#products?id="+el.dataset.share;
+   try{await navigator.clipboard.writeText(u);el.textContent="Link Copied"}catch{window.prompt("Copy this ArkWay product link:",u)}
+   setTimeout(()=>el.textContent="Share Link →",1800)
+ }));
  document.querySelectorAll("[data-community]").forEach(el=>el.addEventListener("click",()=>setRoute("community",el.dataset.community)));
- document.querySelectorAll("[data-mode]").forEach(el=>el.addEventListener("click",()=>{document.querySelectorAll("[data-mode]").forEach(x=>x.classList.remove("active"));el.classList.add("active");document.getElementById("discographyContent").innerHTML=el.dataset.mode==="download"?downloads():releases.map(r=>`<article class="release-card"><iframe src="${r[1]}" title="${r[0]} on Spotify" loading="lazy" allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture"></iframe></article>`).join("")}));
+ document.querySelectorAll("[data-mode]").forEach(el=>el.addEventListener("click",()=>{
+   document.querySelectorAll("[data-mode]").forEach(x=>x.classList.remove("active"));
+   el.classList.add("active");
+   document.getElementById("discographyContent").innerHTML=el.dataset.mode==="download"?downloads():releases.map(r=>`<article class="release-card"><iframe src="${r[1]}" title="${r[0]} on Spotify" loading="lazy" allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture"></iframe></article>`).join("");
+ }));
 }
+
 function showModal(service){
  document.body.classList.add("locked");
  const wrap=document.createElement("div");wrap.className="modal-backdrop";
@@ -313,6 +351,7 @@ function showModal(service){
  const close=()=>{wrap.remove();document.body.classList.remove("locked")};
  wrap.addEventListener("mousedown",e=>{if(e.target===wrap)close()});wrap.querySelector(".modal-close").addEventListener("click",close);
 }
+
 document.getElementById("menuBtn").addEventListener("click",()=>document.getElementById("navlinks").classList.toggle("open"));
 window.addEventListener("hashchange",render);
 if(!location.hash) history.replaceState({}, "", "#home");
