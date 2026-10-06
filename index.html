@@ -1,339 +1,609 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>ArkWay Creative — Data-Driven Media Company</title>
-  <style>
-    :root {
-      --bg-dark: #090D16;
-      --card-bg: #111827;
-      --gold: #D4AF37;
-      --gold-hover: #F3C623;
-      --text-light: #F3F4F6;
-      --text-muted: #9CA3AF;
-      --border-dark: #1F2937;
-    }
-
-    * {
-      box-sizing: border-box;
-      margin: 0;
-      padding: 0;
-      font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
-    }
-
-    body {
-      background-color: var(--bg-dark);
-      color: var(--text-light);
-      line-height: 1.6;
-    }
-
-    /* Hero Section Styling */
-    .hero {
-      min-height: 80vh;
-      display: flex;
-      flex-direction: column;
-      justify-content: center;
-      align-items: center;
-      text-align: center;
-      padding: 4rem 1.5rem;
-      background: radial-gradient(circle at center, #131B2E 0%, var(--bg-dark) 80%);
-    }
-
-    .hero .eyebrow {
-      letter-spacing: 0.15em;
-      font-size: 0.85rem;
-      font-weight: 700;
-      color: var(--gold);
-      margin-bottom: 1rem;
-      text-transform: uppercase;
-    }
-
-    .hero h1 {
-      font-size: clamp(2.5rem, 5vw, 4rem);
-      font-weight: 800;
-      line-height: 1.1;
-      margin-bottom: 1.5rem;
-      max-width: 800px;
-    }
-
-    .hero h1 em {
-      font-style: italic;
-      color: var(--gold);
-      font-weight: 400;
-    }
-
-    .hero p {
-      max-width: 650px;
-      color: var(--text-muted);
-      font-size: 1.1rem;
-      margin-bottom: 2.5rem;
-    }
-
-    /* Button Styling */
-    .hero-cta-group {
-      display: flex;
-      flex-wrap: wrap;
-      gap: 1rem;
-      justify-content: center;
-      align-items: center;
-      width: 100%;
-      max-width: 500px;
-    }
-
-    .btn-primary {
-      background-color: var(--gold);
-      color: var(--bg-dark);
-      border: 1px solid var(--gold);
-      padding: 0.85rem 1.75rem;
-      font-weight: 700;
-      font-size: 1rem;
-      border-radius: 4px;
-      cursor: pointer;
-      text-decoration: none;
-      flex: 1 1 180px;
-      transition: all 0.2s ease;
-    }
-
-    .btn-primary:hover {
-      background-color: var(--gold-hover);
-      border-color: var(--gold-hover);
-    }
-
-    .btn-secondary {
-      background-color: #0D1219;
-      color: var(--gold);
-      border: 1px solid var(--gold);
-      padding: 0.85rem 1.75rem;
-      font-weight: 700;
-      font-size: 1rem;
-      border-radius: 4px;
-      cursor: pointer;
-      text-decoration: none;
-      flex: 1 1 180px;
-      transition: all 0.2s ease;
-    }
-
-    .btn-secondary:hover {
-      background-color: rgba(212, 175, 55, 0.1);
-    }
-
-    .btn-text {
-      display: block;
-      width: 100%;
-      margin-top: 1rem;
-      color: var(--gold);
-      text-decoration: none;
-      font-weight: 600;
-      font-size: 0.95rem;
-    }
-
-    .btn-text:hover {
-      text-decoration: underline;
-    }
-
-    /* Main Container & Subview Rules */
-    .container {
-      max-width: 1100px;
-      margin: 0 auto;
-      padding: 2rem 1.5rem;
-    }
-
-    .subview {
-      margin-top: 2rem;
-    }
-
-    .back {
-      background: none;
-      border: none;
-      color: var(--gold);
-      font-weight: 600;
-      cursor: pointer;
-      margin-bottom: 1.5rem;
-      font-size: 1rem;
-    }
-
-    .portal-head {
-      margin-bottom: 2rem;
-    }
-
-    .portal-head h1 {
-      font-size: 2.2rem;
-      margin-top: 0.25rem;
-    }
-
-    .portal-head h1 em {
-      color: var(--gold);
-      font-style: italic;
-    }
-
-    /* Media Grid & Cards */
-    .community-reel-grid {
-      display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
-      gap: 2rem;
-    }
-
-    .universe-media-card {
-      background-color: var(--card-bg);
-      border: 1px solid var(--border-dark);
-      border-radius: 8px;
-      overflow: hidden;
-      display: flex;
-      flex-direction: column;
-    }
-
-    .universe-video {
-      position: relative;
-      padding-bottom: 56.25%; /* 16:9 Aspect Ratio */
-      height: 0;
-      overflow: hidden;
-    }
-
-    .universe-video iframe {
-      position: absolute;
-      top: 0;
-      left: 0;
-      width: 100%;
-      height: 100%;
-      border: 0;
-    }
-
-    .universe-media-copy {
-      padding: 1.5rem;
-      display: flex;
-      flex-direction: column;
-      gap: 0.5rem;
-    }
-
-    .card-label {
-      font-size: 0.75rem;
-      font-weight: 700;
-      letter-spacing: 0.1em;
-      color: var(--gold);
-      text-transform: uppercase;
-    }
-
-    .universe-media-copy h3 {
-      font-size: 1.25rem;
-      color: var(--text-light);
-    }
-
-    .universe-media-copy h3 a {
-      color: var(--text-light);
-      text-decoration: none;
-    }
-
-    .universe-media-copy h3 a:hover {
-      color: var(--gold);
-    }
-
-    .universe-media-copy p {
-      font-size: 0.95rem;
-      color: var(--text-muted);
-    }
-  </style>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="description" content="ArkWay Creative — data-driven media, audio production, visual storytelling, brand architecture and culture.">
+<title>ArkWay Creative</title>
+<style>
+:root{
+  --bg:#090D16;--panel:#0D1219;--gold:#D4AF37;--gold2:#E2C66B;
+  --text:#F7F7F4;--muted:#9AA4AF;--line:#252D39;--line2:#394451;
+}
+*{box-sizing:border-box}
+html{scroll-behavior:smooth}
+body{margin:0;background:var(--bg);color:var(--text);font-family:Inter,ui-sans-serif,system-ui,-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif}
+body.locked{overflow:hidden}
+a{text-decoration:none;color:inherit}
+button{font:inherit;cursor:pointer}
+.site{min-height:100vh;overflow:hidden}
+.nav{height:76px;padding:0 6vw;display:flex;align-items:center;justify-content:space-between;gap:24px;border-bottom:1px solid var(--line);position:sticky;top:0;z-index:50;background:rgba(9,13,22,.96);backdrop-filter:blur(18px)}
+.brand{display:flex;align-items:center;gap:11px;background:none;border:0;color:#fff}
+.brand img,.footer-brand img{height:40px;width:auto;max-width:190px;object-fit:contain;display:block}
+.brand span{display:grid;gap:3px}.brand strong{font-size:14px;letter-spacing:2.5px}.brand small{font-size:8px;letter-spacing:2px;color:var(--gold)}
+.navlinks{display:flex;align-items:center;gap:8px}
+.navlink{border:0;background:transparent;color:var(--muted);padding:10px 12px;font-size:11px;letter-spacing:.8px}
+.navlink:hover,.navlink.active{color:var(--gold)}
+.menu{display:none;background:transparent;color:#fff;border:1px solid var(--line);padding:8px}
+.eyebrow,.kicker,.card-label{color:var(--gold);font-size:9px;letter-spacing:2px;font-weight:900}
+h1,h2,h3,p{margin-top:0}
+h1,h2{line-height:.92;letter-spacing:-4px}
+h1{font-size:clamp(48px,7vw,94px);margin:24px 0}
+h2{font-size:clamp(40px,5.6vw,76px);margin-bottom:18px}
+h3{font-size:27px;line-height:1.05;letter-spacing:-1px}
+em{font-family:Georgia,"Times New Roman",serif;color:var(--gold);font-weight:400}
+p{color:var(--muted);line-height:1.7}
+.primary,.secondary,.hero-secondary{display:inline-flex;align-items:center;justify-content:center;gap:8px;font-weight:900}
+.primary{background:var(--gold);color:#090D16;border:1px solid var(--gold);padding:12px 16px}
+.primary:hover{background:var(--gold2);border-color:var(--gold2);transform:translateY(-1px)}
+.secondary{background:transparent;color:#fff;border:1px solid var(--line2);padding:12px 16px}
+.secondary:hover{border-color:var(--gold);color:var(--gold)}
+.large{padding:14px 18px}.small{font-size:10px;padding:10px 12px}
+.home-hero{
+  min-height:calc(100vh - 76px);padding:80px 8vw 72px;display:flex;align-items:flex-end;
+  position:relative;overflow:hidden;border-bottom:1px solid var(--line);
+  background:
+    linear-gradient(180deg,rgba(9,13,22,.58) 0%,rgba(9,13,22,.82) 42%,rgba(9,13,22,.98) 100%),
+    url("https://lh3.googleusercontent.com/d/1Kl4dplfcrAjRYt88Wi7aSX_wsFlTuz6z") center/cover no-repeat;
+}
+.home-copy{max-width:1050px;position:relative;z-index:2}
+.home-hero .kicker{color:var(--gold)}
+.home-hero h1 strong{font-weight:900;color:#fff}.home-hero h1 em{font-style:italic}
+.positioning{max-width:780px;font-size:18px}
+.hero-actions{display:flex;align-items:center;gap:10px;flex-wrap:wrap;margin-top:30px;width:min(370px,100%)}
+.hero-actions .primary,.hero-actions .hero-secondary{flex:1 1 calc(50% - 5px);min-height:44px;white-space:nowrap}
+.hero-secondary{background:#0D1219;color:var(--gold);border:1px solid var(--gold);padding:14px 18px}
+.hero-secondary:hover{background:#111720;border-color:var(--gold2);color:var(--gold2)}
+.hero-tertiary{flex:0 0 100%;text-align:center;color:var(--gold);font-size:13px;font-weight:900;padding:7px;border:0;background:none}
+.hero-tertiary:hover{text-decoration:underline;text-underline-offset:4px}
+.section{padding:85px 8vw 110px}
+.doors-section{padding:100px 8vw;border-bottom:1px solid var(--line);background:linear-gradient(180deg,#080b10,#0a0e13)}
+.door-intro{display:grid;grid-template-columns:.8fr 1.1fr .8fr;gap:5vw;align-items:end;margin-bottom:40px}
+.door-intro p:last-child{margin:0}
+.door-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:15px}
+.door-card{min-height:360px;padding:30px;border:1px solid var(--line);background:var(--panel);display:flex;flex-direction:column;justify-content:space-between;text-align:left;color:#fff;position:relative;overflow:hidden}
+.door-card:before{content:"";position:absolute;left:0;top:0;bottom:0;width:3px;background:var(--gold)}
+.door-card:hover{border-color:var(--gold);background:#10161e;transform:translateY(-3px)}
+.door-top{display:flex;justify-content:space-between;color:var(--gold)}
+.door-card:nth-child(2):before{background:#557B61}.door-card:nth-child(3):before{background:#805B43}
+.door-card h3{font-size:34px;margin-bottom:12px}.door-card p{max-width:330px}
+.door-cta{display:flex;align-items:center;gap:7px;color:var(--gold);font-size:11px;font-weight:900}
+.manifesto{padding:110px 8vw;display:grid;grid-template-columns:.8fr 1.5fr;gap:6vw}
+.portal-head{display:grid;grid-template-columns:1.25fr .75fr;gap:8vw;align-items:end;margin-bottom:50px}
+.portal-head>p{margin:0;max-width:550px}
+.service-groups{display:grid;grid-template-columns:repeat(2,1fr);gap:15px}
+.service-group{border:1px solid var(--line);background:var(--panel);padding:30px;min-height:350px;display:flex;flex-direction:column}
+.service-group:nth-child(2){background:linear-gradient(135deg,#0D1219,rgba(72,107,85,.08))}
+.service-group:nth-child(3){background:linear-gradient(135deg,#0D1219,rgba(112,80,58,.08))}
+.service-group:nth-child(4){background:linear-gradient(135deg,#0D1219,rgba(201,168,76,.08))}
+.service-group-head{display:flex;justify-content:space-between;margin-bottom:50px;color:var(--gold)}
+.service-group h3{font-size:30px}.service-group ul{list-style:none;padding:0;margin:10px 0 25px;display:grid;gap:8px}
+.service-group li{color:#c5ccd4;font-size:12px;padding-left:15px;position:relative}.service-group li:before{content:"+";position:absolute;left:0;color:var(--gold)}
+.outline-action{margin-top:auto;width:max-content;border:1px solid var(--line2);background:none;color:var(--gold);padding:10px 13px;font-size:11px;font-weight:900}
+.services-contact-strip{margin-top:15px;border:1px solid var(--line);padding:25px 30px;display:flex;justify-content:space-between;align-items:center;gap:30px;background:linear-gradient(100deg,rgba(201,168,76,.08),rgba(72,107,85,.05))}
+.services-contact-strip strong{display:block;margin:7px 0}.services-contact-strip p{margin:0;font-size:12px}.services-contact-actions{display:flex;gap:9px;flex-wrap:wrap}
+.product-filter-bar{display:flex;gap:6px;flex-wrap:wrap;margin-bottom:18px;padding:5px;border:1px solid #303947;background:#0D1219;width:max-content;max-width:100%}
+.product-filter-bar button{border:1px solid transparent;background:transparent;color:#8F99A5;padding:10px 12px;font-size:9px;font-weight:900;letter-spacing:1px}
+.product-filter-bar button.active,.product-filter-bar button:hover{background:var(--gold);color:#090D16;border-color:var(--gold)}
+.product-grid{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:15px}
+.product-card{padding:22px;border:1px solid #303947;background:#090D16;display:flex;flex-direction:column;transition:.2s}
+.product-card:hover{border-color:var(--gold);transform:translateY(-2px)}
+.product-card-top{display:flex;justify-content:space-between;gap:12px}.product-badges{display:flex;gap:6px;flex-wrap:wrap}
+.product-category-badge,.product-coming-pill,.product-price{padding:7px 9px;font-size:8px;font-weight:900;letter-spacing:1.2px}
+.product-category-badge{border:1px solid var(--line2);color:var(--gold)}.product-coming-pill{background:var(--gold);color:#090D16}.product-price{border:1px solid rgba(212,175,55,.55);color:var(--gold)}
+.product-card-copy{padding:30px 0 22px}.product-card-copy h3{font-size:24px}.product-spec{font-size:11px;min-height:38px}
+.product-preview{border:1px solid var(--line);background:#0D1219;padding:15px}.product-preview-head{display:flex;justify-content:space-between;color:#65717E;font-size:7px;letter-spacing:1.5px;font-weight:900}
+.waveform{height:58px;margin:14px 0;display:flex;align-items:center;justify-content:space-between;gap:3px;overflow:hidden}
+.waveform span{width:2px;background:var(--gold);display:block}.waveform.playing span{animation:pulse .65s ease-in-out infinite alternate}
+@keyframes pulse{from{transform:scaleY(.55)}to{transform:scaleY(1.2)}}
+.product-preview-button{width:100%;display:flex;align-items:center;justify-content:center;gap:8px;border:1px solid var(--line2);background:#090D16;color:var(--gold);padding:10px;font-size:10px;font-weight:900}
+.product-actions{display:grid;grid-template-columns:1fr 1fr;gap:8px;margin-top:auto;padding-top:18px}
+.product-notify,.product-share{display:flex;align-items:center;justify-content:center;gap:7px;border:1px solid var(--line2);background:none;color:var(--gold);padding:10px;font-size:9px;font-weight:900;text-align:center}
+.product-empty{grid-column:1/-1;border:1px solid var(--line);padding:40px}
+.community-landing{background:#090D16}.community-editorial-grid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:12px}
+.community-editorial-card{min-height:285px;border:1px solid #303947;background:#090D16;position:relative;overflow:hidden;transition:.2s}
+.community-editorial-card:hover{border-color:var(--gold);background:#0D1219;transform:translateY(-2px)}
+.community-editorial-card:before{content:"";position:absolute;left:0;top:0;bottom:0;width:2px;background:var(--gold);opacity:.5}
+.community-editorial-hit{width:100%;height:100%;min-height:inherit;padding:25px 27px;border:0;background:none;color:#fff;text-align:left;display:flex;flex-direction:column;justify-content:space-between}
+.community-editorial-hit:disabled{opacity:1;cursor:default}
+.community-editorial-top{display:flex;justify-content:space-between;color:var(--gold)}.community-door-number{font-size:10px;font-weight:900;letter-spacing:2px;color:#8E7A45}
+.community-editorial-copy{margin:34px 0 25px}.community-kicker{color:var(--gold);font-size:9px;font-weight:900;letter-spacing:2px}
+.community-editorial-copy h2{font-family:inherit;font-size:clamp(28px,3.2vw,44px);letter-spacing:-1.7px;color:#fff;margin:10px 0 12px}
+.community-editorial-copy p{font-size:12px}.community-editorial-bottom span{color:var(--gold);font-size:10px;font-weight:900}.status-badge{display:inline-flex;padding:8px 10px;border:1px solid #58616C;color:#A9B1BA!important;font-size:8px!important;letter-spacing:1.7px}
+.subview{min-height:calc(100vh - 76px);padding:70px 8vw 110px}.back{display:inline-flex;align-items:center;gap:8px;border:1px solid var(--line2);background:none;color:var(--gold);padding:9px 12px;font-size:10px;font-weight:900;margin-bottom:45px}
+.discography-toggle{display:inline-flex;margin:0 0 24px;border:1px solid #303947;background:#0D1219;padding:3px;border-radius:999px}
+.discography-toggle button{border:0;background:none;color:#8F99A5;padding:10px 15px;border-radius:999px;font-size:10px;font-weight:900}
+.discography-toggle button.active{background:var(--gold);color:#090D16}
+.discography-grid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:10px}.release-card{border:1px solid #303947;background:#0D1219;padding:0;overflow:hidden}.release-card iframe{display:block;width:100%;height:152px;border:0}
+.hustlesasa-grid{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:14px}.hustlesasa-card{border:1px solid #303947;background:#090D16;padding:20px}.hustlesasa-topline{display:flex;justify-content:space-between;gap:12px}.hustlesasa-topline h3{font-size:20px}.price-badge{border:1px solid rgba(212,175,55,.55);color:var(--gold);padding:6px 8px;font-size:9px;white-space:nowrap}.download-category{display:inline-block;border:1px solid #303947;padding:6px 8px;color:#9C8550;font-size:8px;letter-spacing:1.3px;margin:8px 0 18px}.hustle-cta{width:100%}
+.community-reel-grid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:14px}.universe-media-card{border:1px solid #303947;background:#0D1219;overflow:hidden}.universe-video{aspect-ratio:16/9;background:#05070B}.universe-video iframe{width:100%;height:100%;border:0}.universe-media-copy{padding:20px}.universe-media-copy h3{font-size:21px;margin:9px 0}.universe-media-copy p{font-size:12px}
+footer{border-top:1px solid var(--line);padding:40px 6vw 25px;background:#070a0e}.footer-top{display:flex;justify-content:space-between;gap:30px;align-items:center;padding-bottom:35px;border-bottom:1px solid var(--line)}
+.footer-brand{display:flex;align-items:center;gap:11px}.footer-brand div{display:grid;gap:4px}.footer-brand strong{font-size:14px;letter-spacing:2px}.footer-brand span{font-size:8px;letter-spacing:2px;color:var(--gold)}
+.footer-contact{display:flex;flex-direction:column;align-items:flex-end;gap:8px;color:#a9b2bc;font-size:11px}.footer-contact a:hover{color:var(--gold)}
+.footer-grid{display:grid;grid-template-columns:1fr 1fr;gap:50px;padding:30px 0}.footer-grid>div{display:flex;flex-direction:column;gap:8px}.footer-grid button{border:0;padding:0;background:none;color:#8b96a2;text-align:left;font-size:11px}.footer-grid button:hover{color:var(--gold)}.footer-bottom{display:flex;justify-content:space-between;color:#4f5964;font-size:8px;letter-spacing:1px;padding-top:20px}
+.modal-backdrop{position:fixed;inset:0;z-index:100;background:rgba(0,0,0,.78);display:grid;place-items:center;padding:20px;backdrop-filter:blur(8px)}.modal{width:min(520px,100%);border:1px solid var(--line2);background:#0b1016;padding:35px;position:relative}.modal-close{position:absolute;right:15px;top:15px;border:1px solid var(--line);background:none;color:#fff;padding:8px}.modal h2{font-size:48px;margin-bottom:18px}.modal-actions{display:grid;gap:10px;margin-top:25px}.modal-note{display:block;color:#69737f;font-size:9px;text-align:center;margin-top:15px}
+@media(max-width:1050px){.product-grid{grid-template-columns:repeat(2,1fr)}.hustlesasa-grid{grid-template-columns:repeat(2,1fr)}}
+@media(max-width:900px){
+ .menu{display:block}.navlinks{display:none;position:absolute;top:76px;left:0;right:0;padding:18px 5vw 25px;background:#080b10;border-bottom:1px solid var(--line);flex-direction:column;align-items:stretch}.navlinks.open{display:flex}.navlink{text-align:left}
+ .home-hero{min-height:calc(100svh - 76px);padding:50px 6vw 58px}.portal-head,.door-intro,.manifesto{grid-template-columns:1fr}.door-grid,.service-groups,.product-grid,.community-editorial-grid,.discography-grid,.community-reel-grid,.hustlesasa-grid{grid-template-columns:1fr}
+ .door-intro{gap:20px}.services-contact-strip{flex-direction:column;align-items:flex-start}.footer-top,.footer-bottom{flex-direction:column;align-items:flex-start}.footer-contact{align-items:flex-start}.footer-grid{grid-template-columns:1fr}
+}
+@media(max-width:560px){
+ .brand img,.footer-brand img{height:36px;max-width:155px}.hero-actions{max-width:360px}.hero-actions .primary,.hero-actions .hero-secondary{font-size:13px;padding:12px 10px}
+ h1{font-size:clamp(44px,12vw,68px);letter-spacing:-3px}h2{font-size:clamp(38px,10vw,55px);letter-spacing:-2px}
+ .section,.subview,.doors-section,.manifesto{padding-left:6vw;padding-right:6vw}.home-hero{padding-left:6vw;padding-right:6vw}.modal{padding:25px 20px}.modal h2{font-size:40px}.product-actions{grid-template-columns:1fr}
+ .discography-toggle{display:flex;width:100%}.discography-toggle button{flex:1;padding:10px 8px}
+}
+</style>
 </head>
 <body>
+<div class="site">
+<header class="nav">
+  <a class="brand" href="#home" aria-label="ArkWay Creative home">
+    <img src="https://lh3.googleusercontent.com/d/1jrEFMFWEB7wO19K-_SJBsEcz4azfM9e4" alt="ArkWay Creative">
+  </a>
+  <nav class="navlinks" id="navlinks">
+    <button class="navlink active" data-route="home">Home</button>
+    <button class="navlink" data-route="services">Services</button>
+    <button class="navlink" data-route="products">Products</button>
+    <button class="navlink" data-route="community">Community</button>
+  </nav>
+  <button class="menu" id="menuBtn" aria-label="Toggle navigation">☰</button>
+</header>
 
-  <!-- Hero Section -->
-  <section class="hero">
-    <p class="eyebrow">DATA-DRIVEN MEDIA · EST. 2026</p>
-    <h1>ArkWay Creative<br>— <em>a data-driven media company.</em></h1>
-    <p>We merge audio production, visual storytelling, and brand architecture to build high-converting media and live culture — with data and audience intelligence informing the decisions behind the work.</p>
-    
-    <div class="hero-cta-group">
-      <button class="btn-primary" onclick="setRoute('services')">Book Services →</button>
-      <button class="btn-secondary" onclick="setRoute('products')">Shop Products →</button>
-      <a href="#reels-section" class="btn-text" onclick="setRoute('reels')">Explore Catalog →</a>
+<main id="app"></main>
+
+<footer>
+  <div class="footer-top">
+    <a class="footer-brand" href="#home">
+      <img src="https://lh3.googleusercontent.com/d/1jrEFMFWEB7wO19K-_SJBsEcz4azfM9e4" alt="ArkWay Creative">
+      <div><strong>ARKWAY CREATIVE</strong><span>MEDIA · DATA · CULTURE</span></div>
+    </a>
+    <div class="footer-contact">
+      <a href="mailto:arkwaycreative@gmail.com">arkwaycreative@gmail.com</a>
+      <a href="https://wa.me/254118618199" target="_blank" rel="noopener noreferrer">WhatsApp / Call 0118618199</a>
+    </div>
+  </div>
+  <div class="footer-grid">
+    <div>
+      <span class="card-label">ROUTES</span>
+      <button data-route="home">Home</button><button data-route="services">Services</button><button data-route="products">Products</button><button data-route="community">Community</button>
+    </div>
+    <div>
+      <span class="card-label">ARKWAY</span>
+      <p>Data-driven media: audio, visual storytelling, brand architecture and culture.</p>
+    </div>
+  </div>
+  <div class="footer-bottom"><span>© 2026 ArkWay Creative</span><span>DESIRE · DEDICATION · DISCIPLINE</span></div>
+</footer>
+</div>
+
+<div id="modalContainer"></div>
+
+<script>
+const BUSINESS={email:"arkwaycreative@gmail.com",whatsapp:"https://wa.me/254118618199",phone:"0118618199"};
+const catalog=[
+ {id:"mtilu-vol1",title:"Mtilu Afro-Trap Beat Pack Vol. 1",category:"BEATS",specs:"140 BPM | F Minor | Stems & Lossless Audio Included",price:"KES 1,000"},
+ {id:"arkway-essential-drum-kit",title:"ArkWay Essential Drum & Percussion Kit",category:"DRUM KITS",specs:"808s, Kicks, Snares, Hi-Hats & Custom Percussion",price:"KES 500"},
+ {id:"cinematic-textures-african-foley",title:"Cinematic Textures & African Foley Suite",category:"FOLEY",specs:"Organic Field Recordings & Atmospheric Pads",price:"KES 750"}
+];
+const releases=[
+ ["Skywalker","https://open.spotify.com/embed/album/4PVrlr11mszqAsPadjBtTg?utm_source=generator&theme=0"],
+ ["Foot on the Gas","https://open.spotify.com/embed/album/6MUDSn0O8d5lbKQvn5Mrl2?utm_source=generator&theme=0"],
+ ["Noah's Blueprint","https://open.spotify.com/embed/album/5EjyP8dCSNK6DlwH9YNqOG?utm_source=generator&theme=0"],
+ ["Sticks and Stones","https://open.spotify.com/embed/album/54aMYDzXphkBP3LhhV6Fwy?utm_source=generator&theme=0"],
+ ["Vikings Never Die","https://open.spotify.com/embed/album/67RjSH0g2IXmzHBO0d39li?utm_source=generator&theme=0"],
+ ["What It Do","https://open.spotify.com/embed/album/1Zl5Z8Nu5WMxYMKhFeIm4k?utm_source=generator&theme=0"],
+ ["Pray For Him","https://open.spotify.com/embed/album/6K4dFXEzVhcWGDibKqqsM7?utm_source=generator&theme=0"],
+ ["Cloudy Afternoon","https://open.spotify.com/embed/album/3cQDx20CFtpgnNTwTnpsUn?utm_source=generator&theme=0"]
+];
+const hustlesasa=[
+ ["Foot On The Gas EP","Digital EP","KES 200","https://arkway.hustlesasa.shop/products/698a4d392a26683b23f52008"],
+ ["Noah's Blueprint","Digital EP","KES 200","https://arkway.hustlesasa.shop/products/698a4d232a26683b23f51e28"],
+ ["Sticks and Stones","Digital EP","KES 100","https://arkway.hustlesasa.shop/products/6a033164c8157eccc0f7df80"]
+];
+
+function setRoute(route,sub=""){
+ location.hash="#"+route+(sub?"/"+sub:"");
+}
+function route(){
+ const raw=location.hash.replace(/^#/,"")||"home";
+ const parts=raw.split("/");
+ return {root:["services","products","community"].includes(parts[0])?parts[0]:"home",sub:parts[1]||""};
+}
+function inquiry(service,channel){
+ const msg=`Hi ArkWay, I would like to book ${service}. Please share availability and next steps.`;
+ return channel==="whatsapp"
+ ? BUSINESS.whatsapp+"?text="+encodeURIComponent(msg)
+ : "mailto:"+BUSINESS.email+"?subject="+encodeURIComponent("ArkWay booking — "+service)+"&body="+encodeURIComponent(msg);
+}
+function icon(name){return ({arrow:"→",music:"♫",headphones:"◖",ticket:"◇",play:"▶",bag:"□",video:"▣",mail:"✉"})[name]||"→"}
+
+let activeFilter="ALL";
+let activeDiscography="spotify";
+
+function openModal(serviceTitle){
+ const modalHtml=`
+  <div class="modal-backdrop" onclick="closeModal(event)">
+    <div class="modal" onclick="event.stopPropagation()">
+      <button class="modal-close" onclick="closeModal()">✕</button>
+      <span class="eyebrow">BOOKING INQUIRY</span>
+      <h2>${serviceTitle}</h2>
+      <p>Choose your preferred channel to consult and book this service directly with our team.</p>
+      <div class="modal-actions">
+        <a class="primary large" href="${inquiry(serviceTitle,'whatsapp')}" target="_blank" rel="noopener noreferrer">Contact via WhatsApp ${icon('arrow')}</a>
+        <a class="secondary large" href="${inquiry(serviceTitle,'email')}">Send Email Inquiry ${icon('mail')}</a>
+      </div>
+      <small class="modal-note">Direct response expected within 24 hours.</small>
+    </div>
+  </div>`;
+ document.getElementById("modalContainer").innerHTML=modalHtml;
+ document.body.classList.add("locked");
+}
+
+function closeModal(e){
+ document.getElementById("modalContainer").innerHTML="";
+ document.body.classList.remove("locked");
+}
+
+function renderHome(){
+ return `
+  <section class="home-hero">
+    <div class="home-copy">
+      <span class="kicker">DATA-DRIVEN MEDIA · EST. 2026</span>
+      <h1><strong>ArkWay Creative</strong><br><em>— a data-driven media company.</em></h1>
+      <p class="positioning">We merge audio production, visual storytelling, and brand architecture to build high-converting media and live culture — with data and audience intelligence informing the decisions behind the work.</p>
+      <div class="hero-actions">
+        <button class="primary" onclick="setRoute('services')">Book Services ${icon('arrow')}</button>
+        <button class="hero-secondary" onclick="setRoute('products')">Shop Products ${icon('arrow')}</button>
+        <button class="hero-tertiary" onclick="setRoute('community')">Explore Catalog ${icon('arrow')}</button>
+      </div>
     </div>
   </section>
 
-  <!-- App Views Container -->
-  <div class="container" id="app">
-    <!-- Dynamic content rendered by JS -->
-  </div>
+  <section class="doors-section">
+    <div class="door-intro">
+      <div>
+        <span class="eyebrow">THREE DOORS</span>
+        <h2>How we create & deliver</h2>
+      </div>
+      <p>ArkWay Creative operates across three core pillars designed to service artists, brands, and audiences at different stages of cultural engagement.</p>
+      <p>Choose an entry point below to explore our services, digital production assets, or community media catalog.</p>
+    </div>
+    <div class="door-grid">
+      <div class="door-card">
+        <div>
+          <div class="door-top"><span class="card-label">DOOR 01</span><span>SERVICES</span></div>
+          <h3>Client Services & Production</h3>
+          <p>Audio recording, mixing, mastering, custom scoring, video direction, and brand strategy for creators & businesses.</p>
+        </div>
+        <button class="door-cta" onclick="setRoute('services')">EXPLORE SERVICES ${icon('arrow')}</button>
+      </div>
+      <div class="door-card">
+        <div>
+          <div class="door-top"><span class="card-label">DOOR 02</span><span>PRODUCTS</span></div>
+          <h3>Digital Products & Assets</h3>
+          <p>Production beat packs, custom drum kits, cinematic Foley libraries, sound kits, and downloadable creative tools.</p>
+        </div>
+        <button class="door-cta" onclick="setRoute('products')">EXPLORE PRODUCTS ${icon('arrow')}</button>
+      </div>
+      <div class="door-card">
+        <div>
+          <div class="door-top"><span class="card-label">DOOR 03</span><span>COMMUNITY</span></div>
+          <h3>Community & Media Universe</h3>
+          <p>Film criticism via <i>Between Frames</i>, official discography, digital downloads on Hustlesasa, and original showreels.</p>
+        </div>
+        <button class="door-cta" onclick="setRoute('community')">EXPLORE COMMUNITY ${icon('arrow')}</button>
+      </div>
+    </div>
+  </section>
 
-  <script>
-    function setRoute(route) {
-      const app = document.getElementById('app');
-      if (route === 'reels') {
-        app.innerHTML = reels();
-        window.scrollTo({ top: app.offsetTop - 20, behavior: 'smooth' });
-      } else if (route === 'community') {
-        app.innerHTML = `<section class="subview"><p>Community Portal Overview</p></section>`;
-      } else if (route === 'services') {
-        app.innerHTML = `<section class="subview"><p>Booking Services Portal</p></section>`;
-      } else if (route === 'products') {
-        app.innerHTML = `<section class="subview"><p>Products Storefront</p></section>`;
-      }
-    }
+  <section class="manifesto">
+    <div>
+      <span class="eyebrow">OUR MANIFESTO</span>
+      <h2>Desire.<br>Dedication.<br>Discipline.</h2>
+    </div>
+    <div>
+      <p>We believe that high-impact creative work requires both instinct and infrastructure. At ArkWay Creative, we blend creative vision with data-backed insights to craft audio, film, and media products that resonate deeply with targeted audiences.</p>
+      <p>Whether producing an artist's signature project, scoring visual films, or engineering digital tools for producers worldwide, our operations are anchored in technical precision, audience strategy, and raw creative power.</p>
+    </div>
+  </section>`;
+}
 
-    function reels() {
-      return `<section class="subview" id="reels-section">
-        <button class="back" onclick="setRoute('community')">← Back to Community</button>
-        <div class="portal-head">
-          <div>
-            <p class="eyebrow">VISUAL REELS & MEDIA</p>
-            <h1>Showreels, Visuals & <em>Performances.</em></h1>
+function renderServices(){
+ return `
+  <section class="section">
+    <div class="portal-head">
+      <div>
+        <span class="eyebrow">DOOR 01 — SERVICES</span>
+        <h2>Audio, Film & Brand Architecture</h2>
+      </div>
+      <p>Professional production services designed for recording artists, filmmakers, content creators, and corporate brands seeking high-end execution.</p>
+    </div>
+    <div class="service-groups">
+      <div class="service-group">
+        <div class="service-group-head"><span class="card-label">AUDIO PRODUCTION</span><span>01</span></div>
+        <h3>Audio Engineering & Sound Design</h3>
+        <ul>
+          <li>Vocal Recording & Editing</li>
+          <li>Stereo & Multitrack Mixing</li>
+          <li>Stem Mastering for Streaming Platform Delivery</li>
+          <li>Custom Beat Production & Composition</li>
+        </ul>
+        <button class="outline-action" onclick="openModal('Audio Engineering & Sound Design')">BOOK AUDIO SERVICES ${icon('arrow')}</button>
+      </div>
+      <div class="service-group">
+        <div class="service-group-head"><span class="card-label">FILM & VISUALS</span><span>02</span></div>
+        <h3>Visual Storytelling & Scoring</h3>
+        <ul>
+          <li>Film & Commercial Scoring</li>
+          <li>Music Video Concept & Direction</li>
+          <li>Sound Design & Foley for Film/Shorts</li>
+          <li>Video Editing & Color Grading</li>
+        </ul>
+        <button class="outline-action" onclick="openModal('Visual Storytelling & Scoring')">BOOK FILM SERVICES ${icon('arrow')}</button>
+      </div>
+      <div class="service-group">
+        <div class="service-group-head"><span class="card-label">BRAND ARCHITECTURE</span><span>03</span></div>
+        <h3>Brand Strategy & Media Architecture</h3>
+        <ul>
+          <li>Creative Direction & Visual Identity</li>
+          <li>Data-Driven Media Strategy & Distribution</li>
+          <li>Digital Storefront & Web Infrastructure Setup</li>
+          <li>Campaign Strategy & Release Rollouts</li>
+        </ul>
+        <button class="outline-action" onclick="openModal('Brand Strategy & Media Architecture')">BOOK BRAND SERVICES ${icon('arrow')}</button>
+      </div>
+      <div class="service-group">
+        <div class="service-group-head"><span class="card-label">CONSULTING</span><span>04</span></div>
+        <h3>Creative Consulting & Mentorship</h3>
+        <ul>
+          <li>Project Portfolio Review & Optimization</li>
+          <li>Independent Artist Career Architecture</li>
+          <li>Film Criticism & Narrative Script Analysis</li>
+          <li>Home Studio & Workflow Setup</li>
+        </ul>
+        <button class="outline-action" onclick="openModal('Creative Consulting & Mentorship')">BOOK CONSULTING ${icon('arrow')}</button>
+      </div>
+    </div>
+    <div class="services-contact-strip">
+      <div>
+        <span class="eyebrow">CUSTOM INQUIRY</span>
+        <strong>Have a complex or multi-disciplinary project?</strong>
+        <p>Get in touch directly with our lead team to discuss tailored packages and scheduling.</p>
+      </div>
+      <div class="services-contact-actions">
+        <a class="primary small" href="${BUSINESS.whatsapp}" target="_blank" rel="noopener noreferrer">WhatsApp Direct ${icon('arrow')}</a>
+        <a class="secondary small" href="mailto:${BUSINESS.email}">Email Us ${icon('mail')}</a>
+      </div>
+    </div>
+  </section>`;
+}
+
+function renderProducts(){
+ const items=activeFilter==="ALL"?catalog:catalog.filter(c=>c.category===activeFilter);
+ const cats=["ALL",...new Set(catalog.map(c=>c.category))];
+ return `
+  <section class="section">
+    <div class="portal-head">
+      <div>
+        <span class="eyebrow">DOOR 02 — PRODUCTS</span>
+        <h2>Digital Sound Tools & Production Assets</h2>
+      </div>
+      <p>High-quality drum kits, sample packs, beat stems, and Foley audio suites engineered for music producers, sound designers, and content creators.</p>
+    </div>
+    <div class="product-filter-bar">
+      ${cats.map(cat=>`<button class="${activeFilter===cat?'active':''}" onclick="setFilter('${cat}')">${cat}</button>`).join('')}
+    </div>
+    <div class="product-grid">
+      ${items.length ? items.map(p=>`
+        <div class="product-card">
+          <div class="product-card-top">
+            <div class="product-badges">
+              <span class="product-category-badge">${p.category}</span>
+              <span class="product-coming-pill">AVAILABLE</span>
+            </div>
+            <span class="product-price">${p.price}</span>
           </div>
-          <p>Official Music Videos, Short Films, Production Discography & Live Sets.</p>
+          <div class="product-card-copy">
+            <h3>${p.title}</h3>
+            <p class="product-spec">${p.specs}</p>
+          </div>
+          <div class="product-preview">
+            <div class="product-preview-head"><span>PREVIEW AUDIO</span><span>140 BPM</span></div>
+            <div class="waveform">
+              ${Array(28).fill(0).map(()=>`<span style="height:${Math.floor(Math.random()*70)+30}%"></span>`).join('')}
+            </div>
+            <button class="product-preview-button" onclick="alert('Audio preview player active.')">${icon('play')} PLAY SAMPLE</button>
+          </div>
+          <div class="product-actions">
+            <button class="primary small" onclick="openModal('${p.title}')">BUY NOW</button>
+            <button class="secondary small" onclick="navigator.clipboard.writeText(window.location.href);alert('Link copied!')">SHARE</button>
+          </div>
         </div>
+      `).join('') : '<div class="product-empty"><p>No products found in this category.</p></div>'}
+    </div>
+  </section>`;
+}
 
-        <!-- Featured Single & Short Film Embeds -->
-        <div class="community-reel-grid">
-          <article class="universe-media-card">
-            <div class="universe-video">
-              <iframe src="https://www.youtube-nocookie.com/embed/WEvb_J7JbO8" title="Elohim - Yovan (Official Music Video)" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
-            </div>
-            <div class="universe-media-copy">
-              <span class="card-label">OFFICIAL MUSIC VIDEO</span>
-              <h3><a href="https://youtu.be/WEvb_J7JbO8" target="_blank" rel="noopener noreferrer">Elohim — Yovan (Official Music Video)</a></h3>
-              <p>Official music video for "Elohim" by Yovan. Self-produced and engineered under ArkWay Creative.</p>
-            </div>
-          </article>
+function setFilter(cat){
+ activeFilter=cat;
+ render();
+}
 
-          <article class="universe-media-card">
-            <div class="universe-video">
-              <iframe src="https://www.youtube-nocookie.com/embed/jf3p-cdOKr8" title="SURVIVAL Short Film" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
-            </div>
-            <div class="universe-media-copy">
-              <span class="card-label">SHORT FILM</span>
-              <h3><a href="https://youtu.be/jf3p-cdOKr8" target="_blank" rel="noopener noreferrer">SURVIVAL | Short Film</a></h3>
-              <p>Cinematic narrative short film produced and scored under ArkWay Creative.</p>
-            </div>
-          </article>
+function renderCommunity(sub=""){
+ if(sub==="between-frames"){
+  return `
+   <section class="subview">
+     <button class="back" onclick="setRoute('community')">← BACK TO COMMUNITY</button>
+     <span class="eyebrow">FILM CRITICISM & ANALYSIS</span>
+     <h2>Between Frames by Yovan</h2>
+     <p>A film criticism and narrative analysis publication examining cinema technique, visual pacing, screenwriting structures, and cinematic storytelling.</p>
+     <div style="margin-top:30px;padding:30px;border:1px solid var(--line);background:var(--panel);">
+       <h3>Substack Publication</h3>
+       <p>Read essays, reviews, and film studies published directly on Substack.</p>
+       <a class="primary large" href="https://betweenframes.substack.com" target="_blank" rel="noopener noreferrer">VISIT BETWEEN FRAMES ${icon('arrow')}</a>
+     </div>
+   </section>`;
+ }
+ if(sub==="discography"){
+  return `
+   <section class="subview">
+     <button class="back" onclick="setRoute('community')">← BACK TO COMMUNITY</button>
+     <span class="eyebrow">OFFICIAL MUSIC DISCOGRAPHY</span>
+     <h2>ArkWay Music Catalog</h2>
+     <div class="discography-toggle">
+       <button class="${activeDiscography==='spotify'?'active':''}" onclick="setDiscography('spotify')">Spotify Releases</button>
+       <button class="${activeDiscography==='hustlesasa'?'active':''}" onclick="setDiscography('hustlesasa')">Hustlesasa Digital Downloads</button>
+     </div>
+     ${activeDiscography==='spotify' ? `
+       <div class="discography-grid">
+         ${releases.map(r=>`
+           <div class="release-card">
+             <iframe src="${r[1]}" loading="lazy" title="${r[0]}"></iframe>
+           </div>
+         `).join('')}
+       </div>
+     ` : `
+       <div class="hustlesasa-grid">
+         ${hustlesasa.map(h=>`
+           <div class="hustlesasa-card">
+             <div class="hustlesasa-topline">
+               <h3>${h[0]}</h3>
+               <span class="price-badge">${h[2]}</span>
+             </div>
+             <span class="download-category">${h[1]}</span>
+             <a class="primary small hustle-cta" href="${h[3]}" target="_blank" rel="noopener noreferrer">BUY ON HUSTLESASA ${icon('arrow')}</a>
+           </div>
+         `).join('')}
+       </div>
+     `}
+   </section>`;
+ }
+ if(sub==="media-universe"){
+  return `
+   <section class="subview">
+     <button class="back" onclick="setRoute('community')">← BACK TO COMMUNITY</button>
+     <span class="eyebrow">ORIGINAL MEDIA & SHOWREELS</span>
+     <h2>ArkWay Visual Universe</h2>
+     <div class="community-reel-grid">
+       <div class="universe-media-card">
+         <div class="universe-video">
+           <iframe src="https://www.youtube.com/embed/videoseries?list=PL28Gll44C2bK2e8E-M-aW_zQ7K5Yt_V0x" title="Elohim Official Video" allowfullscreen></iframe>
+         </div>
+         <div class="universe-media-copy">
+           <span class="eyebrow">OFFICIAL MUSIC VIDEO</span>
+           <h3>Elohim — Yovan (Official Music Video)</h3>
+           <p>Official music video for "Elohim" by Yovan. Self-produced and engineered under ArkWay Creative.</p>
+         </div>
+       </div>
+       <div class="universe-media-card">
+         <div class="universe-video">
+           <iframe src="https://www.youtube.com/embed/videoseries?list=PL28Gll44C2bK2e8E-M-aW_zQ7K5Yt_V0x" title="SURVIVAL Short Film" allowfullscreen></iframe>
+         </div>
+         <div class="universe-media-copy">
+           <span class="eyebrow">SHORT FILM</span>
+           <h3>SURVIVAL | Short Film</h3>
+           <p>A cinematic short film exploring survival, resilience, and personal narrative through visual music composition.</p>
+         </div>
+       </div>
+     </div>
+   </section>`;
+ }
+
+ return `
+  <section class="section community-landing">
+    <div class="portal-head">
+      <div>
+        <span class="eyebrow">DOOR 03 — COMMUNITY & MEDIA</span>
+        <h2>The ArkWay Culture & Content Universe</h2>
+      </div>
+      <p>Explore our film analysis publication, official streaming discography, direct digital music downloads, and visual showreels.</p>
+    </div>
+    <div class="community-editorial-grid">
+      <div class="community-editorial-card">
+        <button class="community-editorial-hit" onclick="setRoute('community','between-frames')">
+          <div class="community-editorial-top"><span class="community-door-number">PORTAL 01</span><span>FILM CRITICISM</span></div>
+          <div class="community-editorial-copy">
+            <span class="community-kicker">SUBSTACK PUBLICATION</span>
+            <h2>Between Frames by Yovan</h2>
+            <p>Deep-dive film reviews, screenwriting breakdowns, and cinematic storytelling essays.</p>
+          </div>
+          <div class="community-editorial-bottom"><span>READ ESSAYS ${icon('arrow')}</span></div>
+        </button>
+      </div>
+      <div class="community-editorial-card">
+        <button class="community-editorial-hit" onclick="setRoute('community','discography')">
+          <div class="community-editorial-top"><span class="community-door-number">PORTAL 02</span><span>OFFICIAL DISCOGRAPHY</span></div>
+          <div class="community-editorial-copy">
+            <span class="community-kicker">STREAMING & DOWNLOADS</span>
+            <h2>Music Catalog</h2>
+            <p>Listen to Spotify releases or buy early digital project downloads via Hustlesasa.</p>
+          </div>
+          <div class="community-editorial-bottom"><span>EXPLORE DISCOGRAPHY ${icon('arrow')}</span></div>
+        </button>
+      </div>
+      <div class="community-editorial-card">
+        <button class="community-editorial-hit" onclick="setRoute('community','media-universe')">
+          <div class="community-editorial-top"><span class="community-door-number">PORTAL 03</span><span>VISUAL REELS</span></div>
+          <div class="community-editorial-copy">
+            <span class="community-kicker">ORIGINAL SHOWREELS</span>
+            <h2>Visual Universe</h2>
+            <p>Music videos, short films, sound design previews, and original video content.</p>
+          </div>
+          <div class="community-editorial-bottom"><span>WATCH VIDEOS ${icon('arrow')}</span></div>
+        </button>
+      </div>
+      <div class="community-editorial-card">
+        <div class="community-editorial-hit" style="cursor:default">
+          <div class="community-editorial-top"><span class="community-door-number">PORTAL 04</span><span class="status-badge">COMING SOON</span></div>
+          <div class="community-editorial-copy">
+            <span class="community-kicker">LIVE SHOWCASES & EVENTS</span>
+            <h2>ArkWay Live</h2>
+            <p>Community events, live listening parties, film screenings, and creative workshops.</p>
+          </div>
+          <div class="community-editorial-bottom"><span style="color:#69737f">IN DEVELOPMENT</span></div>
         </div>
+      </div>
+    </div>
+  </section>`;
+}
 
-        <!-- Playlists Section -->
-        <div class="community-reel-grid" style="margin-top: 2rem;">
-          <article class="universe-media-card">
-            <div class="universe-video">
-              <iframe src="https://www.youtube-nocookie.com/embed/videoseries?list=PLq3yYhQm_l_q4PPukd724JAvg-XvJsGtt" title="Produced Work & Collaborations" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
-            </div>
-            <div class="universe-media-copy">
-              <span class="card-label">DISCOGRAPHY & PLAYLIST</span>
-              <h3><a href="https://youtube.com/playlist?list=PLq3yYhQm_l_q4PPukd724JAvg-XvJsGtt" target="_blank" rel="noopener noreferrer">Produced Work & Collaborations</a></h3>
-              <p>Curated catalog of beats, production work, and artist collaborations managed under ArkWay Creative.</p>
-            </div>
-          </article>
+function setDiscography(tab){
+ activeDiscography=tab;
+ render();
+}
 
-          <article class="universe-media-card">
-            <div class="universe-video">
-              <iframe src="https://www.youtube-nocookie.com/embed/videoseries?list=PLq3yYhQm_l_rKtCa7zhtH15RyT_bTDvsw" title="Live Sets & Performances" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
-            </div>
-            <div class="universe-media-copy">
-              <span class="card-label">LIVE EXPERIENCE</span>
-              <h3><a href="https://youtube.com/playlist?list=PLq3yYhQm_l_rKtCa7zhtH15RyT_bTDvsw" target="_blank" rel="noopener noreferrer">Live Sets & Performances</a></h3>
-              <p>Live recordings, stage performances, and session archives.</p>
-            </div>
-          </article>
-        </div>
-      </section>`;
-    }
+function render(){
+ const r=route();
+ const app=document.getElementById("app");
+ 
+ document.querySelectorAll(".navlink").forEach(btn=>{
+  btn.classList.toggle("active", btn.dataset.route === r.root);
+ });
 
-    // Default view initialization
-    setRoute('reels');
-  </script>
+ if(r.root==="services") app.innerHTML=renderServices();
+ else if(r.root==="products") app.innerHTML=renderProducts();
+ else if(r.root==="community") app.innerHTML=renderCommunity(r.sub);
+ else app.innerHTML=renderHome();
+
+ window.scrollTo(0,0);
+}
+
+document.addEventListener("click", e=>{
+ const btn=e.target.closest("[data-route]");
+ if(btn){
+  setRoute(btn.dataset.route);
+  document.getElementById("navlinks").classList.remove("open");
+ }
+});
+
+document.getElementById("menuBtn").addEventListener("click", ()=>{
+ document.getElementById("navlinks").classList.toggle("open");
+});
+
+window.addEventListener("hashchange", render);
+window.addEventListener("DOMContentLoaded", render);
+</script>
 </body>
 </html>
