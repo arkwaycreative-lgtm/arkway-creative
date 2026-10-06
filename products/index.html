@@ -4,16 +4,14 @@
 <meta property="og:type" content="website"><meta property="og:site_name" content="ArkWay Creative"><meta property="og:title" content="Products — Beat Packs, Drum Kits & Foley | ArkWay Creative"><meta property="og:description" content="Digital tools for producers, filmmakers and artists: beat packs, drum kits, loops, FX and foley from ArkWay Creative."><meta property="og:url" content="https://arkway-creative.vercel.app/products"><meta property="og:image" content="https://lh3.googleusercontent.com/d/1Kl4dplfcrAjRYt88Wi7aSX_wsFlTuz6z"><meta name="twitter:card" content="summary_large_image">
 <link rel="stylesheet" href="/style.css">
 <style>
-  /* Strict single-line horizontal scroll for filter bar */
+  /* Modern scrollable filter bar with obvious tactile buttons */
   .product-filter-bar {
     display: flex;
-    flex-wrap: nowrap;
     gap: 10px;
     overflow-x: auto;
     white-space: nowrap;
-    padding: 4px 2px 14px 2px;
+    padding: 4px 2px 12px 2px;
     scrollbar-width: none;
-    -webkit-overflow-scrolling: touch;
   }
   .product-filter-bar::-webkit-scrollbar {
     display: none;
@@ -21,7 +19,7 @@
   .product-filter-bar button {
     flex: 0 0 auto;
     font-size: 0.8rem;
-    padding: 10px 18px;
+    padding: 10px 16px;
     letter-spacing: 0.05em;
     background: rgba(255, 255, 255, 0.03);
     border: 1px solid rgba(255, 255, 255, 0.15);
@@ -43,19 +41,7 @@
     box-shadow: 0 4px 12px rgba(245, 197, 24, 0.25);
   }
 
-  /* Uniform single-column vertical stack across mobile and desktop */
-  .product-grid {
-    display: flex;
-    flex-direction: column;
-    gap: 24px;
-    max-width: 720px;
-    margin: 0 auto;
-  }
-  .product-card {
-    width: 100%;
-  }
-
-  /* Distinct, tactile click styling for action buttons */
+  /* Make action buttons look unmistakably clickable and dimensional */
   .product-preview-button, .product-notify, .product-share {
     border: 1px solid rgba(255, 255, 255, 0.2) !important;
     background: rgba(255, 255, 255, 0.05) !important;
