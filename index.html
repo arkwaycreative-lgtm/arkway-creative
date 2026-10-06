@@ -206,8 +206,10 @@ function setRoute(route,sub=""){
 }
 function route(){
  const raw=location.hash.replace(/^#/,"")||"home";
- const parts=raw.split("/");
- return {root:["services","products","community"].includes(parts[0])?parts[0]:"home",sub:parts[1]||""};
+ const [path, queryStr] = raw.split("?");
+ const parts=path.split("/");
+ const root = ["services","products","community"].includes(parts[0])?parts[0]:"home";
+ return {root, sub:parts[1]||"", query: new URLSearchParams(queryStr||"")};
 }
 function inquiry(service,channel){
  const msg=`Hi ArkWay, I would like to book ${service}. Please share availability and next steps.`;
@@ -251,9 +253,9 @@ function services(){
  <div class="services-contact-strip"><div><span class="card-label">DIRECT BOOKING</span><strong>Start with WhatsApp or email.</strong><p>Tell us what you need, your deadline and what you already have. We will take it from there.</p></div><div class="services-contact-actions"><a class="primary large" target="_blank" rel="noopener" href="${inquiry("a project with ArkWay","whatsapp")}">WhatsApp ${icon("arrow")}</a><a class="secondary large" href="${inquiry("a project with ArkWay","email")}">Email ${icon("mail")}</a></div></div></section>`;
 }
 
-function products(){
+function products(q){
  const filters=["ALL PRODUCTS","BEATS","FILM SCORES","LOOPS","DRUM KITS","FX","FOLEY"];
- const active=new URLSearchParams(location.hash.split("?")[1]||"").get("filter")||"ALL PRODUCTS";
+ const active=q.get("filter")||"ALL PRODUCTS";
  const visible=active==="ALL PRODUCTS"?catalog:catalog.filter(x=>x.category===active);
  return `<section class="section"><div class="portal-head"><div><p class="eyebrow">02 · PRODUCTS</p><h1>Open the <em>sound vault.</em></h1></div><p>Digital tools for producers, filmmakers and artists — curated drops of beats, loops, drums, FX and foley, engineered for independent work.</p></div>
  <div class="product-filter-bar">${filters.map(f=>`<button class="${active===f?"active":""}" data-filter="${f}">${f}</button>`).join("")}</div>
@@ -264,9 +266,9 @@ function community(){
  const cards=[
  ["01","SOLO CATALOG","Official Discography","Stream Yovan's solo EPs and singles directly.","discography","Explore catalog →"],
  ["02","VISUAL REELS","Showreels & Short Film",'Music Video Showcase & "SURVIVAL" Short Film.',"reels","Watch reels →"],
- ["03","ARTIST CREDITS","Produced Work & Collaborations","Tracks and releases engineered for collaborating artists under ArkWay.","","View credits →"],
- ["04","ON STAGE","Live Sets & Performances","Recorded live arrangements, acoustic sessions, and stage sets.","","Watch live sessions →"],
- ["05","FILM & CULTURE","Between Frames","Film critiques, narrative analysis, and cultural essays by Yovan.","","Read Between Frames →"],
+ ["03","ARTIST CREDITS","Produced Work & Collaborations","Tracks and releases engineered for collaborating artists under ArkWay.","ext:https://youtube.com/playlist?list=PLq3yYhQm_l_q4PPukd724JAvg-XvJsGtt&si=m4wwj_hnGeLS6-ne","View credits →"],
+ ["04","ON STAGE","Live Sets & Performances","Recorded live arrangements, acoustic sessions, and stage sets.","ext:https://youtube.com/playlist?list=PLq3yYhQm_l_rKtCa7zhtH15RyT_bTDvsw&si=ox0d-XvnTCpYaipj","Watch live sessions →"],
+ ["05","FILM & CULTURE","Between Frames","Film critiques, narrative analysis, and cultural essays by Yovan.","ext:https://substack.com/@betweenframesbyovan?utm_source=share&utm_medium=android&r=7ro3tt","Read Between Frames →"],
  ["06","STORE","ArkWay Apparel & Merch","Signature streetwear, bandanas, and physical drops engineered by ArkWay Creative.","coming",""],
  ["07","EVENTS","Live Shows & Tickets","Upcoming ArkWay live showcases, concert dates, and ticket releases.","coming",""]
  ];
@@ -284,11 +286,11 @@ function downloads(){
 }
 function reels(){
  return `<section class="subview"><a class="back" href="#community">← Back to Community</a><div class="portal-head"><div><p class="eyebrow">VISUAL REELS</p><h1>Showreels & <em>Short Film.</em></h1></div><p>Music Video Showcase & "SURVIVAL" Short Film.</p></div>
- <div class="community-reel-grid"><article class="universe-media-card"><div class="universe-video"><iframe src="https://www.youtube.com/embed/" title="ArkWay Music & Production Reel" loading="lazy"></iframe></div><div class="universe-media-copy"><span class="card-label">MUSIC PRODUCTION REEL</span><h3>ArkWay Music & Production Reel</h3><p>Showcase of music production, scoring, and original compositions engineered under ArkWay Creative.</p></div></article><article class="universe-media-card"><div class="universe-video"><iframe src="https://www.youtube.com/embed/" title="SURVIVAL Short Film" loading="lazy"></iframe></div><div class="universe-media-copy"><span class="card-label">SURVIVAL · SHORT FILM</span><h3>SURVIVAL | Short Film</h3><p>Cinematic narrative short film produced and scored under ArkWay Creative.</p></div></article></div></section>`;
+ <div class="community-reel-grid"><article class="universe-media-card"><div class="universe-video"><iframe src="https://www.youtube.com/embed/WEvb_J7JbO8" title="ArkWay Music & Production Reel" loading="lazy" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe></div><div class="universe-media-copy"><span class="card-label">MUSIC PRODUCTION REEL</span><h3>ArkWay Music & Production Reel</h3><p>Showcase of music production, scoring, and original compositions engineered under ArkWay Creative.</p></div></article><article class="universe-media-card"><div class="universe-video"><iframe src="https://www.youtube.com/embed/jf3p-cdOKr8" title="SURVIVAL Short Film" loading="lazy" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe></div><div class="universe-media-copy"><span class="card-label">SURVIVAL · SHORT FILM</span><h3>SURVIVAL | Short Film</h3><p>Cinematic narrative short film produced and scored under ArkWay Creative.</p></div></article></div></section>`;
 }
 function render(){
  const r=route();
- let content=r.root==="home"?home():r.root==="services"?services():r.root==="products"?products():r.sub==="discography"?discography():r.sub==="reels"?reels():community();
+ let content=r.root==="home"?home():r.root==="services"?services():r.root==="products"?products(r.query):r.sub==="discography"?discography():r.sub==="reels"?reels():community();
  document.getElementById("app").innerHTML=content;
  document.querySelectorAll(".navlink").forEach(b=>b.classList.toggle("active",b.dataset.route===r.root));
  document.title="ArkWay Creative — "+(r.root[0].toUpperCase()+r.root.slice(1));
@@ -302,7 +304,14 @@ function bind(){
  document.querySelectorAll("[data-filter]").forEach(el=>el.addEventListener("click",()=>{location.hash="#products?filter="+encodeURIComponent(el.dataset.filter)}));
  document.querySelectorAll("[data-play]").forEach(el=>el.addEventListener("click",()=>{el.closest(".product-preview").querySelector(".waveform").classList.toggle("playing");el.innerHTML=el.closest(".product-preview").querySelector(".waveform").classList.contains("playing")?"Ⅱ Pause Demo":"▶ Play Demo"}));
  document.querySelectorAll("[data-share]").forEach(el=>el.addEventListener("click",async()=>{const u=location.origin+location.pathname+"#products?id="+el.dataset.share;try{await navigator.clipboard.writeText(u);el.textContent="Link Copied"}catch{window.prompt("Copy this ArkWay product link:",u)}setTimeout(()=>el.textContent="Share Link →",1800)}));
- document.querySelectorAll("[data-community]").forEach(el=>el.addEventListener("click",()=>setRoute("community",el.dataset.community)));
+ document.querySelectorAll("[data-community]").forEach(el=>el.addEventListener("click",()=>{
+   const target=el.dataset.community;
+   if(target.startsWith("ext:")){
+     window.open(target.replace("ext:",""),"_blank","noopener,noreferrer");
+   }else{
+     setRoute("community",target);
+   }
+ }));
  document.querySelectorAll("[data-mode]").forEach(el=>el.addEventListener("click",()=>{document.querySelectorAll("[data-mode]").forEach(x=>x.classList.remove("active"));el.classList.add("active");document.getElementById("discographyContent").innerHTML=el.dataset.mode==="download"?downloads():releases.map(r=>`<article class="release-card"><iframe src="${r[1]}" title="${r[0]} on Spotify" loading="lazy" allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture"></iframe></article>`).join("")}));
 }
 function showModal(service){
