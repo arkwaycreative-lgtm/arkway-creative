@@ -19,42 +19,42 @@
   text-align: left;
   padding: 14px 0;
   display: flex;
-  justify-content: space-between;
   align-items: center;
   cursor: pointer;
   transition: color 0.2s;
 }
 .service-toggle:hover { color: #d4af37; }
 
-.service-toggle span { flex: 1; padding-right: 15px; }
-
-/* Spinning Plus Icon */
+/* Left-aligned Spinning Plus Icon */
 .service-icon {
-  width: 22px;
-  height: 22px;
-  display: flex;
+  width: 20px;
+  height: 20px;
+  display: inline-flex;
   align-items: center;
   justify-content: center;
   color: #d4af37;
-  font-size: 1.2rem;
+  font-size: 1.1rem;
   font-weight: 700;
-  transition: transform 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+  margin-right: 12px;
   flex-shrink: 0;
+  transition: transform 0.3s cubic-bezier(0.4, 0, 0.2, 1);
 }
 .service-item.active .service-icon {
   transform: rotate(90deg);
 }
+
+.service-text { flex: 1; }
 
 /* Dropdown Content */
 .service-dropdown {
   max-height: 0;
   overflow: hidden;
   transition: max-height 0.35s ease-in-out, padding 0.35s ease-in-out;
-  padding: 0 0;
+  padding: 0 0 0 32px; /* aligns nicely with text past the plus icon */
 }
 .service-item.active .service-dropdown {
-  max-height: 180px; /* enough space for price + short description */
-  padding: 0 0 16px 0;
+  max-height: 180px;
+  padding: 0 0 16px 32px;
 }
 
 .dropdown-price {
@@ -81,8 +81,8 @@
   <ul class="service-list">
     <li class="service-item">
       <button class="service-toggle" onclick="toggleService(this)">
-        <span>Quick Vocal Session</span>
         <span class="service-icon">+</span>
+        <span class="service-text">Quick Vocal Session</span>
       </button>
       <div class="service-dropdown">
         <div class="dropdown-price">KSh 3,000</div>
@@ -91,8 +91,8 @@
     </li>
     <li class="service-item">
       <button class="service-toggle" onclick="toggleService(this)">
-        <span>External Vocal Mix & Master</span>
         <span class="service-icon">+</span>
+        <span class="service-text">External Vocal Mix & Master</span>
       </button>
       <div class="service-dropdown">
         <div class="dropdown-price">KSh 2,500</div>
@@ -101,8 +101,8 @@
     </li>
     <li class="service-item">
       <button class="service-toggle" onclick="toggleService(this)">
-        <span>Complete Single Package</span>
         <span class="service-icon">+</span>
+        <span class="service-text">Complete Single Package</span>
       </button>
       <div class="service-dropdown">
         <div class="dropdown-price">KSh 5,500</div>
@@ -111,8 +111,8 @@
     </li>
     <li class="service-item">
       <button class="service-toggle" onclick="toggleService(this)">
-        <span>Full Custom Beat & Song Production</span>
         <span class="service-icon">+</span>
+        <span class="service-text">Full Custom Beat & Song Production</span>
       </button>
       <div class="service-dropdown">
         <div class="dropdown-price">KSh 8,500</div>
@@ -121,8 +121,8 @@
     </li>
     <li class="service-item">
       <button class="service-toggle" onclick="toggleService(this)">
-        <span>Acoustic / Lead Guitar Session</span>
         <span class="service-icon">+</span>
+        <span class="service-text">Acoustic / Lead Guitar Session</span>
       </button>
       <div class="service-dropdown">
         <div class="dropdown-price">KSh 2,500</div>
@@ -131,8 +131,8 @@
     </li>
     <li class="service-item">
       <button class="service-toggle" onclick="toggleService(this)">
-        <span>Live Bass Tracking</span>
         <span class="service-icon">+</span>
+        <span class="service-text">Live Bass Tracking</span>
       </button>
       <div class="service-dropdown">
         <div class="dropdown-price">KSh 2,500</div>
@@ -141,8 +141,8 @@
     </li>
     <li class="service-item">
       <button class="service-toggle" onclick="toggleService(this)">
-        <span>Full Instrumentation Package</span>
         <span class="service-icon">+</span>
+        <span class="service-text">Full Instrumentation Package</span>
       </button>
       <div class="service-dropdown">
         <div class="dropdown-price">KSh 12,000</div>
@@ -159,8 +159,8 @@
   <ul class="service-list">
     <li class="service-item">
       <button class="service-toggle" onclick="toggleService(this)">
-        <span>Radio & Social Media Ads / Jingles</span>
         <span class="service-icon">+</span>
+        <span class="service-text">Radio & Social Media Ads / Jingles</span>
       </button>
       <div class="service-dropdown">
         <div class="dropdown-price">KSh 12,000</div>
@@ -169,8 +169,8 @@
     </li>
     <li class="service-item">
       <button class="service-toggle" onclick="toggleService(this)">
-        <span>Film, Series & Video Scoring</span>
         <span class="service-icon">+</span>
+        <span class="service-text">Film, Series & Video Scoring</span>
       </button>
       <div class="service-dropdown">
         <div class="dropdown-price">From KSh 15,000</div>
@@ -179,8 +179,8 @@
     </li>
     <li class="service-item">
       <button class="service-toggle" onclick="toggleService(this)">
-        <span>Voiceover & Podcast Audio Cleaning</span>
         <span class="service-icon">+</span>
+        <span class="service-text">Voiceover & Podcast Audio Cleaning</span>
       </button>
       <div class="service-dropdown">
         <div class="dropdown-price">KSh 5,000</div>
@@ -197,8 +197,8 @@
   <ul class="service-list">
     <li class="service-item">
       <button class="service-toggle" onclick="toggleService(this)">
-        <span>Brand Identity & Creative Direction</span>
         <span class="service-icon">+</span>
+        <span class="service-text">Brand Identity & Creative Direction</span>
       </button>
       <div class="service-dropdown">
         <div class="dropdown-price">Custom Scope / Quote</div>
@@ -207,8 +207,8 @@
     </li>
     <li class="service-item">
       <button class="service-toggle" onclick="toggleService(this)">
-        <span>Campaign & Content Architecture</span>
         <span class="service-icon">+</span>
+        <span class="service-text">Campaign & Content Architecture</span>
       </button>
       <div class="service-dropdown">
         <div class="dropdown-price">Custom Scope / Quote</div>
@@ -217,8 +217,8 @@
     </li>
     <li class="service-item">
       <button class="service-toggle" onclick="toggleService(this)">
-        <span>Digital Media Strategy</span>
         <span class="service-icon">+</span>
+        <span class="service-text">Digital Media Strategy</span>
       </button>
       <div class="service-dropdown">
         <div class="dropdown-price">Custom Scope / Quote</div>
@@ -235,8 +235,8 @@
   <ul class="service-list">
     <li class="service-item">
       <button class="service-toggle" onclick="toggleService(this)">
-        <span>Market Research & Business Analytics</span>
         <span class="service-icon">+</span>
+        <span class="service-text">Market Research & Business Analytics</span>
       </button>
       <div class="service-dropdown">
         <div class="dropdown-price">Custom Scope / Quote</div>
@@ -245,8 +245,8 @@
     </li>
     <li class="service-item">
       <button class="service-toggle" onclick="toggleService(this)">
-        <span>Audience & Performance Analysis</span>
         <span class="service-icon">+</span>
+        <span class="service-text">Audience & Performance Analysis</span>
       </button>
       <div class="service-dropdown">
         <div class="dropdown-price">Custom Scope / Quote</div>
@@ -255,8 +255,8 @@
     </li>
     <li class="service-item">
       <button class="service-toggle" onclick="toggleService(this)">
-        <span>Dashboards & Reporting</span>
         <span class="service-icon">+</span>
+        <span class="service-text">Dashboards & Reporting</span>
       </button>
       <div class="service-dropdown">
         <div class="dropdown-price">Custom Scope / Quote</div>
@@ -280,12 +280,12 @@ function toggleService(btn) {
   const currentItem = btn.parentElement;
   const isActive = currentItem.classList.contains('active');
   
-  // Close all other open service items across the page to reduce clutter
+  // Close any other open accordion items on the page
   document.querySelectorAll('.service-item.active').forEach(item => {
     item.classList.remove('active');
   });
   
-  // If it wasn't active before, open it (spinning the plus 90 degrees)
+  // If the clicked item wasn't open, open it (spinning its plus sign 90° clockwise)
   if (!isActive) {
     currentItem.classList.add('active');
   }
