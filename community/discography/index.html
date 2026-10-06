@@ -14,7 +14,9 @@
     <span class="download-category">Digital EP · Lossless Download</span>
     <div style="display: flex; gap: 10px; margin-top: 15px;">
       <a class="primary small hustle-cta" style="flex: 1; text-align: center;" href="https://arkway.hustlesasa.shop/products/698a4d392a26683b23f52008" target="_blank" rel="noopener">Buy on Hustlesasa □</a>
-      <button class="primary small hustle-cta" style="background: transparent; border: 1px solid currentColor; cursor: pointer;" onclick="copyShareLink('https://arkway-creative.vercel.app/community/discography', this)">Copy Link</button>
+      <button class="primary small hustle-cta" style="background: transparent; border: 1px solid currentColor; cursor: pointer; padding: 0 12px;" onclick="sharePage('Foot On The Gas EP', 'https://arkway-creative.vercel.app/community/discography', this)" title="Share Link">
+        <svg style="width: 14px; height: 14px; vertical-align: middle; fill: currentColor;" viewBox="0 0 24 24"><path d="M18 16.08c-.76 0-1.44.3-1.96.77L8.91 12.7c.05-.23.09-.46.09-.7s-.04-.47-.09-.7l7.05-4.11c.54.5 1.25.81 2.04.81 1.66 0 3-1.34 3-3s-1.34-3-3-3-3 1.34-3 3c0 .24.04.47.09.7L8.04 9.81C7.5 9.31 6.79 9 6 9c-1.66 0-3 1.34-3 3s1.34 3 3 3c.79 0 1.5-.31 2.04-.81l7.12 4.16c-.05.21-.08.43-.08.65 0 1.61 1.31 2.92 2.92 2.92s2.92-1.31 2.92-2.92-1.31-2.92-2.92-2.92z"/></svg>
+      </button>
     </div>
   </article>
 
@@ -23,7 +25,9 @@
     <span class="download-category">Digital EP · Lossless Download</span>
     <div style="display: flex; gap: 10px; margin-top: 15px;">
       <a class="primary small hustle-cta" style="flex: 1; text-align: center;" href="https://arkway.hustlesasa.shop/products/698a4d232a26683b23f51e28" target="_blank" rel="noopener">Buy on Hustlesasa □</a>
-      <button class="primary small hustle-cta" style="background: transparent; border: 1px solid currentColor; cursor: pointer;" onclick="copyShareLink('https://arkway-creative.vercel.app/community/discography', this)">Copy Link</button>
+      <button class="primary small hustle-cta" style="background: transparent; border: 1px solid currentColor; cursor: pointer; padding: 0 12px;" onclick="sharePage('Noah\'s Blueprint', 'https://arkway-creative.vercel.app/community/discography', this)" title="Share Link">
+        <svg style="width: 14px; height: 14px; vertical-align: middle; fill: currentColor;" viewBox="0 0 24 24"><path d="M18 16.08c-.76 0-1.44.3-1.96.77L8.91 12.7c.05-.23.09-.46.09-.7s-.04-.47-.09-.7l7.05-4.11c.54.5 1.25.81 2.04.81 1.66 0 3-1.34 3-3s-1.34-3-3-3-3 1.34-3 3c0 .24.04.47.09.7L8.04 9.81C7.5 9.31 6.79 9 6 9c-1.66 0-3 1.34-3 3s1.34 3 3 3c.79 0 1.5-.31 2.04-.81l7.12 4.16c-.05.21-.08.43-.08.65 0 1.61 1.31 2.92 2.92 2.92s2.92-1.31 2.92-2.92-1.31-2.92-2.92-2.92z"/></svg>
+      </button>
     </div>
   </article>
 
@@ -32,7 +36,9 @@
     <span class="download-category">Digital EP · Lossless Download</span>
     <div style="display: flex; gap: 10px; margin-top: 15px;">
       <a class="primary small hustle-cta" style="flex: 1; text-align: center;" href="https://arkway.hustlesasa.shop/products/6a033164c8157eccc0f7df80" target="_blank" rel="noopener">Buy on Hustlesasa □</a>
-      <button class="primary small hustle-cta" style="background: transparent; border: 1px solid currentColor; cursor: pointer;" onclick="copyShareLink('https://arkway-creative.vercel.app/community/discography', this)">Copy Link</button>
+      <button class="primary small hustle-cta" style="background: transparent; border: 1px solid currentColor; cursor: pointer; padding: 0 12px;" onclick="sharePage('Sticks and Stones', 'https://arkway-creative.vercel.app/community/discography', this)" title="Share Link">
+        <svg style="width: 14px; height: 14px; vertical-align: middle; fill: currentColor;" viewBox="0 0 24 24"><path d="M18 16.08c-.76 0-1.44.3-1.96.77L8.91 12.7c.05-.23.09-.46.09-.7s-.04-.47-.09-.7l7.05-4.11c.54.5 1.25.81 2.04.81 1.66 0 3-1.34 3-3s-1.34-3-3-3-3 1.34-3 3c0 .24.04.47.09.7L8.04 9.81C7.5 9.31 6.79 9 6 9c-1.66 0-3 1.34-3 3s1.34 3 3 3c.79 0 1.5-.31 2.04-.81l7.12 4.16c-.05.21-.08.43-.08.65 0 1.61 1.31 2.92 2.92 2.92s2.92-1.31 2.92-2.92-1.31-2.92-2.92-2.92z"/></svg>
+      </button>
     </div>
   </article>
 </div>
@@ -43,14 +49,22 @@
 <div class="footer-bottom"><span>© 2026 ArkWay Creative</span><span>DESIRE · DEDICATION · DISCIPLINE</span></div></footer></div>
 
 <script>
-function copyShareLink(url, btn) {
-  navigator.clipboard.writeText(url).then(() => {
-    const originalText = btn.innerText;
-    btn.innerText = "Copied! ✓";
-    setTimeout(() => {
-      btn.innerText = originalText;
-    }, 2000);
-  });
+function sharePage(title, url, btn) {
+  if (navigator.share) {
+    navigator.share({
+      title: title + ' | ArkWay Creative',
+      text: 'Check out ' + title + ' on ArkWay Creative:',
+      url: url,
+    }).catch(() => {});
+  } else {
+    navigator.clipboard.writeText(url).then(() => {
+      const originalHTML = btn.innerHTML;
+      btn.innerHTML = "✓";
+      setTimeout(() => {
+        btn.innerHTML = originalHTML;
+      }, 2000);
+    });
+  }
 }
 </script>
 <script src="/site.js"></script></body></html>
