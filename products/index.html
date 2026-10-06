@@ -19,14 +19,14 @@
     border: none !important;
   }
   
-  /* Studio button base styling — refined and subdued */
+  /* Studio button base styling */
   .product-filter-bar button {
     flex: 1 1 calc(33.333% - 8px) !important;
     min-width: 100px !important;
-    font-size: 0.75rem !important;
+    font-size: 0.72rem !important;
     font-weight: 600 !important;
     text-transform: uppercase !important;
-    padding: 12px 14px !important;
+    padding: 12px 10px !important;
     letter-spacing: 0.08em !important;
     background: rgba(18, 18, 20, 0.7) !important;
     border: 1px solid rgba(255, 255, 255, 0.08) !important;
@@ -36,6 +36,10 @@
     text-align: center !important;
     transition: all 0.25s cubic-bezier(0.16, 1, 0.3, 1) !important;
     box-shadow: 0 2px 6px rgba(0, 0, 0, 0.2) !important;
+    display: flex !important;
+    align-items: center !important;
+    justify-content: center !important;
+    gap: 6px !important;
   }
   
   @media (min-width: 640px) {
@@ -51,7 +55,7 @@
     transform: translateY(-1px) !important;
   }
 
-  /* High-impact ACTIVE state: pops out, commands attention, pushes others back */
+  /* Active State with hardware indicator dot */
   .product-filter-bar button.active {
     background: var(--accent, #f5c518) !important;
     color: #0b0b0b !important;
@@ -60,6 +64,19 @@
     transform: translateY(-2px) scale(1.02) !important;
     box-shadow: 0 8px 24px rgba(245, 197, 24, 0.4), 0 2px 6px rgba(0, 0, 0, 0.5), inset 0 1px 0 rgba(255, 255, 255, 0.6) !important;
     z-index: 2;
+  }
+
+  /* Miniature active LED dot for selected filter */
+  .product-filter-bar button .active-dot {
+    display: none;
+    width: 5px;
+    height: 5px;
+    background-color: #0b0b0b;
+    border-radius: 50%;
+  }
+
+  .product-filter-bar button.active .active-dot {
+    display: inline-block;
   }
 
   /* Professional Vault Status Announcement Card */
@@ -108,12 +125,12 @@
 <main><section class="section"><div class="portal-head"><div><p class="eyebrow">02 · PRODUCTS</p><h1>Open the <em>sound vault.</em></h1></div><p>Digital tools for producers, filmmakers and artists — curated drops of beats, loops, drums, FX and foley, engineered for independent work.</p></div>
 
 <div class="product-filter-bar">
-  <button class="active" data-filter="BEATS">BEATS</button>
-  <button data-filter="FILM SCORES">FILM SCORES</button>
-  <button data-filter="LOOPS">LOOPS</button>
-  <button data-filter="DRUM KITS">DRUM KITS</button>
-  <button data-filter="FX">FX</button>
-  <button data-filter="FOLEY">FOLEY</button>
+  <button class="active" data-filter="BEATS"><span class="active-dot"></span> BEATS</button>
+  <button data-filter="FILM SCORES"><span class="active-dot"></span> FILM SCORES</button>
+  <button data-filter="LOOPS"><span class="active-dot"></span> LOOPS</button>
+  <button data-filter="DRUM KITS"><span class="active-dot"></span> DRUM KITS</button>
+  <button data-filter="FX"><span class="active-dot"></span> FX</button>
+  <button data-filter="FOLEY"><span class="active-dot"></span> FOLEY</button>
 </div>
 
 <div class="vault-announcement">
