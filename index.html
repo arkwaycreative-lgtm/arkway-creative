@@ -2,1199 +2,1047 @@
 <html lang="en">
 <head>
 <meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<meta name="description" content="ArkWay Creative — data-driven media, audio production, visual storytelling, brand architecture and culture.">
+<meta name="viewport" content="width=device-width,initial-scale=1.0">
+<meta name="theme-color" content="#090D16">
 <title>ArkWay Creative</title>
 <style>
-:root{
-  --bg:#090D16;--panel:#0D1219;--gold:#D4AF37;--gold2:#E2C66B;
-  --text:#F7F7F4;--muted:#9AA4AF;--line:#252D39;--line2:#394451;
-}
+:root{--bg:#090D16;--panel:#0D1219;--panel2:#111720;--gold:#D4AF37;--gold2:#C9A84C;--muted:#9AA3AE;--line:#303947;--white:#F4F1E8}
 *{box-sizing:border-box}
 html{scroll-behavior:smooth}
-body{margin:0;background:var(--bg);color:var(--text);font-family:Inter,ui-sans-serif,system-ui,-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif}
+body{margin:0;background:var(--bg);color:var(--white);font-family:Inter,Arial,Helvetica,sans-serif;line-height:1.5}
 body.locked{overflow:hidden}
 a{text-decoration:none;color:inherit}
-button{font:inherit;cursor:pointer}
-.site{min-height:100vh;overflow:hidden}
-.nav{height:76px;padding:0 6vw;display:flex;align-items:center;justify-content:space-between;gap:24px;border-bottom:1px solid var(--line);position:sticky;top:0;z-index:50;background:rgba(9,13,22,.96);backdrop-filter:blur(18px)}
-.brand{display:flex;align-items:center;gap:11px;background:none;border:0;color:#fff}
-.brand img,.footer-brand img{height:40px;width:auto;max-width:190px;object-fit:contain;display:block}
-.brand span{display:grid;gap:3px}.brand strong{font-size:14px;letter-spacing:2.5px}.brand small{font-size:8px;letter-spacing:2px;color:var(--gold)}
-.navlinks{display:flex;align-items:center;gap:8px}
-.navlink{border:0;background:transparent;color:var(--muted);padding:10px 12px;font-size:11px;letter-spacing:.8px}
+button{font:inherit}
+.site-nav{position:sticky;top:0;z-index:100;background:rgba(9,13,22,.94);backdrop-filter:blur(14px);border-bottom:1px solid #252D38;height:76px;display:flex;align-items:center;justify-content:space-between;padding:0 6vw}
+.brand,.footer-brand{display:flex;align-items:center;gap:12px;font-weight:900;letter-spacing:1.5px}
+.brand img,.footer-brand img{width:38px;height:38px;object-fit:contain}
+.navlinks{display:flex;gap:8px}
+.navlink{border:0;background:transparent;color:#AAB1BA;padding:10px 13px;font-size:11px;font-weight:900;letter-spacing:1.5px;cursor:pointer}
 .navlink:hover,.navlink.active{color:var(--gold)}
-.menu{display:none;background:transparent;color:#fff;border:1px solid var(--line);padding:8px}
-.eyebrow,.kicker,.card-label{color:var(--gold);font-size:9px;letter-spacing:2px;font-weight:900}
-h1,h2,h3,p{margin-top:0}
-h1,h2{line-height:.92;letter-spacing:-4px}
-h1{font-size:clamp(48px,7vw,94px);margin:24px 0}
-h2{font-size:clamp(40px,5.6vw,76px);margin-bottom:18px}
-h3{font-size:27px;line-height:1.05;letter-spacing:-1px}
-em{font-family:Georgia,"Times New Roman",serif;color:var(--gold);font-weight:400}
-p{color:var(--muted);line-height:1.7}
-.primary,.secondary,.hero-secondary{display:inline-flex;align-items:center;justify-content:center;gap:8px;font-weight:900}
-.primary{background:var(--gold);color:#090D16;border:1px solid var(--gold);padding:12px 16px}
-.primary:hover{background:var(--gold2);border-color:var(--gold2);transform:translateY(-1px)}
-.secondary{background:transparent;color:#fff;border:1px solid var(--line2);padding:12px 16px}
-.secondary:hover{border-color:var(--gold);color:var(--gold)}
-.large{padding:14px 18px}.small{font-size:10px;padding:10px 12px}
-
-.home-hero{
-  min-height:calc(100vh - 76px);padding:80px 8vw 72px;display:flex;align-items:flex-end;
-  position:relative;overflow:hidden;border-bottom:1px solid var(--line);
-  background:
-    linear-gradient(180deg,rgba(9,13,22,.58) 0%,rgba(9,13,22,.82) 42%,rgba(9,13,22,.98) 100%),
-    url("https://lh3.googleusercontent.com/d/1Kl4dplfcrAjRYt88Wi7aSX_wsFlTuz6z") center/cover no-repeat;
-}
-.home-copy{max-width:1050px;position:relative;z-index:2}
-.home-hero .kicker{color:var(--gold)}
-.home-hero h1 strong{font-weight:900;color:#fff}.home-hero h1 em{font-style:italic}
-.positioning{max-width:780px;font-size:18px}
-.hero-actions{display:flex;align-items:center;gap:10px;flex-wrap:wrap;margin-top:30px;width:min(370px,100%)}
-.hero-actions .primary,.hero-actions .hero-secondary{flex:1 1 calc(50% - 5px);min-height:44px;white-space:nowrap}
-.hero-secondary{background:#0D1219;color:var(--gold);border:1px solid var(--gold);padding:14px 18px}
-.hero-secondary:hover{background:#111720;border-color:var(--gold2);color:var(--gold2)}
-.hero-tertiary{flex:0 0 100%;text-align:center;color:var(--gold);font-size:13px;font-weight:900;padding:7px;border:0;background:none}
-.hero-tertiary:hover{text-decoration:underline;text-underline-offset:4px}
-
-.section{padding:85px 8vw 110px}
-.doors-section{padding:100px 8vw;border-bottom:1px solid var(--line);background:linear-gradient(180deg,#080b10,#0a0e13)}
-.door-intro{display:grid;grid-template-columns:.8fr 1.1fr .8fr;gap:5vw;align-items:end;margin-bottom:40px}
-.door-intro p:last-child{margin:0}
-.door-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:15px}
-.door-card{min-height:360px;padding:30px;border:1px solid var(--line);background:var(--panel);display:flex;flex-direction:column;justify-content:space-between;text-align:left;color:#fff;position:relative;overflow:hidden}
-.door-card:before{content:"";position:absolute;left:0;top:0;bottom:0;width:3px;background:var(--gold)}
-.door-card:hover{border-color:var(--gold);background:#10161e;transform:translateY(-3px)}
+.menu-toggle{display:none;background:none;border:1px solid var(--line);color:#fff;padding:8px 11px}
+.section,.subview{padding:80px 6vw;min-height:calc(100svh - 76px)}
+.home-hero{min-height:calc(100svh - 76px);padding:50px 6vw 58px;display:flex;align-items:center;background:linear-gradient(180deg,rgba(9,13,22,.58) 0%,rgba(9,13,22,.82) 42%,rgba(9,13,22,.98) 100%),url("https://lh3.googleusercontent.com/d/1Kl4dplfcrAjRYt88Wi7aSX_wsFlTuz6z") center/cover no-repeat}
+.hero-inner{max-width:850px}
+.eyebrow,.card-label{font-size:10px;letter-spacing:2.2px;font-weight:900;color:var(--gold)}
+.home-hero h1{font-size:clamp(48px,8vw,108px);line-height:.91;letter-spacing:-5px;margin:18px 0}
+.home-hero h1 em,.portal-head h1 em{color:var(--gold);font-style:normal}
+.hero-copy{max-width:650px;color:#C5CAD0;font-size:16px}
+.hero-actions{display:flex;flex-wrap:wrap;gap:12px;margin-top:30px}
+.primary,.secondary,.hero-secondary,.hero-tertiary,.outline-action{display:inline-flex;align-items:center;justify-content:center;gap:8px;border:1px solid var(--gold);padding:13px 17px;font-size:10px;font-weight:900;letter-spacing:1.3px;text-transform:uppercase;cursor:pointer}
+.primary{background:var(--gold);color:#090D16}
+.primary:hover{background:#E1C45D}
+.secondary,.hero-secondary{background:transparent;color:var(--gold)}
+.secondary:hover,.hero-secondary:hover{background:rgba(212,175,55,.08)}
+.hero-tertiary{border:0;padding-left:0;color:#C8CDD4}
+.hero-tertiary:hover{color:var(--gold)}
+.large{padding:15px 20px}
+.small{padding:10px 13px}
+.portal-head{display:grid;grid-template-columns:1.1fr .9fr;gap:50px;align-items:end;margin-bottom:40px}
+.portal-head h1{font-size:clamp(40px,6vw,76px);line-height:.95;letter-spacing:-3px;margin:12px 0}
+.portal-head>p{color:#AEB5BD;max-width:570px;font-size:14px}
+.door-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:14px}
+.door-card{min-height:250px;text-align:left;padding:25px;background:var(--panel);border:1px solid var(--line);color:#fff;display:flex;flex-direction:column;justify-content:space-between;cursor:pointer}
+.door-card:hover{border-color:var(--gold);transform:translateY(-2px)}
 .door-top{display:flex;justify-content:space-between;color:var(--gold)}
-.door-card:nth-child(2):before{background:#557B61}.door-card:nth-child(3):before{background:#805B43}
-.door-card h3{font-size:34px;margin-bottom:12px}.door-card p{max-width:330px}
-.door-cta{display:flex;align-items:center;gap:7px;color:var(--gold);font-size:11px;font-weight:900}
-
-.manifesto{padding:110px 8vw;display:grid;grid-template-columns:.8fr 1.5fr;gap:6vw}
-
-.portal-head{display:grid;grid-template-columns:1.25fr .75fr;gap:8vw;align-items:end;margin-bottom:50px}
-.portal-head>p{margin:0;max-width:550px}
-
-.service-groups{display:grid;grid-template-columns:repeat(2,1fr);gap:15px}
-.service-group{border:1px solid var(--line);background:var(--panel);padding:30px;min-height:350px;display:flex;flex-direction:column}
-.service-group:nth-child(2){background:linear-gradient(135deg,#0D1219,rgba(72,107,85,.08))}
-.service-group:nth-child(3){background:linear-gradient(135deg,#0D1219,rgba(112,80,58,.08))}
-.service-group:nth-child(4){background:linear-gradient(135deg,#0D1219,rgba(201,168,76,.08))}
-.service-group-head{display:flex;justify-content:space-between;margin-bottom:50px;color:var(--gold)}
-.service-group h3{font-size:30px}.service-group ul{list-style:none;padding:0;margin:10px 0 25px;display:grid;gap:8px}
-.service-group li{color:#c5ccd4;font-size:12px;padding-left:15px;position:relative}.service-group li:before{content:"+";position:absolute;left:0;color:var(--gold)}
-.outline-action{margin-top:auto;width:max-content;border:1px solid var(--line2);background:none;color:var(--gold);padding:10px 13px;font-size:11px;font-weight:900}
-.services-contact-strip{margin-top:15px;border:1px solid var(--line);padding:25px 30px;display:flex;justify-content:space-between;align-items:center;gap:30px;background:linear-gradient(100deg,rgba(201,168,76,.08),rgba(72,107,85,.05))}
-.services-contact-strip strong{display:block;margin:7px 0}.services-contact-strip p{margin:0;font-size:12px}.services-contact-actions{display:flex;gap:9px;flex-wrap:wrap}
-
-.product-filter-bar{display:flex;gap:6px;flex-wrap:wrap;margin-bottom:18px;padding:5px;border:1px solid #303947;background:#0D1219;width:max-content;max-width:100%}
-.product-filter-bar button{border:1px solid transparent;background:transparent;color:#8F99A5;padding:10px 12px;font-size:9px;font-weight:900;letter-spacing:1px}
-.product-filter-bar button.active,.product-filter-bar button:hover{background:var(--gold);color:#090D16;border-color:var(--gold)}
-.product-grid{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:15px}
-.product-card{padding:22px;border:1px solid #303947;background:#090D16;display:flex;flex-direction:column;transition:.2s}
-.product-card:hover{border-color:var(--gold);transform:translateY(-2px)}
-.product-card-top{display:flex;justify-content:space-between;gap:12px}.product-badges{display:flex;gap:6px;flex-wrap:wrap}
-.product-category-badge,.product-coming-pill,.product-price{padding:7px 9px;font-size:8px;font-weight:900;letter-spacing:1.2px}
-.product-category-badge{border:1px solid var(--line2);color:var(--gold)}
-.product-coming-pill{background:var(--gold);color:#090D16}
-.product-price{border:1px solid rgba(212,175,55,.55);color:var(--gold)}
-.product-card-copy{padding:30px 0 22px}.product-card-copy h3{font-size:24px}.product-spec{font-size:11px;min-height:38px}
-.product-preview{border:1px solid var(--line);background:#0D1219;padding:15px}.product-preview-head{display:flex;justify-content:space-between;color:#65717E;font-size:7px;letter-spacing:1.5px;font-weight:900}
-.waveform{height:58px;margin:14px 0;display:flex;align-items:center;justify-content:space-between;gap:3px;overflow:hidden}
-.waveform span{width:2px;background:var(--gold);display:block}.waveform.playing span{animation:pulse .65s ease-in-out infinite alternate}
-@keyframes pulse{from{transform:scaleY(.55)}to{transform:scaleY(1.2)}}
-.product-preview-button{width:100%;display:flex;align-items:center;justify-content:center;gap:8px;border:1px solid var(--line2);background:#090D16;color:var(--gold);padding:10px;font-size:10px;font-weight:900}
-.product-actions{display:grid;grid-template-columns:1fr 1fr;gap:8px;margin-top:auto;padding-top:18px}
-.product-notify,.product-share{display:flex;align-items:center;justify-content:center;gap:7px;border:1px solid var(--line2);background:none;color:var(--gold);padding:10px;font-size:9px;font-weight:900;text-align:center}
-.product-empty{grid-column:1/-1;border:1px solid var(--line);padding:40px}
-
+.door-card h3{font-size:28px;margin:25px 0 8px}
+.door-card p{font-size:12px;color:#9DA6B0}
+.door-cta{font-size:10px;color:var(--gold);font-weight:900;letter-spacing:1.5px}
+.service-groups{display:grid;grid-template-columns:repeat(2,1fr);gap:14px}
+.service-group{padding:28px;background:var(--panel);border:1px solid var(--line)}
+.service-group h3{font-size:24px;margin:10px 0}
+.service-group p{color:#AEB5BD;font-size:12px}
+.service-group ul{padding:0;margin:20px 0;list-style:none}
+.service-group li{border-top:1px solid #252D38;padding:10px 0;font-size:11px;color:#D0D5DB}
+.service-group li:before{content:"→";color:var(--gold);margin-right:8px}
+.service-group-head{display:flex;justify-content:space-between;color:var(--gold)}
+.services-contact-strip{margin-top:15px;border:1px solid var(--gold2);padding:25px;display:flex;justify-content:space-between;gap:25px;align-items:center}
+.services-contact-strip strong{display:block;margin:6px 0}
+.services-contact-strip p{margin:0;color:#9DA6B0;font-size:12px}
+.services-contact-actions{display:flex;gap:10px;flex-wrap:wrap}
+.product-filter-bar{display:flex;flex-wrap:wrap;gap:8px;margin-bottom:22px}
+.product-filter-bar button{background:transparent;color:#9EA7B1;border:1px solid var(--line);padding:10px 13px;font-size:9px;font-weight:900;letter-spacing:1px;cursor:pointer}
+.product-filter-bar button:hover,.product-filter-bar button.active{border-color:var(--gold);color:var(--gold);background:rgba(212,175,55,.05)}
+.product-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:14px}
+.product-card{background:var(--panel);border:1px solid var(--line);padding:20px}
+.product-card-top,.product-badges,.product-actions,.product-preview-head{display:flex;align-items:center;justify-content:space-between;gap:10px}
+.product-badges{justify-content:flex-start}
+.product-category-badge,.product-coming-pill,.status-badge{font-size:8px;letter-spacing:1.5px;font-weight:900;padding:7px 9px;border:1px solid var(--line)}
+.product-category-badge{color:var(--gold);border-color:#66572D}
+.product-coming-pill{color:#8F98A2}
+.product-price{color:var(--gold);font-weight:900;font-size:13px}
+.product-card-copy{min-height:125px}
+.product-card-copy h3{font-size:22px;margin:20px 0 7px}
+.product-spec{font-size:11px;color:#9EA7B1}
+.product-preview{border:1px solid #252D38;background:#080B10;padding:13px;margin:10px 0 15px}
+.product-preview-head{font-size:8px;letter-spacing:1.5px;color:#707985}
+.waveform{height:65px;display:flex;align-items:center;gap:3px;margin:12px 0}
+.waveform span{display:block;width:4px;background:var(--gold);opacity:.55}
+.waveform.playing span{opacity:1}
+.product-preview-button{width:100%;background:transparent;border:1px solid #3A4350;color:#D7DCE2;padding:9px;font-size:9px;font-weight:900;cursor:pointer}
+.product-preview-button:hover{border-color:var(--gold);color:var(--gold)}
+.product-actions{justify-content:flex-start;flex-wrap:wrap}
+.product-notify{font-size:9px;color:var(--gold);font-weight:900;letter-spacing:.8px}
+.product-share{background:none;border:0;color:#9EA7B1;font-size:9px;cursor:pointer;padding:0}
+.product-empty{grid-column:1/-1;border:1px dashed #414A56;padding:60px 25px;text-align:center}
+.product-empty h3{font-size:25px;margin:10px 0}
+.product-empty p{color:#929BA6;font-size:12px}
 .community-landing{background:#090D16}
 .community-editorial-grid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:12px}
 .community-editorial-card{min-height:285px;border:1px solid #303947;background:#090D16;position:relative;overflow:hidden;transition:.2s}
 .community-editorial-card:hover{border-color:var(--gold);background:#0D1219;transform:translateY(-2px)}
 .community-editorial-card:before{content:"";position:absolute;left:0;top:0;bottom:0;width:2px;background:var(--gold);opacity:.5}
-.community-editorial-hit{width:100%;height:100%;min-height:inherit;padding:25px 27px;border:0;background:none;color:#fff;text-align:left;display:flex;flex-direction:column;justify-content:space-between}
+.community-editorial-hit{width:100%;height:100%;min-height:inherit;padding:25px 27px;border:0;background:none;color:#fff;text-align:left;display:flex;flex-direction:column;justify-content:space-between;cursor:pointer}
 .community-editorial-hit:disabled{opacity:1;cursor:default}
 .community-editorial-top{display:flex;justify-content:space-between;color:var(--gold)}
 .community-door-number{font-size:10px;font-weight:900;letter-spacing:2px;color:#8E7A45}
-.community-editorial-copy{margin:34px 0 25px}.community-kicker{color:var(--gold);font-size:9px;font-weight:900;letter-spacing:2px}
+.community-editorial-copy{margin:34px 0 25px}
+.community-kicker{color:var(--gold);font-size:9px;font-weight:900;letter-spacing:2px}
 .community-editorial-copy h2{font-family:inherit;font-size:clamp(28px,3.2vw,44px);letter-spacing:-1.7px;color:#fff;margin:10px 0 12px}
-.community-editorial-copy p{font-size:12px}.community-editorial-bottom span{color:var(--gold);font-size:10px;font-weight:900}
+.community-editorial-copy p{font-size:12px}
+.community-editorial-bottom span{color:var(--gold);font-size:10px;font-weight:900}
 .status-badge{display:inline-flex;padding:8px 10px;border:1px solid #58616C;color:#A9B1BA!important;font-size:8px!important;letter-spacing:1.7px}
-
-.subview{min-height:calc(100vh - 76px);padding:70px 8vw 110px}
-.back{display:inline-flex;align-items:center;gap:8px;border:1px solid var(--line2);background:none;color:var(--gold);padding:9px 12px;font-size:10px;font-weight:900;margin-bottom:45px}
-.discography-toggle{display:inline-flex;margin:0 0 24px;border:1px solid #303947;background:#0D1219;padding:3px;border-radius:999px}
-.discography-toggle button{border:0;background:none;color:#8F99A5;padding:10px 15px;border-radius:999px;font-size:10px;font-weight:900}
-.discography-toggle button.active{background:var(--gold);color:#090D16}
-.discography-grid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:10px}
-.release-card{border:1px solid #303947;background:#0D1219;padding:0;overflow:hidden}
-.release-card iframe{display:block;width:100%;height:152px;border:0}
-
-.hustlesasa-grid{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:14px}
-.hustlesasa-card{border:1px solid #303947;background:#090D16;padding:20px}
-.hustlesasa-topline{display:flex;justify-content:space-between;gap:12px}
-.hustlesasa-topline h3{font-size:20px}
-.price-badge{border:1px solid rgba(212,175,55,.55);color:var(--gold);padding:6px 8px;font-size:9px;white-space:nowrap}
-.download-category{display:inline-block;border:1px solid #303947;padding:6px 8px;color:#9C8550;font-size:8px;letter-spacing:1.3px;margin:8px 0 18px}
-.hustle-cta{width:100%}
-
+.subview{background:#090D16}
+.back{display:inline-block;color:#9EA7B1;font-size:10px;font-weight:900;letter-spacing:1.2px;margin-bottom:30px}
+.back:hover{color:var(--gold)}
+.discography-toggle{display:flex;gap:8px;margin-bottom:20px}
+.discography-toggle button{background:transparent;border:1px solid var(--line);color:#AAB2BC;padding:10px 14px;font-size:9px;font-weight:900;letter-spacing:1px;cursor:pointer}
+.discography-toggle button.active{color:var(--gold);border-color:var(--gold)}
+.discography-grid{display:grid;grid-template-columns:repeat(2,1fr);gap:14px}
+.release-card{background:#0D1219;border:1px solid var(--line);min-height:352px;overflow:hidden}
+.release-card iframe{width:100%;height:100%;min-height:352px;border:0}
+.hustlesasa-grid{display:grid;grid-template-columns:repeat(2,1fr);gap:14px}
+.hustlesasa-card{border:1px solid var(--line);padding:22px;background:var(--panel)}
+.hustlesasa-topline{display:flex;justify-content:space-between;gap:20px}
+.hustlesasa-topline h3{margin:0;font-size:22px}
+.price-badge{color:var(--gold);font-weight:900}
+.download-category{display:block;color:#8F98A2;font-size:9px;letter-spacing:1.5px;margin:10px 0 22px}
 .community-reel-grid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:14px}
 .universe-media-card{border:1px solid #303947;background:#0D1219;overflow:hidden}
 .universe-video{aspect-ratio:16/9;background:#05070B;display:block;text-decoration:none}
-.universe-video-placeholder{
-  height:100%;
-  display:grid;
-  place-items:center;
-  background:radial-gradient(circle at center,rgba(212,175,55,.16),transparent 55%),#05070B;
-  color:var(--gold);
-  font-size:42px;
-}
-.universe-video-placeholder span{
-  border:1px solid var(--gold);
-  width:76px;
-  height:76px;
-  border-radius:50%;
-  display:grid;
-  place-items:center;
-  padding-left:5px;
-}
-.universe-media-copy{padding:20px}.universe-media-copy h3{font-size:21px;margin:9px 0}.universe-media-copy p{font-size:12px}
-
-footer{border-top:1px solid var(--line);padding:40px 6vw 25px;background:#070a0e}
-.footer-top{display:flex;justify-content:space-between;gap:30px;align-items:center;padding-bottom:35px;border-bottom:1px solid var(--line)}
-.footer-brand{display:flex;align-items:center;gap:11px}
-.footer-brand div{display:grid;gap:4px}
-.footer-brand strong{font-size:14px;letter-spacing:2px}
-.footer-brand span{font-size:8px;letter-spacing:2px;color:var(--gold)}
-.footer-contact{display:flex;flex-direction:column;align-items:flex-end;gap:8px;color:#a9b2bc;font-size:11px}
-.footer-contact a:hover{color:var(--gold)}
-.footer-grid{display:grid;grid-template-columns:1fr 1fr;gap:50px;padding:30px 0}
-.footer-grid>div{display:flex;flex-direction:column;gap:8px}
-.footer-grid button{border:0;padding:0;background:none;color:#8b96a2;text-align:left;font-size:11px}
-.footer-grid button:hover{color:var(--gold)}
-.footer-bottom{display:flex;justify-content:space-between;color:#4f5964;font-size:8px;letter-spacing:1px;padding-top:20px}
-
-.modal-backdrop{position:fixed;inset:0;z-index:100;background:rgba(0,0,0,.78);display:grid;place-items:center;padding:20px;backdrop-filter:blur(8px)}
-.modal{width:min(520px,100%);border:1px solid var(--line2);background:#0b1016;padding:35px;position:relative}
-.modal-close{position:absolute;right:15px;top:15px;border:1px solid var(--line);background:none;color:#fff;padding:8px}
-.modal h2{font-size:48px;margin-bottom:18px}
-.modal-actions{display:grid;gap:10px;margin-top:25px}
-.modal-note{display:block;color:#69737f;font-size:9px;text-align:center;margin-top:15px}
-
-@media(max-width:1050px){
- .product-grid{grid-template-columns:repeat(2,1fr)}
- .hustlesasa-grid{grid-template-columns:repeat(2,1fr)}
-}
+.universe-video iframe{width:100%;height:100%;border:0;display:block;pointer-events:none}
+.universe-media-copy{padding:20px}
+.universe-media-copy h3{font-size:21px;margin:9px 0}
+.universe-media-copy p{font-size:12px;color:#A5ADB7}
+.outline-action{margin-top:10px;color:var(--gold);padding:10px 12px}
+footer{border-top:1px solid #252D38;padding:40px 6vw;background:#070A10;display:flex;justify-content:space-between;gap:30px;flex-wrap:wrap}
+.footer-copy{color:#7F8995;font-size:11px}
+.footer-links{display:flex;gap:18px;flex-wrap:wrap}
+.footer-links a{font-size:10px;color:#AAB2BC}
+.footer-links a:hover{color:var(--gold)}
+.modal-backdrop{position:fixed;inset:0;z-index:500;background:rgba(0,0,0,.78);display:grid;place-items:center;padding:20px}
+.modal{width:min(560px,100%);background:#0D1219;border:1px solid var(--gold);padding:30px;position:relative}
+.modal-close{position:absolute;right:12px;top:8px;background:none;border:0;color:#fff;font-size:28px;cursor:pointer}
+.modal h2{font-size:38px;line-height:1;margin:12px 0}
+.modal h2 em{color:var(--gold);font-style:normal}
+.modal p{color:#A8B0B9;font-size:12px}
+.modal-actions{display:flex;gap:10px;flex-wrap:wrap;margin-top:22px}
+.modal-note{display:block;color:#7F8995;font-size:9px;margin-top:18px;letter-spacing:1px}
 @media(max-width:900px){
- .menu{display:block}
- .navlinks{display:none;position:absolute;top:76px;left:0;right:0;padding:18px 5vw 25px;background:#080b10;border-bottom:1px solid var(--line);flex-direction:column;align-items:stretch}
- .navlinks.open{display:flex}
- .navlink{text-align:left}
- .home-hero{min-height:calc(100svh - 76px);padding:50px 6vw 58px}
- .portal-head,.door-intro,.manifesto{grid-template-columns:1fr}
+ .portal-head{grid-template-columns:1fr}
  .door-grid,.service-groups,.product-grid,.community-editorial-grid,.discography-grid,.community-reel-grid,.hustlesasa-grid{grid-template-columns:1fr}
- .door-intro{gap:20px}
- .services-contact-strip{flex-direction:column;align-items:flex-start}
- .footer-top,.footer-bottom{flex-direction:column;align-items:flex-start}
- .footer-contact{align-items:flex-start}
- .footer-grid{grid-template-columns:1fr}
 }
-@media(max-width:560px){
- .brand img,.footer-brand img{height:36px;max-width:155px}
- .hero-actions{max-width:360px}
- .hero-actions .primary,.hero-actions .hero-secondary{font-size:13px;padding:12px 10px}
- h1{font-size:clamp(44px,12vw,68px);letter-spacing:-3px}
- h2{font-size:clamp(38px,10vw,55px);letter-spacing:-2px}
- .section,.subview,.doors-section,.manifesto{padding-left:6vw;padding-right:6vw}
- .home-hero{padding-left:6vw;padding-right:6vw}
- .modal{padding:25px 20px}
- .modal h2{font-size:40px}
- .product-actions{grid-template-columns:1fr}
- .discography-toggle{display:flex;width:100%}
- .discography-toggle button{flex:1;padding:10px 8px}
+@media(max-width:700px){
+ .site-nav{height:68px;padding:0 5vw}
+ .menu-toggle{display:block}
+ .navlinks{display:none;position:absolute;top:68px;left:0;right:0;background:#090D16;border-bottom:1px solid var(--line);padding:12px 5vw;flex-direction:column}
+ .navlinks.open{display:flex}
+ .section,.subview{padding:55px 5vw}
+ .home-hero{padding:45px 5vw}
+ .home-hero h1{letter-spacing:-3px}
+ .services-contact-strip{display:block}
+ .services-contact-actions{margin-top:18px}
+ footer{padding:35px 5vw}
 }
 </style>
 </head>
-
 <body>
-<div class="site">
 
-<header class="nav">
+<nav class="site-nav">
   <a class="brand" href="#home" aria-label="ArkWay Creative home">
-    <img src="https://lh3.googleusercontent.com/d/1jrEFMFWEB7wO19K-_SJBsEcz4azfM9e4" alt="ArkWay Creative">
+    <img src="https://lh3.googleusercontent.com/d/1jrEFMFWEB7wO19K-_SJBsEcz4azfM9e4" alt="ArkWay Creative logo">
+    <span>ARKWAY CREATIVE</span>
   </a>
 
-  <nav class="navlinks" id="navlinks">
-    <button class="navlink active" data-route="home">Home</button>
+  <button class="menu-toggle" id="menuBtn" aria-label="Open navigation">☰</button>
+
+  <div class="navlinks" id="navlinks">
+    <button class="navlink" data-route="home">Home</button>
     <button class="navlink" data-route="services">Services</button>
     <button class="navlink" data-route="products">Products</button>
     <button class="navlink" data-route="community">Community</button>
-  </nav>
-
-  <button class="menu" id="menuBtn" aria-label="Toggle navigation">☰</button>
-</header>
+  </div>
+</nav>
 
 <main id="app"></main>
 
 <footer>
-  <div class="footer-top">
-    <a class="footer-brand" href="#home">
-      <img src="https://lh3.googleusercontent.com/d/1jrEFMFWEB7wO19K-_SJBsEcz4azfM9e4" alt="ArkWay Creative">
-      <div>
-        <strong>ARKWAY CREATIVE</strong>
-        <span>MEDIA · DATA · CULTURE</span>
-      </div>
-    </a>
+  <a class="footer-brand" href="#home">
+    <img src="https://lh3.googleusercontent.com/d/1jrEFMFWEB7wO19K-_SJBsEcz4azfM9e4" alt="ArkWay Creative logo">
+    <span>ARKWAY CREATIVE</span>
+  </a>
 
-    <div class="footer-contact">
-      <a href="mailto:arkwaycreative@gmail.com">arkwaycreative@gmail.com</a>
-      <a href="https://wa.me/254118618199" target="_blank" rel="noopener noreferrer">WhatsApp / Call 0118618199</a>
-    </div>
-  </div>
+  <div class="footer-copy">Desire • Dedication • Discipline</div>
 
-  <div class="footer-grid">
-    <div>
-      <span class="card-label">ROUTES</span>
-      <button data-route="home">Home</button>
-      <button data-route="services">Services</button>
-      <button data-route="products">Products</button>
-      <button data-route="community">Community</button>
-    </div>
-
-    <div>
-      <span class="card-label">ARKWAY</span>
-      <p>Data-driven media: audio, visual storytelling, brand architecture and culture.</p>
-    </div>
-  </div>
-
-  <div class="footer-bottom">
-    <span>© 2026 ArkWay Creative</span>
-    <span>DESIRE · DEDICATION · DISCIPLINE</span>
+  <div class="footer-links">
+    <a href="mailto:arkwaycreative@gmail.com">arkwaycreative@gmail.com</a>
+    <a href="https://wa.me/254118618199" target="_blank" rel="noopener noreferrer">WhatsApp / Call 0118618199</a>
   </div>
 </footer>
 
-</div>
-
 <script>
 const BUSINESS={
-  email:"arkwaycreative@gmail.com",
-  whatsapp:"https://wa.me/254118618199",
-  phone:"0118618199"
+ email:"arkwaycreative@gmail.com",
+ phone:"0118618199"
 };
+
+const servicesData=[
+ ["MUSIC & AUDIO","Music & Audio","Production and finishing for artists who need a complete, dependable sound.",["Track Production","Recording","Mixing & Mastering","Song Packaging"]],
+ ["FILM & MEDIA","Film & Media","Original scoring, sound work and creative media support for visual projects.",["Film Scoring","Sound Design","Media Production","Creative Direction"]],
+ ["CORPORATE & STRATEGY","Corporate & Strategy","Research, business analytics and creative communication for growing organisations.",["Market Research","Business Analytics","Grant & Proposal Support","Project Support"]],
+ ["EVENTS & EXPERIENCES","Events & Experiences","Creative production and event support built around memorable live experiences.",["Event Production","Live Sound Coordination","Show Development","Creative Programming"]]
+];
 
 const catalog=[
  {
-   id:"mtilu-vol1",
-   title:"Mtilu Afro-Trap Beat Pack Vol. 1",
-   category:"BEATS",
-   specs:"140 BPM | F Minor | Stems & Lossless Audio Included",
-   price:"KES 1,000"
+  id:"mtilu-afro-trap",
+  title:"Mtilu Afro-Trap Beat Pack Vol. 1",
+  category:"BEATS",
+  price:"KES 1,000",
+  specs:"Afro-trap production pack engineered for independent artists."
  },
  {
-   id:"arkway-essential-drum-kit",
-   title:"ArkWay Essential Drum & Percussion Kit",
-   category:"DRUM KITS",
-   specs:"808s, Kicks, Snares, Hi-Hats & Custom Percussion",
-   price:"KES 500"
+  id:"arkway-drums",
+  title:"ArkWay Essential Drum & Percussion Kit",
+  category:"DRUM KITS",
+  price:"KES 500",
+  specs:"Punchy drums and percussion for hip-hop, trap and hybrid production."
  },
  {
-   id:"cinematic-textures-african-foley",
-   title:"Cinematic Textures & African Foley Suite",
-   category:"FOLEY",
-   specs:"Organic Field Recordings & Atmospheric Pads",
-   price:"KES 750"
+  id:"cinematic-foley",
+  title:"Cinematic Textures & African Foley Suite",
+  category:"FOLEY",
+  price:"KES 750",
+  specs:"Organic textures and cinematic Foley designed for film and visual storytelling."
  }
 ];
 
 const releases=[
- ["Skywalker","https://open.spotify.com/embed/album/4PVrlr11mszqAsPadjBtTg?utm_source=generator&theme=0"],
- ["Foot on the Gas","https://open.spotify.com/embed/album/6MUDSn0O8d5lbKQvn5Mrl2?utm_source=generator&theme=0"],
- ["Noah's Blueprint","https://open.spotify.com/embed/album/5EjyP8dCSNK6DlwH9YNqOG?utm_source=generator&theme=0"],
- ["Sticks and Stones","https://open.spotify.com/embed/album/54aMYDzXphkBP3LhhV6Fwy?utm_source=generator&theme=0"],
- ["Vikings Never Die","https://open.spotify.com/embed/album/67RjSH0g2IXmzHBO0d39li?utm_source=generator&theme=0"],
- ["What It Do","https://open.spotify.com/embed/album/1Zl5Z8Nu5WMxYMKhFeIm4k?utm_source=generator&theme=0"],
- ["Pray For Him","https://open.spotify.com/embed/album/6K4dFXEzVhcWGDibKqqsM7?utm_source=generator&theme=0"],
- ["Cloudy Afternoon","https://open.spotify.com/embed/album/3cQDx20CFtpgnNTwTnpsUn?utm_source=generator&theme=0"]
+ ["Noah's Blueprint","https://open.spotify.com/embed/album/5EjyP8dCSNK6DlwH9YNqOG?utm_source=generator"],
+ ["Sticks and Stones","https://open.spotify.com/embed/album/0VqF4rV6r0bM0kW2Y9wQ3J?utm_source=generator"]
 ];
 
 const hustlesasa=[
- ["Foot On The Gas EP","Digital EP","KES 200","https://arkway.hustlesasa.shop/products/698a4d392a26683b23f52008"],
- ["Noah's Blueprint","Digital EP","KES 200","https://arkway.hustlesasa.shop/products/698a4d232a26683b23f51e28"],
- ["Sticks and Stones","Digital EP","KES 100","https://arkway.hustlesasa.shop/products/6a033164c8157eccc0f7df80"]
+ ["FootOnTheGas EP","MUSIC","KES 200","https://hustlesasa.shop/product/67705"],
+ ["ArkWay Digital Drop","DIGITAL","COMING SOON","https://arkway.hustlesasa.shop"]
 ];
 
-function setRoute(route,sub=""){
-  location.hash="#"+route+(sub?"/"+sub:"");
+window.productFilter="ALL PRODUCTS";
+
+function icon(type){
+ const icons={
+  arrow:"→",
+  ticket:"✦",
+  mail:"✉",
+  bag:"▣"
+ };
+ return icons[type]||"→";
+}
+
+function inquiry(service,method){
+ const message=`Hello ArkWay Creative. I would like to inquire about ${service}.`;
+
+ if(method==="whatsapp"){
+  return `https://wa.me/254118618199?text=${encodeURIComponent(message)}`;
+ }
+
+ return `mailto:${BUSINESS.email}?subject=${encodeURIComponent("ArkWay Creative — "+service)}&body=${encodeURIComponent(message)}`;
 }
 
 function route(){
-  const raw=location.hash.replace(/^#/,"")||"home";
-  const parts=raw.split("/");
-  return {
-    root:["services","products","community"].includes(parts[0])?parts[0]:"home",
-    sub:parts[1]||""
-  };
+ const raw=location.hash.replace(/^#/,"")||"home";
+ const parts=raw.split("/");
+
+ return {
+  root:["services","products","community"].includes(parts[0])?parts[0]:"home",
+  sub:parts[1]||""
+ };
 }
 
-function inquiry(service,channel){
-  const msg=`Hi ArkWay, I would like to book ${service}. Please share availability and next steps.`;
-
-  return channel==="whatsapp"
-    ? BUSINESS.whatsapp+"?text="+encodeURIComponent(msg)
-    : "mailto:"+BUSINESS.email+
-      "?subject="+encodeURIComponent("ArkWay booking — "+service)+
-      "&body="+encodeURIComponent(msg);
-}
-
-function icon(name){
-  return ({
-    arrow:"→",
-    music:"♫",
-    headphones:"◖",
-    ticket:"◇",
-    play:"▶",
-    bag:"□",
-    video:"▣",
-    mail:"✉"
-  })[name]||"→";
+function setRoute(routeName,sub){
+ location.hash="#"+routeName+(sub?"/"+sub:"");
 }
 
 function home(){
- return `<section class="home-hero">
-   <div class="home-copy">
-     <div class="kicker">DATA-DRIVEN MEDIA · EST. 2026</div>
+ const doors=[
+  ["services","01 / SERVICES","Services","Music, film, strategy, events and creative support.","arrow"],
+  ["products","02 / PRODUCTS","Products","Digital sound tools, packs and releases for independent creators.","bag"],
+  ["community","03 / COMMUNITY","Community","Music releases, film writing, live show tickets, and official goods.","ticket"]
+ ];
 
-     <h1>
-       <strong>ArkWay Creative</strong> —
-       <em>a data-driven media company.</em>
-     </h1>
+ return `
+ <section class="home-hero">
+  <div class="hero-inner">
+   <p class="eyebrow">ARKWAY CREATIVE · BUILT BRICK BY BRICK</p>
 
-     <p class="positioning">
-       We merge audio production, visual storytelling, and brand architecture
-       to build high-converting media and live culture — with data and audience
-       intelligence informing the decisions behind the work.
-     </p>
+   <h1>
+    DESIRE.<br>
+    DEDICATION.<br>
+    <em>DISCIPLINE.</em>
+   </h1>
 
-     <div class="hero-actions">
-       <a class="primary large" href="#services">Book Services ${icon("arrow")}</a>
-       <a class="hero-secondary large" href="#products">Shop Products ${icon("arrow")}</a>
-       <a class="hero-tertiary" href="#community/discography">Explore Catalog ${icon("arrow")}</a>
+   <p class="hero-copy">
+    A creative company building music, media, strategy and experiences for independent creators and organisations.
+   </p>
+
+   <div class="hero-actions">
+    <a class="primary large" href="#services">Book Services ${icon("arrow")}</a>
+    <a class="hero-secondary large" href="#products">Shop Products ${icon("arrow")}</a>
+    <a class="hero-tertiary large" href="#community/discography">Explore Catalog ${icon("arrow")}</a>
+   </div>
+  </div>
+ </section>
+
+ <section class="section">
+  <div class="portal-head">
+   <div>
+    <p class="eyebrow">THE ARKWAY UNIVERSE</p>
+    <h1>One company.<br><em>Multiple worlds.</em></h1>
+   </div>
+
+   <p>
+    Move through the ArkWay ecosystem: build the work, access the tools,
+    and experience the culture around it.
+   </p>
+  </div>
+
+  <div class="door-grid">
+   ${doors.map(d=>`
+    <button class="door-card" data-href="#${d[0]}">
+     <div class="door-top">
+      <span>${d[1]}</span>
+      <span>${icon(d[4])}</span>
      </div>
-   </div>
- </section>
 
- <section class="doors-section">
-   <div class="door-intro">
-     <div><p class="eyebrow">CHOOSE YOUR DESTINATION</p></div>
-     <div><h2>Choose your <em>destination.</em></h2></div>
-     <p>Explore the three sides of ArkWay.</p>
-   </div>
+     <div>
+      <h3>${d[2]}</h3>
+      <p>${d[3]}</p>
+     </div>
 
-   <div class="door-grid">
-     ${[
-       ["services","01 / SERVICES","Services","Audio production, film & media sound, brand architecture, and data & analytics.","music"],
-       ["products","02 / PRODUCTS","Products","Loop kits, beat packs, drum vaults, foley and sound libraries.","headphones"],
-       ["community","03 / COMMUNITY","Community","Music releases, film writing, live show tickets, and official goods.","ticket"]
-     ].map(d=>`
-       <button class="door-card" data-href="#${d[0]}">
-         <div class="door-top">
-           <span>${d[1]}</span>
-           <span>${icon(d[4])}</span>
-         </div>
-
-         <div>
-           <h3>${d[2]}</h3>
-           <p>${d[3]}</p>
-         </div>
-
-         <span class="door-cta">Explore ${icon("arrow")}</span>
-       </button>
-     `).join("")}
-   </div>
- </section>
-
- <section class="manifesto">
-   <span class="card-label">THE ARKWAY PRINCIPLE</span>
-   <h2>Make it. Release it. <em>Build the culture around it.</em></h2>
+     <span class="door-cta">
+      Explore ${icon("arrow")}
+     </span>
+    </button>
+   `).join("")}
+  </div>
  </section>`;
 }
 
 function services(){
- const groups=[
-   [
-     "01 / AUDIO PRODUCTION",
-     "Record, produce & finish.",
-     "The core studio work: from the first vocal take to a finished, release-ready record.",
-     ["Recording & Vocal Production","Music Production","Mixing & Mastering","Beat Production","Live Instrument Recording"]
-   ],
-   [
-     "02 / FILM & MEDIA SOUND",
-     "Score the picture.",
-     "Sound built around the story — not pasted onto it.",
-     ["Audio Jingles & Sonic Branding","Voiceover & Dialogue Production","Film, Series & Game Scoring"]
-   ],
-   [
-     "03 / BRAND ARCHITECTURE",
-     "Build the media system.",
-     "Creative direction, campaign thinking and brand architecture for people and organizations that need their message to move.",
-     ["Brand Identity & Creative Direction","Campaign & Content Architecture","Digital Media Strategy"]
-   ],
-   [
-     "04 / DATA & ANALYTICS",
-     "Make creative decisions with evidence.",
-     "Data analytics is the intelligence layer behind media, audience and business decisions.",
-     ["Market Research & Business Analytics","Audience & Performance Analysis","Dashboards & Reporting"]
-   ]
- ];
-
- return `<section class="section">
-   <div class="portal-head">
-     <div>
-       <p class="eyebrow">01 · SERVICES</p>
-       <h1>Creative work, backed by <em>intelligence.</em></h1>
-     </div>
-
-     <p>
-       Tell us what you are building. We group the work by outcome instead of
-       forcing you through a price list. Reach out directly and ArkWay will
-       scope the right service, timeline and quote with you.
-     </p>
+ return `
+ <section class="section">
+  <div class="portal-head">
+   <div>
+    <p class="eyebrow">01 · SERVICES</p>
+    <h1>Build the work.<br><em>Finish it properly.</em></h1>
    </div>
 
-   <div class="service-groups">
-     ${groups.map(g=>`
-       <article class="service-group">
-         <div class="service-group-head">
-           <span class="card-label">${g[0]}</span>
-           <span>→</span>
-         </div>
+   <p>
+    ArkWay combines creative production with practical strategy so ideas
+    can move from concept to finished work without unnecessary friction.
+   </p>
+  </div>
 
-         <h3>${g[1]}</h3>
-         <p>${g[2]}</p>
-
-         <ul>
-           ${g[3].map(x=>`<li>${x}</li>`).join("")}
-         </ul>
-
-         <button class="outline-action book-service" data-service="${g[1]}">
-           Reach out to book →
-         </button>
-       </article>
-     `).join("")}
-   </div>
-
-   <div class="services-contact-strip">
-     <div>
-       <span class="card-label">DIRECT BOOKING</span>
-       <strong>Start with WhatsApp or email.</strong>
-       <p>
-         Tell us what you need, your deadline and what you already have.
-         We will take it from there.
-       </p>
+  <div class="service-groups">
+   ${servicesData.map(g=>`
+    <article class="service-group">
+     <div class="service-group-head">
+      <span class="card-label">${g[0]}</span>
+      <span>→</span>
      </div>
 
-     <div class="services-contact-actions">
-       <a class="primary large"
-          target="_blank"
-          rel="noopener noreferrer"
-          href="${inquiry("a project with ArkWay","whatsapp")}">
-          WhatsApp ${icon("arrow")}
-       </a>
+     <h3>${g[1]}</h3>
+     <p>${g[2]}</p>
 
-       <a class="secondary large"
-          href="${inquiry("a project with ArkWay","email")}">
-          Email ${icon("mail")}
-       </a>
-     </div>
+     <ul>
+      ${g[3].map(x=>`<li>${x}</li>`).join("")}
+     </ul>
+
+     <button class="outline-action book-service" data-service="${g[1]}">
+      Reach out to book →
+     </button>
+    </article>
+   `).join("")}
+  </div>
+
+  <div class="services-contact-strip">
+   <div>
+    <span class="card-label">DIRECT BOOKING</span>
+    <strong>Start with WhatsApp or email.</strong>
+    <p>
+     Tell us what you need, your deadline and what you already have.
+     We will take it from there.
+    </p>
    </div>
+
+   <div class="services-contact-actions">
+    <a
+     class="primary large"
+     target="_blank"
+     rel="noopener noreferrer"
+     href="${inquiry("a project with ArkWay","whatsapp")}">
+     WhatsApp ${icon("arrow")}
+    </a>
+
+    <a
+     class="secondary large"
+     href="${inquiry("a project with ArkWay","email")}">
+     Email ${icon("mail")}
+    </a>
+   </div>
+  </div>
  </section>`;
 }
 
 function products(){
  const filters=[
-   "ALL PRODUCTS",
-   "BEATS",
-   "FILM SCORES",
-   "LOOPS",
-   "DRUM KITS",
-   "SOUND PACKS",
-   "FX",
-   "FOLEY"
+  "ALL PRODUCTS",
+  "BEATS",
+  "FILM SCORES",
+  "LOOPS",
+  "DRUM KITS",
+  "SOUND PACKS",
+  "FX",
+  "FOLEY"
  ];
 
  const active=window.productFilter||"ALL PRODUCTS";
 
  const visible=
-   active==="ALL PRODUCTS"
-   ? catalog
-   : catalog.filter(x=>x.category===active);
+  active==="ALL PRODUCTS"
+   ?catalog
+   :catalog.filter(x=>x.category===active);
 
- return `<section class="section" id="products">
-   <div class="portal-head">
-     <div>
-       <p class="eyebrow">02 · PRODUCTS</p>
-       <h1>Open the <em>sound vault.</em></h1>
-     </div>
-
-     <p>
-       Digital tools for producers, filmmakers and artists — curated drops of
-       beats, loops, drums, FX and foley, engineered for independent work.
-     </p>
+ return `
+ <section class="section" id="products">
+  <div class="portal-head">
+   <div>
+    <p class="eyebrow">02 · PRODUCTS</p>
+    <h1>Open the <em>sound vault.</em></h1>
    </div>
 
-   <div class="product-filter-bar"
-        role="group"
-        aria-label="Product categories">
+   <p>
+    Digital tools for producers, filmmakers and artists — curated drops
+    of beats, loops, drums, FX and foley, engineered for independent work.
+   </p>
+  </div>
 
-     ${filters.map(f=>`
-       <button
+  <div class="product-filter-bar" role="group" aria-label="Product categories">
+   ${filters.map(f=>`
+    <button
+     type="button"
+     class="${active===f?"active":""}"
+     data-filter="${f}">
+     ${f}
+    </button>
+   `).join("")}
+  </div>
+
+  <div class="product-grid" id="productGrid">
+   ${
+    visible.length
+     ?visible.map(p=>`
+      <article class="product-card" id="product-${p.id}">
+       <div class="product-card-top">
+        <div class="product-badges">
+         <span class="product-category-badge">${p.category}</span>
+         <span class="product-coming-pill">COMING SOON</span>
+        </div>
+
+        <span class="product-price">${p.price}</span>
+       </div>
+
+       <div class="product-card-copy">
+        <h3>${p.title}</h3>
+        <p class="product-spec">${p.specs}</p>
+       </div>
+
+       <div class="product-preview">
+        <div class="product-preview-head">
+         <span>DEMO PREVIEW</span>
+         <span>PLACEHOLDER STREAM</span>
+        </div>
+
+        <div class="waveform">
+         ${Array.from({length:42},(_,i)=>`
+          <span style="height:${20+((i*19)%58)}%"></span>
+         `).join("")}
+        </div>
+
+        <button
          type="button"
-         class="${active===f?"active":""}"
-         data-filter="${f}">
-         ${f}
-       </button>
-     `).join("")}
+         class="product-preview-button"
+         data-play="${p.id}">
+         ▶ Play Demo
+        </button>
+       </div>
 
-   </div>
+       <div class="product-actions">
+        <a
+         class="product-notify"
+         href="https://arkway.hustlesasa.shop"
+         target="_blank"
+         rel="noopener noreferrer">
+         Notify Me / Coming Soon →
+        </a>
 
-   <div class="product-grid" id="productGrid">
-
-     ${
-       visible.length
-       ?
-       visible.map(p=>`
-         <article class="product-card" id="product-${p.id}">
-
-           <div class="product-card-top">
-             <div class="product-badges">
-               <span class="product-category-badge">${p.category}</span>
-               <span class="product-coming-pill">COMING SOON</span>
-             </div>
-
-             <span class="product-price">${p.price}</span>
-           </div>
-
-           <div class="product-card-copy">
-             <h3>${p.title}</h3>
-             <p class="product-spec">${p.specs}</p>
-           </div>
-
-           <div class="product-preview">
-             <div class="product-preview-head">
-               <span>DEMO PREVIEW</span>
-               <span>PLACEHOLDER STREAM</span>
-             </div>
-
-             <div class="waveform">
-               ${Array.from(
-                 {length:42},
-                 (_,i)=>`<span style="height:${20+((i*19)%58)}%"></span>`
-               ).join("")}
-             </div>
-
-             <button
-               type="button"
-               class="product-preview-button"
-               data-play="${p.id}">
-               ▶ Play Demo
-             </button>
-           </div>
-
-           <div class="product-actions">
-
-             <a
-               class="product-notify"
-               href="https://arkway.hustlesasa.shop"
-               target="_blank"
-               rel="noopener noreferrer">
-               Notify Me / Coming Soon →
-             </a>
-
-             <button
-               type="button"
-               class="product-share"
-               data-share="${p.id}">
-               Share Link →
-             </button>
-
-           </div>
-         </article>
-       `).join("")
-
-       :
-
-       `<div class="product-empty">
-          <span class="eyebrow">NO PRODUCTS IN THIS CATEGORY YET</span>
-          <h3>${active} are queued for a future ArkWay release.</h3>
-          <p>Choose another category to keep exploring the sound vault.</p>
-        </div>`
-     }
-
-   </div>
+        <button
+         type="button"
+         class="product-share"
+         data-share="${p.id}">
+         Share Link →
+        </button>
+       </div>
+      </article>
+     `).join("")
+     :`
+      <div class="product-empty">
+       <span class="eyebrow">NO PRODUCTS IN THIS CATEGORY YET</span>
+       <h3>${active} are queued for a future ArkWay release.</h3>
+       <p>Choose another category to keep exploring the sound vault.</p>
+      </div>
+     `
+   }
+  </div>
  </section>`;
 }
 
 function community(){
  const cards=[
-   [
-     "01",
-     "SOLO CATALOG",
-     "Official Discography",
-     "Stream Yovan's solo EPs and singles directly.",
-     "discography",
-     "Explore catalog →"
-   ],
-   [
-     "02",
-     "VISUAL REELS",
-     "Showreels & Short Film",
-     'Music Video Showcase & "SURVIVAL" Short Film.',
-     "reels",
-     "Watch reels →"
-   ],
-   [
-     "03",
-     "ARTIST CREDITS",
-     "Produced Work & Collaborations",
-     "Tracks and releases engineered for collaborating artists under ArkWay.",
-     "",
-     "View credits →"
-   ],
-   [
-     "04",
-     "ON STAGE",
-     "Live Sets & Performances",
-     "Recorded live arrangements, acoustic sessions, and stage sets.",
-     "",
-     "Watch live sessions →"
-   ],
-   [
-     "05",
-     "FILM & CULTURE",
-     "Between Frames",
-     "Film critiques, narrative analysis, and cultural essays by Yovan.",
-     "substack",
-     "Read Between Frames →"
-   ],
-   [
-     "06",
-     "STORE",
-     "ArkWay Apparel & Merch",
-     "Signature streetwear, bandanas, and physical drops engineered by ArkWay Creative.",
-     "coming",
-     ""
-   ],
-   [
-     "07",
-     "EVENTS",
-     "Live Shows & Tickets",
-     "Upcoming ArkWay live showcases, concert dates, and ticket releases.",
-     "coming",
-     ""
-   ]
+  [
+   "01",
+   "SOLO CATALOG",
+   "Official Discography",
+   "Stream Yovan's solo EPs and singles directly.",
+   "#community/discography",
+   "Explore catalog →"
+  ],
+  [
+   "02",
+   "VISUAL REELS",
+   "Showreels & Short Film",
+   'Music Video Showcase & "SURVIVAL" Short Film.',
+   "#community/reels",
+   "Watch reels →"
+  ],
+  [
+   "03",
+   "ARTIST CREDITS",
+   "Produced Work & Collaborations",
+   "Tracks and releases engineered for collaborating artists under ArkWay.",
+   "https://youtube.com/playlist?list=PLq3yYhQm_l_q4PPukd724JAvg-XvJsGtt",
+   "View credits →"
+  ],
+  [
+   "04",
+   "ON STAGE",
+   "Live Sets & Performances",
+   "Recorded live arrangements, acoustic sessions, and stage sets.",
+   "https://youtube.com/playlist?list=PLq3yYhQm_l_rKtCa7zhtH15RyT_bTDvsw",
+   "Watch live sessions →"
+  ],
+  [
+   "05",
+   "FILM & CULTURE",
+   "Between Frames",
+   "Film critiques, narrative analysis, and cultural essays by Yovan.",
+   "https://substack.com/@betweenframesbyovan",
+   "Read on Substack →"
+  ],
+  [
+   "06",
+   "STORE",
+   "ArkWay Apparel & Merch",
+   "Signature streetwear, bandanas, and physical drops engineered by ArkWay Creative.",
+   "",
+   ""
+  ],
+  [
+   "07",
+   "EVENTS",
+   "Live Shows & Tickets",
+   "Upcoming ArkWay live showcases, concert dates, and ticket releases.",
+   "",
+   ""
+  ]
  ];
 
- return `<section class="section community-landing">
-   <div class="portal-head">
-     <div>
-       <p class="eyebrow">03 · COMMUNITY</p>
-       <h1>WELCOME TO THE ARKWAY COMMUNITY</h1>
-     </div>
-
-     <p>
-       Explore the media catalog engineered under ArkWay Creative—featuring
-       Yovan's solo projects, production credits, featured artist collaborations,
-       live sessions, film critiques, apparel, and live events.
-     </p>
+ return `
+ <section class="section community-landing">
+  <div class="portal-head">
+   <div>
+    <p class="eyebrow">03 · COMMUNITY</p>
+    <h1>WELCOME TO THE ARKWAY COMMUNITY</h1>
    </div>
 
-   <div class="community-editorial-grid">
+   <p>
+    Explore the media catalog engineered under ArkWay Creative—featuring
+    Yovan's solo projects, production credits, featured artist collaborations,
+    live sessions, film critiques, apparel, and live events.
+   </p>
+  </div>
 
-     ${cards.map(c=>`
-       <article class="community-editorial-card">
+  <div class="community-editorial-grid">
+   ${cards.map(c=>
+    c[4]
+     ?`
+      <article class="community-editorial-card">
+       <a
+        class="community-editorial-hit"
+        href="${c[4]}"
+        target="_blank"
+        rel="noopener noreferrer">
 
-         <button
-           class="community-editorial-hit"
-           ${c[4]==="coming"
-             ?"disabled"
-             :`data-community="${c[4]}"`}>
+        <div class="community-editorial-top">
+         <span class="community-door-number">${c[0]}</span>
+         <span>${icon("arrow")}</span>
+        </div>
 
-           <div class="community-editorial-top">
-             <span class="community-door-number">${c[0]}</span>
-             <span>${icon("arrow")}</span>
-           </div>
+        <div class="community-editorial-copy">
+         <span class="community-kicker">${c[1]}</span>
+         <h2>${c[2]}</h2>
+         <p>${c[3]}</p>
+        </div>
 
-           <div class="community-editorial-copy">
-             <span class="community-kicker">${c[1]}</span>
-             <h2>${c[2]}</h2>
-             <p>${c[3]}</p>
-           </div>
+        <div class="community-editorial-bottom">
+         <span>${c[5]}</span>
+        </div>
 
-           <div class="community-editorial-bottom">
-             ${
-               c[4]==="coming"
-               ? '<span class="status-badge">COMING SOON</span>'
-               : `<span>${c[5]}</span>`
-             }
-           </div>
+       </a>
+      </article>
+     `
+     :`
+      <article class="community-editorial-card">
+       <button class="community-editorial-hit" disabled>
 
-         </button>
-       </article>
-     `).join("")}
+        <div class="community-editorial-top">
+         <span class="community-door-number">${c[0]}</span>
+         <span>${icon("arrow")}</span>
+        </div>
 
-   </div>
+        <div class="community-editorial-copy">
+         <span class="community-kicker">${c[1]}</span>
+         <h2>${c[2]}</h2>
+         <p>${c[3]}</p>
+        </div>
+
+        <div class="community-editorial-bottom">
+         <span class="status-badge">COMING SOON</span>
+        </div>
+
+       </button>
+      </article>
+     `
+   ).join("")}
+  </div>
  </section>`;
 }
 
 function discography(){
- return `<section class="subview">
+ return `
+ <section class="subview">
+  <a class="back" href="#community">← Back to Community</a>
 
-   <a class="back" href="#community">← Back to Community</a>
-
-   <div class="portal-head">
-     <div>
-       <p class="eyebrow">SOLO CATALOG</p>
-       <h1>Official <em>Discography.</em></h1>
-     </div>
-
-     <p>
-       Stream Yovan's solo EPs or purchase full-fidelity lossless downloads
-       for offline listening.
-     </p>
+  <div class="portal-head">
+   <div>
+    <p class="eyebrow">SOLO CATALOG</p>
+    <h1>Official <em>Discography.</em></h1>
    </div>
 
-   <div class="discography-toggle">
-     <button class="active" data-mode="stream">Stream</button>
-     <button data-mode="download">Download for Offline</button>
-   </div>
+   <p>
+    Stream Yovan's solo EPs or purchase full-fidelity lossless downloads
+    for offline listening.
+   </p>
+  </div>
 
-   <div id="discographyContent" class="discography-grid">
+  <div class="discography-toggle">
+   <button class="active" data-mode="stream">Stream</button>
+   <button data-mode="download">Download for Offline</button>
+  </div>
 
-     ${releases.map(r=>`
-       <article class="release-card">
-         <iframe
-           src="${r[1]}"
-           title="${r[0]} on Spotify"
-           loading="lazy"
-           allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture">
-         </iframe>
-       </article>
-     `).join("")}
-
-   </div>
+  <div id="discographyContent" class="discography-grid">
+   ${releases.map(r=>`
+    <article class="release-card">
+     <iframe
+      src="${r[1]}"
+      title="${r[0]} on Spotify"
+      loading="lazy"
+      allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture">
+     </iframe>
+    </article>
+   `).join("")}
+  </div>
  </section>`;
 }
 
 function downloads(){
- return `<div class="hustlesasa-grid">
+ return `
+ <div class="hustlesasa-grid">
+  ${hustlesasa.map(p=>`
+   <article class="hustlesasa-card">
+    <div class="hustlesasa-topline">
+     <h3>${p[0]}</h3>
+     <span class="price-badge">${p[2]}</span>
+    </div>
 
-   ${hustlesasa.map(p=>`
-     <article class="hustlesasa-card">
+    <span class="download-category">${p[1]}</span>
 
-       <div class="hustlesasa-topline">
-         <h3>${p[0]}</h3>
-         <span class="price-badge">${p[2]}</span>
-       </div>
-
-       <span class="download-category">${p[1]}</span>
-
-       <a
-         class="primary small hustle-cta"
-         href="${p[3]}"
-         target="_blank"
-         rel="noopener noreferrer">
-         Buy &amp; Download on Hustlesasa ${icon("bag")}
-       </a>
-
-     </article>
-   `).join("")}
-
+    <a
+     class="primary small hustle-cta"
+     href="${p[3]}"
+     target="_blank"
+     rel="noopener noreferrer">
+     Buy &amp; Download on Hustlesasa ${icon("bag")}
+    </a>
+   </article>
+  `).join("")}
  </div>`;
 }
 
 function reels(){
+ const youtubeElohim="https://youtu.be/WEvb_J7JbO8";
+ const youtubeElohimEmbed="https://www.youtube.com/embed/WEvb_J7JbO8";
 
- /*
-  * The previous version contained empty YouTube embed URLs.
-  * These are now valid external YouTube destinations and always open
-  * in a new tab. The search query is title-specific so the correct
-  * video can be selected on YouTube.
-  */
- const youtubeReel=
-   "https://www.youtube.com/results?search_query="+
-   encodeURIComponent("ArkWay Music & Production Showreel");
+ const youtubeSurvival="https://youtu.be/jf3p-cdOKr8";
+ const youtubeSurvivalEmbed="https://www.youtube.com/embed/jf3p-cdOKr8";
 
- const youtubeSurvival=
-   "https://www.youtube.com/results?search_query="+
-   encodeURIComponent("SURVIVAL Yovan short film");
+ return `
+ <section class="subview">
+  <a class="back" href="#community">← Back to Community</a>
 
- return `<section class="subview">
-
-   <a class="back" href="#community">← Back to Community</a>
-
-   <div class="portal-head">
-     <div>
-       <p class="eyebrow">VISUAL REELS</p>
-       <h1>Showreels & <em>Short Film.</em></h1>
-     </div>
-
-     <p>Music Video Showcase & "SURVIVAL" Short Film.</p>
+  <div class="portal-head">
+   <div>
+    <p class="eyebrow">VISUAL REELS</p>
+    <h1>Showreels & <em>Short Film.</em></h1>
    </div>
 
-   <div class="community-reel-grid">
+   <p>Music Video Showcase & "SURVIVAL" Short Film.</p>
+  </div>
 
-     <article class="universe-media-card">
+  <div class="community-reel-grid">
 
-       <a
-         class="universe-video"
-         href="${youtubeReel}"
-         target="_blank"
-         rel="noopener noreferrer"
-         aria-label="Open ArkWay Music & Production Showreel on YouTube">
+   <article class="universe-media-card">
 
-         <div class="universe-video-placeholder">
-           <span>▶</span>
-         </div>
+    <a
+     class="universe-video"
+     href="https://youtu.be/WEvb_J7JbO8"
+     target="_blank"
+     rel="noopener noreferrer"
+     aria-label="Open Elohim Music Video on YouTube">
 
-       </a>
+     <iframe
+      src="https://www.youtube.com/embed/WEvb_J7JbO8"
+      title="Elohim Music Video / Music Production Reel"
+      loading="lazy"
+      allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+      allowfullscreen>
+     </iframe>
 
-       <div class="universe-media-copy">
-         <span class="card-label">MUSIC PRODUCTION REEL</span>
+    </a>
 
-         <h3>ArkWay Music & Production Showreel</h3>
+    <div class="universe-media-copy">
+     <span class="card-label">
+      ELOHIM · MUSIC VIDEO / PRODUCTION REEL
+     </span>
 
-         <p>
-           Showcase of music production, scoring, and original compositions
-           engineered under ArkWay Creative.
-         </p>
+     <h3>Elohim Music Video</h3>
 
-         <a
-           class="outline-action"
-           href="${youtubeReel}"
-           target="_blank"
-           rel="noopener noreferrer">
-           Watch on YouTube →
-         </a>
-       </div>
+     <p>
+      Music video and production showcase engineered under ArkWay Creative.
+     </p>
 
-     </article>
+     <a
+      href="https://youtu.be/WEvb_J7JbO8"
+      target="_blank"
+      rel="noopener noreferrer"
+      class="outline-action">
+      Watch on YouTube &rarr;
+     </a>
+    </div>
 
-     <article class="universe-media-card">
+   </article>
 
-       <a
-         class="universe-video"
-         href="${youtubeSurvival}"
-         target="_blank"
-         rel="noopener noreferrer"
-         aria-label="Open SURVIVAL Short Film on YouTube">
+   <article class="universe-media-card">
 
-         <div class="universe-video-placeholder">
-           <span>▶</span>
-         </div>
+    <a
+     class="universe-video"
+     href="https://youtu.be/jf3p-cdOKr8"
+     target="_blank"
+     rel="noopener noreferrer"
+     aria-label="Open SURVIVAL Short Film on YouTube">
 
-       </a>
+     <iframe
+      src="https://www.youtube.com/embed/jf3p-cdOKr8"
+      title="SURVIVAL Short Film"
+      loading="lazy"
+      allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+      allowfullscreen>
+     </iframe>
 
-       <div class="universe-media-copy">
-         <span class="card-label">SURVIVAL · SHORT FILM</span>
+    </a>
 
-         <h3>SURVIVAL | Short Film</h3>
+    <div class="universe-media-copy">
+     <span class="card-label">
+      SURVIVAL · SHORT FILM
+     </span>
 
-         <p>
-           Cinematic narrative short film produced and scored under ArkWay Creative.
-         </p>
+     <h3>SURVIVAL | Short Film</h3>
 
-         <a
-           class="outline-action"
-           href="${youtubeSurvival}"
-           target="_blank"
-           rel="noopener noreferrer">
-           Watch on YouTube →
-         </a>
-       </div>
+     <p>
+      Cinematic narrative short film produced and scored under ArkWay Creative.
+     </p>
 
-     </article>
+     <a
+      href="https://youtu.be/jf3p-cdOKr8"
+      target="_blank"
+      rel="noopener noreferrer"
+      class="outline-action">
+      Watch on YouTube &rarr;
+     </a>
+    </div>
 
-   </div>
+   </article>
+
+  </div>
  </section>`;
 }
 
-function bindProductControls(scope=document){
-
-  scope.querySelectorAll("[data-play]").forEach(el=>{
-    el.addEventListener("click",()=>{
-      const waveform=
-        el.closest(".product-preview").querySelector(".waveform");
-
-      waveform.classList.toggle("playing");
-
-      el.textContent=
-        waveform.classList.contains("playing")
-        ? "Ⅱ Pause Demo"
-        : "▶ Play Demo";
-    });
-  });
-
-  scope.querySelectorAll("[data-share]").forEach(el=>{
-    el.addEventListener("click",async()=>{
-
-      const u=
-        location.origin+
-        location.pathname+
-        "#products?filter="+
-        encodeURIComponent(window.productFilter||"ALL PRODUCTS")+
-        "&id="+
-        encodeURIComponent(el.dataset.share);
-
-      try{
-        await navigator.clipboard.writeText(u);
-        el.textContent="Link Copied";
-      }catch{
-        window.prompt("Copy this ArkWay product link:",u);
-      }
-
-      setTimeout(()=>{
-        el.textContent="Share Link →";
-      },1800);
-    });
-  });
-}
-
 function render(){
-
  const r=route();
 
  let content=
-   r.root==="home"
+  r.root==="home"
    ?home()
    :r.root==="services"
-   ?services()
-   :r.root==="products"
-   ?products()
-   :r.sub==="discography"
-   ?discography()
-   :r.sub==="reels"
-   ?reels()
-   :community();
+    ?services()
+    :r.root==="products"
+     ?products()
+     :r.sub==="discography"
+      ?discography()
+      :r.sub==="reels"
+       ?reels()
+       :community();
 
  document.getElementById("app").innerHTML=content;
 
- document.querySelectorAll(".navlink").forEach(b=>{
-   b.classList.toggle("active",b.dataset.route===r.root);
- });
+ document.querySelectorAll(".navlink").forEach(b=>
+  b.classList.toggle("active",b.dataset.route===r.root)
+ );
 
  document.title=
-   "ArkWay Creative — "+
-   (r.root[0].toUpperCase()+r.root.slice(1));
+  "ArkWay Creative — "+
+  (r.root[0].toUpperCase()+r.root.slice(1));
 
  bind();
 
  window.scrollTo({
-   top:0,
-   behavior:"smooth"
+  top:0,
+  behavior:"smooth"
  });
+}
+
+function bindProductControls(scope=document){
+
+ scope.querySelectorAll("[data-play]").forEach(el=>
+  el.addEventListener("click",()=>{
+   const waveform=
+    el.closest(".product-preview").querySelector(".waveform");
+
+   waveform.classList.toggle("playing");
+
+   el.textContent=
+    waveform.classList.contains("playing")
+     ?"Ⅱ Pause Demo"
+     :"▶ Play Demo";
+  })
+ );
+
+ scope.querySelectorAll("[data-share]").forEach(el=>
+  el.addEventListener("click",async()=>{
+   const u=
+    location.origin+
+    location.pathname+
+    "#products?filter="+
+    encodeURIComponent(window.productFilter||"ALL PRODUCTS")+
+    "&id="+
+    encodeURIComponent(el.dataset.share);
+
+   try{
+    await navigator.clipboard.writeText(u);
+    el.textContent="Link Copied";
+   }catch{
+    window.prompt("Copy this ArkWay product link:",u);
+   }
+
+   setTimeout(()=>{
+    el.textContent="Share Link →";
+   },1800);
+  })
+ );
 }
 
 function bind(){
 
- document.querySelectorAll("[data-route]").forEach(el=>{
-   el.addEventListener("click",()=>{
-     setRoute(el.dataset.route);
-     document.getElementById("navlinks").classList.remove("open");
-   });
- });
+ document.querySelectorAll("[data-route]").forEach(el=>
+  el.addEventListener("click",()=>{
+   setRoute(el.dataset.route);
+   document.getElementById("navlinks").classList.remove("open");
+  })
+ );
 
- document.querySelectorAll("[data-href]").forEach(el=>{
-   el.addEventListener("click",()=>{
-     location.hash=el.dataset.href;
-   });
- });
+ document.querySelectorAll("[data-href]").forEach(el=>
+  el.addEventListener("click",()=>{
+   location.hash=el.dataset.href;
+  })
+ );
 
- document.querySelectorAll(".book-service").forEach(el=>{
-   el.addEventListener("click",()=>{
-     showModal(el.dataset.service);
-   });
- });
-
- /*
-  * PRODUCT FILTER FIX
-  *
-  * These buttons are deliberately NOT hash links.
-  * preventDefault() prevents any browser navigation and the product
-  * grid is updated directly inside #products.
-  */
- document.querySelectorAll("[data-filter]").forEach(el=>{
-   el.addEventListener("click",(event)=>{
-
-     event.preventDefault();
-
-     window.productFilter=el.dataset.filter;
-
-     const section=document.getElementById("products");
-
-     if(!section) return;
-
-     const filterBar=
-       section.querySelector(".product-filter-bar");
-
-     const grid=
-       section.querySelector("#productGrid");
-
-     filterBar
-       .querySelectorAll("[data-filter]")
-       .forEach(btn=>{
-         btn.classList.toggle(
-           "active",
-           btn.dataset.filter===window.productFilter
-         );
-       });
-
-     const visible=
-       window.productFilter==="ALL PRODUCTS"
-       ?catalog
-       :catalog.filter(
-           x=>x.category===window.productFilter
-         );
-
-     grid.innerHTML=
-       visible.length
-       ?
-       visible.map(p=>`
-         <article class="product-card" id="product-${p.id}">
-
-           <div class="product-card-top">
-             <div class="product-badges">
-               <span class="product-category-badge">${p.category}</span>
-               <span class="product-coming-pill">COMING SOON</span>
-             </div>
-
-             <span class="product-price">${p.price}</span>
-           </div>
-
-           <div class="product-card-copy">
-             <h3>${p.title}</h3>
-             <p class="product-spec">${p.specs}</p>
-           </div>
-
-           <div class="product-preview">
-
-             <div class="product-preview-head">
-               <span>DEMO PREVIEW</span>
-               <span>PLACEHOLDER STREAM</span>
-             </div>
-
-             <div class="waveform">
-               ${Array.from(
-                 {length:42},
-                 (_,i)=>
-                   `<span style="height:${20+((i*19)%58)}%"></span>`
-               ).join("")}
-             </div>
-
-             <button
-               type="button"
-               class="product-preview-button"
-               data-play="${p.id}">
-               ▶ Play Demo
-             </button>
-
-           </div>
-
-           <div class="product-actions">
-
-             <a
-               class="product-notify"
-               href="https://arkway.hustlesasa.shop"
-               target="_blank"
-               rel="noopener noreferrer">
-               Notify Me / Coming Soon →
-             </a>
-
-             <button
-               type="button"
-               class="product-share"
-               data-share="${p.id}">
-               Share Link →
-             </button>
-
-           </div>
-
-         </article>
-       `).join("")
-
-       :
-
-       `<div class="product-empty">
-          <span class="eyebrow">NO PRODUCTS IN THIS CATEGORY YET</span>
-          <h3>${window.productFilter} are queued for a future ArkWay release.</h3>
-          <p>Choose another category to keep exploring the sound vault.</p>
-        </div>`;
-
-     bindProductControls(grid);
-   });
- });
-
- document.querySelectorAll("[data-community]").forEach(el=>{
-   el.addEventListener("click",()=>{
-     setRoute(
-       "community",
-       el.dataset.community
-     );
-   });
- });
+ document.querySelectorAll(".book-service").forEach(el=>
+  el.addEventListener("click",()=>{
+   showModal(el.dataset.service);
+  })
+ );
 
  /*
-  * BETWEEN FRAMES / SUBSTACK
-  *
-  * This replaces the internal button with a real external anchor so
-  * the Substack publication opens in a new browser tab.
-  */
- document.querySelectorAll('[data-community="substack"]').forEach(el=>{
+  Product filters intentionally use preventDefault so they remain
+  dynamic controls inside the Products section. This does not affect
+  the external media/community anchors above.
+ */
+ document.querySelectorAll("[data-filter]").forEach(el=>
+  el.addEventListener("click",(event)=>{
+   event.preventDefault();
 
-   el.outerHTML=`
-     <a
-       class="community-editorial-hit"
-       href="https://substack.com/@betweenframesbyovan"
-       target="_blank"
-       rel="noopener noreferrer">
-       ${el.innerHTML}
-     </a>
-   `;
+   window.productFilter=el.dataset.filter;
 
- });
+   const section=document.getElementById("products");
+
+   if(!section)return;
+
+   const filterBar=section.querySelector(".product-filter-bar");
+   const grid=section.querySelector("#productGrid");
+
+   filterBar
+    .querySelectorAll("[data-filter]")
+    .forEach(btn=>
+     btn.classList.toggle(
+      "active",
+      btn.dataset.filter===window.productFilter
+     )
+    );
+
+   const visible=
+    window.productFilter==="ALL PRODUCTS"
+     ?catalog
+     :catalog.filter(
+       x=>x.category===window.productFilter
+      );
+
+   grid.innerHTML=
+    visible.length
+     ?visible.map(p=>`
+      <article class="product-card" id="product-${p.id}">
+       <div class="product-card-top">
+        <div class="product-badges">
+         <span class="product-category-badge">${p.category}</span>
+         <span class="product-coming-pill">COMING SOON</span>
+        </div>
+
+        <span class="product-price">${p.price}</span>
+       </div>
+
+       <div class="product-card-copy">
+        <h3>${p.title}</h3>
+        <p class="product-spec">${p.specs}</p>
+       </div>
+
+       <div class="product-preview">
+        <div class="product-preview-head">
+         <span>DEMO PREVIEW</span>
+         <span>PLACEHOLDER STREAM</span>
+        </div>
+
+        <div class="waveform">
+         ${Array.from(
+           {length:42},
+           (_,i)=>`<span style="height:${20+((i*19)%58)}%"></span>`
+         ).join("")}
+        </div>
+
+        <button
+         type="button"
+         class="product-preview-button"
+         data-play="${p.id}">
+         ▶ Play Demo
+        </button>
+       </div>
+
+       <div class="product-actions">
+        <a
+         class="product-notify"
+         href="https://arkway.hustlesasa.shop"
+         target="_blank"
+         rel="noopener noreferrer">
+         Notify Me / Coming Soon →
+        </a>
+
+        <button
+         type="button"
+         class="product-share"
+         data-share="${p.id}">
+         Share Link →
+        </button>
+       </div>
+      </article>
+     `).join("")
+     :`
+      <div class="product-empty">
+       <span class="eyebrow">NO PRODUCTS IN THIS CATEGORY YET</span>
+       <h3>
+        ${window.productFilter} are queued for a future ArkWay release.
+       </h3>
+       <p>
+        Choose another category to keep exploring the sound vault.
+       </p>
+      </div>
+     `;
+
+   bindProductControls(grid);
+  })
+ );
 
  bindProductControls(document);
 
- /*
-  * Discography Stream / Download toggle.
-  */
- document.querySelectorAll("[data-mode]").forEach(el=>{
+ document.querySelectorAll("[data-mode]").forEach(el=>
+  el.addEventListener("click",()=>{
+   document
+    .querySelectorAll("[data-mode]")
+    .forEach(x=>x.classList.remove("active"));
 
-   el.addEventListener("click",()=>{
+   el.classList.add("active");
 
-     document
-       .querySelectorAll("[data-mode]")
-       .forEach(x=>x.classList.remove("active"));
-
-     el.classList.add("active");
-
-     document.getElementById("discographyContent").innerHTML=
-       el.dataset.mode==="download"
-       ?downloads()
-       :releases.map(r=>`
-           <article class="release-card">
-             <iframe
-               src="${r[1]}"
-               title="${r[0]} on Spotify"
-               loading="lazy"
-               allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture">
-             </iframe>
-           </article>
-         `).join("");
-   });
-
- });
+   document.getElementById("discographyContent").innerHTML=
+    el.dataset.mode==="download"
+     ?downloads()
+     :releases.map(r=>`
+      <article class="release-card">
+       <iframe
+        src="${r[1]}"
+        title="${r[0]} on Spotify"
+        loading="lazy"
+        allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture">
+       </iframe>
+      </article>
+     `).join("");
+  })
+ );
 }
 
 function showModal(service){
@@ -1206,74 +1054,64 @@ function showModal(service){
  wrap.className="modal-backdrop";
 
  wrap.innerHTML=`
-   <div
-     class="modal"
-     role="dialog"
-     aria-modal="true">
+  <div class="modal" role="dialog" aria-modal="true">
 
-     <button
-       class="modal-close"
-       aria-label="Close">
-       ×
-     </button>
+   <button class="modal-close" aria-label="Close">×</button>
 
-     <p class="eyebrow">INSTANT INQUIRY</p>
+   <p class="eyebrow">INSTANT INQUIRY</p>
 
-     <h2>
-       Book <em>${service}</em>
-     </h2>
+   <h2>Book <em>${service}</em></h2>
 
-     <p>
-       Choose how you want to start the conversation.
-       Your service details will be pre-filled.
-     </p>
+   <p>
+    Choose how you want to start the conversation.
+    Your service details will be pre-filled.
+   </p>
 
-     <div class="modal-actions">
+   <div class="modal-actions">
 
-       <a
-         class="primary large"
-         target="_blank"
-         rel="noopener noreferrer"
-         href="${inquiry(service,"whatsapp")}">
-         Open WhatsApp →
-       </a>
+    <a
+     class="primary large"
+     target="_blank"
+     rel="noopener noreferrer"
+     href="${inquiry(service,"whatsapp")}">
+     Open WhatsApp →
+    </a>
 
-       <a
-         class="secondary large"
-         href="${inquiry(service,"email")}">
-         Send Email ✉
-       </a>
-
-     </div>
-
-     <span class="modal-note">
-       ${BUSINESS.phone} · ${BUSINESS.email}
-     </span>
+    <a
+     class="secondary large"
+     href="${inquiry(service,"email")}">
+     Send Email ✉
+    </a>
 
    </div>
- `;
+
+   <span class="modal-note">
+    ${BUSINESS.phone} · ${BUSINESS.email}
+   </span>
+
+  </div>`;
 
  document.body.appendChild(wrap);
 
  const close=()=>{
-   wrap.remove();
-   document.body.classList.remove("locked");
+  wrap.remove();
+  document.body.classList.remove("locked");
  };
 
  wrap.addEventListener("mousedown",e=>{
-   if(e.target===wrap) close();
+  if(e.target===wrap)close();
  });
 
- wrap
-   .querySelector(".modal-close")
-   .addEventListener("click",close);
+ wrap.querySelector(".modal-close").addEventListener("click",close);
 }
 
-document.getElementById("menuBtn").addEventListener("click",()=>{
- document
+document
+ .getElementById("menuBtn")
+ .addEventListener("click",()=>{
+  document
    .getElementById("navlinks")
    .classList.toggle("open");
-});
+ });
 
 window.addEventListener("hashchange",render);
 
