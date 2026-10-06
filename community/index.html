@@ -1,13 +1,22 @@
-<!DOCTYPE html>
-<html lang="en"><head><meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Community — Discography, Reels & Live Sessions | ArkWay Creative</title><meta name="description" content="Stream Yovan's solo releases, watch showreels and live sessions, and read Between Frames, all from ArkWay Creative."><link rel="canonical" href="https://arkway-creative.vercel.app/community">
-<meta property="og:type" content="website"><meta property="og:site_name" content="ArkWay Creative"><meta property="og:title" content="Community — Discography, Reels & Live Sessions | ArkWay Creative"><meta property="og:description" content="Stream Yovan's solo releases, watch showreels and live sessions, and read Between Frames, all from ArkWay Creative."><meta property="og:url" content="https://arkway-creative.vercel.app/community"><meta property="og:image" content="https://lh3.googleusercontent.com/d/1Kl4dplfcrAjRYt88Wi7aSX_wsFlTuz6z"><meta name="twitter:card" content="summary_large_image">
-<link rel="stylesheet" href="/style.css">
-<style>
-/* Accordion Section Styles for Community */
+/* Premium Segment Cards for Community */
 .community-section-block {
-  margin-bottom: 24px;
-  border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+  margin-bottom: 20px;
+  border-radius: 8px;
+  background: rgba(255, 255, 255, 0.02);
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  overflow: hidden;
+  transition: border-color 0.3s ease, background 0.3s ease, box-shadow 0.3s ease;
+}
+
+.community-section-block:hover {
+  border-color: rgba(212, 175, 55, 0.3);
+  background: rgba(255, 255, 255, 0.03);
+}
+
+.community-section-block.active {
+  border-color: rgba(212, 175, 55, 0.6);
+  background: rgba(18, 18, 20, 0.8);
+  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.4);
 }
 
 .community-accordion-btn {
@@ -16,16 +25,12 @@
   border: none;
   color: #f5f5f5;
   text-align: left;
-  padding: 20px 0;
+  padding: 18px 20px;
   display: flex;
   justify-content: space-between;
   align-items: center;
   cursor: pointer;
-  transition: color 0.2s;
-}
-
-.community-accordion-btn:hover .segment-title {
-  color: #d4af37;
+  transition: background 0.2s;
 }
 
 .segment-header-text {
@@ -35,132 +40,75 @@
 }
 
 .segment-title {
-  font-size: 1.25rem;
+  font-size: 1.15rem;
   font-weight: 700;
-  letter-spacing: 0.08em;
+  letter-spacing: 0.1em;
   text-transform: uppercase;
   color: #ffffff;
-  transition: color 0.2s;
+  transition: color 0.3s ease;
+  display: flex;
+  align-items: center;
+  gap: 8px;
 }
 
 .segment-subtext {
-  font-size: 0.9rem;
-  color: #888;
+  font-size: 0.88rem;
+  color: #aaa;
   font-weight: 400;
+  line-height: 1.4;
 }
 
-.community-chevron {
-  font-size: 0.9rem;
-  color: #888;
-  transition: transform 0.35s ease, color 0.35s ease;
-  margin-left: 16px;
-  flex-shrink: 0;
+/* Gold Accent Indicator Dot */
+.segment-title::before {
+  content: "";
+  display: inline-block;
+  width: 6px;
+  height: 6px;
+  border-radius: 50%;
+  background: #555;
+  transition: background 0.3s ease, transform 0.3s ease;
 }
 
-.community-section-block.active .community-chevron {
-  transform: rotate(180deg);
-  color: #d4af37;
+.community-section-block.active .segment-title::before {
+  background: #d4af37;
+  transform: scale(1.3);
 }
 
 .community-section-block.active .segment-title {
   color: #d4af37;
 }
 
-/* Collapsible Body */
+.community-chevron {
+  font-size: 0.85rem;
+  color: #888;
+  transition: transform 0.35s ease, color 0.35s ease;
+  margin-left: 16px;
+  flex-shrink: 0;
+  width: 32px;
+  height: 32px;
+  border-radius: 50%;
+  background: rgba(255, 255, 255, 0.05);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.community-section-block.active .community-chevron {
+  transform: rotate(180deg);
+  color: #000;
+  background: #d4af37;
+}
+
+/* Collapsible Body Inside Card */
 .community-accordion-body {
   max-height: 0;
   overflow: hidden;
   transition: max-height 0.4s cubic-bezier(0, 1, 0, 1), padding 0.35s ease;
-  padding: 0 0;
+  padding: 0 20px;
 }
 
 .community-section-block.active .community-accordion-body {
-  max-height: 2000px; /* high limit to fit full grid */
+  max-height: 2500px;
   transition: max-height 0.5s cubic-bezier(1, 0, 1, 0);
-  padding: 12px 0 32px 0;
+  padding: 8px 20px 24px 20px;
 }
-</style>
-</head><body><div class="site">
-<header class="nav"><a class="brand" href="/" aria-label="ArkWay Creative home"><img src="https://lh3.googleusercontent.com/d/1jrEFMFWEB7wO19K-_SJBsEcz4azfM9e4" alt="ArkWay Creative"></a><nav class="navlinks" id="navlinks"><a class="navlink" href="/">Home</a><a class="navlink" href="/services">Services</a><a class="navlink" href="/products">Products</a><a class="navlink active" href="/community">Community</a></nav><button class="menu" id="menuBtn" aria-label="Toggle navigation">☰</button></header>
-<main><section class="section community-landing"><div class="portal-head"><div><p class="eyebrow">03 · COMMUNITY</p><h1>WELCOME TO THE ARKWAY COMMUNITY</h1></div><p>Explore the media catalog engineered under ArkWay Creative—featuring Yovan's solo projects, production credits, featured artist collaborations, live sessions, film critiques, apparel, and live events.</p></div>
-
-<!-- SECTION 1: THE CATALOG (Default Open) -->
-<div class="community-section-block active">
-  <button class="community-accordion-btn" onclick="toggleCommunitySection(this)">
-    <div class="segment-header-text">
-      <span class="segment-title">THE CATALOG</span>
-      <span class="segment-subtext">Music, film scores, writings, and produced works.</span>
-    </div>
-    <span class="community-chevron">▼</span>
-  </button>
-  
-  <div class="community-accordion-body">
-    <div class="community-editorial-grid">
-      <article class="community-editorial-card"><a class="community-editorial-hit" href="/community/discography"><div class="community-editorial-top"><span class="community-door-number">01</span><span>→</span></div><div class="community-editorial-copy"><span class="community-kicker">MUSIC / SOLO CATALOG</span><h2>Official Discography</h2><p>Stream Yovan's solo EPs, albums, and singles directly.</p></div><div class="community-editorial-bottom"><span>Explore catalog →</span></div></a></article>
-      
-      <article class="community-editorial-card"><a class="community-editorial-hit" href="https://youtube.com/playlist?list=PLQrjSpMAQCdo&si=EAfUs3sPV8bWIitg" target="_blank" rel="noopener noreferrer"><div class="community-editorial-top"><span class="community-door-number">02</span><span>→</span></div><div class="community-editorial-copy"><span class="community-kicker">FILM / VISUAL REELS</span><h2>Showreels & Short Films</h2><p>Music video showcase & short films.</p></div><div class="community-editorial-bottom"><span>Watch reels →</span></div></a></article>
-      
-      <article class="community-editorial-card"><a class="community-editorial-hit" href="https://youtube.com/playlist?list=PLq3yYhQm_l_q4PPukd724JAvg-XvJsGtt&si=m4wwj_hnGeLS6-ne" target="_blank" rel="noopener noreferrer"><div class="community-editorial-top"><span class="community-door-number">03</span><span>→</span></div><div class="community-editorial-copy"><span class="community-kicker">MUSIC / ARTIST CREDITS</span><h2>Produced Work & Collaborations</h2><p>Tracks and releases engineered for collaborating artists under ArkWay.</p></div><div class="community-editorial-bottom"><span>View credits →</span></div></a></article>
-      
-      <article class="community-editorial-card"><a class="community-editorial-hit" href="https://youtube.com/playlist?list=PLq3yYhQm_l_rKtCa7zhtH15RyT_bTDvsw&si=ox0d-XvnTCpYaipj" target="_blank" rel="noopener noreferrer"><div class="community-editorial-top"><span class="community-door-number">04</span><span>→</span></div><div class="community-editorial-copy"><span class="community-kicker">LIVE / SESSIONS</span><h2>Live Sets & Performances</h2><p>Recorded live arrangements, acoustic sessions, and stage sets.</p></div><div class="community-editorial-bottom"><span>Watch live sessions →</span></div></a></article>
-      
-      <article class="community-editorial-card"><a class="community-editorial-hit" href="https://substack.com/@betweenframesbyovan" target="_blank" rel="noopener noreferrer"><div class="community-editorial-top"><span class="community-door-number">05</span><span>→</span></div><div class="community-editorial-copy"><span class="community-kicker">WRITING / FILM & CULTURE</span><h2>Between Frames</h2><p>Film critiques, narrative analysis, and cultural essays by Yovan.</p></div><div class="community-editorial-bottom"><span>Read Between Frames →</span></div></a></article>
-    </div>
-  </div>
-</div>
-
-<!-- SECTION 2: THE STORE -->
-<div class="community-section-block">
-  <button class="community-accordion-btn" onclick="toggleCommunitySection(this)">
-    <div class="segment-header-text">
-      <span class="segment-title">THE STORE</span>
-      <span class="segment-subtext">Physical goods, merchandise, and apparel drops.</span>
-    </div>
-    <span class="community-chevron">▼</span>
-  </button>
-  
-  <div class="community-accordion-body">
-    <div class="community-editorial-grid">
-      <article class="community-editorial-card"><div class="community-editorial-hit"><div class="community-editorial-top"><span class="community-door-number">06</span><span>→</span></div><div class="community-editorial-copy"><span class="community-kicker">APPAREL</span><h2>ArkWay Apparel & Merch</h2><p>Signature streetwear, bandanas, and physical drops engineered by ArkWay Creative.</p></div><div class="community-editorial-bottom"><span class="status-badge">COMING SOON</span></div></div></article>
-    </div>
-  </div>
-</div>
-
-<!-- SECTION 3: THE STAGE -->
-<div class="community-section-block">
-  <button class="community-accordion-btn" onclick="toggleCommunitySection(this)">
-    <div class="segment-header-text">
-      <span class="segment-title">THE STAGE</span>
-      <span class="segment-subtext">Live experience, shows, and event ticketing.</span>
-    </div>
-    <span class="community-chevron">▼</span>
-  </button>
-  
-  <div class="community-accordion-body">
-    <div class="community-editorial-grid">
-      <article class="community-editorial-card"><div class="community-editorial-hit"><div class="community-editorial-top"><span class="community-door-number">07</span><span>→</span></div><div class="community-editorial-copy"><span class="community-kicker">LIVE SHOWS & TICKETS</span><h2>Concerts & Showcases</h2><p>Upcoming ArkWay live showcases, concert dates, and ticket releases.</p></div><div class="community-editorial-bottom"><span class="status-badge">COMING SOON</span></div></div></article>
-    </div>
-  </div>
-</div>
-
-</section></main>
-
-<footer><div class="footer-top"><a class="footer-brand" href="/" aria-label="ArkWay Creative Home"><img src="https://lh3.googleusercontent.com/d/1jrEFMFWEB7wO19K-_SJBsEcz4azfM9e4" alt="ArkWay Creative"><div><strong>ARKWAY CREATIVE</strong><span>MEDIA · DATA · CULTURE</span></div></a><div class="footer-contact"><a href="mailto:arkwaycreative@gmail.com">arkwaycreative@gmail.com</a><a href="https://wa.me/254118618199" target="_blank" rel="noopener noreferrer">WhatsApp / Call 0118618199</a></div></div>
-<div class="footer-grid"><div><span class="card-label">ROUTES</span><a href="/">Home</a><a href="/services">Services</a><a href="/products">Products</a><a href="/community">Community</a></div><div><span class="card-label">ARKWAY</span><p>Data-driven media: audio, visual storytelling, brand architecture and culture.</p></div></div>
-<div class="footer-bottom"><span>© 2026 ArkWay Creative</span><span>DESIRE · DEDICATION · DISCIPLINE</span></div></footer></div>
-
-<script src="/site.js"></script>
-<script>
-function toggleCommunitySection(btn) {
-  const block = btn.parentElement;
-  const isActive = block.classList.contains('active');
-
-  // Toggle clicked segment
-  if (isActive) {
-    block.classList.remove('active');
-  } else {
-    block.classList.add('active');
-  }
-}
-</script>
-</body></html>
