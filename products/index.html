@@ -4,7 +4,7 @@
 <meta property="og:type" content="website"><meta property="og:site_name" content="ArkWay Creative"><meta property="og:title" content="Products — Beat Packs, Drum Kits & Foley | ArkWay Creative"><meta property="og:description" content="Digital tools for producers, filmmakers and artists: beat packs, drum kits, loops, FX and foley from ArkWay Creative."><meta property="og:url" content="https://arkway-creative.vercel.app/products"><meta property="og:image" content="https://lh3.googleusercontent.com/d/1Kl4dplfcrAjRYt88Wi7aSX_wsFlTuz6z"><meta name="twitter:card" content="summary_large_image">
 <link rel="stylesheet" href="/style.css">
 <style>
-  /* Clean wrapping grid layout for filter buttons so everything fits on screen */
+  /* Clean wrapping grid layout for filter buttons */
   .product-filter-bar {
     display: flex !important;
     flex-wrap: wrap !important;
@@ -19,23 +19,23 @@
     border: none !important;
   }
   
-  /* Premium, tactile, high-end studio button styling */
+  /* Studio button base styling — refined and subdued */
   .product-filter-bar button {
     flex: 1 1 calc(33.333% - 8px) !important;
     min-width: 100px !important;
     font-size: 0.75rem !important;
-    font-weight: 700 !important;
+    font-weight: 600 !important;
     text-transform: uppercase !important;
     padding: 12px 14px !important;
     letter-spacing: 0.08em !important;
-    background: rgba(20, 20, 22, 0.85) !important;
-    border: 1px solid rgba(255, 255, 255, 0.12) !important;
+    background: rgba(18, 18, 20, 0.7) !important;
+    border: 1px solid rgba(255, 255, 255, 0.08) !important;
     border-radius: 8px !important;
-    color: #999999 !important;
+    color: #777777 !important;
     cursor: pointer !important;
     text-align: center !important;
     transition: all 0.25s cubic-bezier(0.16, 1, 0.3, 1) !important;
-    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.4), inset 0 1px 0 rgba(255, 255, 255, 0.06) !important;
+    box-shadow: 0 2px 6px rgba(0, 0, 0, 0.2) !important;
   }
   
   @media (min-width: 640px) {
@@ -45,23 +45,21 @@
   }
 
   .product-filter-bar button:hover {
-    background: rgba(30, 30, 34, 0.95) !important;
-    border-color: rgba(255, 255, 255, 0.35) !important;
-    color: #ffffff !important;
-    transform: translateY(-2px) !important;
-    box-shadow: 0 6px 16px rgba(0, 0, 0, 0.5), inset 0 1px 0 rgba(255, 255, 255, 0.12) !important;
+    background: rgba(28, 28, 32, 0.9) !important;
+    border-color: rgba(255, 255, 255, 0.25) !important;
+    color: #cccccc !important;
+    transform: translateY(-1px) !important;
   }
 
-  .product-filter-bar button:active {
-    transform: translateY(0px) !important;
-  }
-
+  /* High-impact ACTIVE state: pops out, commands attention, pushes others back */
   .product-filter-bar button.active {
     background: var(--accent, #f5c518) !important;
     color: #0b0b0b !important;
     border-color: var(--accent, #f5c518) !important;
     font-weight: 800 !important;
-    box-shadow: 0 6px 20px rgba(245, 197, 24, 0.35), inset 0 1px 0 rgba(255, 255, 255, 0.5) !important;
+    transform: translateY(-2px) scale(1.02) !important;
+    box-shadow: 0 8px 24px rgba(245, 197, 24, 0.4), 0 2px 6px rgba(0, 0, 0, 0.5), inset 0 1px 0 rgba(255, 255, 255, 0.6) !important;
+    z-index: 2;
   }
 
   /* Professional Vault Status Announcement Card */
