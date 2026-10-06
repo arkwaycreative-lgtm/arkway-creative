@@ -178,8 +178,6 @@ footer{border-top:1px solid var(--line);padding:40px 6vw 25px;background:#070a0e
 </footer>
 </div>
 
-<div id="modalContainer"></div>
-
 <script>
 const BUSINESS={email:"arkwaycreative@gmail.com",whatsapp:"https://wa.me/254118618199",phone:"0118618199"};
 const catalog=[
@@ -219,391 +217,106 @@ function inquiry(service,channel){
 }
 function icon(name){return ({arrow:"→",music:"♫",headphones:"◖",ticket:"◇",play:"▶",bag:"□",video:"▣",mail:"✉"})[name]||"→"}
 
-let activeFilter="ALL";
-let activeDiscography="spotify";
-
-function openModal(serviceTitle){
- const modalHtml=`
-  <div class="modal-backdrop" onclick="closeModal(event)">
-    <div class="modal" onclick="event.stopPropagation()">
-      <button class="modal-close" onclick="closeModal()">✕</button>
-      <span class="eyebrow">BOOKING INQUIRY</span>
-      <h2>${serviceTitle}</h2>
-      <p>Choose your preferred channel to consult and book this service directly with our team.</p>
-      <div class="modal-actions">
-        <a class="primary large" href="${inquiry(serviceTitle,'whatsapp')}" target="_blank" rel="noopener noreferrer">Contact via WhatsApp ${icon('arrow')}</a>
-        <a class="secondary large" href="${inquiry(serviceTitle,'email')}">Send Email Inquiry ${icon('mail')}</a>
-      </div>
-      <small class="modal-note">Direct response expected within 24 hours.</small>
-    </div>
-  </div>`;
- document.getElementById("modalContainer").innerHTML=modalHtml;
- document.body.classList.add("locked");
+function home(){
+ return `<section class="home-hero"><div class="home-copy">
+ <div class="kicker">DATA-DRIVEN MEDIA · EST. 2026</div>
+ <h1><strong>ArkWay Creative</strong> — <em>a data-driven media company.</em></h1>
+ <p class="positioning">We merge audio production, visual storytelling, and brand architecture to build high-converting media and live culture — with data and audience intelligence informing the decisions behind the work.</p>
+ <div class="hero-actions">
+   <a class="primary large" href="#services">Book Services ${icon("arrow")}</a>
+   <a class="hero-secondary large" href="#products">Shop Products ${icon("arrow")}</a>
+   <a class="hero-tertiary" href="#community/discography">Explore Catalog ${icon("arrow")}</a>
+ </div>
+ </div></section>
+ <section class="doors-section"><div class="door-intro"><div><p class="eyebrow">CHOOSE YOUR DESTINATION</p></div><div><h2>Choose your <em>destination.</em></h2></div><p>Explore the three sides of ArkWay.</p></div>
+ <div class="door-grid">
+ ${[
+ ["services","01 / SERVICES","Services","Audio production, film & media sound, brand architecture, and data & analytics.","music"],
+ ["products","02 / PRODUCTS","Products","Loop kits, beat packs, drum vaults, foley and sound libraries.","headphones"],
+ ["community","03 / COMMUNITY","Community","Music releases, film writing, live show tickets, and official goods.","ticket"]
+ ].map(d=>`<button class="door-card" data-href="#${d[0]}"><div class="door-top"><span>${d[1]}</span><span>${icon(d[4])}</span></div><div><h3>${d[2]}</h3><p>${d[3]}</p></div><span class="door-cta">Explore ${icon("arrow")}</span></button>`).join("")}
+ </div></section>
+ <section class="manifesto"><span class="card-label">THE ARKWAY PRINCIPLE</span><h2>Make it. Release it. <em>Build the culture around it.</em></h2></section>`;
 }
 
-function closeModal(e){
- document.getElementById("modalContainer").innerHTML="";
- document.body.classList.remove("locked");
+function services(){
+ const groups=[
+ ["01 / AUDIO PRODUCTION","Record, produce & finish.","The core studio work: from the first vocal take to a finished, release-ready record.",["Recording & Vocal Production","Music Production","Mixing & Mastering","Beat Production","Live Instrument Recording"]],
+ ["02 / FILM & MEDIA SOUND","Score the picture.","Sound built around the story — not pasted onto it.",["Audio Jingles & Sonic Branding","Voiceover & Dialogue Production","Film, Series & Game Scoring"]],
+ ["03 / BRAND ARCHITECTURE","Build the media system.","Creative direction, campaign thinking and brand architecture for people and organizations that need their message to move.",["Brand Identity & Creative Direction","Campaign & Content Architecture","Digital Media Strategy"]],
+ ["04 / DATA & ANALYTICS","Make creative decisions with evidence.","Data analytics is the intelligence layer behind media, audience and business decisions.",["Market Research & Business Analytics","Audience & Performance Analysis","Dashboards & Reporting"]]
+ ];
+ return `<section class="section"><div class="portal-head"><div><p class="eyebrow">01 · SERVICES</p><h1>Creative work, backed by <em>intelligence.</em></h1></div><p>Tell us what you are building. We group the work by outcome instead of forcing you through a price list. Reach out directly and ArkWay will scope the right service, timeline and quote with you.</p></div>
+ <div class="service-groups">${groups.map(g=>`<article class="service-group"><div class="service-group-head"><span class="card-label">${g[0]}</span><span>→</span></div><h3>${g[1]}</h3><p>${g[2]}</p><ul>${g[3].map(x=>`<li>${x}</li>`).join("")}</ul><button class="outline-action book-service" data-service="${g[1]}">Reach out to book →</button></article>`).join("")}</div>
+ <div class="services-contact-strip"><div><span class="card-label">DIRECT BOOKING</span><strong>Start with WhatsApp or email.</strong><p>Tell us what you need, your deadline and what you already have. We will take it from there.</p></div><div class="services-contact-actions"><a class="primary large" target="_blank" rel="noopener" href="${inquiry("a project with ArkWay","whatsapp")}">WhatsApp ${icon("arrow")}</a><a class="secondary large" href="${inquiry("a project with ArkWay","email")}">Email ${icon("mail")}</a></div></div></section>`;
 }
 
-function renderHome(){
- return `
-  <section class="home-hero">
-    <div class="home-copy">
-      <span class="kicker">DATA-DRIVEN MEDIA · EST. 2026</span>
-      <h1><strong>ArkWay Creative</strong><br><em>— a data-driven media company.</em></h1>
-      <p class="positioning">We merge audio production, visual storytelling, and brand architecture to build high-converting media and live culture — with data and audience intelligence informing the decisions behind the work.</p>
-      <div class="hero-actions">
-        <button class="primary" onclick="setRoute('services')">Book Services ${icon('arrow')}</button>
-        <button class="hero-secondary" onclick="setRoute('products')">Shop Products ${icon('arrow')}</button>
-        <button class="hero-tertiary" onclick="setRoute('community')">Explore Catalog ${icon('arrow')}</button>
-      </div>
-    </div>
-  </section>
-
-  <section class="doors-section">
-    <div class="door-intro">
-      <div>
-        <span class="eyebrow">THREE DOORS</span>
-        <h2>How we create & deliver</h2>
-      </div>
-      <p>ArkWay Creative operates across three core pillars designed to service artists, brands, and audiences at different stages of cultural engagement.</p>
-      <p>Choose an entry point below to explore our services, digital production assets, or community media catalog.</p>
-    </div>
-    <div class="door-grid">
-      <div class="door-card">
-        <div>
-          <div class="door-top"><span class="card-label">DOOR 01</span><span>SERVICES</span></div>
-          <h3>Client Services & Production</h3>
-          <p>Audio recording, mixing, mastering, custom scoring, video direction, and brand strategy for creators & businesses.</p>
-        </div>
-        <button class="door-cta" onclick="setRoute('services')">EXPLORE SERVICES ${icon('arrow')}</button>
-      </div>
-      <div class="door-card">
-        <div>
-          <div class="door-top"><span class="card-label">DOOR 02</span><span>PRODUCTS</span></div>
-          <h3>Digital Products & Assets</h3>
-          <p>Production beat packs, custom drum kits, cinematic Foley libraries, sound kits, and downloadable creative tools.</p>
-        </div>
-        <button class="door-cta" onclick="setRoute('products')">EXPLORE PRODUCTS ${icon('arrow')}</button>
-      </div>
-      <div class="door-card">
-        <div>
-          <div class="door-top"><span class="card-label">DOOR 03</span><span>COMMUNITY</span></div>
-          <h3>Community & Media Universe</h3>
-          <p>Film criticism via <i>Between Frames</i>, official discography, digital downloads on Hustlesasa, and original showreels.</p>
-        </div>
-        <button class="door-cta" onclick="setRoute('community')">EXPLORE COMMUNITY ${icon('arrow')}</button>
-      </div>
-    </div>
-  </section>
-
-  <section class="manifesto">
-    <div>
-      <span class="eyebrow">OUR MANIFESTO</span>
-      <h2>Desire.<br>Dedication.<br>Discipline.</h2>
-    </div>
-    <div>
-      <p>We believe that high-impact creative work requires both instinct and infrastructure. At ArkWay Creative, we blend creative vision with data-backed insights to craft audio, film, and media products that resonate deeply with targeted audiences.</p>
-      <p>Whether producing an artist's signature project, scoring visual films, or engineering digital tools for producers worldwide, our operations are anchored in technical precision, audience strategy, and raw creative power.</p>
-    </div>
-  </section>`;
+function products(){
+ const filters=["ALL PRODUCTS","BEATS","FILM SCORES","LOOPS","DRUM KITS","FX","FOLEY"];
+ const active=new URLSearchParams(location.hash.split("?")[1]||"").get("filter")||"ALL PRODUCTS";
+ const visible=active==="ALL PRODUCTS"?catalog:catalog.filter(x=>x.category===active);
+ return `<section class="section"><div class="portal-head"><div><p class="eyebrow">02 · PRODUCTS</p><h1>Open the <em>sound vault.</em></h1></div><p>Digital tools for producers, filmmakers and artists — curated drops of beats, loops, drums, FX and foley, engineered for independent work.</p></div>
+ <div class="product-filter-bar">${filters.map(f=>`<button class="${active===f?"active":""}" data-filter="${f}">${f}</button>`).join("")}</div>
+ <div class="product-grid">${visible.length?visible.map(p=>`<article class="product-card" id="product-${p.id}"><div class="product-card-top"><div class="product-badges"><span class="product-category-badge">${p.category}</span><span class="product-coming-pill">COMING SOON</span></div><span class="product-price">${p.price}</span></div><div class="product-card-copy"><h3>${p.title}</h3><p class="product-spec">${p.specs}</p></div><div class="product-preview"><div class="product-preview-head"><span>DEMO PREVIEW</span><span>PLACEHOLDER STREAM</span></div><div class="waveform">${Array.from({length:42},(_,i)=>`<span style="height:${20+((i*19)%58)}%"></span>`).join("")}</div><button class="product-preview-button" data-play="${p.id}">${icon("play")} Play Demo</button></div><div class="product-actions"><a class="product-notify" href="https://arkway.hustlesasa.shop" target="_blank" rel="noopener">Notify Me / Coming Soon →</a><button class="product-share" data-share="${p.id}">Share Link →</button></div></article>`).join(""):`<div class="product-empty"><span class="eyebrow">NO MOCK DROPS YET</span><h3>${active} are queued for a future ArkWay release.</h3><p>Switch to All Products to see the current Coming Soon templates.</p></div>`}</div></section>`;
 }
 
-function renderServices(){
- return `
-  <section class="section">
-    <div class="portal-head">
-      <div>
-        <span class="eyebrow">DOOR 01 — SERVICES</span>
-        <h2>Audio, Film & Brand Architecture</h2>
-      </div>
-      <p>Professional production services designed for recording artists, filmmakers, content creators, and corporate brands seeking high-end execution.</p>
-    </div>
-    <div class="service-groups">
-      <div class="service-group">
-        <div class="service-group-head"><span class="card-label">AUDIO PRODUCTION</span><span>01</span></div>
-        <h3>Audio Engineering & Sound Design</h3>
-        <ul>
-          <li>Vocal Recording & Editing</li>
-          <li>Stereo & Multitrack Mixing</li>
-          <li>Stem Mastering for Streaming Platform Delivery</li>
-          <li>Custom Beat Production & Composition</li>
-        </ul>
-        <button class="outline-action" onclick="openModal('Audio Engineering & Sound Design')">BOOK AUDIO SERVICES ${icon('arrow')}</button>
-      </div>
-      <div class="service-group">
-        <div class="service-group-head"><span class="card-label">FILM & VISUALS</span><span>02</span></div>
-        <h3>Visual Storytelling & Scoring</h3>
-        <ul>
-          <li>Film & Commercial Scoring</li>
-          <li>Music Video Concept & Direction</li>
-          <li>Sound Design & Foley for Film/Shorts</li>
-          <li>Video Editing & Color Grading</li>
-        </ul>
-        <button class="outline-action" onclick="openModal('Visual Storytelling & Scoring')">BOOK FILM SERVICES ${icon('arrow')}</button>
-      </div>
-      <div class="service-group">
-        <div class="service-group-head"><span class="card-label">BRAND ARCHITECTURE</span><span>03</span></div>
-        <h3>Brand Strategy & Media Architecture</h3>
-        <ul>
-          <li>Creative Direction & Visual Identity</li>
-          <li>Data-Driven Media Strategy & Distribution</li>
-          <li>Digital Storefront & Web Infrastructure Setup</li>
-          <li>Campaign Strategy & Release Rollouts</li>
-        </ul>
-        <button class="outline-action" onclick="openModal('Brand Strategy & Media Architecture')">BOOK BRAND SERVICES ${icon('arrow')}</button>
-      </div>
-      <div class="service-group">
-        <div class="service-group-head"><span class="card-label">CONSULTING</span><span>04</span></div>
-        <h3>Creative Consulting & Mentorship</h3>
-        <ul>
-          <li>Project Portfolio Review & Optimization</li>
-          <li>Independent Artist Career Architecture</li>
-          <li>Film Criticism & Narrative Script Analysis</li>
-          <li>Home Studio & Workflow Setup</li>
-        </ul>
-        <button class="outline-action" onclick="openModal('Creative Consulting & Mentorship')">BOOK CONSULTING ${icon('arrow')}</button>
-      </div>
-    </div>
-    <div class="services-contact-strip">
-      <div>
-        <span class="eyebrow">CUSTOM INQUIRY</span>
-        <strong>Have a complex or multi-disciplinary project?</strong>
-        <p>Get in touch directly with our lead team to discuss tailored packages and scheduling.</p>
-      </div>
-      <div class="services-contact-actions">
-        <a class="primary small" href="${BUSINESS.whatsapp}" target="_blank" rel="noopener noreferrer">WhatsApp Direct ${icon('arrow')}</a>
-        <a class="secondary small" href="mailto:${BUSINESS.email}">Email Us ${icon('mail')}</a>
-      </div>
-    </div>
-  </section>`;
+function community(){
+ const cards=[
+ ["01","SOLO CATALOG","Official Discography","Stream Yovan's solo EPs and singles directly.","discography","Explore catalog →"],
+ ["02","VISUAL REELS","Showreels & Short Film",'Music Video Showcase & "SURVIVAL" Short Film.',"reels","Watch reels →"],
+ ["03","ARTIST CREDITS","Produced Work & Collaborations","Tracks and releases engineered for collaborating artists under ArkWay.","","View credits →"],
+ ["04","ON STAGE","Live Sets & Performances","Recorded live arrangements, acoustic sessions, and stage sets.","","Watch live sessions →"],
+ ["05","FILM & CULTURE","Between Frames","Film critiques, narrative analysis, and cultural essays by Yovan.","","Read Between Frames →"],
+ ["06","STORE","ArkWay Apparel & Merch","Signature streetwear, bandanas, and physical drops engineered by ArkWay Creative.","coming",""],
+ ["07","EVENTS","Live Shows & Tickets","Upcoming ArkWay live showcases, concert dates, and ticket releases.","coming",""]
+ ];
+ return `<section class="section community-landing"><div class="portal-head"><div><p class="eyebrow">03 · COMMUNITY</p><h1>WELCOME TO THE ARKWAY COMMUNITY</h1></div><p>Explore the media catalog engineered under ArkWay Creative—featuring Yovan's solo projects, production credits, featured artist collaborations, live sessions, film critiques, apparel, and live events.</p></div>
+ <div class="community-editorial-grid">${cards.map(c=>`<article class="community-editorial-card"><button class="community-editorial-hit" ${c[4]==="coming"?"disabled":`data-community="${c[4]}"`}><div class="community-editorial-top"><span class="community-door-number">${c[0]}</span><span>${icon("arrow")}</span></div><div class="community-editorial-copy"><span class="community-kicker">${c[1]}</span><h2>${c[2]}</h2><p>${c[3]}</p></div><div class="community-editorial-bottom">${c[4]==="coming"?'<span class="status-badge">COMING SOON</span>':`<span>${c[5]}</span>`}</div></button></article>`).join("")}</div></section>`;
 }
 
-function renderProducts(){
- const items=activeFilter==="ALL"?catalog:catalog.filter(c=>c.category===activeFilter);
- const cats=["ALL",...new Set(catalog.map(c=>c.category))];
- return `
-  <section class="section">
-    <div class="portal-head">
-      <div>
-        <span class="eyebrow">DOOR 02 — PRODUCTS</span>
-        <h2>Digital Sound Tools & Production Assets</h2>
-      </div>
-      <p>High-quality drum kits, sample packs, beat stems, and Foley audio suites engineered for music producers, sound designers, and content creators.</p>
-    </div>
-    <div class="product-filter-bar">
-      ${cats.map(cat=>`<button class="${activeFilter===cat?'active':''}" onclick="setFilter('${cat}')">${cat}</button>`).join('')}
-    </div>
-    <div class="product-grid">
-      ${items.length ? items.map(p=>`
-        <div class="product-card">
-          <div class="product-card-top">
-            <div class="product-badges">
-              <span class="product-category-badge">${p.category}</span>
-              <span class="product-coming-pill">AVAILABLE</span>
-            </div>
-            <span class="product-price">${p.price}</span>
-          </div>
-          <div class="product-card-copy">
-            <h3>${p.title}</h3>
-            <p class="product-spec">${p.specs}</p>
-          </div>
-          <div class="product-preview">
-            <div class="product-preview-head"><span>PREVIEW AUDIO</span><span>140 BPM</span></div>
-            <div class="waveform">
-              ${Array(28).fill(0).map(()=>`<span style="height:${Math.floor(Math.random()*70)+30}%"></span>`).join('')}
-            </div>
-            <button class="product-preview-button" onclick="alert('Audio preview player active.')">${icon('play')} PLAY SAMPLE</button>
-          </div>
-          <div class="product-actions">
-            <button class="primary small" onclick="openModal('${p.title}')">BUY NOW</button>
-            <button class="secondary small" onclick="navigator.clipboard.writeText(window.location.href);alert('Link copied!')">SHARE</button>
-          </div>
-        </div>
-      `).join('') : '<div class="product-empty"><p>No products found in this category.</p></div>'}
-    </div>
-  </section>`;
+function discography(){
+ return `<section class="subview"><a class="back" href="#community">← Back to Community</a><div class="portal-head"><div><p class="eyebrow">SOLO CATALOG</p><h1>Official <em>Discography.</em></h1></div><p>Stream Yovan's solo EPs or purchase full-fidelity lossless downloads for offline listening.</p></div>
+ <div class="discography-toggle"><button class="active" data-mode="stream">Stream</button><button data-mode="download">Download for Offline</button></div>
+ <div id="discographyContent" class="discography-grid">${releases.map(r=>`<article class="release-card"><iframe src="${r[1]}" title="${r[0]} on Spotify" loading="lazy" allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture"></iframe></article>`).join("")}</div></section>`;
 }
-
-function setFilter(cat){
- activeFilter=cat;
- render();
+function downloads(){
+ return `<div class="hustlesasa-grid">${hustlesasa.map(p=>`<article class="hustlesasa-card"><div class="hustlesasa-topline"><h3>${p[0]}</h3><span class="price-badge">${p[2]}</span></div><span class="download-category">${p[1]}</span><a class="primary small hustle-cta" href="${p[3]}" target="_blank" rel="noopener">Buy &amp; Download on Hustlesasa ${icon("bag")}</a></article>`).join("")}</div>`;
 }
-
-function renderCommunity(sub=""){
- if(sub==="between-frames"){
-  return `
-   <section class="subview">
-     <button class="back" onclick="setRoute('community')">← BACK TO COMMUNITY</button>
-     <span class="eyebrow">FILM CRITICISM & ANALYSIS</span>
-     <h2>Between Frames by Yovan</h2>
-     <p>A film criticism and narrative analysis publication examining cinema technique, visual pacing, screenwriting structures, and cinematic storytelling.</p>
-     <div style="margin-top:30px;padding:30px;border:1px solid var(--line);background:var(--panel);">
-       <h3>Substack Publication</h3>
-       <p>Read essays, reviews, and film studies published directly on Substack.</p>
-       <a class="primary large" href="https://betweenframes.substack.com" target="_blank" rel="noopener noreferrer">VISIT BETWEEN FRAMES ${icon('arrow')}</a>
-     </div>
-   </section>`;
- }
- if(sub==="discography"){
-  return `
-   <section class="subview">
-     <button class="back" onclick="setRoute('community')">← BACK TO COMMUNITY</button>
-     <span class="eyebrow">OFFICIAL MUSIC DISCOGRAPHY</span>
-     <h2>ArkWay Music Catalog</h2>
-     <div class="discography-toggle">
-       <button class="${activeDiscography==='spotify'?'active':''}" onclick="setDiscography('spotify')">Spotify Releases</button>
-       <button class="${activeDiscography==='hustlesasa'?'active':''}" onclick="setDiscography('hustlesasa')">Hustlesasa Digital Downloads</button>
-     </div>
-     ${activeDiscography==='spotify' ? `
-       <div class="discography-grid">
-         ${releases.map(r=>`
-           <div class="release-card">
-             <iframe src="${r[1]}" loading="lazy" title="${r[0]}"></iframe>
-           </div>
-         `).join('')}
-       </div>
-     ` : `
-       <div class="hustlesasa-grid">
-         ${hustlesasa.map(h=>`
-           <div class="hustlesasa-card">
-             <div class="hustlesasa-topline">
-               <h3>${h[0]}</h3>
-               <span class="price-badge">${h[2]}</span>
-             </div>
-             <span class="download-category">${h[1]}</span>
-             <a class="primary small hustle-cta" href="${h[3]}" target="_blank" rel="noopener noreferrer">BUY ON HUSTLESASA ${icon('arrow')}</a>
-           </div>
-         `).join('')}
-       </div>
-     `}
-   </section>`;
- }
- if(sub==="media-universe"){
-  return `
-   <section class="subview">
-     <button class="back" onclick="setRoute('community')">← BACK TO COMMUNITY</button>
-     <span class="eyebrow">ORIGINAL MEDIA & SHOWREELS</span>
-     <h2>ArkWay Visual Universe</h2>
-     <div class="community-reel-grid">
-       <div class="universe-media-card">
-         <div class="universe-video">
-           <iframe src="https://www.youtube.com/embed/videoseries?list=PL28Gll44C2bK2e8E-M-aW_zQ7K5Yt_V0x" title="Elohim Official Video" allowfullscreen></iframe>
-         </div>
-         <div class="universe-media-copy">
-           <span class="eyebrow">OFFICIAL MUSIC VIDEO</span>
-           <h3>Elohim — Yovan (Official Music Video)</h3>
-           <p>Official music video for "Elohim" by Yovan. Self-produced and engineered under ArkWay Creative.</p>
-         </div>
-       </div>
-       <div class="universe-media-card">
-         <div class="universe-video">
-           <iframe src="https://www.youtube.com/embed/videoseries?list=PL28Gll44C2bK2e8E-M-aW_zQ7K5Yt_V0x" title="SURVIVAL Short Film" allowfullscreen></iframe>
-         </div>
-         <div class="universe-media-copy">
-           <span class="eyebrow">SHORT FILM</span>
-           <h3>SURVIVAL | Short Film</h3>
-           <p>A cinematic short film exploring survival, resilience, and personal narrative through visual music composition.</p>
-         </div>
-       </div>
-     </div>
-   </section>`;
- }
-
- return `
-  <section class="section community-landing">
-    <div class="portal-head">
-      <div>
-        <span class="eyebrow">DOOR 03 — COMMUNITY & MEDIA</span>
-        <h2>The ArkWay Culture & Content Universe</h2>
-      </div>
-      <p>Explore our film analysis publication, official streaming discography, direct digital music downloads, and visual showreels.</p>
-    </div>
-    <div class="community-editorial-grid">
-      <div class="community-editorial-card">
-        <button class="community-editorial-hit" onclick="setRoute('community','between-frames')">
-          <div class="community-editorial-top"><span class="community-door-number">PORTAL 01</span><span>FILM CRITICISM</span></div>
-          <div class="community-editorial-copy">
-            <span class="community-kicker">SUBSTACK PUBLICATION</span>
-            <h2>Between Frames by Yovan</h2>
-            <p>Deep-dive film reviews, screenwriting breakdowns, and cinematic storytelling essays.</p>
-          </div>
-          <div class="community-editorial-bottom"><span>READ ESSAYS ${icon('arrow')}</span></div>
-        </button>
-      </div>
-      <div class="community-editorial-card">
-        <button class="community-editorial-hit" onclick="setRoute('community','discography')">
-          <div class="community-editorial-top"><span class="community-door-number">PORTAL 02</span><span>OFFICIAL DISCOGRAPHY</span></div>
-          <div class="community-editorial-copy">
-            <span class="community-kicker">STREAMING & DOWNLOADS</span>
-            <h2>Music Catalog</h2>
-            <p>Listen to Spotify releases or buy early digital project downloads via Hustlesasa.</p>
-          </div>
-          <div class="community-editorial-bottom"><span>EXPLORE DISCOGRAPHY ${icon('arrow')}</span></div>
-        </button>
-      </div>
-      <div class="community-editorial-card">
-        <button class="community-editorial-hit" onclick="setRoute('community','media-universe')">
-          <div class="community-editorial-top"><span class="community-door-number">PORTAL 03</span><span>VISUAL REELS</span></div>
-          <div class="community-editorial-copy">
-            <span class="community-kicker">ORIGINAL SHOWREELS</span>
-            <h2>Visual Universe</h2>
-            <p>Music videos, short films, sound design previews, and original video content.</p>
-          </div>
-          <div class="community-editorial-bottom"><span>WATCH VIDEOS ${icon('arrow')}</span></div>
-        </button>
-      </div>
-      <div class="community-editorial-card">
-        <div class="community-editorial-hit" style="cursor:default">
-          <div class="community-editorial-top"><span class="community-door-number">PORTAL 04</span><span class="status-badge">COMING SOON</span></div>
-          <div class="community-editorial-copy">
-            <span class="community-kicker">LIVE SHOWCASES & EVENTS</span>
-            <h2>ArkWay Live</h2>
-            <p>Community events, live listening parties, film screenings, and creative workshops.</p>
-          </div>
-          <div class="community-editorial-bottom"><span style="color:#69737f">IN DEVELOPMENT</span></div>
-        </div>
-      </div>
-    </div>
-  </section>`;
+function reels(){
+ return `<section class="subview"><a class="back" href="#community">← Back to Community</a><div class="portal-head"><div><p class="eyebrow">VISUAL REELS</p><h1>Showreels & <em>Short Film.</em></h1></div><p>Music Video Showcase & "SURVIVAL" Short Film.</p></div>
+ <div class="community-reel-grid"><article class="universe-media-card"><div class="universe-video"><iframe src="https://www.youtube.com/embed/" title="ArkWay Music & Production Reel" loading="lazy"></iframe></div><div class="universe-media-copy"><span class="card-label">MUSIC PRODUCTION REEL</span><h3>ArkWay Music & Production Reel</h3><p>Showcase of music production, scoring, and original compositions engineered under ArkWay Creative.</p></div></article><article class="universe-media-card"><div class="universe-video"><iframe src="https://www.youtube.com/embed/" title="SURVIVAL Short Film" loading="lazy"></iframe></div><div class="universe-media-copy"><span class="card-label">SURVIVAL · SHORT FILM</span><h3>SURVIVAL | Short Film</h3><p>Cinematic narrative short film produced and scored under ArkWay Creative.</p></div></article></div></section>`;
 }
-
-function setDiscography(tab){
- activeDiscography=tab;
- render();
-}
-
 function render(){
  const r=route();
- const app=document.getElementById("app");
- 
- document.querySelectorAll(".navlink").forEach(btn=>{
-  btn.classList.toggle("active", btn.dataset.route === r.root);
- });
-
- if(r.root==="services") app.innerHTML=renderServices();
- else if(r.root==="products") app.innerHTML=renderProducts();
- else if(r.root==="community") app.innerHTML=renderCommunity(r.sub);
- else app.innerHTML=renderHome();
-
- window.scrollTo(0,0);
+ let content=r.root==="home"?home():r.root==="services"?services():r.root==="products"?products():r.sub==="discography"?discography():r.sub==="reels"?reels():community();
+ document.getElementById("app").innerHTML=content;
+ document.querySelectorAll(".navlink").forEach(b=>b.classList.toggle("active",b.dataset.route===r.root));
+ document.title="ArkWay Creative — "+(r.root[0].toUpperCase()+r.root.slice(1));
+ bind();
+ window.scrollTo({top:0,behavior:"smooth"});
 }
-
-document.addEventListener("click", e=>{
- const btn=e.target.closest("[data-route]");
- if(btn){
-  setRoute(btn.dataset.route);
-  document.getElementById("navlinks").classList.remove("open");
- }
-});
-
-document.getElementById("menuBtn").addEventListener("click", ()=>{
- document.getElementById("navlinks").classList.toggle("open");
-});
-
-window.addEventListener("hashchange", render);
-window.addEventListener("DOMContentLoaded", render);
+function bind(){
+ document.querySelectorAll("[data-route]").forEach(el=>el.addEventListener("click",()=>{setRoute(el.dataset.route);document.getElementById("navlinks").classList.remove("open")}));
+ document.querySelectorAll("[data-href]").forEach(el=>el.addEventListener("click",()=>location.hash=el.dataset.href));
+ document.querySelectorAll(".book-service").forEach(el=>el.addEventListener("click",()=>showModal(el.dataset.service)));
+ document.querySelectorAll("[data-filter]").forEach(el=>el.addEventListener("click",()=>{location.hash="#products?filter="+encodeURIComponent(el.dataset.filter)}));
+ document.querySelectorAll("[data-play]").forEach(el=>el.addEventListener("click",()=>{el.closest(".product-preview").querySelector(".waveform").classList.toggle("playing");el.innerHTML=el.closest(".product-preview").querySelector(".waveform").classList.contains("playing")?"Ⅱ Pause Demo":"▶ Play Demo"}));
+ document.querySelectorAll("[data-share]").forEach(el=>el.addEventListener("click",async()=>{const u=location.origin+location.pathname+"#products?id="+el.dataset.share;try{await navigator.clipboard.writeText(u);el.textContent="Link Copied"}catch{window.prompt("Copy this ArkWay product link:",u)}setTimeout(()=>el.textContent="Share Link →",1800)}));
+ document.querySelectorAll("[data-community]").forEach(el=>el.addEventListener("click",()=>setRoute("community",el.dataset.community)));
+ document.querySelectorAll("[data-mode]").forEach(el=>el.addEventListener("click",()=>{document.querySelectorAll("[data-mode]").forEach(x=>x.classList.remove("active"));el.classList.add("active");document.getElementById("discographyContent").innerHTML=el.dataset.mode==="download"?downloads():releases.map(r=>`<article class="release-card"><iframe src="${r[1]}" title="${r[0]} on Spotify" loading="lazy" allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture"></iframe></article>`).join("")}));
+}
+function showModal(service){
+ document.body.classList.add("locked");
+ const wrap=document.createElement("div");wrap.className="modal-backdrop";
+ wrap.innerHTML=`<div class="modal" role="dialog" aria-modal="true"><button class="modal-close" aria-label="Close">×</button><p class="eyebrow">INSTANT INQUIRY</p><h2>Book <em>${service}</em></h2><p>Choose how you want to start the conversation. Your service details will be pre-filled.</p><div class="modal-actions"><a class="primary large" target="_blank" rel="noopener" href="${inquiry(service,"whatsapp")}">Open WhatsApp →</a><a class="secondary large" href="${inquiry(service,"email")}">Send Email ✉</a></div><span class="modal-note">${BUSINESS.phone} · ${BUSINESS.email}</span></div>`;
+ document.body.appendChild(wrap);
+ const close=()=>{wrap.remove();document.body.classList.remove("locked")};
+ wrap.addEventListener("mousedown",e=>{if(e.target===wrap)close()});wrap.querySelector(".modal-close").addEventListener("click",close);
+}
+document.getElementById("menuBtn").addEventListener("click",()=>document.getElementById("navlinks").classList.toggle("open"));
+window.addEventListener("hashchange",render);
+if(!location.hash) history.replaceState({}, "", "#home");
+render();
 </script>
 </body>
 </html>
