@@ -9,10 +9,31 @@
 .service-modal.active { display: flex; }
 .modal-content { background: #121212; border: 1px solid rgba(255,255,255,0.15); border-radius: 12px; width: 100%; max-width: 480px; padding: 30px; position: relative; box-shadow: 0 20px 40px rgba(0,0,0,0.5); color: #f5f5f5; text-align: left; }
 .modal-close { position: absolute; top: 20px; right: 20px; background: transparent; border: none; color: #fff; font-size: 24px; cursor: pointer; }
-.modal-price { font-size: 1.4rem; font-weight: 700; color: #d4af37; margin: 10px 0 15px 0; }
+.modal-price { font-size: 1.3rem; font-weight: 700; color: #d4af37; margin: 10px 0 15px 0; }
 .modal-desc { font-size: 1rem; line-height: 1.6; color: #ccc; margin-bottom: 0; }
-.clickable-item { cursor: pointer; transition: color 0.2s; }
-.clickable-item:hover { color: #d4af37; }
+
+/* Clickable list items indicator */
+.clickable-item { 
+  cursor: pointer; 
+  position: relative; 
+  padding-left: 18px; 
+  transition: color 0.2s; 
+}
+.clickable-item::before {
+  content: "+";
+  position: absolute;
+  left: 0;
+  color: #d4af37;
+  font-weight: 700;
+  opacity: 0.7;
+  transition: opacity 0.2s;
+}
+.clickable-item:hover { 
+  color: #d4af37; 
+}
+.clickable-item:hover::before {
+  opacity: 1;
+}
 </style>
 </head><body><div class="site">
 <header class="nav"><a class="brand" href="/" aria-label="ArkWay Creative home"><img src="https://lh3.googleusercontent.com/d/1jrEFMFWEB7wO19K-_SJBsEcz4azfM9e4" alt="ArkWay Creative"></a><nav class="navlinks" id="navlinks"><a class="navlink" href="/">Home</a><a class="navlink active" href="/services">Services</a><a class="navlink" href="/products">Products</a><a class="navlink" href="/community">Community</a></nav><button class="menu" id="menuBtn" aria-label="Toggle navigation">☰</button></header>
@@ -36,15 +57,15 @@
   </ul><button class="outline-action book-service" data-service="Score the picture." data-wa="https://wa.me/254118618199?text=Hi%20ArkWay%2C%20I%20would%20like%20to%20book%20Score%20the%20picture..%20Please%20share%20availability%20and%20next%20steps." data-em="mailto:arkwaycreative@gmail.com?subject=ArkWay%20booking%20%E2%80%94%20Score%20the%20picture.&body=Hi%20ArkWay%2C%20I%20would%20like%20to%20book%20Score%20the%20picture..%20Please%20share%20availability%20and%20next%20steps.">Reach out to book →</button></article>
 
   <article class="service-group"><div class="service-group-head"><span class="card-label">03 / BRAND ARCHITECTURE</span><span>→</span></div><h3>Build the media system.</h3><p>Creative direction, campaign thinking and brand architecture for people and organizations that need their message to move.</p><ul>
-    <li>Brand Identity & Creative Direction</li>
-    <li>Campaign & Content Architecture</li>
-    <li>Digital Media Strategy</li>
+    <li class="clickable-item" onclick="openModal('Brand Identity & Creative Direction', 'Custom Scope / Quote', 'Defining your visual language, tone, positioning, and foundational brand identity assets.')">Brand Identity & Creative Direction</li>
+    <li class="clickable-item" onclick="openModal('Campaign & Content Architecture', 'Custom Scope / Quote', 'Strategic rollout plans, media formatting, and content frameworks for releases or campaigns.')">Campaign & Content Architecture</li>
+    <li class="clickable-item" onclick="openModal('Digital Media Strategy', 'Custom Scope / Quote', 'Mapping out online presence, audience engagement pipelines, and distribution channels.')">Digital Media Strategy</li>
   </ul><button class="outline-action book-service" data-service="Build the media system." data-wa="https://wa.me/254118618199?text=Hi%20ArkWay%2C%20I%20would%20like%20to%20book%20Build%20the%20media%20system..%20Please%20share%20availability%20and%20next%20steps." data-em="mailto:arkwaycreative@gmail.com?subject=ArkWay%20booking%20%E2%80%94%20Build%20the%20media%20system.&body=Hi%20ArkWay%2C%20I%20would%20like%20to%20book%20Build%20the%20media%20system..%20Please%20share%20availability%20and%20next%20steps.">Reach out to book →</button></article>
 
   <article class="service-group"><div class="service-group-head"><span class="card-label">04 / DATA & ANALYTICS</span><span>→</span></div><h3>Make creative decisions with evidence.</h3><p>Data analytics is the intelligence layer behind media, audience and business decisions.</p><ul>
-    <li>Market Research & Business Analytics</li>
-    <li>Audience & Performance Analysis</li>
-    <li>Dashboards & Reporting</li>
+    <li class="clickable-item" onclick="openModal('Market Research & Business Analytics', 'Custom Scope / Quote', 'Gathering and analyzing data to uncover market gaps, trends, and growth metrics.')">Market Research & Business Analytics</li>
+    <li class="clickable-item" onclick="openModal('Audience & Performance Analysis', 'Custom Scope / Quote', 'Deep dives into listener or consumer metrics, stream data, and audience behavior.')">Audience & Performance Analysis</li>
+    <li class="clickable-item" onclick="openModal('Dashboards & Reporting', 'Custom Scope / Quote', 'Building customized tracking dashboards and performance reports for your project or business.')">Dashboards & Reporting</li>
   </ul><button class="outline-action book-service" data-service="Make creative decisions with evidence." data-wa="https://wa.me/254118618199?text=Hi%20ArkWay%2C%20I%20would%20like%20to%20book%20Make%20creative%20decisions%20with%20evidence..%20Please%20share%20availability%20and%20next%20steps." data-em="mailto:arkwaycreative@gmail.com?subject=ArkWay%20booking%20%E2%80%94%20Make%20creative%20decisions%20with%20evidence.&body=Hi%20ArkWay%2C%20I%20would%20like%20to%20book%20Make%20creative%20decisions%20with%20evidence..%20Please%20share%20availability%20and%20next%20steps.">Reach out to book →</button></article>
 
 </div>
@@ -54,7 +75,7 @@
 <div id="serviceModal" class="service-modal" onclick="closeModalOnBg(event)">
   <div class="modal-content">
     <button class="modal-close" onclick="closeModal()">&times;</button>
-    <p class="eyebrow" style="margin-bottom: 5px;">PACKAGE DETAILS</p>
+    <p class="eyebrow" style="margin-bottom: 5px;">SERVICE OVERVIEW</p>
     <h2 id="modalTitle" style="margin: 0; font-size: 1.4rem;">Package Name</h2>
     <div class="modal-price" id="modalPrice">KSh 0</div>
     <p class="modal-desc" id="modalDesc">Description goes here...</p>
