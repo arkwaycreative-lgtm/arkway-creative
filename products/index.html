@@ -1,146 +1,447 @@
 <!DOCTYPE html>
-<html lang="en"><head><meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Products — Beat Packs, Drum Kits & Foley | ArkWay Creative</title><meta name="description" content="Digital tools for producers, filmmakers and artists: beat packs, drum kits, loops, FX and foley from ArkWay Creative."><link rel="canonical" href="https://arkway-creative.vercel.app/products">
-<meta property="og:type" content="website"><meta property="og:site_name" content="ArkWay Creative"><meta property="og:title" content="Products — Beat Packs, Drum Kits & Foley | ArkWay Creative"><meta property="og:description" content="Digital tools for producers, filmmakers and artists: beat packs, drum kits, loops, FX and foley from ArkWay Creative."><meta property="og:url" content="https://arkway-creative.vercel.app/products"><meta property="og:image" content="https://lh3.googleusercontent.com/d/1Kl4dplfcrAjRYt88Wi7aSX_wsFlTuz6z"><meta name="twitter:card" content="summary_large_image">
-<link rel="stylesheet" href="/style.css">
-<style>
-  /* Clean wrapping grid layout for filter buttons */
-  .product-filter-bar {
-    display: flex !important;
-    flex-wrap: wrap !important;
-    gap: 8px !important;
-    overflow: visible !important;
-    white-space: normal !important;
-    width: 100% !important;
-    max-width: 100% !important;
-    padding: 4px 0 20px 0 !important;
-    box-sizing: border-box !important;
-    background: transparent !important;
-    border: none !important;
-  }
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Products — Beat Packs, Drum Kits & Guitar Loops | ArkWay Creative</title>
+  <meta name="description" content="Digital tools for producers, filmmakers and artists: ArkWay Acoustic Guitar Loops Vol. 1, beat packs, drum kits, and sound design suites.">
+  <link rel="canonical" href="https://arkway-creative.vercel.app/products">
   
-  /* Studio button base styling */
-  .product-filter-bar button {
-    flex: 1 1 calc(33.333% - 8px) !important;
-    min-width: 100px !important;
-    font-size: 0.72rem !important;
-    font-weight: 600 !important;
-    text-transform: uppercase !important;
-    padding: 12px 10px !important;
-    letter-spacing: 0.08em !important;
-    background: rgba(18, 18, 20, 0.7) !important;
-    border: 1px solid rgba(255, 255, 255, 0.08) !important;
-    border-radius: 8px !important;
-    color: #777777 !important;
-    cursor: pointer !important;
-    text-align: center !important;
-    transition: all 0.25s cubic-bezier(0.16, 1, 0.3, 1) !important;
-    box-shadow: 0 2px 6px rgba(0, 0, 0, 0.2) !important;
-    display: flex !important;
-    align-items: center !important;
-    justify-content: center !important;
-    gap: 6px !important;
-  }
-  
-  @media (min-width: 640px) {
-    .product-filter-bar button {
-      flex: 0 1 auto !important;
+  <meta property="og:type" content="website">
+  <meta property="og:site_name" content="ArkWay Creative">
+  <meta property="og:title" content="Products — Beat Packs, Drum Kits & Guitar Loops | ArkWay Creative">
+  <meta property="og:description" content="Digital tools for producers, filmmakers and artists: ArkWay Acoustic Guitar Loops Vol. 1, beat packs, drum kits, and sound design suites.">
+  <meta property="og:url" content="https://arkway-creative.vercel.app/products">
+  <meta property="og:image" content="https://lh3.googleusercontent.com/d/1Kl4dplfcrAjRYt88Wi7aSX_wsFlTuz6z">
+  <meta name="twitter:card" content="summary_large_image">
+
+  <link rel="stylesheet" href="/style.css">
+
+  <!-- Schema.org JSON-LD Structured Data for AI & Search Engines -->
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "Product",
+    "name": "ArkWay Acoustic Guitar Loops Vol. 1",
+    "description": "5 original, live-recorded acoustic guitar loops + full stems (24-bit WAV). Recorded & produced by Yovan @ ArkWay.",
+    "brand": {
+      "@type": "Brand",
+      "name": "ArkWay Creative"
+    },
+    "offers": {
+      "@type": "Offer",
+      "url": "https://arkway.hustlesasa.shop/products/6ac6aca75da3db28bb77c4c2",
+      "priceCurrency": "KES",
+      "price": "800",
+      "availability": "https://schema.org/InStock"
     }
   }
+  </script>
 
-  .product-filter-bar button:hover {
-    background: rgba(28, 28, 32, 0.9) !important;
-    border-color: rgba(255, 255, 255, 0.25) !important;
-    color: #cccccc !important;
-    transform: translateY(-1px) !important;
-  }
+  <style>
+    /* Filter Bar Layout */
+    .product-filter-bar {
+      display: flex !important;
+      flex-wrap: wrap !important;
+      gap: 8px !important;
+      padding: 4px 0 24px 0 !important;
+      box-sizing: border-box !important;
+    }
+    
+    .product-filter-bar button {
+      flex: 1 1 calc(33.333% - 8px) !important;
+      min-width: 90px !important;
+      font-size: 0.72rem !important;
+      font-weight: 600 !important;
+      text-transform: uppercase !important;
+      padding: 10px 12px !important;
+      letter-spacing: 0.08em !important;
+      background: rgba(18, 18, 20, 0.7) !important;
+      border: 1px solid rgba(255, 255, 255, 0.08) !important;
+      border-radius: 8px !important;
+      color: #777777 !important;
+      cursor: pointer !important;
+      text-align: center !important;
+      transition: all 0.25s cubic-bezier(0.16, 1, 0.3, 1) !important;
+      display: flex !important;
+      align-items: center !important;
+      justify-content: center !important;
+      gap: 6px !important;
+    }
+    
+    @media (min-width: 640px) {
+      .product-filter-bar button {
+        flex: 0 1 auto !important;
+      }
+    }
 
-  /* Active State with hardware indicator dot */
-  .product-filter-bar button.active {
-    background: var(--accent, #f5c518) !important;
-    color: #0b0b0b !important;
-    border-color: var(--accent, #f5c518) !important;
-    font-weight: 800 !important;
-    transform: translateY(-2px) scale(1.02) !important;
-    box-shadow: 0 8px 24px rgba(245, 197, 24, 0.4), 0 2px 6px rgba(0, 0, 0, 0.5), inset 0 1px 0 rgba(255, 255, 255, 0.6) !important;
-    z-index: 2;
-  }
+    .product-filter-bar button:hover {
+      background: rgba(28, 28, 32, 0.9) !important;
+      border-color: rgba(255, 255, 255, 0.25) !important;
+      color: #cccccc !important;
+    }
 
-  /* Miniature active LED dot for selected filter */
-  .product-filter-bar button .active-dot {
-    display: none;
-    width: 5px;
-    height: 5px;
-    background-color: #0b0b0b;
-    border-radius: 50%;
-  }
+    .product-filter-bar button.active {
+      background: var(--accent, #f5c518) !important;
+      color: #0b0b0b !important;
+      border-color: var(--accent, #f5c518) !important;
+      font-weight: 800 !important;
+      box-shadow: 0 4px 16px rgba(245, 197, 24, 0.3) !important;
+    }
 
-  .product-filter-bar button.active .active-dot {
-    display: inline-block;
-  }
+    .product-filter-bar button .active-dot {
+      display: none;
+      width: 5px;
+      height: 5px;
+      background-color: #0b0b0b;
+      border-radius: 50%;
+    }
 
-  /* Professional Vault Status Announcement Card */
-  .vault-announcement {
-    background: rgba(20, 20, 22, 0.6);
-    border: 1px solid rgba(255, 255, 255, 0.08);
-    border-radius: 12px;
-    padding: 48px 24px;
-    text-align: center;
-    margin-top: 12px;
-    box-shadow: 0 8px 24px rgba(0,0,0,0.3);
-  }
-  .vault-announcement h3 {
-    font-size: 1.5rem;
-    color: #ffffff;
-    margin: 12px 0 16px 0;
-    letter-spacing: -0.02em;
-  }
-  .vault-announcement p {
-    color: #a0a0a0;
-    max-width: 520px;
-    margin: 0 auto 24px auto;
-    font-size: 0.95rem;
-    line-height: 1.6;
-  }
-  .vault-action-btn {
-    display: inline-block;
-    background: var(--accent, #f5c518);
-    color: #0b0b0b;
-    font-weight: 700;
-    padding: 12px 24px;
-    border-radius: 6px;
-    text-decoration: none;
-    font-size: 0.85rem;
-    letter-spacing: 0.05em;
-    box-shadow: 0 4px 12px rgba(245, 197, 24, 0.25);
-    transition: all 0.2s ease;
-  }
-  .vault-action-btn:hover {
-    transform: translateY(-1px);
-    opacity: 0.95;
-  }
-</style>
-</head><body><div class="site">
-<header class="nav"><a class="brand" href="/" aria-label="ArkWay Creative home"><img src="https://lh3.googleusercontent.com/d/1jrEFMFWEB7wO19K-_SJBsEcz4azfM9e4" alt="ArkWay Creative"></a><nav class="navlinks" id="navlinks"><a class="navlink" href="/">Home</a><a class="navlink" href="/services">Services</a><a class="navlink active" href="/products">Products</a><a class="navlink" href="/community">Community</a></nav><button class="menu" id="menuBtn" aria-label="Toggle navigation">☰</button></header>
-<main><section class="section"><div class="portal-head"><div><p class="eyebrow">02 · PRODUCTS</p><h1>Open the <em>sound vault.</em></h1></div><p>Digital tools for producers, filmmakers and artists — curated drops of beats, loops, drums, FX and foley, engineered for independent work.</p></div>
+    .product-filter-bar button.active .active-dot {
+      display: inline-block;
+    }
 
-<div class="product-filter-bar">
-  <button class="active" data-filter="BEATS"><span class="active-dot"></span> BEATS</button>
-  <button data-filter="FILM SCORES"><span class="active-dot"></span> FILM SCORES</button>
-  <button data-filter="LOOPS"><span class="active-dot"></span> LOOPS</button>
-  <button data-filter="DRUM KITS"><span class="active-dot"></span> DRUM KITS</button>
-  <button data-filter="FX"><span class="active-dot"></span> FX</button>
-  <button data-filter="FOLEY"><span class="active-dot"></span> FOLEY</button>
+    /* Product Grid & Card Styling */
+    .products-grid {
+      display: grid;
+      grid-template-columns: 1fr;
+      gap: 24px;
+      margin-top: 12px;
+      margin-bottom: 40px;
+    }
+
+    @media (min-width: 768px) {
+      .products-grid {
+        grid-template-columns: repeat(2, 1fr);
+      }
+    }
+
+    .product-card {
+      background: rgba(20, 20, 22, 0.7);
+      border: 1px solid rgba(255, 255, 255, 0.08);
+      border-radius: 12px;
+      padding: 24px;
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+      transition: border-color 0.3s ease, transform 0.3s ease;
+      position: relative;
+    }
+
+    .product-card:hover {
+      border-color: rgba(212, 175, 55, 0.4);
+      transform: translateY(-2px);
+    }
+
+    .product-card-top {
+      display: flex;
+      justify-content: space-between;
+      align-items: flex-start;
+      margin-bottom: 12px;
+    }
+
+    .product-badge-group {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 6px;
+      margin-bottom: 16px;
+    }
+
+    .spec-badge {
+      font-size: 0.7rem;
+      font-weight: 600;
+      letter-spacing: 0.05em;
+      text-transform: uppercase;
+      padding: 4px 8px;
+      border-radius: 4px;
+      background: rgba(255, 255, 255, 0.05);
+      color: #aaa;
+      border: 1px solid rgba(255, 255, 255, 0.06);
+    }
+
+    .spec-badge.gold {
+      background: rgba(212, 175, 55, 0.1);
+      color: #d4af37;
+      border-color: rgba(212, 175, 55, 0.25);
+    }
+
+    .product-title {
+      font-size: 1.35rem;
+      font-weight: 700;
+      color: #ffffff;
+      margin: 0 0 8px 0;
+      line-height: 1.25;
+    }
+
+    .product-desc {
+      font-size: 0.9rem;
+      color: #aaa;
+      line-height: 1.5;
+      margin-bottom: 20px;
+    }
+
+    /* Tracklist Box */
+    .tracklist-box {
+      background: rgba(10, 10, 12, 0.6);
+      border: 1px solid rgba(255, 255, 255, 0.05);
+      border-radius: 8px;
+      padding: 14px 16px;
+      margin-bottom: 24px;
+    }
+
+    .tracklist-header {
+      font-size: 0.72rem;
+      font-weight: 700;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      color: #888;
+      margin-bottom: 10px;
+      display: block;
+    }
+
+    .tracklist-items {
+      list-style: none;
+      padding: 0;
+      margin: 0;
+    }
+
+    .tracklist-item {
+      font-size: 0.85rem;
+      color: #ddd;
+      padding: 5px 0;
+      border-bottom: 1px dashed rgba(255, 255, 255, 0.06);
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+
+    .tracklist-item:last-child {
+      border-bottom: none;
+    }
+
+    .track-meta {
+      font-size: 0.75rem;
+      color: #d4af37;
+      font-weight: 600;
+    }
+
+    /* Pricing Section */
+    .pricing-container {
+      display: flex;
+      align-items: baseline;
+      gap: 10px;
+      margin-bottom: 16px;
+    }
+
+    .price-sale {
+      font-size: 1.4rem;
+      font-weight: 800;
+      color: #ffffff;
+    }
+
+    .price-regular {
+      font-size: 0.95rem;
+      color: #666;
+      text-decoration: line-through;
+    }
+
+    .buy-btn {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      width: 100%;
+      background: var(--accent, #f5c518);
+      color: #0b0b0b;
+      font-weight: 800;
+      font-size: 0.88rem;
+      letter-spacing: 0.04em;
+      text-transform: uppercase;
+      padding: 14px 20px;
+      border-radius: 8px;
+      text-decoration: none;
+      box-shadow: 0 4px 16px rgba(245, 197, 24, 0.25);
+      transition: all 0.2s ease;
+      box-sizing: border-box;
+    }
+
+    .buy-btn:hover {
+      transform: translateY(-1px);
+      box-shadow: 0 6px 20px rgba(245, 197, 24, 0.35);
+    }
+
+    /* Vault Announcement */
+    .vault-announcement {
+      background: rgba(20, 20, 22, 0.6);
+      border: 1px solid rgba(255, 255, 255, 0.08);
+      border-radius: 12px;
+      padding: 36px 24px;
+      text-align: center;
+      box-shadow: 0 8px 24px rgba(0,0,0,0.3);
+    }
+    .vault-announcement h3 {
+      font-size: 1.35rem;
+      color: #ffffff;
+      margin: 10px 0 12px 0;
+      letter-spacing: -0.02em;
+    }
+    .vault-announcement p {
+      color: #a0a0a0;
+      max-width: 520px;
+      margin: 0 auto 20px auto;
+      font-size: 0.92rem;
+      line-height: 1.6;
+    }
+  </style>
+</head>
+<body>
+<div class="site">
+  <header class="nav">
+    <a class="brand" href="/" aria-label="ArkWay Creative home">
+      <img src="https://lh3.googleusercontent.com/d/1jrEFMFWEB7wO19K-_SJBsEcz4azfM9e4" alt="ArkWay Creative">
+    </a>
+    <nav class="navlinks" id="navlinks">
+      <a class="navlink" href="/">Home</a>
+      <a class="navlink" href="/services">Services</a>
+      <a class="navlink active" href="/products">Products</a>
+      <a class="navlink" href="/community">Community</a>
+    </nav>
+    <button class="menu" id="menuBtn" aria-label="Toggle navigation">☰</button>
+  </header>
+
+  <main>
+    <section class="section">
+      <div class="portal-head">
+        <div>
+          <p class="eyebrow">02 · PRODUCTS</p>
+          <h1>Open the <em>sound vault.</em></h1>
+        </div>
+        <p>Digital tools for producers, filmmakers and artists — curated drops of beats, loops, drums, FX and foley, engineered for independent work.</p>
+      </div>
+
+      <div class="product-filter-bar">
+        <button class="active" onclick="filterProducts('ALL', this)"><span class="active-dot"></span> ALL DROPS</button>
+        <button onclick="filterProducts('LOOPS', this)"><span class="active-dot"></span> LOOPS</button>
+        <button onclick="filterProducts('BEATS', this)"><span class="active-dot"></span> BEATS</button>
+        <button onclick="filterProducts('FILM SCORES', this)"><span class="active-dot"></span> FILM SCORES</button>
+        <button onclick="filterProducts('DRUM KITS', this)"><span class="active-dot"></span> DRUM KITS</button>
+        <button onclick="filterProducts('FX', this)"><span class="active-dot"></span> FX</button>
+        <button onclick="filterProducts('FOLEY', this)"><span class="active-dot"></span> FOLEY</button>
+      </div>
+
+      <div class="products-grid">
+        
+        <!-- PRODUCT ITEM 01: ArkWay Acoustic Guitar Loops Vol. 1 -->
+        <article class="product-card" data-category="LOOPS">
+          <div>
+            <div class="product-card-top">
+              <span class="card-label">01 / LOOP PACK</span>
+              <span class="spec-badge gold">NEW RELEASE</span>
+            </div>
+
+            <h2 class="product-title">ArkWay Acoustic Guitar Loops Vol. 1</h2>
+            <p class="product-desc">5 original, live-recorded acoustic guitar loops + full stems (24-bit WAV). Recorded & produced by Yovan @ ArkWay Creative.</p>
+
+            <div class="product-badge-group">
+              <span class="spec-badge">100% Royalty-Free</span>
+              <span class="spec-badge">Key & BPM Labeled</span>
+              <span class="spec-badge">Stems Included</span>
+            </div>
+
+            <!-- Tracklist Preview -->
+            <div class="tracklist-box">
+              <span class="tracklist-header">INCLUDED LOOPS & STEMS (5 TRACKS)</span>
+              <ul class="tracklist-items">
+                <li class="tracklist-item">
+                  <span>1. Trance</span>
+                  <span class="track-meta">Key A# · 74 BPM</span>
+                </li>
+                <li class="tracklist-item">
+                  <span>2. Lost Love</span>
+                  <span class="track-meta">Key D# · 82 BPM</span>
+                </li>
+                <li class="tracklist-item">
+                  <span>3. Conversation</span>
+                  <span class="track-meta">Key G · 92 BPM</span>
+                </li>
+                <li class="tracklist-item">
+                  <span>4. Everywhere We Go</span>
+                  <span class="track-meta">Key G# · 84 BPM</span>
+                </li>
+                <li class="tracklist-item">
+                  <span>5. Late Night</span>
+                  <span class="track-meta">Key G# · 128 BPM</span>
+                </li>
+              </ul>
+            </div>
+          </div>
+
+          <div>
+            <div class="pricing-container">
+              <span class="price-sale">KES 800</span>
+              <span class="price-regular">KES 1,000</span>
+            </div>
+            <a class="buy-btn" href="https://arkway.hustlesasa.shop/products/6ac6aca75da3db28bb77c4c2" target="_blank" rel="noopener">Buy Pack via M-Pesa →</a>
+          </div>
+        </article>
+
+      </div>
+
+      <!-- Vault Announcement for upcoming drops -->
+      <div class="vault-announcement">
+        <span class="eyebrow">UPCOMING SOUND VAULT DROPS</span>
+        <h3>More Signature Packs Under Production.</h3>
+        <p>Mastered beat packs, drum kits, film scores, and cinematic foley suites are currently being engineered in the studio.</p>
+      </div>
+
+    </section>
+  </main>
+
+  <footer>
+    <div class="footer-top">
+      <a class="footer-brand" href="/">
+        <img src="https://lh3.googleusercontent.com/d/1jrEFMFWEB7wO19K-_SJBsEcz4azfM9e4" alt="ArkWay Creative">
+        <div><strong>ARKWAY CREATIVE</strong><span>MEDIA · DATA · CULTURE</span></div>
+      </a>
+      <div class="footer-contact">
+        <a href="mailto:arkwaycreative@gmail.com">arkwaycreative@gmail.com</a>
+        <a href="https://wa.me/254118618199" target="_blank" rel="noopener noreferrer">WhatsApp / Call 0118618199</a>
+      </div>
+    </div>
+    <div class="footer-grid">
+      <div>
+        <span class="card-label">ROUTES</span>
+        <a href="/">Home</a>
+        <a href="/services">Services</a>
+        <a href="/products">Products</a>
+        <a href="/community">Community</a>
+      </div>
+      <div>
+        <span class="card-label">ARKWAY</span>
+        <p>Data-driven media: audio, visual storytelling, brand architecture and culture.</p>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      <span>© 2026 ArkWay Creative</span>
+      <span>DESIRE · DEDICATION · DISCIPLINE</span>
+    </div>
+  </footer>
 </div>
 
-<div class="vault-announcement">
-  <span class="eyebrow">COMING SOON · OFFICIAL DROP SCHEDULED</span>
-  <h3>The Sound Vault is Preparing Its First Release.</h3>
-  <p>Mastered beat packs, signature drum kits, film scores, and cinematic foley suites are currently being engineered. Stay connected for exclusive early access notifications.</p>
-  <a class="vault-action-btn" href="https://arkway.hustlesasa.shop" target="_blank" rel="noopener">Visit Storefront & Get Notified →</a>
-</div>
+<script src="/site.js"></script>
+<script>
+function filterProducts(category, btn) {
+  document.querySelectorAll('.product-filter-bar button').forEach(b => b.classList.remove('active'));
+  btn.classList.add('active');
 
-</section></main>
-<footer><div class="footer-top"><a class="footer-brand" href="/"><img src="https://lh3.googleusercontent.com/d/1jrEFMFWEB7wO19K-_SJBsEcz4azfM9e4" alt="ArkWay Creative"><div><strong>ARKWAY CREATIVE</strong><span>MEDIA · DATA · CULTURE</span></div></a><div class="footer-contact"><a href="mailto:arkwaycreative@gmail.com">arkwaycreative@gmail.com</a><a href="https://wa.me/254118618199" target="_blank" rel="noopener noreferrer">WhatsApp / Call 0118618199</a></div></div>
-<div class="footer-grid"><div><span class="card-label">ROUTES</span><a href="/">Home</a><a href="/services">Services</a><a href="/products">Products</a><a href="/community">Community</a></div><div><span class="card-label">ARKWAY</span><p>Data-driven media: audio, visual storytelling, brand architecture and culture.</p></div></div>
-<div class="footer-bottom"><span>© 2026 ArkWay Creative</span><span>DESIRE · DEDICATION · DISCIPLINE</span></div></footer></div><script src="/site.js"></script></body></html>
+  const cards = document.querySelectorAll('.product-card');
+  cards.forEach(card => {
+    if (category === 'ALL' || card.getAttribute('data-category') === category) {
+      card.style.display = 'flex';
+    } else {
+      card.style.display = 'none';
+    }
+  });
+}
+</script>
+</body>
+</html>
