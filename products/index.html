@@ -12,7 +12,7 @@
   <meta property="og:title" content="Products — Beat Packs, Drum Kits & Guitar Loops | ArkWay Creative">
   <meta property="og:description" content="Digital tools for producers, filmmakers and artists: ArkWay Acoustic Guitar Loops Vol. 1, beat packs, drum kits, and sound design suites.">
   <meta property="og:url" content="https://arkway-creative.vercel.app/products">
-  <meta property="og:image" content="https://lh3.googleusercontent.com/d/1Kl4dplfcrAjRYt88Wi7aSX_wsFlTuz6z">
+  <meta property="og:image" content="https://lh3.googleusercontent.com/d/1cMYKxjV8SQ2A3UBFZmNs2Wxk6Cg5cfaq">
   <meta name="twitter:card" content="summary_large_image">
 
   <link rel="stylesheet" href="/style.css">
@@ -23,6 +23,7 @@
     "@context": "https://schema.org",
     "@type": "Product",
     "name": "ArkWay Acoustic Guitar Loops Vol. 1",
+    "image": "https://lh3.googleusercontent.com/d/1cMYKxjV8SQ2A3UBFZmNs2Wxk6Cg5cfaq",
     "description": "5 original, live-recorded acoustic guitar loops + full stems (24-bit WAV). Recorded & produced by Yovan @ ArkWay.",
     "brand": {
       "@type": "Brand",
@@ -101,7 +102,7 @@
       display: inline-block;
     }
 
-    /* Product Grid & Card Styling */
+    /* Product Grid & Cover Art Layout */
     .products-grid {
       display: grid;
       grid-template-columns: 1fr;
@@ -120,12 +121,11 @@
       background: rgba(20, 20, 22, 0.7);
       border: 1px solid rgba(255, 255, 255, 0.08);
       border-radius: 12px;
-      padding: 24px;
+      padding: 20px;
       display: flex;
       flex-direction: column;
       justify-content: space-between;
       transition: border-color 0.3s ease, transform 0.3s ease;
-      position: relative;
     }
 
     .product-card:hover {
@@ -133,96 +133,48 @@
       transform: translateY(-2px);
     }
 
-    .product-card-top {
+    .product-cover-wrap {
+      width: 100%;
+      border-radius: 8px;
+      overflow: hidden;
+      margin-bottom: 16px;
+      border: 1px solid rgba(255, 255, 255, 0.08);
+      background: #000;
+      aspect-ratio: 1 / 1;
+    }
+
+    .product-cover-img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      display: block;
+    }
+
+    .product-card-meta {
       display: flex;
       justify-content: space-between;
-      align-items: flex-start;
+      align-items: center;
       margin-bottom: 12px;
     }
 
-    .product-badge-group {
-      display: flex;
-      flex-wrap: wrap;
-      gap: 6px;
-      margin-bottom: 16px;
-    }
-
-    .spec-badge {
+    .spec-badge.gold {
       font-size: 0.7rem;
       font-weight: 600;
       letter-spacing: 0.05em;
       text-transform: uppercase;
       padding: 4px 8px;
       border-radius: 4px;
-      background: rgba(255, 255, 255, 0.05);
-      color: #aaa;
-      border: 1px solid rgba(255, 255, 255, 0.06);
-    }
-
-    .spec-badge.gold {
       background: rgba(212, 175, 55, 0.1);
       color: #d4af37;
-      border-color: rgba(212, 175, 55, 0.25);
+      border: 1px solid rgba(212, 175, 55, 0.25);
     }
 
     .product-title {
-      font-size: 1.35rem;
+      font-size: 1.25rem;
       font-weight: 700;
       color: #ffffff;
-      margin: 0 0 8px 0;
-      line-height: 1.25;
-    }
-
-    .product-desc {
-      font-size: 0.9rem;
-      color: #aaa;
-      line-height: 1.5;
-      margin-bottom: 20px;
-    }
-
-    /* Tracklist Box */
-    .tracklist-box {
-      background: rgba(10, 10, 12, 0.6);
-      border: 1px solid rgba(255, 255, 255, 0.05);
-      border-radius: 8px;
-      padding: 14px 16px;
-      margin-bottom: 24px;
-    }
-
-    .tracklist-header {
-      font-size: 0.72rem;
-      font-weight: 700;
-      letter-spacing: 0.08em;
-      text-transform: uppercase;
-      color: #888;
-      margin-bottom: 10px;
-      display: block;
-    }
-
-    .tracklist-items {
-      list-style: none;
-      padding: 0;
-      margin: 0;
-    }
-
-    .tracklist-item {
-      font-size: 0.85rem;
-      color: #ddd;
-      padding: 5px 0;
-      border-bottom: 1px dashed rgba(255, 255, 255, 0.06);
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-    }
-
-    .tracklist-item:last-child {
-      border-bottom: none;
-    }
-
-    .track-meta {
-      font-size: 0.75rem;
-      color: #d4af37;
-      font-weight: 600;
+      margin: 0 0 16px 0;
+      line-height: 1.3;
     }
 
     /* Pricing Section */
@@ -234,13 +186,13 @@
     }
 
     .price-sale {
-      font-size: 1.4rem;
+      font-size: 1.35rem;
       font-weight: 800;
       color: #ffffff;
     }
 
     .price-regular {
-      font-size: 0.95rem;
+      font-size: 0.9rem;
       color: #666;
       text-decoration: line-through;
     }
@@ -332,46 +284,16 @@
         <!-- PRODUCT ITEM 01: ArkWay Acoustic Guitar Loops Vol. 1 -->
         <article class="product-card" data-category="LOOPS">
           <div>
-            <div class="product-card-top">
+            <div class="product-cover-wrap">
+              <img class="product-cover-img" src="https://lh3.googleusercontent.com/d/1cMYKxjV8SQ2A3UBFZmNs2Wxk6Cg5cfaq" alt="ArkWay Acoustic Guitar Loops Vol. 1 Cover Artwork" loading="lazy">
+            </div>
+
+            <div class="product-card-meta">
               <span class="card-label">01 / LOOP PACK</span>
               <span class="spec-badge gold">NEW RELEASE</span>
             </div>
 
             <h2 class="product-title">ArkWay Acoustic Guitar Loops Vol. 1</h2>
-            <p class="product-desc">5 original, live-recorded acoustic guitar loops + full stems (24-bit WAV). Recorded & produced by Yovan @ ArkWay Creative.</p>
-
-            <div class="product-badge-group">
-              <span class="spec-badge">100% Royalty-Free</span>
-              <span class="spec-badge">Key & BPM Labeled</span>
-              <span class="spec-badge">Stems Included</span>
-            </div>
-
-            <!-- Tracklist Preview -->
-            <div class="tracklist-box">
-              <span class="tracklist-header">INCLUDED LOOPS & STEMS (5 TRACKS)</span>
-              <ul class="tracklist-items">
-                <li class="tracklist-item">
-                  <span>1. Trance</span>
-                  <span class="track-meta">Key A# · 74 BPM</span>
-                </li>
-                <li class="tracklist-item">
-                  <span>2. Lost Love</span>
-                  <span class="track-meta">Key D# · 82 BPM</span>
-                </li>
-                <li class="tracklist-item">
-                  <span>3. Conversation</span>
-                  <span class="track-meta">Key G · 92 BPM</span>
-                </li>
-                <li class="tracklist-item">
-                  <span>4. Everywhere We Go</span>
-                  <span class="track-meta">Key G# · 84 BPM</span>
-                </li>
-                <li class="tracklist-item">
-                  <span>5. Late Night</span>
-                  <span class="track-meta">Key G# · 128 BPM</span>
-                </li>
-              </ul>
-            </div>
           </div>
 
           <div>
