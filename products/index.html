@@ -319,8 +319,7 @@
       </div>
 
       <div class="product-filter-bar">
-        <button class="active" onclick="filterProducts('ALL', this)"><span class="active-dot"></span> ALL DROPS</button>
-        <button onclick="filterProducts('LOOPS', this)"><span class="active-dot"></span> LOOPS</button>
+        <button class="active" onclick="filterProducts('LOOPS', this)"><span class="active-dot"></span> LOOPS</button>
         <button onclick="filterProducts('BEATS', this)"><span class="active-dot"></span> BEATS</button>
         <button onclick="filterProducts('FILM SCORES', this)"><span class="active-dot"></span> FILM SCORES</button>
         <button onclick="filterProducts('DRUM KITS', this)"><span class="active-dot"></span> DRUM KITS</button>
@@ -380,7 +379,7 @@
               <span class="price-sale">KES 800</span>
               <span class="price-regular">KES 1,000</span>
             </div>
-            <a class="buy-btn" href="https://arkway.hustlesasa.shop/products/6ac6aca75da3db28bb77c4c2" target="_blank" rel="noopener">Buy Pack via M-Pesa →</a>
+            <a class="buy-btn" href="https://arkway.hustlesasa.shop/products/6ac6aca75da3db28bb77c4c2" target="_blank" rel="noopener">Buy Pack →</a>
           </div>
         </article>
 
@@ -435,7 +434,7 @@ function filterProducts(category, btn) {
 
   const cards = document.querySelectorAll('.product-card');
   cards.forEach(card => {
-    if (category === 'ALL' || card.getAttribute('data-category') === category) {
+    if (card.getAttribute('data-category') === category) {
       card.style.display = 'flex';
     } else {
       card.style.display = 'none';
