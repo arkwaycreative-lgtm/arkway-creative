@@ -110,13 +110,6 @@
       color: #aaa;
       margin: 0;
     }
-
-    /* Minimalist inline distinction style */
-    .portal-head p em-custom {
-      color: #d4af37;
-      font-style: normal;
-      font-weight: 500;
-    }
   </style>
 </head>
 <body>
@@ -141,7 +134,7 @@
           <p class="eyebrow">01 · SERVICES</p>
           <h1>Creative work, backed by <em>intelligence.</em></h1>
         </div>
-        <p>Choose the service that fits your project. Our standard packages, rates, and terms are listed below. For custom projects, <span style="color: #d4af37; font-weight: 500;">contact ArkWay for a tailored scope and quotation.</span></p>
+        <p>Choose the service that fits your project. Our standard packages, rates, and terms are listed below. <span style="color: #d4af37; font-weight: 500;">For custom projects, contact ArkWay for a tailored scope and quotation.</span></p>
       </div>
 
       <div class="service-groups">
@@ -426,5 +419,22 @@
 </div>
 
 <script src="/site.js"></script>
+<script>
+  // Ensure strict single-open accordion behavior for services
+  document.addEventListener('DOMContentLoaded', () => {
+    const serviceItems = document.querySelectorAll('details.service-item');
+    serviceItems.forEach((item) => {
+      item.addEventListener('toggle', (e) => {
+        if (item.open) {
+          serviceItems.forEach((other) => {
+            if (other !== item && other.open) {
+              other.open = false;
+            }
+          });
+        }
+      });
+    });
+  });
+</script>
 </body>
 </html>
