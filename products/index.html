@@ -291,17 +291,17 @@
       line-height: 1.5;
     }
 
-    /* Lightbox Modal for Full Cover Art & Details Display */
+    /* Pure Artwork Lightbox Modal with Back Button History Integration */
     .artwork-modal {
       display: none;
       position: fixed;
       inset: 0;
       z-index: 9999;
-      background: rgba(0, 0, 0, 0.92);
-      backdrop-filter: blur(10px);
+      background: rgba(0, 0, 0, 0.95);
+      backdrop-filter: blur(12px);
       align-items: center;
       justify-content: center;
-      padding: 20px;
+      padding: 16px;
       box-sizing: border-box;
     }
 
@@ -310,26 +310,24 @@
     }
 
     .modal-content-wrap {
-      max-width: 460px;
-      width: 100%;
-      background: #121214;
-      border: 1px solid rgba(212, 175, 55, 0.4);
-      border-radius: 12px;
-      overflow: hidden;
-      box-shadow: 0 16px 48px rgba(0,0,0,0.8);
+      max-width: 90vw;
+      max-height: 85vh;
       position: relative;
+      display: flex;
+      align-items: center;
+      justify-content: center;
     }
 
     .modal-close-btn {
       position: absolute;
-      top: 12px;
-      right: 12px;
-      background: rgba(0, 0, 0, 0.7);
+      top: -48px;
+      right: 0;
+      background: rgba(255, 255, 255, 0.1);
       border: 1px solid rgba(255, 255, 255, 0.2);
       color: #fff;
-      font-size: 1.1rem;
-      width: 32px;
-      height: 32px;
+      font-size: 1.2rem;
+      width: 36px;
+      height: 36px;
       border-radius: 50%;
       display: flex;
       align-items: center;
@@ -345,36 +343,20 @@
     }
 
     .modal-img-container {
-      width: 100%;
-      aspect-ratio: 1 / 1;
-      background: #000;
+      max-width: 100%;
+      max-height: 82vh;
+      border-radius: 8px;
       overflow: hidden;
+      border: 1px solid rgba(212, 175, 55, 0.3);
+      box-shadow: 0 20px 60px rgba(0,0,0,0.9);
     }
 
     .modal-img-container img {
       width: 100%;
       height: 100%;
-      object-fit: cover;
+      max-height: 82vh;
+      object-fit: contain;
       display: block;
-    }
-
-    .modal-details {
-      padding: 20px;
-    }
-
-    .modal-title {
-      font-size: 1.15rem;
-      font-weight: 700;
-      color: #fff;
-      margin: 0 0 12px 0;
-    }
-
-    .modal-buy-wrap {
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-      gap: 16px;
-      margin-top: 16px;
     }
   </style>
 </head>
@@ -417,7 +399,7 @@
         <!-- PRODUCT ITEM 01: ArkWay Acoustic Guitar Loops Vol. 1 -->
         <article class="product-card" data-category="LOOPS">
           <div>
-            <div class="product-cover-wrap" onclick="openArtworkModal('https://lh3.googleusercontent.com/d/1cMYKxjV8SQ2A3UBFZmNs2Wxk6Cg5cfaq', 'ArkWay Acoustic Guitar Loops Vol. 1', 'KES 800', 'https://arkway.hustlesasa.shop/products/6ac6aca75da3db28bb77c4c2')">
+            <div class="product-cover-wrap" onclick="openArtworkModal('https://lh3.googleusercontent.com/d/1cMYKxjV8SQ2A3UBFZmNs2Wxk6Cg5cfaq')">
               <img class="product-cover-img" src="https://lh3.googleusercontent.com/d/1cMYKxjV8SQ2A3UBFZmNs2Wxk6Cg5cfaq" alt="ArkWay Acoustic Guitar Loops Vol. 1 Cover Artwork" loading="lazy">
             </div>
 
@@ -440,7 +422,7 @@
         <!-- PRODUCT ITEM 02: ArkWay Acoustic Guitar Loops Vol. 2 -->
         <article class="product-card" data-category="LOOPS">
           <div>
-            <div class="product-cover-wrap" onclick="openArtworkModal('https://lh3.googleusercontent.com/d/1YUviuhbXr3xmAOEorQCLdBJyJHoOl95b', 'ArkWay Acoustic Guitar Loops Vol. 2', 'KES 800', 'https://arkway.hustlesasa.shop/products/6ac74ba73c75ce7337474678')">
+            <div class="product-cover-wrap" onclick="openArtworkModal('https://lh3.googleusercontent.com/d/1YUviuhbXr3xmAOEorQCLdBJyJHoOl95b')">
               <img class="product-cover-img" src="https://lh3.googleusercontent.com/d/1YUviuhbXr3xmAOEorQCLdBJyJHoOl95b" alt="ArkWay Acoustic Guitar Loops Vol. 2 Cover Artwork" loading="lazy">
             </div>
 
@@ -473,19 +455,12 @@
     </section>
   </main>
 
-  <!-- Fullscreen Lightbox Modal -->
-  <div class="artwork-modal" id="artworkModal" onclick="closeArtworkModal(event)">
+  <!-- Fullscreen Pure Artwork Lightbox Modal -->
+  <div class="artwork-modal" id="artworkModal" onclick="closeArtworkViaUserAction()">
     <div class="modal-content-wrap" onclick="event.stopPropagation()">
-      <button class="modal-close-btn" onclick="closeArtworkModal()">✕</button>
+      <button class="modal-close-btn" onclick="closeArtworkViaUserAction()">✕</button>
       <div class="modal-img-container">
-        <img id="modalCoverImg" src="" alt="Full Artwork Preview">
-      </div>
-      <div class="modal-details">
-        <h3 class="modal-title" id="modalProductTitle"></h3>
-        <div class="modal-buy-wrap">
-          <span class="price-sale" id="modalProductPrice"></span>
-          <a class="buy-btn" id="modalBuyLink" href="" target="_blank" rel="noopener" style="width: auto; padding: 10px 20px;">Buy Pack →</a>
-        </div>
+        <img id="modalCoverImg" src="" alt="Full Artwork Display">
       </div>
     </div>
   </div>
@@ -547,20 +522,34 @@ function filterProducts(category, btn) {
   }
 }
 
-/* Lightbox Modal Script */
-function openArtworkModal(imgSrc, title, price, buyUrl) {
+/* Modal Open with History Integration */
+function openArtworkModal(imgSrc) {
   document.getElementById('modalCoverImg').src = imgSrc;
-  document.getElementById('modalProductTitle').innerText = title;
-  document.getElementById('modalProductPrice').innerText = price;
-  document.getElementById('modalBuyLink').href = buyUrl;
   document.getElementById('artworkModal').classList.add('active');
+  
+  // Push state so phone/browser back button closes the modal
+  history.pushState({ modalOpen: true }, "", "#view-artwork");
 }
 
-function closeArtworkModal(event) {
-  if (!event || event.target.id === 'artworkModal' || event.target.classList.contains('modal-close-btn')) {
-    document.getElementById('artworkModal').classList.remove('active');
+/* Helper to close modal cleanly */
+function closeArtworkDOM() {
+  document.getElementById('artworkModal').classList.remove('active');
+  document.getElementById('modalCoverImg').src = "";
+}
+
+/* Called when user clicks Close (✕) or clicks outside image */
+function closeArtworkViaUserAction() {
+  if (location.hash === "#view-artwork") {
+    history.back(); // Triggers popstate listener below to close modal
+  } else {
+    closeArtworkDOM();
   }
 }
+
+/* Handle Browser/Phone Back Button */
+window.addEventListener('popstate', (event) => {
+  closeArtworkDOM();
+});
 
 // Run initial check on page load
 document.addEventListener('DOMContentLoaded', () => {
