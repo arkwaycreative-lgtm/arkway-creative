@@ -148,7 +148,7 @@
       transform: translateY(-2px);
     }
 
-    /* Cover Wrapper with Permanent Eye Icon Badge */
+    /* Cover Wrapper */
     .product-cover-wrap {
       width: 100%;
       border-radius: 5px;
@@ -161,13 +161,13 @@
       position: relative;
     }
 
-    /* Small Eye Symbol Badge */
+    /* Minimalist Vector View Icon Badge */
     .view-eye-badge {
       position: absolute;
       top: 8px;
       right: 8px;
-      background: rgba(10, 10, 12, 0.75);
-      border: 1px solid rgba(255, 255, 255, 0.15);
+      background: rgba(12, 12, 14, 0.85);
+      border: 1px solid rgba(212, 175, 55, 0.3);
       color: #d4af37;
       width: 28px;
       height: 28px;
@@ -175,40 +175,20 @@
       display: flex;
       align-items: center;
       justify-content: center;
-      font-size: 0.82rem;
-      backdrop-filter: blur(4px);
-      transition: all 0.25s ease;
+      backdrop-filter: blur(6px);
       z-index: 2;
-      box-shadow: 0 2px 8px rgba(0, 0, 0, 0.5);
+      box-shadow: 0 2px 8px rgba(0, 0, 0, 0.6);
+      pointer-events: none;
     }
 
-    .product-cover-wrap:hover .view-eye-badge {
-      background: #d4af37;
-      color: #0b0b0b;
-      transform: scale(1.1);
-      border-color: #d4af37;
-    }
-
-    .product-cover-wrap::after {
-      content: "👁 Expand Artwork";
-      position: absolute;
-      inset: 0;
-      background: rgba(0, 0, 0, 0.6);
-      color: #d4af37;
-      font-size: 0.7rem;
-      font-weight: 700;
-      letter-spacing: 0.05em;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      gap: 6px;
-      opacity: 0;
-      transition: opacity 0.25s ease;
-      text-transform: uppercase;
-    }
-
-    .product-cover-wrap:hover::after {
-      opacity: 1;
+    .view-eye-badge svg {
+      width: 15px;
+      height: 15px;
+      fill: none;
+      stroke: #d4af37;
+      stroke-width: 1.8;
+      stroke-linecap: round;
+      stroke-linejoin: round;
     }
 
     .product-cover-img {
@@ -430,7 +410,9 @@
         <article class="product-card" data-category="LOOPS">
           <div>
             <div class="product-cover-wrap" onclick="openArtworkModal('https://lh3.googleusercontent.com/d/1cMYKxjV8SQ2A3UBFZmNs2Wxk6Cg5cfaq')">
-              <span class="view-eye-badge" title="Expand Artwork">👁</span>
+              <span class="view-eye-badge" title="Expand Artwork">
+                <svg viewBox="0 0 24 24"><path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z"></path><circle cx="12" cy="12" r="3"></circle></svg>
+              </span>
               <img class="product-cover-img" src="https://lh3.googleusercontent.com/d/1cMYKxjV8SQ2A3UBFZmNs2Wxk6Cg5cfaq" alt="ArkWay Acoustic Guitar Loops Vol. 1 Cover Artwork" loading="lazy">
             </div>
 
@@ -454,7 +436,9 @@
         <article class="product-card" data-category="LOOPS">
           <div>
             <div class="product-cover-wrap" onclick="openArtworkModal('https://lh3.googleusercontent.com/d/1YUviuhbXr3xmAOEorQCLdBJyJHoOl95b')">
-              <span class="view-eye-badge" title="Expand Artwork">👁</span>
+              <span class="view-eye-badge" title="Expand Artwork">
+                <svg viewBox="0 0 24 24"><path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z"></path><circle cx="12" cy="12" r="3"></circle></svg>
+              </span>
               <img class="product-cover-img" src="https://lh3.googleusercontent.com/d/1YUviuhbXr3xmAOEorQCLdBJyJHoOl95b" alt="ArkWay Acoustic Guitar Loops Vol. 2 Cover Artwork" loading="lazy">
             </div>
 
@@ -572,7 +556,7 @@ function closeArtworkDOM() {
 /* Called when user clicks Close (✕) or clicks outside image */
 function closeArtworkViaUserAction() {
   if (location.hash === "#view-artwork") {
-    history.back(); // Triggers popstate listener below to close modal
+    history.back();
   } else {
     closeArtworkDOM();
   }
