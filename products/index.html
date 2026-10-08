@@ -156,6 +156,29 @@
       border: 1px solid rgba(255, 255, 255, 0.08);
       background: #000;
       aspect-ratio: 1 / 1;
+      cursor: pointer;
+      position: relative;
+    }
+
+    .product-cover-wrap::after {
+      content: "🔍 View Artwork";
+      position: absolute;
+      inset: 0;
+      background: rgba(0, 0, 0, 0.65);
+      color: #d4af37;
+      font-size: 0.72rem;
+      font-weight: 700;
+      letter-spacing: 0.05em;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      opacity: 0;
+      transition: opacity 0.25s ease;
+      text-transform: uppercase;
+    }
+
+    .product-cover-wrap:hover::after {
+      opacity: 1;
     }
 
     .product-cover-img {
@@ -267,6 +290,92 @@
       font-size: 0.88rem;
       line-height: 1.5;
     }
+
+    /* Lightbox Modal for Full Cover Art & Details Display */
+    .artwork-modal {
+      display: none;
+      position: fixed;
+      inset: 0;
+      z-index: 9999;
+      background: rgba(0, 0, 0, 0.92);
+      backdrop-filter: blur(10px);
+      align-items: center;
+      justify-content: center;
+      padding: 20px;
+      box-sizing: border-box;
+    }
+
+    .artwork-modal.active {
+      display: flex;
+    }
+
+    .modal-content-wrap {
+      max-width: 460px;
+      width: 100%;
+      background: #121214;
+      border: 1px solid rgba(212, 175, 55, 0.4);
+      border-radius: 12px;
+      overflow: hidden;
+      box-shadow: 0 16px 48px rgba(0,0,0,0.8);
+      position: relative;
+    }
+
+    .modal-close-btn {
+      position: absolute;
+      top: 12px;
+      right: 12px;
+      background: rgba(0, 0, 0, 0.7);
+      border: 1px solid rgba(255, 255, 255, 0.2);
+      color: #fff;
+      font-size: 1.1rem;
+      width: 32px;
+      height: 32px;
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      cursor: pointer;
+      z-index: 10;
+      transition: background 0.2s;
+    }
+
+    .modal-close-btn:hover {
+      background: #d4af37;
+      color: #000;
+    }
+
+    .modal-img-container {
+      width: 100%;
+      aspect-ratio: 1 / 1;
+      background: #000;
+      overflow: hidden;
+    }
+
+    .modal-img-container img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      display: block;
+    }
+
+    .modal-details {
+      padding: 20px;
+    }
+
+    .modal-title {
+      font-size: 1.15rem;
+      font-weight: 700;
+      color: #fff;
+      margin: 0 0 12px 0;
+    }
+
+    .modal-buy-wrap {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      gap: 16px;
+      margin-top: 16px;
+    }
   </style>
 </head>
 <body>
@@ -308,7 +417,7 @@
         <!-- PRODUCT ITEM 01: ArkWay Acoustic Guitar Loops Vol. 1 -->
         <article class="product-card" data-category="LOOPS">
           <div>
-            <div class="product-cover-wrap">
+            <div class="product-cover-wrap" onclick="openArtworkModal('https://lh3.googleusercontent.com/d/1cMYKxjV8SQ2A3UBFZmNs2Wxk6Cg5cfaq', 'ArkWay Acoustic Guitar Loops Vol. 1', 'KES 800', 'https://arkway.hustlesasa.shop/products/6ac6aca75da3db28bb77c4c2')">
               <img class="product-cover-img" src="https://lh3.googleusercontent.com/d/1cMYKxjV8SQ2A3UBFZmNs2Wxk6Cg5cfaq" alt="ArkWay Acoustic Guitar Loops Vol. 1 Cover Artwork" loading="lazy">
             </div>
 
@@ -331,7 +440,7 @@
         <!-- PRODUCT ITEM 02: ArkWay Acoustic Guitar Loops Vol. 2 -->
         <article class="product-card" data-category="LOOPS">
           <div>
-            <div class="product-cover-wrap">
+            <div class="product-cover-wrap" onclick="openArtworkModal('https://lh3.googleusercontent.com/d/1YUviuhbXr3xmAOEorQCLdBJyJHoOl95b', 'ArkWay Acoustic Guitar Loops Vol. 2', 'KES 800', 'https://arkway.hustlesasa.shop/products/6ac74ba73c75ce7337474678')">
               <img class="product-cover-img" src="https://lh3.googleusercontent.com/d/1YUviuhbXr3xmAOEorQCLdBJyJHoOl95b" alt="ArkWay Acoustic Guitar Loops Vol. 2 Cover Artwork" loading="lazy">
             </div>
 
@@ -363,6 +472,23 @@
 
     </section>
   </main>
+
+  <!-- Fullscreen Lightbox Modal -->
+  <div class="artwork-modal" id="artworkModal" onclick="closeArtworkModal(event)">
+    <div class="modal-content-wrap" onclick="event.stopPropagation()">
+      <button class="modal-close-btn" onclick="closeArtworkModal()">✕</button>
+      <div class="modal-img-container">
+        <img id="modalCoverImg" src="" alt="Full Artwork Preview">
+      </div>
+      <div class="modal-details">
+        <h3 class="modal-title" id="modalProductTitle"></h3>
+        <div class="modal-buy-wrap">
+          <span class="price-sale" id="modalProductPrice"></span>
+          <a class="buy-btn" id="modalBuyLink" href="" target="_blank" rel="noopener" style="width: auto; padding: 10px 20px;">Buy Pack →</a>
+        </div>
+      </div>
+    </div>
+  </div>
 
   <footer>
     <div class="footer-top">
@@ -418,6 +544,21 @@ function filterProducts(category, btn) {
     announcement.style.display = 'block';
   } else {
     announcement.style.display = 'none';
+  }
+}
+
+/* Lightbox Modal Script */
+function openArtworkModal(imgSrc, title, price, buyUrl) {
+  document.getElementById('modalCoverImg').src = imgSrc;
+  document.getElementById('modalProductTitle').innerText = title;
+  document.getElementById('modalProductPrice').innerText = price;
+  document.getElementById('modalBuyLink').href = buyUrl;
+  document.getElementById('artworkModal').classList.add('active');
+}
+
+function closeArtworkModal(event) {
+  if (!event || event.target.id === 'artworkModal' || event.target.classList.contains('modal-close-btn')) {
+    document.getElementById('artworkModal').classList.remove('active');
   }
 }
 
