@@ -301,7 +301,7 @@
       line-height: 1.5;
     }
 
-    /* Lightbox Modal Base */
+    /* Embedded IG Reel Lightbox Modal */
     .artwork-modal {
       display: none;
       position: fixed;
@@ -311,7 +311,7 @@
       backdrop-filter: blur(12px);
       align-items: center;
       justify-content: center;
-      padding: 12px;
+      padding: 16px;
       box-sizing: border-box;
     }
 
@@ -320,40 +320,22 @@
     }
 
     .modal-content-wrap {
+      max-width: 360px;
+      width: 100%;
+      height: 620px;
+      max-height: 85vh;
       position: relative;
-      display: flex;
-      align-items: center;
-      justify-content: center;
+      background: #000;
       border-radius: 12px;
       overflow: hidden;
+      border: 1px solid rgba(212, 175, 55, 0.3);
       box-shadow: 0 20px 60px rgba(0,0,0,0.9);
-      background: #000;
     }
 
-    /* Unconstrained Native IG Embed Container */
-    .video-mode {
-      width: 380px;
-      max-width: 95vw;
-      height: 750px;
-      max-height: 90vh;
-      overflow-y: auto;
-      -webkit-overflow-scrolling: touch;
-    }
-
-    .video-mode iframe {
-      width: 100%;
-      height: 740px;
-      min-height: 720px;
-      border: none;
-      display: block;
-      margin: 0;
-    }
-
-    /* Image Mode Container */
     .image-mode {
       max-width: 90vw;
       max-height: 82vh;
-      border: 1px solid rgba(212, 175, 55, 0.3);
+      height: auto;
     }
 
     .image-mode img {
@@ -366,10 +348,10 @@
 
     .modal-close-btn {
       position: absolute;
-      top: 10px;
-      right: 10px;
-      background: rgba(0, 0, 0, 0.85);
-      border: 1px solid rgba(255, 255, 255, 0.25);
+      top: 12px;
+      right: 12px;
+      background: rgba(0, 0, 0, 0.7);
+      border: 1px solid rgba(255, 255, 255, 0.2);
       color: #fff;
       font-size: 1.1rem;
       width: 32px;
@@ -386,6 +368,13 @@
     .modal-close-btn:hover {
       background: #d4af37;
       color: #000;
+    }
+
+    .reel-iframe {
+      width: 100%;
+      height: 100%;
+      border: none;
+      display: block;
     }
   </style>
 </head>
@@ -425,11 +414,11 @@
 
       <div class="products-grid">
         
-        <!-- PRODUCT ITEM 01: Vol. 1 (Native IG Embed Modal) -->
+        <!-- PRODUCT ITEM 01: ArkWay Acoustic Guitar Loops Vol. 1 -->
         <article class="product-card" data-category="LOOPS">
           <div>
             <div class="product-cover-wrap" onclick="openPreview('video', 'https://www.instagram.com/reel/DeNf8M_IZYf/embed/')">
-              <span class="view-eye-badge" title="Watch Video Preview">
+              <span class="view-eye-badge" title="Listen Preview Reel">
                 <svg viewBox="0 0 24 24"><path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z"></path><circle cx="12" cy="12" r="3"></circle></svg>
               </span>
               <img class="product-cover-img" src="https://lh3.googleusercontent.com/d/1cMYKxjV8SQ2A3UBFZmNs2Wxk6Cg5cfaq" alt="ArkWay Acoustic Guitar Loops Vol. 1 Cover Artwork" loading="lazy">
@@ -451,7 +440,7 @@
           </div>
         </article>
 
-        <!-- PRODUCT ITEM 02: Vol. 2 (No Reel — Pure Artwork Display) -->
+        <!-- PRODUCT ITEM 02: ArkWay Acoustic Guitar Loops Vol. 2 (No Reel — Pure Artwork) -->
         <article class="product-card" data-category="LOOPS">
           <div>
             <div class="product-cover-wrap" onclick="openPreview('image', 'https://lh3.googleusercontent.com/d/1YUviuhbXr3xmAOEorQCLdBJyJHoOl95b')">
@@ -490,11 +479,11 @@
     </section>
   </main>
 
-  <!-- Dual Lightbox Modal -->
+  <!-- Embedded IG Reel / Artwork Lightbox Modal -->
   <div class="artwork-modal" id="artworkModal" onclick="closeModalUserAction()">
     <div class="modal-content-wrap" id="modalContainer" onclick="event.stopPropagation()">
       <button class="modal-close-btn" onclick="closeModalUserAction()">✕</button>
-      <div id="modalBody"></div>
+      <div id="modalBody" style="width:100%; height:100%;"></div>
     </div>
   </div>
 
@@ -555,14 +544,14 @@ function filterProducts(category, btn) {
   }
 }
 
-/* Open Modal: 'video' for native reel embed, 'image' for pure artwork */
+/* Open Modal: 'video' for native IG Reel embed, 'image' for pure artwork */
 function openPreview(type, url) {
   const container = document.getElementById('modalContainer');
   const body = document.getElementById('modalBody');
 
   if (type === 'video') {
-    container.className = 'modal-content-wrap video-mode';
-    body.innerHTML = `<iframe src="${url}" allowfullscreen></iframe>`;
+    container.className = 'modal-content-wrap';
+    body.innerHTML = `<iframe class="reel-iframe" src="${url}" allowfullscreen></iframe>`;
   } else {
     container.className = 'modal-content-wrap image-mode';
     body.innerHTML = `<img src="${url}" alt="Full Cover Artwork">`;
