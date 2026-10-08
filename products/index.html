@@ -148,6 +148,7 @@
       transform: translateY(-2px);
     }
 
+    /* Cover Wrapper with Permanent Eye Icon Badge */
     .product-cover-wrap {
       width: 100%;
       border-radius: 5px;
@@ -160,18 +161,47 @@
       position: relative;
     }
 
+    /* Small Eye Symbol Badge */
+    .view-eye-badge {
+      position: absolute;
+      top: 8px;
+      right: 8px;
+      background: rgba(10, 10, 12, 0.75);
+      border: 1px solid rgba(255, 255, 255, 0.15);
+      color: #d4af37;
+      width: 28px;
+      height: 28px;
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 0.82rem;
+      backdrop-filter: blur(4px);
+      transition: all 0.25s ease;
+      z-index: 2;
+      box-shadow: 0 2px 8px rgba(0, 0, 0, 0.5);
+    }
+
+    .product-cover-wrap:hover .view-eye-badge {
+      background: #d4af37;
+      color: #0b0b0b;
+      transform: scale(1.1);
+      border-color: #d4af37;
+    }
+
     .product-cover-wrap::after {
-      content: "🔍 View Artwork";
+      content: "👁 Expand Artwork";
       position: absolute;
       inset: 0;
-      background: rgba(0, 0, 0, 0.65);
+      background: rgba(0, 0, 0, 0.6);
       color: #d4af37;
-      font-size: 0.72rem;
+      font-size: 0.7rem;
       font-weight: 700;
       letter-spacing: 0.05em;
       display: flex;
       align-items: center;
       justify-content: center;
+      gap: 6px;
       opacity: 0;
       transition: opacity 0.25s ease;
       text-transform: uppercase;
@@ -400,6 +430,7 @@
         <article class="product-card" data-category="LOOPS">
           <div>
             <div class="product-cover-wrap" onclick="openArtworkModal('https://lh3.googleusercontent.com/d/1cMYKxjV8SQ2A3UBFZmNs2Wxk6Cg5cfaq')">
+              <span class="view-eye-badge" title="Expand Artwork">👁</span>
               <img class="product-cover-img" src="https://lh3.googleusercontent.com/d/1cMYKxjV8SQ2A3UBFZmNs2Wxk6Cg5cfaq" alt="ArkWay Acoustic Guitar Loops Vol. 1 Cover Artwork" loading="lazy">
             </div>
 
@@ -423,6 +454,7 @@
         <article class="product-card" data-category="LOOPS">
           <div>
             <div class="product-cover-wrap" onclick="openArtworkModal('https://lh3.googleusercontent.com/d/1YUviuhbXr3xmAOEorQCLdBJyJHoOl95b')">
+              <span class="view-eye-badge" title="Expand Artwork">👁</span>
               <img class="product-cover-img" src="https://lh3.googleusercontent.com/d/1YUviuhbXr3xmAOEorQCLdBJyJHoOl95b" alt="ArkWay Acoustic Guitar Loops Vol. 2 Cover Artwork" loading="lazy">
             </div>
 
