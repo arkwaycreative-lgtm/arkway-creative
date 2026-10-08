@@ -301,7 +301,7 @@
       line-height: 1.5;
     }
 
-    /* Pure Artwork Lightbox Modal with Back Button History Integration */
+    /* IG Reel Embedded Lightbox Modal */
     .artwork-modal {
       display: none;
       position: fixed;
@@ -320,30 +320,34 @@
     }
 
     .modal-content-wrap {
-      max-width: 90vw;
+      max-width: 360px;
+      width: 100%;
+      height: 620px;
       max-height: 85vh;
       position: relative;
-      display: flex;
-      align-items: center;
-      justify-content: center;
+      background: #000;
+      border-radius: 12px;
+      overflow: hidden;
+      border: 1px solid rgba(212, 175, 55, 0.3);
+      box-shadow: 0 20px 60px rgba(0,0,0,0.9);
     }
 
     .modal-close-btn {
       position: absolute;
-      top: -48px;
-      right: 0;
-      background: rgba(255, 255, 255, 0.1);
+      top: 12px;
+      right: 12px;
+      background: rgba(0, 0, 0, 0.7);
       border: 1px solid rgba(255, 255, 255, 0.2);
       color: #fff;
-      font-size: 1.2rem;
-      width: 36px;
-      height: 36px;
+      font-size: 1.1rem;
+      width: 32px;
+      height: 32px;
       border-radius: 50%;
       display: flex;
       align-items: center;
       justify-content: center;
       cursor: pointer;
-      z-index: 10;
+      z-index: 20;
       transition: background 0.2s;
     }
 
@@ -352,20 +356,10 @@
       color: #000;
     }
 
-    .modal-img-container {
-      max-width: 100%;
-      max-height: 82vh;
-      border-radius: 8px;
-      overflow: hidden;
-      border: 1px solid rgba(212, 175, 55, 0.3);
-      box-shadow: 0 20px 60px rgba(0,0,0,0.9);
-    }
-
-    .modal-img-container img {
+    .reel-iframe {
       width: 100%;
       height: 100%;
-      max-height: 82vh;
-      object-fit: contain;
+      border: none;
       display: block;
     }
   </style>
@@ -409,8 +403,8 @@
         <!-- PRODUCT ITEM 01: ArkWay Acoustic Guitar Loops Vol. 1 -->
         <article class="product-card" data-category="LOOPS">
           <div>
-            <div class="product-cover-wrap" onclick="openArtworkModal('https://lh3.googleusercontent.com/d/1cMYKxjV8SQ2A3UBFZmNs2Wxk6Cg5cfaq')">
-              <span class="view-eye-badge" title="Expand Artwork">
+            <div class="product-cover-wrap" onclick="openReelModal('https://www.instagram.com/reel/DeNf8M_IZYf/embed/')">
+              <span class="view-eye-badge" title="Listen Preview Reel">
                 <svg viewBox="0 0 24 24"><path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z"></path><circle cx="12" cy="12" r="3"></circle></svg>
               </span>
               <img class="product-cover-img" src="https://lh3.googleusercontent.com/d/1cMYKxjV8SQ2A3UBFZmNs2Wxk6Cg5cfaq" alt="ArkWay Acoustic Guitar Loops Vol. 1 Cover Artwork" loading="lazy">
@@ -435,8 +429,8 @@
         <!-- PRODUCT ITEM 02: ArkWay Acoustic Guitar Loops Vol. 2 -->
         <article class="product-card" data-category="LOOPS">
           <div>
-            <div class="product-cover-wrap" onclick="openArtworkModal('https://lh3.googleusercontent.com/d/1YUviuhbXr3xmAOEorQCLdBJyJHoOl95b')">
-              <span class="view-eye-badge" title="Expand Artwork">
+            <div class="product-cover-wrap" onclick="openReelModal('https://www.instagram.com/reel/DeNf8M_IZYf/embed/')">
+              <span class="view-eye-badge" title="Listen Preview Reel">
                 <svg viewBox="0 0 24 24"><path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z"></path><circle cx="12" cy="12" r="3"></circle></svg>
               </span>
               <img class="product-cover-img" src="https://lh3.googleusercontent.com/d/1YUviuhbXr3xmAOEorQCLdBJyJHoOl95b" alt="ArkWay Acoustic Guitar Loops Vol. 2 Cover Artwork" loading="lazy">
@@ -471,13 +465,11 @@
     </section>
   </main>
 
-  <!-- Fullscreen Pure Artwork Lightbox Modal -->
+  <!-- Embedded IG Reel Modal -->
   <div class="artwork-modal" id="artworkModal" onclick="closeArtworkViaUserAction()">
     <div class="modal-content-wrap" onclick="event.stopPropagation()">
       <button class="modal-close-btn" onclick="closeArtworkViaUserAction()">✕</button>
-      <div class="modal-img-container">
-        <img id="modalCoverImg" src="" alt="Full Artwork Display">
-      </div>
+      <iframe class="reel-iframe" id="reelIframe" src="" allowfullscreen></iframe>
     </div>
   </div>
 
@@ -539,23 +531,23 @@ function filterProducts(category, btn) {
 }
 
 /* Modal Open with History Integration */
-function openArtworkModal(imgSrc) {
-  document.getElementById('modalCoverImg').src = imgSrc;
+function openReelModal(reelEmbedUrl) {
+  document.getElementById('reelIframe').src = reelEmbedUrl;
   document.getElementById('artworkModal').classList.add('active');
   
   // Push state so phone/browser back button closes the modal
-  history.pushState({ modalOpen: true }, "", "#view-artwork");
+  history.pushState({ modalOpen: true }, "", "#preview-reel");
 }
 
-/* Helper to close modal cleanly */
+/* Helper to close modal cleanly and stop audio */
 function closeArtworkDOM() {
   document.getElementById('artworkModal').classList.remove('active');
-  document.getElementById('modalCoverImg').src = "";
+  document.getElementById('reelIframe').src = "";
 }
 
 /* Called when user clicks Close (✕) or clicks outside image */
 function closeArtworkViaUserAction() {
-  if (location.hash === "#view-artwork") {
+  if (location.hash === "#preview-reel") {
     history.back();
   } else {
     closeArtworkDOM();
