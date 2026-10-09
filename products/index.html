@@ -193,7 +193,43 @@
       border: 1px solid rgba(255, 255, 255, 0.08);
       background: #000;
       aspect-ratio: 1 / 1;
+      cursor: pointer;
       position: relative;
+    }
+
+    /* Minimalist Animated Preview Badge */
+    .view-eye-badge {
+      position: absolute;
+      top: 8px;
+      right: 8px;
+      background: rgba(12, 12, 14, 0.88);
+      border: 1px solid rgba(212, 175, 55, 0.4);
+      color: #d4af37;
+      padding: 4px 8px;
+      border-radius: 20px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 0.62rem;
+      font-weight: 700;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      backdrop-filter: blur(6px);
+      z-index: 2;
+      box-shadow: 0 2px 10px rgba(0, 0, 0, 0.6);
+      animation: pulseAttention 4s infinite cubic-bezier(0.16, 1, 0.3, 1);
+    }
+
+    @keyframes pulseAttention {
+      0%, 100% {
+        transform: scale(1);
+        border-color: rgba(212, 175, 55, 0.4);
+      }
+      50% {
+        transform: scale(1.06);
+        border-color: rgba(245, 197, 24, 0.9);
+        box-shadow: 0 4px 14px rgba(245, 197, 24, 0.3);
+      }
     }
 
     .product-cover-img {
@@ -201,15 +237,11 @@
       height: 100%;
       object-fit: cover;
       display: block;
+      transition: transform 0.3s ease;
     }
 
-    /* Embedded Video Player inside Card */
-    .product-video-preview {
-      width: 100%;
-      height: 100%;
-      object-fit: cover;
-      display: block;
-      background: #000;
+    .product-cover-wrap:hover .product-cover-img {
+      transform: scale(1.03);
     }
 
     .product-card-meta {
@@ -291,7 +323,7 @@
       box-shadow: 0 5px 15px rgba(245, 197, 24, 0.3);
     }
 
-    /* Vault Announcement (Only shows when category is empty) */
+    /* Vault Announcement */
     .vault-announcement {
       display: none;
       background: rgba(20, 20, 22, 0.6);
@@ -316,7 +348,7 @@
       line-height: 1.5;
     }
 
-    /* Lightbox Modal for Full Image/Artwork inspection if needed */
+    /* Video Lightbox Modal */
     .artwork-modal {
       display: none;
       position: fixed;
@@ -345,19 +377,15 @@
       overflow: hidden;
       border: 1px solid rgba(212, 175, 55, 0.3);
       box-shadow: 0 20px 60px rgba(0,0,0,0.9);
+      display: flex;
+      align-items: center;
+      justify-content: center;
     }
 
-    .image-mode {
-      max-width: 90vw;
-      max-height: 82vh;
-      height: auto;
-    }
-
-    .image-mode img {
+    .modal-video-player {
       width: 100%;
       height: 100%;
-      max-height: 82vh;
-      object-fit: contain;
+      object-fit: cover;
       display: block;
     }
 
@@ -425,11 +453,9 @@
         <!-- PRODUCT ITEM 01 -->
         <article class="product-card" data-category="LOOPS">
           <div>
-            <div class="product-cover-wrap">
-              <video class="product-video-preview" controls preload="metadata" playsinline>
-                <source src="https://files.catbox.moe/5zf7u3.mp4" type="video/mp4">
-                Your browser does not support video playback.
-              </video>
+            <div class="product-cover-wrap" onclick="openVideoPreview('https://files.catbox.moe/5zf7u3.mp4')">
+              <span class="view-eye-badge">PREVIEW</span>
+              <img class="product-cover-img" src="https://lh3.googleusercontent.com/d/1cMYKxjV8SQ2A3UBFZmNs2Wxk6Cg5cfaq" alt="ArkWay Acoustic Guitar Loops Vol. 1 Cover Artwork" loading="lazy">
             </div>
 
             <div class="product-card-meta">
@@ -451,11 +477,9 @@
         <!-- PRODUCT ITEM 02 -->
         <article class="product-card" data-category="LOOPS">
           <div>
-            <div class="product-cover-wrap">
-              <video class="product-video-preview" controls preload="metadata" playsinline>
-                <source src="https://files.catbox.moe/kh7qel.mp4" type="video/mp4">
-                Your browser does not support video playback.
-              </video>
+            <div class="product-cover-wrap" onclick="openVideoPreview('https://files.catbox.moe/kh7qel.mp4')">
+              <span class="view-eye-badge">PREVIEW</span>
+              <img class="product-cover-img" src="https://lh3.googleusercontent.com/d/1YUviuhbXr3xmAOEorQCLdBJyJHoOl95b" alt="ArkWay Acoustic Guitar Loops Vol. 2 Cover Artwork" loading="lazy">
             </div>
 
             <div class="product-card-meta">
@@ -478,11 +502,9 @@
         <!-- PRODUCT ITEM 03 -->
         <article class="product-card" data-category="LOOPS">
           <div>
-            <div class="product-cover-wrap">
-              <video class="product-video-preview" controls preload="metadata" playsinline>
-                <source src="https://files.catbox.moe/aow0ob.mp4" type="video/mp4">
-                Your browser does not support video playback.
-              </video>
+            <div class="product-cover-wrap" onclick="openVideoPreview('https://files.catbox.moe/aow0ob.mp4')">
+              <span class="view-eye-badge">PREVIEW</span>
+              <img class="product-cover-img" src="https://lh3.googleusercontent.com/d/1POIsNa1F55W5riCpWP4czXuHhdZe6lOO" alt="ArkWay Acoustic Guitar Loops Vol. 3 Cover Artwork" loading="lazy">
             </div>
 
             <div class="product-card-meta">
@@ -505,7 +527,7 @@
         <!-- PRODUCT ITEM 04 (BEAT PACK) -->
         <article class="product-card" data-category="BEATS" style="display: none;">
           <div>
-            <div class="product-cover-wrap" onclick="openPreview('image', 'https://lh3.googleusercontent.com/d/1m8ObD9O5JOYMIV0Qd5jyD7Nv2o-9Wgyc')">
+            <div class="product-cover-wrap">
               <img class="product-cover-img" src="https://lh3.googleusercontent.com/d/1m8ObD9O5JOYMIV0Qd5jyD7Nv2o-9Wgyc" alt="Arkway Beatpack Vol. 1 Cover Artwork" loading="lazy">
             </div>
 
@@ -528,7 +550,7 @@
 
       </div>
 
-      <!-- Vault Announcement (Only shown when category is empty) -->
+      <!-- Vault Announcement -->
       <div class="vault-announcement" id="vaultAnnouncement">
         <span class="eyebrow">UPCOMING SOUND VAULT DROPS</span>
         <h3>More Signature Packs Under Production.</h3>
@@ -538,9 +560,9 @@
     </section>
   </main>
 
-  <!-- Artwork Lightbox Modal -->
+  <!-- Video Lightbox Modal -->
   <div class="artwork-modal" id="artworkModal" onclick="closeModalUserAction()">
-    <div class="modal-content-wrap image-mode" id="modalContainer" onclick="event.stopPropagation()">
+    <div class="modal-content-wrap" id="modalContainer" onclick="event.stopPropagation()">
       <button class="modal-close-btn" onclick="closeModalUserAction()">✕</button>
       <div id="modalBody" style="width:100%; height:100%;"></div>
     </div>
@@ -603,19 +625,25 @@ function filterProducts(category, btn) {
   }
 }
 
-/* Open Modal for image artwork inspection if needed */
-function openPreview(type, url) {
+/* Open Video Preview Modal on Click */
+function openVideoPreview(videoUrl) {
   const body = document.getElementById('modalBody');
-  body.innerHTML = `<img src="${url}" alt="Full Cover Artwork">`;
+  body.innerHTML = `
+    <video class="modal-video-player" controls autoplay playsinline>
+      <source src="${videoUrl}" type="video/mp4">
+      Your browser does not support video playback.
+    </video>
+  `;
 
   document.getElementById('artworkModal').classList.add('active');
   history.pushState({ modalOpen: true }, "", "#preview");
 }
 
-/* Helper to close modal */
+/* Helper to close modal and stop audio */
 function closeModalDOM() {
-  document.getElementById('artworkModal').classList.remove('active');
-  document.getElementById('modalBody').innerHTML = "";
+  const modal = document.getElementById('artworkModal');
+  modal.classList.remove('active');
+  document.getElementById('modalBody').innerHTML = ""; // Clears the video element, instantly stopping playback
 }
 
 /* User Close Action */
