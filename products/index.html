@@ -184,7 +184,7 @@
       transform: translateY(-2px);
     }
 
-    /* Cover Wrapper - Optimized to prevent mobile scaling cracks */
+    /* Cover Wrapper - Static Artwork View */
     .product-cover-wrap {
       width: 100%;
       border-radius: 5px;
@@ -193,7 +193,6 @@
       border: 1px solid rgba(255, 255, 255, 0.08);
       background: #000;
       aspect-ratio: 1 / 1;
-      cursor: pointer;
       position: relative;
     }
 
@@ -203,11 +202,6 @@
       object-fit: cover;
       -webkit-object-fit: cover;
       display: block;
-      transition: transform 0.3s ease;
-    }
-
-    .product-cover-wrap:hover .product-cover-img {
-      transform: scale(1.03);
     }
 
     .product-card-meta {
@@ -449,7 +443,7 @@
         <!-- PRODUCT ITEM 01 -->
         <article class="product-card" data-category="LOOPS">
           <div>
-            <div class="product-cover-wrap" onclick="openYouTubePreview('1weRioH2XeU')">
+            <div class="product-cover-wrap">
               <img class="product-cover-img" src="https://lh3.googleusercontent.com/d/1cMYKxjV8SQ2A3UBFZmNs2Wxk6Cg5cfaq" alt="ArkWay Acoustic Guitar Loops Vol. 1 Cover Artwork" loading="lazy">
             </div>
 
@@ -475,7 +469,7 @@
         <!-- PRODUCT ITEM 02 -->
         <article class="product-card" data-category="LOOPS">
           <div>
-            <div class="product-cover-wrap" onclick="openYouTubePreview('JxP0r8wasN8')">
+            <div class="product-cover-wrap">
               <img class="product-cover-img" src="https://lh3.googleusercontent.com/d/1YUviuhbXr3xmAOEorQCLdBJyJHoOl95b" alt="ArkWay Acoustic Guitar Loops Vol. 2 Cover Artwork" loading="lazy">
             </div>
 
@@ -502,7 +496,7 @@
         <!-- PRODUCT ITEM 03 -->
         <article class="product-card" data-category="LOOPS">
           <div>
-            <div class="product-cover-wrap" onclick="openYouTubePreview('bezlvAjsAeQ')">
+            <div class="product-cover-wrap">
               <img class="product-cover-img" src="https://lh3.googleusercontent.com/d/1POIsNa1F55W5riCpWP4czXuHhdZe6lOO" alt="ArkWay Acoustic Guitar Loops Vol. 3 Cover Artwork" loading="lazy">
             </div>
 
@@ -529,7 +523,7 @@
         <!-- PRODUCT ITEM 04 (BEAT PACK) -->
         <article class="product-card" data-category="BEATS" style="display: none;">
           <div>
-            <div class="product-cover-wrap" onclick="openYouTubePreview('Cf-DBQZP5v0')">
+            <div class="product-cover-wrap">
               <img class="product-cover-img" src="https://lh3.googleusercontent.com/d/1m8ObD9O5JOYMIV0Qd5jyD7Nv2o-9Wgyc" alt="Arkway Beatpack Vol. 1 Cover Artwork" loading="lazy">
             </div>
 
