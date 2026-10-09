@@ -184,7 +184,7 @@
       transform: translateY(-2px);
     }
 
-    /* Cover Wrapper */
+    /* Cover Wrapper - Optimized to prevent mobile scaling cracks */
     .product-cover-wrap {
       width: 100%;
       border-radius: 5px;
@@ -197,45 +197,11 @@
       position: relative;
     }
 
-    /* Minimalist Animated Preview Badge */
-    .view-eye-badge {
-      position: absolute;
-      top: 8px;
-      right: 8px;
-      background: rgba(12, 12, 14, 0.88);
-      border: 1px solid rgba(212, 175, 55, 0.4);
-      color: #d4af37;
-      padding: 4px 8px;
-      border-radius: 20px;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      font-size: 0.62rem;
-      font-weight: 700;
-      letter-spacing: 0.08em;
-      text-transform: uppercase;
-      backdrop-filter: blur(6px);
-      z-index: 2;
-      box-shadow: 0 2px 10px rgba(0, 0, 0, 0.6);
-      animation: pulseAttention 4s infinite cubic-bezier(0.16, 1, 0.3, 1);
-    }
-
-    @keyframes pulseAttention {
-      0%, 100% {
-        transform: scale(1);
-        border-color: rgba(212, 175, 55, 0.4);
-      }
-      50% {
-        transform: scale(1.06);
-        border-color: rgba(245, 197, 24, 0.9);
-        box-shadow: 0 4px 14px rgba(245, 197, 24, 0.3);
-      }
-    }
-
     .product-cover-img {
       width: 100%;
       height: 100%;
       object-fit: cover;
+      -webkit-object-fit: cover;
       display: block;
       transition: transform 0.3s ease;
     }
@@ -308,14 +274,14 @@
       display: inline-flex;
       align-items: center;
       justify-content: center;
-      flex: 1;
+      flex: 1.2;
       background: var(--accent, #f5c518);
       color: #0b0b0b;
       font-weight: 800;
-      font-size: 0.72rem;
+      font-size: 0.7rem;
       letter-spacing: 0.04em;
       text-transform: uppercase;
-      padding: 10px 8px;
+      padding: 10px 6px;
       border-radius: 5px;
       text-decoration: none;
       box-shadow: 0 3px 12px rgba(245, 197, 24, 0.2);
@@ -326,6 +292,31 @@
     .buy-btn:hover {
       transform: translateY(-1px);
       box-shadow: 0 5px 15px rgba(245, 197, 24, 0.3);
+    }
+
+    .preview-btn {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      flex: 1;
+      background: rgba(255, 255, 255, 0.08);
+      border: 1px solid rgba(255, 255, 255, 0.15);
+      color: #ffffff;
+      font-weight: 700;
+      font-size: 0.68rem;
+      letter-spacing: 0.04em;
+      text-transform: uppercase;
+      padding: 10px 6px;
+      border-radius: 5px;
+      cursor: pointer;
+      transition: all 0.2s ease;
+      box-sizing: border-box;
+    }
+
+    .preview-btn:hover {
+      background: rgba(255, 255, 255, 0.15);
+      border-color: rgba(212, 175, 55, 0.5);
+      color: #d4af37;
     }
 
     /* Vault Announcement */
@@ -459,7 +450,6 @@
         <article class="product-card" data-category="LOOPS">
           <div>
             <div class="product-cover-wrap" onclick="openYouTubePreview('1weRioH2XeU')">
-              <span class="view-eye-badge">PREVIEW</span>
               <img class="product-cover-img" src="https://lh3.googleusercontent.com/d/1cMYKxjV8SQ2A3UBFZmNs2Wxk6Cg5cfaq" alt="ArkWay Acoustic Guitar Loops Vol. 1 Cover Artwork" loading="lazy">
             </div>
 
@@ -477,6 +467,7 @@
             </div>
             <div class="product-actions">
               <a class="buy-btn" href="https://arkway.hustlesasa.shop/products/6ac6aca75da3db28bb77c4c2" target="_blank" rel="noopener">Buy Pack →</a>
+              <button class="preview-btn" onclick="openYouTubePreview('1weRioH2XeU')">▶ Preview</button>
             </div>
           </div>
         </article>
@@ -485,7 +476,6 @@
         <article class="product-card" data-category="LOOPS">
           <div>
             <div class="product-cover-wrap" onclick="openYouTubePreview('JxP0r8wasN8')">
-              <span class="view-eye-badge">PREVIEW</span>
               <img class="product-cover-img" src="https://lh3.googleusercontent.com/d/1YUviuhbXr3xmAOEorQCLdBJyJHoOl95b" alt="ArkWay Acoustic Guitar Loops Vol. 2 Cover Artwork" loading="lazy">
             </div>
 
@@ -504,6 +494,7 @@
             </div>
             <div class="product-actions">
               <a class="buy-btn" href="https://arkway.hustlesasa.shop/products/6ac74ba73c75ce7337474678" target="_blank" rel="noopener">Buy Pack →</a>
+              <button class="preview-btn" onclick="openYouTubePreview('JxP0r8wasN8')">▶ Preview</button>
             </div>
           </div>
         </article>
@@ -512,7 +503,6 @@
         <article class="product-card" data-category="LOOPS">
           <div>
             <div class="product-cover-wrap" onclick="openYouTubePreview('bezlvAjsAeQ')">
-              <span class="view-eye-badge">PREVIEW</span>
               <img class="product-cover-img" src="https://lh3.googleusercontent.com/d/1POIsNa1F55W5riCpWP4czXuHhdZe6lOO" alt="ArkWay Acoustic Guitar Loops Vol. 3 Cover Artwork" loading="lazy">
             </div>
 
@@ -531,6 +521,7 @@
             </div>
             <div class="product-actions">
               <a class="buy-btn" href="https://arkway.hustlesasa.shop/products/6ac76d1a77191bed59dd9cff" target="_blank" rel="noopener">Buy Pack →</a>
+              <button class="preview-btn" onclick="openYouTubePreview('bezlvAjsAeQ')">▶ Preview</button>
             </div>
           </div>
         </article>
@@ -539,7 +530,6 @@
         <article class="product-card" data-category="BEATS" style="display: none;">
           <div>
             <div class="product-cover-wrap" onclick="openYouTubePreview('Cf-DBQZP5v0')">
-              <span class="view-eye-badge">PREVIEW</span>
               <img class="product-cover-img" src="https://lh3.googleusercontent.com/d/1m8ObD9O5JOYMIV0Qd5jyD7Nv2o-9Wgyc" alt="Arkway Beatpack Vol. 1 Cover Artwork" loading="lazy">
             </div>
 
@@ -558,6 +548,7 @@
             </div>
             <div class="product-actions">
               <a class="buy-btn" href="https://arkway.hustlesasa.shop/products/6ac8ee37a596927e5a7a3092" target="_blank" rel="noopener">Buy Pack →</a>
+              <button class="preview-btn" onclick="openYouTubePreview('Cf-DBQZP5v0')">▶ Preview</button>
             </div>
           </div>
         </article>
@@ -636,7 +627,6 @@ const tabToCategory = {
 function filterProducts(category, updateHash = false) {
   const tabName = categoryToTab[category];
   
-  // Highlight correct tab button
   document.querySelectorAll('.product-filter-bar button').forEach(b => {
     if (b.getAttribute('data-tab') === tabName) {
       b.classList.add('active');
@@ -664,7 +654,6 @@ function filterProducts(category, updateHash = false) {
     announcement.style.display = 'none';
   }
 
-  // Update URL hash when clicking tabs manually
   if (updateHash && tabName) {
     history.replaceState(null, "", "#" + tabName);
   }
@@ -692,7 +681,6 @@ function closeModalDOM() {
   modal.classList.remove('active');
   document.getElementById('modalBody').innerHTML = "";
   
-  // Restore current category hash if modal closes
   const activeBtn = document.querySelector('.product-filter-bar button.active');
   if (activeBtn) {
     const tab = activeBtn.getAttribute('data-tab');
@@ -712,10 +700,8 @@ function closeModalUserAction() {
 /* Handle Back Button */
 window.addEventListener('popstate', () => {
   if (location.hash === "#preview") {
-    // If popstate happened because of closing modal
     closeModalDOM();
   } else {
-    // Check if hash matches a category tab
     const hash = location.hash.replace('#', '');
     if (tabToCategory[hash]) {
       filterProducts(tabToCategory[hash], false);
@@ -723,14 +709,13 @@ window.addEventListener('popstate', () => {
   }
 });
 
-// Run initial check on page load based on URL hash (e.g. /products#beats)
+// Run initial check on page load based on URL hash
 document.addEventListener('DOMContentLoaded', () => {
   const hash = window.location.hash.replace('#', '');
   
   if (hash && tabToCategory[hash]) {
     filterProducts(tabToCategory[hash], false);
   } else {
-    // Default to LOOPS
     filterProducts('LOOPS', false);
   }
 });
