@@ -625,12 +625,12 @@ function filterProducts(category, btn) {
   }
 }
 
-/* Open YouTube Shorts Modal Preview with autoplay & controls */
+/* Open YouTube Shorts Modal Preview with minimal clutter */
 function openYouTubePreview(videoId) {
   const body = document.getElementById('modalBody');
   body.innerHTML = `
     <iframe class="modal-iframe-player" 
-      src="https://www.youtube.com/embed/${videoId}?autoplay=1&enablejsapi=1" 
+      src="https://www.youtube.com/embed/${videoId}?autoplay=1&modestbranding=1&rel=0&iv_load_policy=3" 
       title="ArkWay Loop Preview" 
       allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" 
       allowfullscreen>
