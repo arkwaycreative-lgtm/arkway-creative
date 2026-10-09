@@ -279,7 +279,7 @@
       letter-spacing: normal;
     }
 
-    /* Pricing Section */
+    /* Pricing Section & Action Buttons */
     .pricing-container {
       display: flex;
       align-items: baseline;
@@ -299,18 +299,23 @@
       text-decoration: line-through;
     }
 
+    .product-actions {
+      display: flex;
+      gap: 6px;
+    }
+
     .buy-btn {
       display: inline-flex;
       align-items: center;
       justify-content: center;
-      width: 100%;
+      flex: 1;
       background: var(--accent, #f5c518);
       color: #0b0b0b;
       font-weight: 800;
-      font-size: 0.75rem;
+      font-size: 0.72rem;
       letter-spacing: 0.04em;
       text-transform: uppercase;
-      padding: 10px 12px;
+      padding: 10px 8px;
       border-radius: 5px;
       text-decoration: none;
       box-shadow: 0 3px 12px rgba(245, 197, 24, 0.2);
@@ -440,12 +445,12 @@
       </div>
 
       <div class="product-filter-bar">
-        <button class="active" onclick="filterProducts('LOOPS', this)"><span class="active-dot"></span> LOOPS</button>
-        <button onclick="filterProducts('BEATS', this)"><span class="active-dot"></span> BEATS</button>
-        <button onclick="filterProducts('FILM SCORES', this)"><span class="active-dot"></span> FILM SCORES</button>
-        <button onclick="filterProducts('DRUM KITS', this)"><span class="active-dot"></span> DRUM KITS</button>
-        <button onclick="filterProducts('FX', this)"><span class="active-dot"></span> FX</button>
-        <button onclick="filterProducts('FOLEY', this)"><span class="active-dot"></span> FOLEY</button>
+        <button class="active" onclick="filterProducts('LOOPS', true)" data-tab="loops"><span class="active-dot"></span> LOOPS</button>
+        <button onclick="filterProducts('BEATS', true)" data-tab="beats"><span class="active-dot"></span> BEATS</button>
+        <button onclick="filterProducts('FILM SCORES', true)" data-tab="filmscores"><span class="active-dot"></span> FILM SCORES</button>
+        <button onclick="filterProducts('DRUM KITS', true)" data-tab="drumkits"><span class="active-dot"></span> DRUM KITS</button>
+        <button onclick="filterProducts('FX', true)" data-tab="fx"><span class="active-dot"></span> FX</button>
+        <button onclick="filterProducts('FOLEY', true)" data-tab="foley"><span class="active-dot"></span> FOLEY</button>
       </div>
 
       <div class="products-grid">
@@ -470,7 +475,9 @@
               <span class="price-sale">KES 800</span>
               <span class="price-regular">KES 1,000</span>
             </div>
-            <a class="buy-btn" href="https://arkway.hustlesasa.shop/products/6ac6aca75da3db28bb77c4c2" target="_blank" rel="noopener">Buy Pack →</a>
+            <div class="product-actions">
+              <a class="buy-btn" href="https://arkway.hustlesasa.shop/products/6ac6aca75da3db28bb77c4c2" target="_blank" rel="noopener">Buy Pack →</a>
+            </div>
           </div>
         </article>
 
@@ -495,7 +502,9 @@
               <span class="price-sale">KES 800</span>
               <span class="price-regular">KES 1,000</span>
             </div>
-            <a class="buy-btn" href="https://arkway.hustlesasa.shop/products/6ac74ba73c75ce7337474678" target="_blank" rel="noopener">Buy Pack →</a>
+            <div class="product-actions">
+              <a class="buy-btn" href="https://arkway.hustlesasa.shop/products/6ac74ba73c75ce7337474678" target="_blank" rel="noopener">Buy Pack →</a>
+            </div>
           </div>
         </article>
 
@@ -520,7 +529,9 @@
               <span class="price-sale">KES 800</span>
               <span class="price-regular">KES 1,000</span>
             </div>
-            <a class="buy-btn" href="https://arkway.hustlesasa.shop/products/6ac76d1a77191bed59dd9cff" target="_blank" rel="noopener">Buy Pack →</a>
+            <div class="product-actions">
+              <a class="buy-btn" href="https://arkway.hustlesasa.shop/products/6ac76d1a77191bed59dd9cff" target="_blank" rel="noopener">Buy Pack →</a>
+            </div>
           </div>
         </article>
 
@@ -545,7 +556,9 @@
               <span class="price-sale">KES 5,000</span>
               <span class="price-regular">KES 7,500</span>
             </div>
-            <a class="buy-btn" href="https://arkway.hustlesasa.shop/products/6ac8ee37a596927e5a7a3092" target="_blank" rel="noopener">Buy Pack →</a>
+            <div class="product-actions">
+              <a class="buy-btn" href="https://arkway.hustlesasa.shop/products/6ac8ee37a596927e5a7a3092" target="_blank" rel="noopener">Buy Pack →</a>
+            </div>
           </div>
         </article>
 
@@ -602,9 +615,35 @@
 
 <script src="/site.js"></script>
 <script>
-function filterProducts(category, btn) {
-  document.querySelectorAll('.product-filter-bar button').forEach(b => b.classList.remove('active'));
-  btn.classList.add('active');
+const categoryToTab = {
+  'LOOPS': 'loops',
+  'BEATS': 'beats',
+  'FILM SCORES': 'filmscores',
+  'DRUM KITS': 'drumkits',
+  'FX': 'fx',
+  'FOLEY': 'foley'
+};
+
+const tabToCategory = {
+  'loops': 'LOOPS',
+  'beats': 'BEATS',
+  'filmscores': 'FILM SCORES',
+  'drumkits': 'DRUM KITS',
+  'fx': 'FX',
+  'foley': 'FOLEY'
+};
+
+function filterProducts(category, updateHash = false) {
+  const tabName = categoryToTab[category];
+  
+  // Highlight correct tab button
+  document.querySelectorAll('.product-filter-bar button').forEach(b => {
+    if (b.getAttribute('data-tab') === tabName) {
+      b.classList.add('active');
+    } else {
+      b.classList.remove('active');
+    }
+  });
 
   const cards = document.querySelectorAll('.product-card');
   let visibleCount = 0;
@@ -624,9 +663,14 @@ function filterProducts(category, btn) {
   } else {
     announcement.style.display = 'none';
   }
+
+  // Update URL hash when clicking tabs manually
+  if (updateHash && tabName) {
+    history.replaceState(null, "", "#" + tabName);
+  }
 }
 
-/* Open YouTube Shorts Modal Preview with minimal clutter */
+/* Open YouTube Shorts Modal Preview */
 function openYouTubePreview(videoId) {
   const body = document.getElementById('modalBody');
   body.innerHTML = `
@@ -642,11 +686,18 @@ function openYouTubePreview(videoId) {
   history.pushState({ modalOpen: true }, "", "#preview");
 }
 
-/* Helper to close modal and instantly kill the YouTube stream */
+/* Helper to close modal */
 function closeModalDOM() {
   const modal = document.getElementById('artworkModal');
   modal.classList.remove('active');
-  document.getElementById('modalBody').innerHTML = ""; // Wipes iframe, instantly stopping audio
+  document.getElementById('modalBody').innerHTML = "";
+  
+  // Restore current category hash if modal closes
+  const activeBtn = document.querySelector('.product-filter-bar button.active');
+  if (activeBtn) {
+    const tab = activeBtn.getAttribute('data-tab');
+    history.replaceState(null, "", "#" + tab);
+  }
 }
 
 /* User Close Action */
@@ -658,16 +709,29 @@ function closeModalUserAction() {
   }
 }
 
-/* Listen to Browser/Phone Back Button */
+/* Handle Back Button */
 window.addEventListener('popstate', () => {
-  closeModalDOM();
+  if (location.hash === "#preview") {
+    // If popstate happened because of closing modal
+    closeModalDOM();
+  } else {
+    // Check if hash matches a category tab
+    const hash = location.hash.replace('#', '');
+    if (tabToCategory[hash]) {
+      filterProducts(tabToCategory[hash], false);
+    }
+  }
 });
 
-// Run initial check on page load
+// Run initial check on page load based on URL hash (e.g. /products#beats)
 document.addEventListener('DOMContentLoaded', () => {
-  const activeBtn = document.querySelector('.product-filter-bar button.active');
-  if (activeBtn) {
-    filterProducts('LOOPS', activeBtn);
+  const hash = window.location.hash.replace('#', '');
+  
+  if (hash && tabToCategory[hash]) {
+    filterProducts(tabToCategory[hash], false);
+  } else {
+    // Default to LOOPS
+    filterProducts('LOOPS', false);
   }
 });
 </script>
