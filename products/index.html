@@ -193,44 +193,7 @@
       border: 1px solid rgba(255, 255, 255, 0.08);
       background: #000;
       aspect-ratio: 1 / 1;
-      cursor: pointer;
       position: relative;
-    }
-
-    /* Minimalist Animated Preview Badge */
-    .view-eye-badge {
-      position: absolute;
-      top: 8px;
-      right: 8px;
-      background: rgba(12, 12, 14, 0.88);
-      border: 1px solid rgba(212, 175, 55, 0.4);
-      color: #d4af37;
-      padding: 4px 8px;
-      border-radius: 20px;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      font-size: 0.62rem;
-      font-weight: 700;
-      letter-spacing: 0.08em;
-      text-transform: uppercase;
-      backdrop-filter: blur(6px);
-      z-index: 2;
-      box-shadow: 0 2px 10px rgba(0, 0, 0, 0.6);
-      animation: pulseAttention 4s infinite cubic-bezier(0.16, 1, 0.3, 1);
-    }
-
-    /* Attention-grabbing pulse animation */
-    @keyframes pulseAttention {
-      0%, 100% {
-        transform: scale(1);
-        border-color: rgba(212, 175, 55, 0.4);
-      }
-      50% {
-        transform: scale(1.06);
-        border-color: rgba(245, 197, 24, 0.9);
-        box-shadow: 0 4px 14px rgba(245, 197, 24, 0.3);
-      }
     }
 
     .product-cover-img {
@@ -238,6 +201,15 @@
       height: 100%;
       object-fit: cover;
       display: block;
+    }
+
+    /* Embedded Video Player inside Card */
+    .product-video-preview {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      display: block;
+      background: #000;
     }
 
     .product-card-meta {
@@ -344,7 +316,7 @@
       line-height: 1.5;
     }
 
-    /* Embedded IG Reel / Artwork Lightbox Modal */
+    /* Lightbox Modal for Full Image/Artwork inspection if needed */
     .artwork-modal {
       display: none;
       position: fixed;
@@ -412,13 +384,6 @@
       background: #d4af37;
       color: #000;
     }
-
-    .reel-iframe {
-      width: 100%;
-      height: 100%;
-      border: none;
-      display: block;
-    }
   </style>
 </head>
 <body>
@@ -460,9 +425,11 @@
         <!-- PRODUCT ITEM 01 -->
         <article class="product-card" data-category="LOOPS">
           <div>
-            <div class="product-cover-wrap" onclick="openPreview('video', 'https://www.instagram.com/reel/DeOyRHeIpot/embed/')">
-              <span class="view-eye-badge">PREVIEW</span>
-              <img class="product-cover-img" src="https://lh3.googleusercontent.com/d/1cMYKxjV8SQ2A3UBFZmNs2Wxk6Cg5cfaq" alt="ArkWay Acoustic Guitar Loops Vol. 1 Cover Artwork" loading="lazy">
+            <div class="product-cover-wrap">
+              <video class="product-video-preview" controls preload="metadata" playsinline>
+                <source src="https://files.catbox.moe/5zf7u3.mp4" type="video/mp4">
+                Your browser does not support video playback.
+              </video>
             </div>
 
             <div class="product-card-meta">
@@ -484,9 +451,11 @@
         <!-- PRODUCT ITEM 02 -->
         <article class="product-card" data-category="LOOPS">
           <div>
-            <div class="product-cover-wrap" onclick="openPreview('image', 'https://lh3.googleusercontent.com/d/1YUviuhbXr3xmAOEorQCLdBJyJHoOl95b')">
-              <span class="view-eye-badge">PREVIEW</span>
-              <img class="product-cover-img" src="https://lh3.googleusercontent.com/d/1YUviuhbXr3xmAOEorQCLdBJyJHoOl95b" alt="ArkWay Acoustic Guitar Loops Vol. 2 Cover Artwork" loading="lazy">
+            <div class="product-cover-wrap">
+              <video class="product-video-preview" controls preload="metadata" playsinline>
+                <source src="https://files.catbox.moe/kh7qel.mp4" type="video/mp4">
+                Your browser does not support video playback.
+              </video>
             </div>
 
             <div class="product-card-meta">
@@ -509,9 +478,11 @@
         <!-- PRODUCT ITEM 03 -->
         <article class="product-card" data-category="LOOPS">
           <div>
-            <div class="product-cover-wrap" onclick="openPreview('image', 'https://lh3.googleusercontent.com/d/1POIsNa1F55W5riCpWP4czXuHhdZe6lOO')">
-              <span class="view-eye-badge">PREVIEW</span>
-              <img class="product-cover-img" src="https://lh3.googleusercontent.com/d/1POIsNa1F55W5riCpWP4czXuHhdZe6lOO" alt="ArkWay Acoustic Guitar Loops Vol. 3 Cover Artwork" loading="lazy">
+            <div class="product-cover-wrap">
+              <video class="product-video-preview" controls preload="metadata" playsinline>
+                <source src="https://files.catbox.moe/aow0ob.mp4" type="video/mp4">
+                Your browser does not support video playback.
+              </video>
             </div>
 
             <div class="product-card-meta">
@@ -535,7 +506,6 @@
         <article class="product-card" data-category="BEATS" style="display: none;">
           <div>
             <div class="product-cover-wrap" onclick="openPreview('image', 'https://lh3.googleusercontent.com/d/1m8ObD9O5JOYMIV0Qd5jyD7Nv2o-9Wgyc')">
-              <span class="view-eye-badge">PREVIEW</span>
               <img class="product-cover-img" src="https://lh3.googleusercontent.com/d/1m8ObD9O5JOYMIV0Qd5jyD7Nv2o-9Wgyc" alt="Arkway Beatpack Vol. 1 Cover Artwork" loading="lazy">
             </div>
 
@@ -568,9 +538,9 @@
     </section>
   </main>
 
-  <!-- Embedded IG Reel / Artwork Lightbox Modal -->
+  <!-- Artwork Lightbox Modal -->
   <div class="artwork-modal" id="artworkModal" onclick="closeModalUserAction()">
-    <div class="modal-content-wrap" id="modalContainer" onclick="event.stopPropagation()">
+    <div class="modal-content-wrap image-mode" id="modalContainer" onclick="event.stopPropagation()">
       <button class="modal-close-btn" onclick="closeModalUserAction()">✕</button>
       <div id="modalBody" style="width:100%; height:100%;"></div>
     </div>
@@ -633,18 +603,10 @@ function filterProducts(category, btn) {
   }
 }
 
-/* Open Modal: 'video' for native IG Reel embed, 'image' for pure artwork */
+/* Open Modal for image artwork inspection if needed */
 function openPreview(type, url) {
-  const container = document.getElementById('modalContainer');
   const body = document.getElementById('modalBody');
-
-  if (type === 'video') {
-    container.className = 'modal-content-wrap';
-    body.innerHTML = `<iframe class="reel-iframe" src="${url}" allowfullscreen></iframe>`;
-  } else {
-    container.className = 'modal-content-wrap image-mode';
-    body.innerHTML = `<img src="${url}" alt="Full Cover Artwork">`;
-  }
+  body.innerHTML = `<img src="${url}" alt="Full Cover Artwork">`;
 
   document.getElementById('artworkModal').classList.add('active');
   history.pushState({ modalOpen: true }, "", "#preview");
