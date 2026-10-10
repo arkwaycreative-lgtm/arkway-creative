@@ -56,10 +56,10 @@
       border: none;
       color: #f5f5f5;
       font-family: inherit;
-      font-size: 1.05rem;
+      font-size: 1.15rem;
       font-weight: 500;
       text-align: left;
-      padding: 18px 0;
+      padding: 20px 0;
       display: flex;
       justify-content: space-between;
       align-items: center;
@@ -78,7 +78,7 @@
     }
 
     .service-chevron {
-      font-size: 0.85rem;
+      font-size: 0.95rem;
       color: #888;
       transition: transform 0.3s ease, color 0.3s ease;
       flex-shrink: 0;
@@ -94,21 +94,34 @@
     }
 
     .service-dropdown {
-      padding: 0 0 18px 0;
+      padding: 0 0 20px 0;
     }
 
     .dropdown-price {
-      font-size: 1.1rem;
+      font-size: 1.2rem;
       font-weight: 700;
       color: #d4af37;
-      margin-bottom: 6px;
+      margin-bottom: 8px;
     }
 
     .dropdown-desc {
-      font-size: 0.95rem;
+      font-size: 1.05rem;
       line-height: 1.6;
-      color: #aaa;
+      color: #bbb;
       margin: 0;
+    }
+
+    /* Highlight description list styling */
+    .highlight-list {
+      list-style: none;
+      padding: 0;
+      margin: 12px 0 0 0;
+    }
+    .highlight-list li {
+      font-size: 1.05rem;
+      line-height: 1.6;
+      color: #bbb;
+      margin-bottom: 6px;
     }
   </style>
 </head>
@@ -134,7 +147,11 @@
           <p class="eyebrow">01 · SERVICES</p>
           <h1>Creative work, backed by <em>intelligence.</em></h1>
         </div>
-        <p>Choose the service that fits your project. Our standard packages, rates, and terms are listed below. <span style="color: #d4af37; font-weight: 500;">For custom projects, contact ArkWay for a tailored scope and quotation.</span></p>
+        <ul class="highlight-list">
+          <li>Choose the service that fits your project[span_0](start_span)[span_0](end_span).</li>
+          <li>Our standard packages, rates, and terms are listed below[span_1](start_span)[span_1](end_span).</li>
+          <li><span style="color: #d4af37; font-weight: 500;">For custom projects, contact ArkWay for a tailored scope and quotation[span_2](start_span)[span_2](end_span).</span></li>
+        </ul>
       </div>
 
       <div class="service-groups">
@@ -389,7 +406,7 @@
 
   <footer>
     <div class="footer-top">
-      <a class="footer-brand" href="/">
+      <a class="footer-brand" href="/" aria-label="ArkWay Creative home">
         <img src="https://lh3.googleusercontent.com/d/1jrEFMFWEB7wO19K-_SJBsEcz4azfM9e4" alt="ArkWay Creative">
         <div><strong>ARKWAY CREATIVE</strong><span>MEDIA · DATA · CULTURE</span></div>
       </a>
