@@ -123,6 +123,102 @@
       color: #cccccc;
       margin-bottom: 8px;
     }
+
+    /* Booking Choice Modal */
+    .booking-modal {
+      display: none;
+      position: fixed;
+      inset: 0;
+      z-index: 9999;
+      background: rgba(0, 0, 0, 0.9);
+      backdrop-filter: blur(8px);
+      align-items: center;
+      justify-content: center;
+      padding: 20px;
+    }
+
+    .booking-modal.active {
+      display: flex;
+    }
+
+    .booking-modal-card {
+      background: #121214;
+      border: 1px solid rgba(212, 175, 55, 0.3);
+      border-radius: 12px;
+      padding: 28px;
+      max-width: 420px;
+      width: 100%;
+      text-align: center;
+      position: relative;
+      box-shadow: 0 16px 48px rgba(0,0,0,0.8);
+    }
+
+    .booking-modal-card h3 {
+      font-size: 1.3rem;
+      color: #ffffff;
+      margin: 0 0 10px 0;
+    }
+
+    .booking-modal-card p {
+      font-size: 0.95rem;
+      color: #aaa;
+      margin-bottom: 24px;
+      line-height: 1.5;
+    }
+
+    .booking-actions-wrap {
+      display: flex;
+      flex-direction: column;
+      gap: 12px;
+    }
+
+    .booking-btn-wa {
+      background: #25D366;
+      color: #000;
+      font-weight: 700;
+      padding: 12px 16px;
+      border-radius: 6px;
+      text-decoration: none;
+      display: block;
+      font-size: 0.9rem;
+      text-transform: uppercase;
+      letter-spacing: 0.04em;
+    }
+
+    .booking-btn-em {
+      background: rgba(255, 255, 255, 0.1);
+      border: 1px solid rgba(255, 255, 255, 0.2);
+      color: #fff;
+      font-weight: 700;
+      padding: 12px 16px;
+      border-radius: 6px;
+      text-decoration: none;
+      display: block;
+      font-size: 0.9rem;
+      text-transform: uppercase;
+      letter-spacing: 0.04em;
+    }
+
+    .booking-btn-em:hover {
+      background: rgba(255, 255, 255, 0.2);
+      border-color: #d4af37;
+      color: #d4af37;
+    }
+
+    .modal-close-x {
+      position: absolute;
+      top: 12px;
+      right: 12px;
+      background: transparent;
+      border: none;
+      color: #888;
+      font-size: 1.2rem;
+      cursor: pointer;
+    }
+
+    .modal-close-x:hover {
+      color: #fff;
+    }
   </style>
 </head>
 <body>
@@ -244,7 +340,7 @@
             </details>
           </div>
         
-          <button class="outline-action book-service" data-service="Record, produce & finish." data-wa="https://wa.me/254118618199?text=Hi%20ArkWay%2C%20I%20would%20like%20to%20book%20Record%2C%20produce%20%26%20finish..%20Please%20share%20availability%20and%20next%20steps." data-em="mailto:arkwaycreative@gmail.com?subject=ArkWay%20booking%20%E2%80%94%20Record%2C%20produce%20%26%20finish.&body=Hi%20ArkWay%2C%20I%20would%20like%20to%20book%20Record%2C%20produce%20%26%20finish..%20Please%20share%20availability%20and%20next%20steps.">Reach out to book →</button>
+          <button class="outline-action book-service" data-service="Record, produce & finish." data-wa="https://wa.me/254118618199?text=Hi%20ArkWay%2C%20I%20would%20like%20to%20book%20Record%2C%20produce%20%26%20finish..%20Please%20share%20availability%20and%20next%20steps." data-em="mailto:arkwaycreative@gmail.com?subject=ArkWay%20booking%20--%20Record,%20produce%20%26%20finish.&body=Hi%20ArkWay,%20I%20would%20like%20to%20book%20Record,%20produce%20%26%20finish..%20Please%20share%20availability%20and%20next%20steps.">Reach out to book →</button>
         </article>
 
         <!-- 02 / FILM & MEDIA SOUND -->
@@ -291,7 +387,7 @@
             </details>
           </div>
         
-          <button class="outline-action book-service" data-service="Score the picture." data-wa="https://wa.me/254118618199?text=Hi%20ArkWay%2C%20I%20would%20like%20to%20book%20Score%20the%20picture..%20Please%20share%20availability%20and%20next%20steps." data-em="mailto:arkwaycreative@gmail.com?subject=ArkWay%20booking%20%E2%80%94%20Score%20the%20picture.&body=Hi%20ArkWay%2C%20I%20would%20like%20to%20book%20Score%20the%20picture..%20Please%20share%20availability%20and%20next%20steps.">Reach out to book →</button>
+          <button class="outline-action book-service" data-service="Score the picture." data-wa="https://wa.me/254118618199?text=Hi%20ArkWay%2C%20I%20would%20like%20to%20book%20Score%20the%20picture..%20Please%20share%20availability%20and%20next%20steps." data-em="mailto:arkwaycreative@gmail.com?subject=ArkWay%20booking%20--%20Score%20the%20picture.&body=Hi%20ArkWay,%20I%20would%20like%20to%20book%20Score%20the%20picture..%20Please%20share%20availability%20and%20next%20steps.">Reach out to book →</button>
         </article>
 
         <!-- 03 / BRAND ARCHITECTURE -->
@@ -338,7 +434,7 @@
             </details>
           </div>
         
-          <button class="outline-action book-service" data-service="Build the media system." data-wa="https://wa.me/254118618199?text=Hi%20ArkWay%2C%20I%20would%20like%20to%20book%20Build%20the%20media%20system..%20Please%20share%20availability%20and%20next%20steps." data-em="mailto:arkwaycreative@gmail.com?subject=ArkWay%20booking%20%E2%80%94%20Build%20the%20media%20system.&body=Hi%20ArkWay%2C%20I%20would%20like%20to%20book%20Build%20the%20media%20system..%20Please%20share%20availability%20and%20next%20steps.">Reach out to book →</button>
+          <button class="outline-action book-service" data-service="Build the media system." data-wa="https://wa.me/254118618199?text=Hi%20ArkWay%2C%20I%20would%20like%20to%20book%20Build%20the%20media%20system..%20Please%20share%20availability%20and%20next%20steps." data-em="mailto:arkwaycreative@gmail.com?subject=ArkWay%20booking%20--%20Build%20the%20media%20system.&body=Hi%20ArkWay,%20I%20would%20like%20to%20book%20Build%20the%20media%20system..%20Please%20share%20availability%20and%20next%20steps.">Reach out to book →</button>
         </article>
 
         <!-- 04 / DATA & ANALYTICS -->
@@ -385,7 +481,7 @@
             </details>
           </div>
         
-          <button class="outline-action book-service" data-service="Make creative decisions with evidence." data-wa="https://wa.me/254118618199?text=Hi%20ArkWay%2C%20I%20would%20like%20to%20book%20Make%20creative%20decisions%20with%20evidence..%20Please%20share%20availability%20and%20next%20steps." data-em="mailto:arkwaycreative@gmail.com?subject=ArkWay%20booking%20%E2%80%94%20Make%20creative%20decisions%20with%20evidence.&body=Hi%20ArkWay%2C%20I%20would%20like%20to%20book%20Make%20creative%20decisions%20with%20evidence..%20Please%20share%20availability%20and%20next%20steps.">Reach out to book →</button>
+          <button class="outline-action book-service" data-service="Make creative decisions with evidence." data-wa="https://wa.me/254118618199?text=Hi%20ArkWay%2C%20I%20would%20like%20to%20book%20Make%20creative%20decisions%20with%20evidence..%20Please%20share%20availability%20and%20next%20steps." data-em="mailto:arkwaycreative@gmail.com?subject=ArkWay%20booking%20--%20Make%20creative%20decisions%20with%20evidence.&body=Hi%20ArkWay,%20I%20would%20like%20to%20book%20Make%20creative%20decisions%20with%20evidence..%20Please%20share%20availability%20and%20next%20steps.">Reach out to book →</button>
         </article>
 
       </div>
@@ -398,11 +494,23 @@
         </div>
         <div class="services-contact-actions">
           <a class="primary large" target="_blank" rel="noopener" href="https://wa.me/254118618199?text=Hi%20ArkWay%2C%20I%20would%20like%20to%20book%20a%20project%20with%20ArkWay.%20Please%20share%20availability%20and%20next%20steps.">WhatsApp →</a>
-          <a class="secondary large" href="mailto:arkwaycreative@gmail.com?subject=ArkWay%20booking%20%E2%80%94%20a%20project%20with%20ArkWay&body=Hi%20ArkWay%2C%20I%20would%20like%20to%20book%20a%20project%20with%20ArkWay.%20Please%20share%20availability%20and%20next%20steps.">Email ✉</a>
+          <a class="secondary large" href="mailto:arkwaycreative@gmail.com?subject=ArkWay%20booking%20--%20a%20project%20with%20ArkWay&body=Hi%20ArkWay,%20I%20would%20like%20to%20book%20a%20project%20with%20ArkWay.%20Please%20share%20availability%20and%20next%20steps.">Email ✉</a>
         </div>
       </div>
     </section>
   </main>
+
+  <div class="booking-modal" id="bookingModal">
+    <div class="booking-modal-card">
+      <button class="modal-close-x" onclick="closeBookingModal()">✕</button>
+      <h3 id="bookingModalTitle">Book Service</h3>
+      <p>Select your preferred communication channel to initiate booking:</p>
+      <div class="booking-actions-wrap">
+        <a id="modalWaBtn" class="booking-btn-wa" target="_blank" rel="noopener" href="#">Continue via WhatsApp →</a>
+        <a id="modalEmBtn" class="booking-btn-em" href="#">Continue via Email ✉</a>
+      </div>
+    </div>
+  </div>
 
   <footer>
     <div class="footer-top">
@@ -437,11 +545,15 @@
 
 <script src="/site.js"></script>
 <script>
-  // Ensure strict single-open accordion behavior for services
+  function closeBookingModal() {
+    document.getElementById('bookingModal').classList.remove('active');
+  }
+
   document.addEventListener('DOMContentLoaded', () => {
+    // Accordion single-open handler
     const serviceItems = document.querySelectorAll('details.service-item');
     serviceItems.forEach((item) => {
-      item.addEventListener('toggle', (e) => {
+      item.addEventListener('toggle', () => {
         if (item.open) {
           serviceItems.forEach((other) => {
             if (other !== item && other.open) {
@@ -450,6 +562,35 @@
           });
         }
       });
+    });
+
+    // Booking modal trigger handler
+    const bookButtons = document.querySelectorAll('.book-service');
+    const modal = document.getElementById('bookingModal');
+    const modalTitle = document.getElementById('bookingModalTitle');
+    const modalWaBtn = document.getElementById('modalWaBtn');
+    const modalEmBtn = document.getElementById('modalEmBtn');
+
+    bookButtons.forEach(btn => {
+      btn.addEventListener('click', (e) => {
+        e.preventDefault();
+        const serviceName = btn.getAttribute('data-service') || 'Service';
+        const waUrl = btn.getAttribute('data-wa');
+        const emUrl = btn.getAttribute('data-em');
+
+        modalTitle.textContent = `Book: ${serviceName}`;
+        modalWaBtn.href = waUrl;
+        modalEmBtn.href = emUrl;
+
+        modal.classList.add('active');
+      });
+    });
+
+    // Close modal on backdrop click
+    modal.addEventListener('click', (e) => {
+      if (e.target === modal) {
+        closeBookingModal();
+      }
     });
   });
 </script>
