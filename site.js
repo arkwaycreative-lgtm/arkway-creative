@@ -17,13 +17,48 @@ if(navigator.clipboard)navigator.clipboard.writeText(u).then(done,function(){win
 // Discography toggle
 $("[data-mode]").forEach(function(b){b.addEventListener("click",function(){$("[data-mode]").forEach(function(x){x.classList.toggle("active",x===b)});
 document.getElementById("stream").hidden=b.dataset.mode!=="stream";document.getElementById("download").hidden=b.dataset.mode!=="download"})});
-// Booking modal
+// Booking modal with history/back-button support
+var modalActiveState = false;
+
+function closeBookingModal() {
+  var w = document.querySelector(".modal-backdrop");
+  if (w) {
+    w.remove();
+    document.body.classList.remove("locked");
+  }
+  modalActiveState = false;
+}
+
 $(".book-service").forEach(function(b){b.addEventListener("click",function(){
-document.body.classList.add("locked");var w=document.createElement("div");w.className="modal-backdrop";
-var s=b.dataset.service.replace(/</g,"&lt;");
-w.innerHTML='<div class="modal" role="dialog" aria-modal="true"><button class="modal-close" aria-label="Close">×</button><p class="eyebrow">INSTANT INQUIRY</p><h2>Book <em>'+s+'</em></h2><p>Choose how you want to start the conversation. Your service details will be pre-filled.</p><div class="modal-actions"><a class="primary large" target="_blank" rel="noopener" href="'+b.dataset.wa+'">Open WhatsApp →</a><a class="secondary large" href="'+b.dataset.em+'">Send Email ✉</a></div><span class="modal-note">0118618199 · arkwaycreative@gmail.com</span></div>';
-document.body.appendChild(w);
-var close=function(){w.remove();document.body.classList.remove("locked")};
-w.addEventListener("mousedown",function(e){if(e.target===w)close()});w.querySelector(".modal-close").addEventListener("click",close);
-document.addEventListener("keydown",function k(e){if(e.key==="Escape"){close();document.removeEventListener("keydown",k)}})})});
+  document.body.classList.add("locked");
+  var w=document.createElement("div");
+  w.className="modal-backdrop";
+  var s=b.dataset.service.replace(/</g,"&lt;");
+  w.innerHTML='<div class="modal" role="dialog" aria-modal="true"><button class="modal-close" aria-label="Close">×</button><p class="eyebrow">INSTANT INQUIRY</p><h2>Book <em>'+s+'</em></h2><p>Choose how you want to start the conversation. Your service details will be pre-filled.</p><div class="modal-actions"><a class="primary large" target="_blank" rel="noopener" href="'+b.dataset.wa+'">Open WhatsApp →</a><a class="secondary large" href="'+b.dataset.em+'">Send Email ✉</a></div><span class="modal-note">0118618199 · arkwaycreative@gmail.com</span></div>';
+  document.body.appendChild(w);
+
+  if (!modalActiveState) {
+    modalActiveState = true;
+    history.pushState({ bookingModalOpen: true }, "");
+  }
+
+  var close=function(){
+    if (modalActiveState) {
+      history.back();
+    } else {
+      closeBookingModal();
+    }
+  };
+
+  w.addEventListener("mousedown",function(e){if(e.target===w)close()});
+  w.querySelector(".modal-close").addEventListener("click",close);
+  
+  document.addEventListener("keydown",function k(e){if(e.key==="Escape"){close();document.removeEventListener("keydown",k)}});
+})});
+
+window.addEventListener("popstate", function(e) {
+  if (modalActiveState) {
+    closeBookingModal();
+  }
+});
 })();
