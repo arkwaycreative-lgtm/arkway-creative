@@ -437,6 +437,8 @@
 
 <script src="/site.js"></script>
 <script>
+  let bookingModalHasHistoryState = false;
+
   document.addEventListener('DOMContentLoaded', () => {
     // Accordion single-open handler
     const serviceItems = document.querySelectorAll('details.service-item');
@@ -451,6 +453,28 @@
         }
       });
     });
+
+    // Intercept site.js booking modal or manage history state when site.js opens it
+    const bookButtons = document.querySelectorAll('.book-service');
+    bookButtons.forEach(btn => {
+      btn.addEventListener('click', () => {
+        if (!bookingModalHasHistoryState) {
+          bookingModalHasHistoryState = true;
+          history.pushState({ bookingModalOpen: true }, "");
+        }
+      });
+    });
+  });
+
+  // Handle back button / popstate to close the modal cleanly
+  window.addEventListener('popstate', () => {
+    const modal = document.querySelector('.booking-modal, #bookingModal, .modal.active');
+    if (bookingModalHasHistoryState) {
+      bookingModalHasHistoryState = false;
+      // Find and close any active booking modal elements present on the DOM
+      const modals = document.querySelectorAll('.booking-modal, #bookingModal');
+      modals.forEach(m => m.classList.remove('active'));
+    }
   });
 </script>
 </body>
