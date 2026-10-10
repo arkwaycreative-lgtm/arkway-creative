@@ -661,6 +661,8 @@ function filterProducts(category, updateHash = false) {
   }
 }
 
+let modalHasHistoryState = false;
+
 function openYouTubePreview(videoId) {
   const body = document.getElementById('modalBody');
   body.innerHTML = `
@@ -673,21 +675,41 @@ function openYouTubePreview(videoId) {
   `;
 
   document.getElementById('artworkModal').classList.add('active');
-  // Removed history.pushState/replaceState entirely so the browser history stack stays clean!
+  
+  // Push dummy state specifically for phone back button interception
+  if (!modalHasHistoryState) {
+    modalHasHistoryState = true;
+    history.pushState({ modalOpenState: true }, "");
+  }
 }
 
-function closeModalDOM() {
+/* Internal DOM hide */
+function hideModalDOM() {
   const modal = document.getElementById('artworkModal');
   modal.classList.remove('active');
   document.getElementById('modalBody').innerHTML = "";
+  modalHasHistoryState = false;
 }
 
+/* User-initiated close (Clicking X or tapping dark backdrop) */
 function closeModalUserAction() {
-  closeModalDOM();
+  if (modalHasHistoryState) {
+    // Let history.back() trigger popstate to close cleanly and pop the dummy entry
+    history.back();
+  } else {
+    hideModalDOM();
+  }
 }
 
-// Handle tab switching via URL hash cleanly without breaking history
+/* Single listener for mobile Back button and history navigation */
 window.addEventListener('popstate', (event) => {
+  const modal = document.getElementById('artworkModal');
+  if (modal && modal.classList.contains('active')) {
+    hideModalDOM();
+    return;
+  }
+
+  // Handle standard tab switching via back/forward
   const hash = window.location.hash.replace('#', '');
   if (tabToCategory[hash]) {
     filterProducts(tabToCategory[hash], false);
@@ -696,7 +718,6 @@ window.addEventListener('popstate', (event) => {
 
 document.addEventListener('DOMContentLoaded', () => {
   const hash = window.location.hash.replace('#', '');
-  
   if (hash && tabToCategory[hash]) {
     filterProducts(tabToCategory[hash], false);
   } else {
