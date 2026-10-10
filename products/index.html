@@ -656,7 +656,7 @@ function filterProducts(category, updateHash = false) {
   if (updateHash && tabName) {
     const activeTabHash = "#" + tabName;
     if (window.location.hash !== activeTabHash) {
-      history.pushState({ tab: tabName }, "", activeTabHash);
+      history.replaceState({ tab: tabName }, "", activeTabHash);
     }
   }
 }
@@ -673,40 +673,29 @@ function openYouTubePreview(videoId) {
   `;
 
   document.getElementById('artworkModal').classList.add('active');
-  const currentTabHash = window.location.hash || '#loops';
-  history.replaceState({ modalOpen: true }, "", currentTabHash + "-preview");
+  // Removed history.pushState/replaceState entirely so the browser history stack stays clean!
 }
 
 function closeModalDOM() {
   const modal = document.getElementById('artworkModal');
   modal.classList.remove('active');
   document.getElementById('modalBody').innerHTML = "";
-  
-  if (window.location.hash.includes('-preview')) {
-    const cleanHash = window.location.hash.replace('-preview', '');
-    history.replaceState(null, "", cleanHash);
-  }
 }
 
 function closeModalUserAction() {
   closeModalDOM();
 }
 
+// Handle tab switching via URL hash cleanly without breaking history
 window.addEventListener('popstate', (event) => {
-  const modal = document.getElementById('artworkModal');
-  if (modal.classList.contains('active')) {
-    modal.classList.remove('active');
-    document.getElementById('modalBody').innerHTML = "";
-  } else {
-    const hash = window.location.hash.replace('#', '').replace('-preview', '');
-    if (tabToCategory[hash]) {
-      filterProducts(tabToCategory[hash], false);
-    }
+  const hash = window.location.hash.replace('#', '');
+  if (tabToCategory[hash]) {
+    filterProducts(tabToCategory[hash], false);
   }
 });
 
 document.addEventListener('DOMContentLoaded', () => {
-  const hash = window.location.hash.replace('#', '').replace('-preview', '');
+  const hash = window.location.hash.replace('#', '');
   
   if (hash && tabToCategory[hash]) {
     filterProducts(tabToCategory[hash], false);
