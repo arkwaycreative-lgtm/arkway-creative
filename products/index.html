@@ -17,7 +17,6 @@
 
   <link rel="stylesheet" href="/style.css">
 
-  <!-- Schema.org JSON-LD Structured Data for AI & Search Engines -->
   <script type="application/ld+json">
   [
     {
@@ -96,7 +95,6 @@
   </script>
 
   <style>
-    /* Filter Bar Layout */
     .product-filter-bar {
       display: flex !important;
       flex-wrap: wrap !important;
@@ -158,7 +156,6 @@
       display: inline-block;
     }
 
-    /* Compact Grid Layout */
     .products-grid {
       display: grid;
       grid-template-columns: repeat(auto-fill, minmax(200px, 240px));
@@ -184,7 +181,6 @@
       transform: translateY(-2px);
     }
 
-    /* Cover Wrapper - Static Artwork View */
     .product-cover-wrap {
       width: 100%;
       border-radius: 5px;
@@ -239,7 +235,6 @@
       letter-spacing: normal;
     }
 
-    /* Pricing Section & Action Buttons */
     .pricing-container {
       display: flex;
       align-items: baseline;
@@ -313,7 +308,6 @@
       color: #d4af37;
     }
 
-    /* Vault Announcement */
     .vault-announcement {
       display: none;
       background: rgba(20, 20, 22, 0.6);
@@ -338,7 +332,6 @@
       line-height: 1.5;
     }
 
-    /* Video Lightbox Modal */
     .artwork-modal {
       display: none;
       position: fixed;
@@ -563,7 +556,6 @@
 
       </div>
 
-      <!-- Vault Announcement -->
       <div class="vault-announcement" id="vaultAnnouncement">
         <span class="eyebrow">UPCOMING SOUND VAULT DROPS</span>
         <h3>More Signature Packs Under Production.</h3>
@@ -573,7 +565,6 @@
     </section>
   </main>
 
-  <!-- Video Lightbox Modal -->
   <div class="artwork-modal" id="artworkModal" onclick="closeModalUserAction()">
     <div class="modal-content-wrap" id="modalContainer" onclick="event.stopPropagation()">
       <button class="modal-close-btn" onclick="closeModalUserAction()">✕</button>
@@ -670,7 +661,6 @@ function filterProducts(category, updateHash = false) {
   }
 }
 
-/* Open YouTube Shorts Modal Preview */
 function openYouTubePreview(videoId) {
   const body = document.getElementById('modalBody');
   body.innerHTML = `
@@ -683,13 +673,10 @@ function openYouTubePreview(videoId) {
   `;
 
   document.getElementById('artworkModal').classList.add('active');
-  
-  // Use replaceState for preview so it doesn't create an extra phantom history stack entry
   const currentTabHash = window.location.hash || '#loops';
   history.replaceState({ modalOpen: true }, "", currentTabHash + "-preview");
 }
 
-/* Helper to close modal and restore clean tab hash */
 function closeModalDOM() {
   const modal = document.getElementById('artworkModal');
   modal.classList.remove('active');
@@ -701,20 +688,16 @@ function closeModalDOM() {
   }
 }
 
-/* User Close Action */
 function closeModalUserAction() {
   closeModalDOM();
 }
 
-/* Handle Back Button cleanly */
 window.addEventListener('popstate', (event) => {
   const modal = document.getElementById('artworkModal');
   if (modal.classList.contains('active')) {
-    // If modal is open, back button closes it without shifting pages
     modal.classList.remove('active');
     document.getElementById('modalBody').innerHTML = "";
   } else {
-    // Handle tab switching via back/forward buttons safely
     const hash = window.location.hash.replace('#', '').replace('-preview', '');
     if (tabToCategory[hash]) {
       filterProducts(tabToCategory[hash], false);
@@ -722,7 +705,6 @@ window.addEventListener('popstate', (event) => {
   }
 });
 
-// Run initial check on page load based on URL hash
 document.addEventListener('DOMContentLoaded', () => {
   const hash = window.location.hash.replace('#', '').replace('-preview', '');
   
