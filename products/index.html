@@ -158,31 +158,6 @@
       display: inline-block;
     }
 
-    /* Product Highlights List */
-    .product-highlights-list {
-      list-style: none;
-      padding: 0;
-      margin: 16px 0 24px 0;
-    }
-
-    .product-highlights-list li {
-      font-size: 1.05rem;
-      line-height: 1.6;
-      color: #bbbbbb;
-      position: relative;
-      padding-left: 20px;
-      margin-bottom: 8px;
-    }
-
-    .product-highlights-list li::before {
-      content: "•";
-      color: #d4af37;
-      font-weight: bold;
-      position: absolute;
-      left: 0;
-      top: 0;
-    }
-
     /* Compact Grid Layout */
     .products-grid {
       display: grid;
@@ -451,10 +426,20 @@
           <p class="eyebrow">02 · PRODUCTS</p>
           <h1>Open the <em>sound vault.</em></h1>
         </div>
-        <ul class="product-highlights-list">
-          <li>Digital tools engineered for producers, filmmakers and artists.</li>
-          <li>Curated drops featuring beats, loops, drums, FX, and foley.</li>
-          <li>Optimized for fast, independent production workflows.</li>
+        
+        <ul style="list-style: none; padding: 0; margin: 16px 0 24px 0;">
+          <li style="font-size: 1.05rem; line-height: 1.6; color: #bbbbbb; position: relative; padding-left: 20px; margin-bottom: 8px;">
+            <span style="color: #d4af37; position: absolute; left: 0; top: 0;">•</span>
+            Digital tools engineered for producers, filmmakers, and artists.
+          </li>
+          <li style="font-size: 1.05rem; line-height: 1.6; color: #bbbbbb; position: relative; padding-left: 20px; margin-bottom: 8px;">
+            <span style="color: #d4af37; position: absolute; left: 0; top: 0;">•</span>
+            Curated drops featuring beats, loops, drums, FX, and foley.
+          </li>
+          <li style="font-size: 1.05rem; line-height: 1.6; color: #bbbbbb; position: relative; padding-left: 20px; margin-bottom: 8px;">
+            <span style="color: #d4af37; position: absolute; left: 0; top: 0;">•</span>
+            Optimized for fast, independent production workflows.
+          </li>
         </ul>
       </div>
 
