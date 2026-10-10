@@ -663,7 +663,10 @@ function filterProducts(category, updateHash = false) {
   }
 
   if (updateHash && tabName) {
-    history.replaceState(null, "", "#" + tabName);
+    const activeTabHash = "#" + tabName;
+    if (window.location.hash !== activeTabHash) {
+      history.pushState({ tab: tabName }, "", activeTabHash);
+    }
   }
 }
 
@@ -680,37 +683,39 @@ function openYouTubePreview(videoId) {
   `;
 
   document.getElementById('artworkModal').classList.add('active');
-  history.pushState({ modalOpen: true }, "", "#preview");
+  
+  // Use replaceState for preview so it doesn't create an extra phantom history stack entry
+  const currentTabHash = window.location.hash || '#loops';
+  history.replaceState({ modalOpen: true }, "", currentTabHash + "-preview");
 }
 
-/* Helper to close modal */
+/* Helper to close modal and restore clean tab hash */
 function closeModalDOM() {
   const modal = document.getElementById('artworkModal');
   modal.classList.remove('active');
   document.getElementById('modalBody').innerHTML = "";
   
-  const activeBtn = document.querySelector('.product-filter-bar button.active');
-  if (activeBtn) {
-    const tab = activeBtn.getAttribute('data-tab');
-    history.replaceState(null, "", "#" + tab);
+  if (window.location.hash.includes('-preview')) {
+    const cleanHash = window.location.hash.replace('-preview', '');
+    history.replaceState(null, "", cleanHash);
   }
 }
 
 /* User Close Action */
 function closeModalUserAction() {
-  if (location.hash === "#preview") {
-    history.back();
-  } else {
-    closeModalDOM();
-  }
+  closeModalDOM();
 }
 
-/* Handle Back Button */
-window.addEventListener('popstate', () => {
-  if (location.hash === "#preview") {
-    closeModalDOM();
+/* Handle Back Button cleanly */
+window.addEventListener('popstate', (event) => {
+  const modal = document.getElementById('artworkModal');
+  if (modal.classList.contains('active')) {
+    // If modal is open, back button closes it without shifting pages
+    modal.classList.remove('active');
+    document.getElementById('modalBody').innerHTML = "";
   } else {
-    const hash = location.hash.replace('#', '');
+    // Handle tab switching via back/forward buttons safely
+    const hash = window.location.hash.replace('#', '').replace('-preview', '');
     if (tabToCategory[hash]) {
       filterProducts(tabToCategory[hash], false);
     }
@@ -719,7 +724,7 @@ window.addEventListener('popstate', () => {
 
 // Run initial check on page load based on URL hash
 document.addEventListener('DOMContentLoaded', () => {
-  const hash = window.location.hash.replace('#', '');
+  const hash = window.location.hash.replace('#', '').replace('-preview', '');
   
   if (hash && tabToCategory[hash]) {
     filterProducts(tabToCategory[hash], false);
