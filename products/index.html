@@ -90,6 +90,24 @@
         "price": "5000",
         "availability": "https://schema.org/InStock"
       }
+    },
+    {
+      "@context": "https://schema.org",
+      "@type": "Product",
+      "name": "Arkway Beatpack Vol. 2",
+      "image": "https://lh3.googleusercontent.com/d/1GZm3k2-oqU8tSKWL7g5AK-KETvUzjmCy",
+      "description": "New signature beat pack volume 2 crafted by ArkWay.",
+      "brand": {
+        "@type": "Brand",
+        "name": "ArkWay Creative"
+      },
+      "offers": {
+        "@type": "Offer",
+        "url": "https://arkway.hustlesasa.shop/products/6aca8b1b754b753a264049b8",
+        "priceCurrency": "KES",
+        "price": "5000",
+        "availability": "https://schema.org/InStock"
+      }
     }
   ]
   </script>
@@ -527,7 +545,7 @@
           </div>
         </article>
 
-        <!-- PRODUCT ITEM 04 (BEAT PACK) -->
+        <!-- PRODUCT ITEM 04 (BEAT PACK VOL. 1) -->
         <article class="product-card" data-category="BEATS" style="display: none;">
           <div>
             <div class="product-cover-wrap">
@@ -536,7 +554,6 @@
 
             <div class="product-card-meta">
               <span class="card-label">01 / BEAT PACK</span>
-              <span class="spec-badge gold">NEW RELEASE</span>
             </div>
 
             <h2 class="product-title">Arkway Beatpack Vol. 1: Boombap/Boomtrap</h2>
@@ -550,6 +567,32 @@
             <div class="product-actions">
               <a class="buy-btn" href="https://arkway.hustlesasa.shop/products/6ac8ee37a596927e5a7a3092" target="_blank" rel="noopener">Buy Pack →</a>
               <button class="preview-btn" onclick="openYouTubePreview('Cf-DBQZP5v0')">▶ Preview</button>
+            </div>
+          </div>
+        </article>
+
+        <!-- PRODUCT ITEM 05 (BEAT PACK VOL. 2) -->
+        <article class="product-card" data-category="BEATS" style="display: none;">
+          <div>
+            <div class="product-cover-wrap">
+              <img class="product-cover-img" src="https://lh3.googleusercontent.com/d/1GZm3k2-oqU8tSKWL7g5AK-KETvUzjmCy" alt="Arkway Beatpack Vol. 2 Cover Artwork" loading="lazy">
+            </div>
+
+            <div class="product-card-meta">
+              <span class="card-label">02 / BEAT PACK</span>
+              <span class="spec-badge gold">NEW RELEASE</span>
+            </div>
+
+            <h2 class="product-title">Arkway Beatpack Vol. 2</h2>
+          </div>
+
+          <div>
+            <div class="pricing-container">
+              <span class="price-sale">KES 5,000</span>
+            </div>
+            <div class="product-actions">
+              <a class="buy-btn" href="https://arkway.hustlesasa.shop/products/6aca8b1b754b753a264049b8" target="_blank" rel="noopener">Buy Pack →</a>
+              <button class="preview-btn" onclick="openYouTubePreview('SSHF6ObwuqA')">▶ Preview</button>
             </div>
           </div>
         </article>
@@ -574,7 +617,7 @@
 
   <footer>
     <div class="footer-top">
-      <a class="footer-brand" href="/">
+      <a class="footer-brand" href="/" aria-label="ArkWay Creative home">
         <img src="https://lh3.googleusercontent.com/d/1jrEFMFWEB7wO19K-_SJBsEcz4azfM9e4" alt="ArkWay Creative">
         <div><strong>ARKWAY CREATIVE</strong><span>MEDIA · DATA · CULTURE</span></div>
       </a>
@@ -676,14 +719,12 @@ function openYouTubePreview(videoId) {
 
   document.getElementById('artworkModal').classList.add('active');
   
-  // Push dummy state specifically for phone back button interception
   if (!modalHasHistoryState) {
     modalHasHistoryState = true;
     history.pushState({ modalOpenState: true }, "");
   }
 }
 
-/* Internal DOM hide */
 function hideModalDOM() {
   const modal = document.getElementById('artworkModal');
   modal.classList.remove('active');
@@ -691,17 +732,14 @@ function hideModalDOM() {
   modalHasHistoryState = false;
 }
 
-/* User-initiated close (Clicking X or tapping dark backdrop) */
 function closeModalUserAction() {
   if (modalHasHistoryState) {
-    // Let history.back() trigger popstate to close cleanly and pop the dummy entry
     history.back();
   } else {
     hideModalDOM();
   }
 }
 
-/* Single listener for mobile Back button and history navigation */
 window.addEventListener('popstate', (event) => {
   const modal = document.getElementById('artworkModal');
   if (modal && modal.classList.contains('active')) {
@@ -709,7 +747,6 @@ window.addEventListener('popstate', (event) => {
     return;
   }
 
-  // Handle standard tab switching via back/forward
   const hash = window.location.hash.replace('#', '');
   if (tabToCategory[hash]) {
     filterProducts(tabToCategory[hash], false);
