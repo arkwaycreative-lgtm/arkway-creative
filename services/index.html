@@ -123,102 +123,6 @@
       color: #cccccc;
       margin-bottom: 8px;
     }
-
-    /* Booking Choice Modal */
-    .booking-modal {
-      display: none;
-      position: fixed;
-      inset: 0;
-      z-index: 9999;
-      background: rgba(0, 0, 0, 0.9);
-      backdrop-filter: blur(8px);
-      align-items: center;
-      justify-content: center;
-      padding: 20px;
-    }
-
-    .booking-modal.active {
-      display: flex;
-    }
-
-    .booking-modal-card {
-      background: #121214;
-      border: 1px solid rgba(212, 175, 55, 0.3);
-      border-radius: 12px;
-      padding: 28px;
-      max-width: 420px;
-      width: 100%;
-      text-align: center;
-      position: relative;
-      box-shadow: 0 16px 48px rgba(0,0,0,0.8);
-    }
-
-    .booking-modal-card h3 {
-      font-size: 1.3rem;
-      color: #ffffff;
-      margin: 0 0 10px 0;
-    }
-
-    .booking-modal-card p {
-      font-size: 0.95rem;
-      color: #aaa;
-      margin-bottom: 24px;
-      line-height: 1.5;
-    }
-
-    .booking-actions-wrap {
-      display: flex;
-      flex-direction: column;
-      gap: 12px;
-    }
-
-    .booking-btn-wa {
-      background: #25D366;
-      color: #000;
-      font-weight: 700;
-      padding: 12px 16px;
-      border-radius: 6px;
-      text-decoration: none;
-      display: block;
-      font-size: 0.9rem;
-      text-transform: uppercase;
-      letter-spacing: 0.04em;
-    }
-
-    .booking-btn-em {
-      background: rgba(255, 255, 255, 0.1);
-      border: 1px solid rgba(255, 255, 255, 0.2);
-      color: #fff;
-      font-weight: 700;
-      padding: 12px 16px;
-      border-radius: 6px;
-      text-decoration: none;
-      display: block;
-      font-size: 0.9rem;
-      text-transform: uppercase;
-      letter-spacing: 0.04em;
-    }
-
-    .booking-btn-em:hover {
-      background: rgba(255, 255, 255, 0.2);
-      border-color: #d4af37;
-      color: #d4af37;
-    }
-
-    .modal-close-x {
-      position: absolute;
-      top: 12px;
-      right: 12px;
-      background: transparent;
-      border: none;
-      color: #888;
-      font-size: 1.2rem;
-      cursor: pointer;
-    }
-
-    .modal-close-x:hover {
-      color: #fff;
-    }
   </style>
 </head>
 <body>
@@ -500,18 +404,6 @@
     </section>
   </main>
 
-  <div class="booking-modal" id="bookingModal">
-    <div class="booking-modal-card">
-      <button class="modal-close-x" onclick="closeBookingModal()">✕</button>
-      <h3 id="bookingModalTitle">Book Service</h3>
-      <p>Select your preferred communication channel to initiate booking:</p>
-      <div class="booking-actions-wrap">
-        <a id="modalWaBtn" class="booking-btn-wa" target="_blank" rel="noopener" href="#">Continue via WhatsApp →</a>
-        <a id="modalEmBtn" class="booking-btn-em" href="#">Continue via Email ✉</a>
-      </div>
-    </div>
-  </div>
-
   <footer>
     <div class="footer-top">
       <a class="footer-brand" href="/" aria-label="ArkWay Creative home">
@@ -545,10 +437,6 @@
 
 <script src="/site.js"></script>
 <script>
-  function closeBookingModal() {
-    document.getElementById('bookingModal').classList.remove('active');
-  }
-
   document.addEventListener('DOMContentLoaded', () => {
     // Accordion single-open handler
     const serviceItems = document.querySelectorAll('details.service-item');
@@ -562,35 +450,6 @@
           });
         }
       });
-    });
-
-    // Booking modal trigger handler
-    const bookButtons = document.querySelectorAll('.book-service');
-    const modal = document.getElementById('bookingModal');
-    const modalTitle = document.getElementById('bookingModalTitle');
-    const modalWaBtn = document.getElementById('modalWaBtn');
-    const modalEmBtn = document.getElementById('modalEmBtn');
-
-    bookButtons.forEach(btn => {
-      btn.addEventListener('click', (e) => {
-        e.preventDefault();
-        const serviceName = btn.getAttribute('data-service') || 'Service';
-        const waUrl = btn.getAttribute('data-wa');
-        const emUrl = btn.getAttribute('data-em');
-
-        modalTitle.textContent = `Book: ${serviceName}`;
-        modalWaBtn.href = waUrl;
-        modalEmBtn.href = emUrl;
-
-        modal.classList.add('active');
-      });
-    });
-
-    // Close modal on backdrop click
-    modal.addEventListener('click', (e) => {
-      if (e.target === modal) {
-        closeBookingModal();
-      }
     });
   });
 </script>
