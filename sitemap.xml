@@ -1,1 +1,27 @@
-<?xml version="1.0" encoding="UTF-8"?><urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9"><url><loc>https://arkway-creative.vercel.app/</loc></url><url><loc>https://arkway-creative.vercel.app/services</loc></url><url><loc>https://arkway-creative.vercel.app/products</loc></url><url><loc>https://arkway-creative.vercel.app/community</loc></url><url><loc>https://arkway-creative.vercel.app/community/discography</loc></url><url><loc>https://arkway-creative.vercel.app/community/reels</loc></url></urlset>
+<?xml version="1.0" encoding="UTF-8"?>
+<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
+  <url>
+    <loc>https://arkwaycreative.vercel.app/</loc>
+    <priority>1.0</priority>
+  </url>
+  <url>
+    <loc>https://arkwaycreative.vercel.app/services</loc>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://arkwaycreative.vercel.app/products</loc>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://arkwaycreative.vercel.app/community</loc>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://arkwaycreative.vercel.app/community/discography</loc>
+    <priority>0.7</priority>
+  </url>
+  <url>
+    <loc>https://arkwaycreative.vercel.app/community/reels</loc>
+    <priority>0.7</priority>
+  </url>
+</urlset>
