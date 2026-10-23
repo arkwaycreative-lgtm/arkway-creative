@@ -109,3 +109,202 @@ footer{border-top:1px solid var(--line);padding:40px 6vw 25px;background:#070a0e
 h1{font-size:clamp(44px,12vw,68px);letter-spacing:-3px}h2{font-size:clamp(38px,10vw,55px);letter-spacing:-2px}
 .section,.subview,.doors-section,.manifesto,.home-hero{padding-left:6vw;padding-right:6vw}.modal{padding:25px 20px}.modal h2{font-size:40px}.product-actions{grid-template-columns:1fr}
 .discography-toggle{display:flex;width:100%}.discography-toggle button{flex:1;padding:10px 8px}}
+
+/* ==========================================
+   ARKWAY CREATIVE - NOAH CHATBOT STYLES
+   ========================================== */
+#noah-chatbot-container {
+  position: fixed;
+  bottom: 20px;
+  right: 20px;
+  z-index: 9999;
+  font-family: inherit;
+}
+
+#noah-toggle-btn {
+  width: 58px;
+  height: 58px;
+  border-radius: 50%;
+  background: var(--gold);
+  color: #090D16;
+  border: none;
+  font-size: 24px;
+  cursor: pointer;
+  box-shadow: 0 4px 14px rgba(0, 0, 0, 0.4);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: transform 0.2s ease, background 0.2s ease;
+}
+
+#noah-toggle-btn:hover {
+  transform: scale(1.05);
+  background: var(--gold2);
+}
+
+#noah-chat-window {
+  position: absolute;
+  bottom: 70px;
+  right: 0;
+  width: 350px;
+  max-width: 90vw;
+  height: 480px;
+  background: #0D1219;
+  border: 1px solid var(--line2);
+  border-radius: 16px;
+  display: flex;
+  flex-direction: column;
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.6);
+  overflow: hidden;
+  transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+#noah-chat-window.noah-hidden {
+  opacity: 0;
+  pointer-events: none;
+  transform: translateY(20px) scale(0.95);
+}
+
+.noah-header {
+  background: #111720;
+  padding: 12px 16px;
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  border-bottom: 1px solid var(--line);
+}
+
+.noah-avatar {
+  width: 36px;
+  height: 36px;
+  border-radius: 50%;
+  background: var(--gold);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-weight: bold;
+  color: #090D16;
+}
+
+.noah-title h3 {
+  margin: 0;
+  font-size: 15px;
+  color: #ffffff;
+  letter-spacing: -0.5px;
+}
+
+.noah-title p {
+  margin: 0;
+  font-size: 11px;
+  color: var(--muted);
+}
+
+.noah-close-btn {
+  margin-left: auto;
+  background: transparent;
+  border: none;
+  color: var(--muted);
+  font-size: 18px;
+  cursor: pointer;
+}
+
+.noah-close-btn:hover {
+  color: #fff;
+}
+
+#noah-messages {
+  flex: 1;
+  padding: 16px;
+  overflow-y: auto;
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  background: var(--bg);
+}
+
+.noah-msg {
+  max-width: 85%;
+  padding: 10px 14px;
+  border-radius: 12px;
+  font-size: 13px;
+  line-height: 1.4;
+}
+
+.noah-msg-bot {
+  background: #111720;
+  color: var(--text);
+  border: 1px solid var(--line);
+  align-self: flex-start;
+}
+
+.noah-msg-user {
+  background: var(--gold);
+  color: #090D16;
+  font-weight: 600;
+  align-self: flex-end;
+}
+
+.noah-options-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 6px;
+  padding: 8px 12px;
+  background: #0D1219;
+  border-top: 1px solid var(--line);
+}
+
+.noah-options-grid button {
+  background: #111720;
+  border: 1px solid var(--line);
+  color: var(--muted);
+  padding: 8px;
+  border-radius: 8px;
+  font-size: 11px;
+  cursor: pointer;
+  text-align: left;
+  transition: all 0.2s ease;
+}
+
+.noah-options-grid button:hover {
+  background: var(--gold);
+  color: #090D16;
+  border-color: var(--gold);
+}
+
+.noah-input-area {
+  display: flex;
+  padding: 10px;
+  background: #111720;
+  border-top: 1px solid var(--line);
+  gap: 8px;
+}
+
+.noah-input-area input {
+  flex: 1;
+  background: var(--bg);
+  border: 1px solid var(--line);
+  color: #fff;
+  padding: 8px 12px;
+  border-radius: 8px;
+  font-size: 12px;
+  outline: none;
+}
+
+.noah-input-area input:focus {
+  border-color: var(--gold);
+}
+
+.noah-input-area button {
+  background: var(--gold);
+  color: #090D16;
+  border: none;
+  padding: 8px 14px;
+  border-radius: 8px;
+  font-size: 12px;
+  cursor: pointer;
+  font-weight: 900;
+}
+
+.noah-input-area button:hover {
+  background: var(--gold2);
+}
