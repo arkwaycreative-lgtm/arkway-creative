@@ -443,14 +443,23 @@
 
 <!-- Noah Chatbot Assistant -->
 <div id="noah-chatbot-container">
+  <!-- Floating Toggle Button with Noah Avatar -->
   <button id="noah-toggle-btn" onclick="toggleNoahChat()" aria-label="Open Noah Chatbot">
-    <span id="noah-icon-open">💬</span>
-    <span id="noah-icon-close" style="display: none;">✕</span>
+    <img id="noah-icon-open" src="https://lh3.googleusercontent.com/d/14Ckxlk1R6sBvrspQxb8y5ILiAdpLxN_t" alt="Noah" style="width: 100%; height: 100%; object-fit: cover; border-radius: 50%; display: block;" />
+    <span id="noah-icon-close" style="display: none; font-size: 18px;">✕</span>
   </button>
+
+  <!-- Clean Minimalist Text Underneath -->
+  <div id="noah-badge" onclick="toggleNoahChat()">
+    <span>Need help? Ask Noah</span>
+  </div>
 
   <div id="noah-chat-window" class="noah-hidden">
     <div class="noah-header">
-      <div class="noah-avatar">⚡</div>
+      <!-- Chat Header Avatar -->
+      <div class="noah-avatar-wrap">
+        <img src="https://lh3.googleusercontent.com/d/14Ckxlk1R6sBvrspQxb8y5ILiAdpLxN_t" alt="Noah" />
+      </div>
       <div class="noah-title">
         <h3>Noah</h3>
         <p>ArkWay AI Guide & Assistant</p>
