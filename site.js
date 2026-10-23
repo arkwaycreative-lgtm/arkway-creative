@@ -143,8 +143,15 @@ window.sendNoahMessage = function() {
   input.value = '';
 
   setTimeout(function() {
-    // 1. Data & Analytics / Intelligence Layer
-    if (query.indexOf('data') !== -1 || query.indexOf('analytic') !== -1 || query.indexOf('research') !== -1 || query.indexOf('metric') !== -1 || query.indexOf('report') !== -1 || query.indexOf('dashboard') !== -1 || query.indexOf('insight') !== -1) {
+    // 1. Specific Founder / Owner / Who started / Who runs
+    if (query.indexOf('founder') !== -1 || query.indexOf('owner') !== -1 || query.indexOf('who started') !== -1 || query.indexOf('who runs') !== -1 || query.indexOf('who built') !== -1 || query.indexOf('ceo') !== -1 || query.indexOf('yovan') !== -1) {
+      window.appendNoahMessage(
+        "ArkWay Creative was founded by <strong>Yovan</strong> (Yovan Nyongesa Simiyu) — hip-hop artist, music producer, multi-instrumentalist, and film critic.<br/><br/>" +
+        "👉 <a href='/community' style='color:#D4AF37; font-weight:bold;'>Explore Yovan's Catalog & Writing →</a>"
+      );
+    }
+    // 2. Data & Analytics / Intelligence Layer
+    else if (query.indexOf('data') !== -1 || query.indexOf('analytic') !== -1 || query.indexOf('research') !== -1 || query.indexOf('metric') !== -1 || query.indexOf('report') !== -1 || query.indexOf('dashboard') !== -1 || query.indexOf('insight') !== -1) {
       window.appendNoahMessage(
         "<strong>Data & Analytics</strong> is ArkWay's intelligence layer. We power creative and business decisions with real evidence:<br/>" +
         "• <strong>Market Research & Analytics:</strong> Industry trends & commercial gap analysis.<br/>" +
@@ -153,7 +160,7 @@ window.sendNoahMessage = function() {
         "👉 <a href='/services' style='color:#D4AF37; font-weight:bold;'>Explore Data & Analytics Services →</a>"
       );
     }
-    // 2. Location / Studio Presence / Remote & Physical
+    // 3. Location / Studio Presence / Remote & Physical
     else if (query.indexOf('based') !== -1 || query.indexOf('where') !== -1 || query.indexOf('location') !== -1 || query.indexOf('city') !== -1 || query.indexOf('country') !== -1 || query.indexOf('town') !== -1 || query.indexOf('kitale') !== -1 || query.indexOf('kenya') !== -1) {
       window.appendNoahMessage(
         "ArkWay Creative is based in <strong>Kenya</strong>, operating globally for digital releases, film scoring, mixing, and strategy.<br/><br/>" +
@@ -162,25 +169,18 @@ window.sendNoahMessage = function() {
         "👉 <a href='https://wa.me/254118618199' target='_blank' style='color:#E2C66B; font-weight:bold;'>Inquire / Book Session →</a>"
       );
     }
-    // 3. Registration / Legitimacy
+    // 4. Registration / Legitimacy
     else if (query.indexOf('register') !== -1 || query.indexOf('legit') !== -1 || query.indexOf('official') !== -1 || query.indexOf('legal') !== -1 || query.indexOf('license') !== -1) {
       window.appendNoahMessage(
         "Yes, <strong>ArkWay Creative</strong> is a fully registered business entity operating in Kenya, working with global artists, filmmakers, and brands.<br/><br/>" +
         "👉 <a href='/services' style='color:#D4AF37; font-weight:bold;'>View Our Services & Packages →</a>"
       );
     }
-    // 4. Founded / History / Est. 2026
+    // 5. General History / Est. 2026
     else if (query.indexOf('start') !== -1 || query.indexOf('found') !== -1 || query.indexOf('est') !== -1 || query.indexOf('begin') !== -1 || query.indexOf('history') !== -1 || query.indexOf('when') !== -1) {
       window.appendNoahMessage(
         "<strong>ArkWay Creative</strong> was established in <strong>2026</strong> as a modern, data-driven media company merging audio production, visual storytelling, brand architecture, and data analytics.<br/><br/>" +
         "👉 <a href='/services' style='color:#D4AF37; font-weight:bold;'>Explore Our Work & Services →</a>"
-      );
-    }
-    // 5. Founder / Yovan
-    else if (query.indexOf('owner') !== -1 || query.indexOf('founder') !== -1 || query.indexOf('who runs') !== -1 || query.indexOf('ceo') !== -1 || query.indexOf('yovan') !== -1) {
-      window.appendNoahMessage(
-        "ArkWay Creative was founded by <strong>Yovan</strong> — hip-hop artist, music producer, multi-instrumentalist, and film critic.<br/><br/>" +
-        "👉 <a href='/community' style='color:#D4AF37; font-weight:bold;'>Explore Yovan's Catalog & Writing →</a>"
       );
     }
     // 6. What does ArkWay Creative do / About
@@ -195,7 +195,7 @@ window.sendNoahMessage = function() {
         "<a href='/products' style='color:#D4AF37; font-weight:bold;'>Shop Sound Vault</a>"
       );
     } 
-    // 7. Beats, Loops, Sound Vault (Dynamic Statement)
+    // 7. Beats, Loops, Sound Vault
     else if (query.indexOf('beat') !== -1 || query.indexOf('pack') !== -1 || query.indexOf('loop') !== -1 || query.indexOf('sample') !== -1 || query.indexOf('kit') !== -1 || query.indexOf('product') !== -1 || query.indexOf('vault') !== -1) {
       window.appendNoahMessage(
         "Our <strong>Sound Vault</strong> features curated digital toolkits engineered for producers and filmmakers, with new signature drops released regularly:<br/>" +
