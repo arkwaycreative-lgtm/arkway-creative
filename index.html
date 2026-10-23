@@ -35,22 +35,22 @@
 
 <!-- Noah Chatbot Assistant -->
 <div id="noah-chatbot-container">
-  <!-- Callout Tooltip Badge -->
+  <!-- Floating Toggle Button with New Noah Avatar -->
+  <button id="noah-toggle-btn" onclick="toggleNoahChat()" aria-label="Open Noah Chatbot">
+    <img id="noah-icon-open" src="https://lh3.googleusercontent.com/d/14Ckxlk1R6sBvrspQxb8y5ILiAdpLxN_t" alt="Noah" style="width: 100%; height: 100%; object-fit: cover; border-radius: 50%; display: block;" />
+    <span id="noah-icon-close" style="display: none; font-size: 18px;">✕</span>
+  </button>
+
+  <!-- Simple Minimalist Text Underneath -->
   <div id="noah-badge" onclick="toggleNoahChat()">
     <span>Need help? Ask Noah ⚡</span>
   </div>
-
-  <!-- Floating Toggle Button with Noah Avatar -->
-  <button id="noah-toggle-btn" onclick="toggleNoahChat()" aria-label="Open Noah Chatbot">
-    <img id="noah-icon-open" src="https://lh3.googleusercontent.com/d/1MtsTzTYKvkltFdMbKFpQkWH8xlutSVFN" alt="Noah" style="width: 100%; height: 100%; object-fit: cover; border-radius: 50%; display: block;" />
-    <span id="noah-icon-close" style="display: none; font-size: 18px;">✕</span>
-  </button>
 
   <div id="noah-chat-window" class="noah-hidden">
     <div class="noah-header">
       <!-- Chat Header Avatar -->
       <div class="noah-avatar-wrap">
-        <img src="https://lh3.googleusercontent.com/d/1MtsTzTYKvkltFdMbKFpQkWH8xlutSVFN" alt="Noah" />
+        <img src="https://lh3.googleusercontent.com/d/14Ckxlk1R6sBvrspQxb8y5ILiAdpLxN_t" alt="Noah" />
       </div>
       <div class="noah-title">
         <h3>Noah</h3>
