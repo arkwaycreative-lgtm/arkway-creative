@@ -71,6 +71,7 @@ window.addEventListener("popstate", function(e) {
    ARKWAY CREATIVE — NOAH AI CHATBOT LOGIC
    ========================================== */
 window.toggleNoahChat = function() {
+  var container = document.getElementById('noah-chatbot-container');
   var win = document.getElementById('noah-chat-window');
   var openIcon = document.getElementById('noah-icon-open');
   var closeIcon = document.getElementById('noah-icon-close');
@@ -79,11 +80,13 @@ window.toggleNoahChat = function() {
   var isHidden = win.classList.contains('noah-hidden');
   if (isHidden) {
     win.classList.remove('noah-hidden');
+    if (container) container.classList.add('active');
     if (openIcon) openIcon.style.display = 'none';
     if (closeIcon) closeIcon.style.display = 'inline';
   } else {
     win.classList.add('noah-hidden');
-    if (openIcon) openIcon.style.display = 'inline';
+    if (container) container.classList.remove('active');
+    if (openIcon) openIcon.style.display = 'block';
     if (closeIcon) closeIcon.style.display = 'none';
   }
 };
