@@ -143,20 +143,89 @@ window.sendNoahMessage = function() {
   input.value = '';
 
   setTimeout(function() {
-    if (query.indexOf('beat') !== -1 || query.indexOf('pack') !== -1 || query.indexOf('loop') !== -1 || query.indexOf('song') !== -1) {
-      window.appendNoahMessage("Check out our full collection of production tools, beat packs, and guitar loops here:<br/><a href='/products' style='color:#D4AF37; font-weight:bold;'>Browse Product Catalog →</a>");
-    } else if (query.indexOf('mix') !== -1 || query.indexOf('master') !== -1 || query.indexOf('studio') !== -1 || query.indexOf('record') !== -1) {
-      window.appendNoahMessage("Need mixing, mastering, or custom production? Check rates and book here:<br/><a href='/services' style='color:#D4AF37; font-weight:bold;'>View Rates & Services →</a>");
-    } else if (query.indexOf('brand') !== -1 || query.indexOf('logo') !== -1 || query.indexOf('jingle') !== -1 || query.indexOf('marketing') !== -1) {
-      window.appendNoahMessage("We handle end-to-end brand architecture and sonic branding:<br/><a href='/services' style='color:#D4AF37; font-weight:bold;'>Brand Strategy Services →</a>");
-    } else if (query.indexOf('film') !== -1 || query.indexOf('score') !== -1 || query.indexOf('sound') !== -1 || query.indexOf('director') !== -1) {
-      window.appendNoahMessage("Looking for original film scoring or sound design?<br/><a href='/services' style='color:#D4AF37; font-weight:bold;'>Film Scoring & Sound Design →</a>");
-    } else if (query.indexOf('yovan') !== -1 || query.indexOf('music') !== -1 || query.indexOf('album') !== -1 || query.indexOf('single') !== -1) {
-      window.appendNoahMessage("Explore Yovan's official releases and writing:<br/><a href='/community' style='color:#D4AF37; font-weight:bold;'>Community & Catalog →</a>");
-    } else {
-      window.appendNoahMessage("Noah's on it! Feel free to click one of the quick options below, or contact us directly on WhatsApp for custom projects:<br/><a href='https://wa.me/254118618199' target='_blank' style='color:#E2C66B; font-weight:bold;'>Chat on WhatsApp →</a>");
+    // 1. What does ArkWay Creative do / About
+    if (query.indexOf('do') !== -1 || query.indexOf('about') !== -1 || query.indexOf('what is') !== -1 || query.indexOf('who') !== -1) {
+      window.appendNoahMessage(
+        "<strong>ArkWay Creative</strong> is a data-driven media company merging audio production, visual storytelling, and brand architecture.<br/><br/>" +
+        "We build high-converting media and culture across 3 main pillars:<br/>" +
+        "• <strong>Audio Production & Studio:</strong> Custom beats, recording, mixing & mastering.<br/>" +
+        "• <strong>Film & Media Sound:</strong> Original film scores, jingles & audio cleanup.<br/>" +
+        "• <strong>Brand Architecture:</strong> Visual strategy, campaign direction & digital media.<br/><br/>" +
+        "👉 <a href='/services' style='color:#D4AF37; font-weight:bold;'>Explore Services</a> | " +
+        "<a href='/products' style='color:#D4AF37; font-weight:bold;'>Shop Products</a>"
+      );
+    } 
+    // 2. Beats, Loops, Packs, Samples
+    else if (query.indexOf('beat') !== -1 || query.indexOf('pack') !== -1 || query.indexOf('loop') !== -1 || query.indexOf('sample') !== -1 || query.indexOf('kit') !== -1) {
+      window.appendNoahMessage(
+        "We have signature studio packs available right in our Sound Vault:<br/>" +
+        "• <strong>Acoustic Guitar Loops (Vol 1–3):</strong> Live-recorded 24-bit WAV loops & stems.<br/>" +
+        "• <strong>Beat Packs (Vol 1–5):</strong> Boombap, Boomtrap, Atmospheric, RnB & Hard Trap.<br/><br/>" +
+        "👉 <a href='/products' style='color:#D4AF37; font-weight:bold;'>Open Sound Vault / Shop Packs →</a>"
+      );
+    } 
+    // 3. Studio, Vocal Recording, Mixing, Mastering
+    else if (query.indexOf('mix') !== -1 || query.indexOf('master') !== -1 || query.indexOf('studio') !== -1 || query.indexOf('record') !== -1 || query.indexOf('vocal') !== -1) {
+      window.appendNoahMessage(
+        "Our studio rates and packages:<br/>" +
+        "• <strong>Quick Vocal Session:</strong> KSh 3,000<br/>" +
+        "• <strong>External Vocal Mix & Master:</strong> KSh 2,500<br/>" +
+        "• <strong>Complete Single Package:</strong> KSh 5,500<br/>" +
+        "• <strong>Full Custom Beat & Song:</strong> KSh 8,500<br/><br/>" +
+        "👉 <a href='/services' style='color:#D4AF37; font-weight:bold;'>See Full Rate Sheet & Book →</a>"
+      );
+    } 
+    // 4. Film Scoring, Sound Design, Jingles
+    else if (query.indexOf('film') !== -1 || query.indexOf('score') !== -1 || query.indexOf('jingle') !== -1 || query.indexOf('movie') !== -1 || query.indexOf('video') !== -1) {
+      window.appendNoahMessage(
+        "We compose custom music and audio specifically tailored to picture:<br/>" +
+        "• <strong>Radio & Commercial Jingles:</strong> KSh 12,000<br/>" +
+        "• <strong>Film & Series Scoring:</strong> From KSh 15,000<br/>" +
+        "• <strong>Voiceover & Audio Cleaning:</strong> KSh 5,000<br/><br/>" +
+        "👉 <a href='/services' style='color:#D4AF37; font-weight:bold;'>View Film Scoring Details →</a>"
+      );
+    } 
+    // 5. Brand Strategy, Marketing, Architecture
+    else if (query.indexOf('brand') !== -1 || query.indexOf('strategy') !== -1 || query.indexOf('campaign') !== -1 || query.indexOf('marketing') !== -1) {
+      window.appendNoahMessage(
+        "We build complete media systems for brands and creators:<br/>" +
+        "• Brand Identity & Creative Direction<br/>" +
+        "• Campaign & Content Architecture<br/>" +
+        "• Digital Media Strategy & Data Intelligence<br/><br/>" +
+        "👉 <a href='/services' style='color:#D4AF37; font-weight:bold;'>Explore Brand Architecture →</a>"
+      );
+    } 
+    // 6. Yovan's Music, Discography, Substack, Videos
+    else if (query.indexOf('yovan') !== -1 || query.indexOf('music') !== -1 || query.indexOf('album') !== -1 || query.indexOf('song') !== -1 || query.indexOf('artist') !== -1) {
+      window.appendNoahMessage(
+        "Explore Yovan's official releases and media catalog:<br/>" +
+        "• <strong>Discography:</strong> Stream <i>Skywalker</i>, <i>Foot on the Gas</i>, <i>Noah's Blueprint</i>, and more.<br/>" +
+        "• <strong>Between Frames:</strong> Film critiques and cultural analysis.<br/><br/>" +
+        "👉 <a href='/community' style='color:#D4AF37; font-weight:bold;'>Go to Community Hub →</a> | " +
+        "<a href='/community/discography' style='color:#D4AF37; font-weight:bold;'>Stream Discography →</a>"
+      );
+    } 
+    // 7. Contact / WhatsApp / Location / Booking
+    else if (query.indexOf('contact') !== -1 || query.indexOf('whatsapp') !== -1 || query.indexOf('call') !== -1 || query.indexOf('email') !== -1 || query.indexOf('book') !== -1 || query.indexOf('location') !== -1 || query.indexOf('where') !== -1) {
+      window.appendNoahMessage(
+        "You can reach the ArkWay team directly anytime:<br/>" +
+        "• <strong>WhatsApp / Call:</strong> +254 118 618 199<br/>" +
+        "• <strong>Email:</strong> arkwaycreative@gmail.com<br/><br/>" +
+        "👉 <a href='https://wa.me/254118618199' target='_blank' style='color:#E2C66B; font-weight:bold;'>Open Direct WhatsApp Chat →</a>"
+      );
+    } 
+    // 8. General fallback answer (Direct & Helpful)
+    else {
+      window.appendNoahMessage(
+        "I'm Noah, ArkWay's AI guide! I can help you with:<br/>" +
+        "1. 🎵 <strong>Studio Services:</strong> Beats, Recording, Mixing & Mastering<br/>" +
+        "2. 📦 <strong>Products:</strong> Guitar Loops & Beat Packs<br/>" +
+        "3. 🎬 <strong>Film Sound:</strong> Custom Scores & Commercial Jingles<br/>" +
+        "4. 🎧 <strong>Yovan's Music:</strong> Discography & Community Drops<br/><br/>" +
+        "What area are you looking to explore today?"
+      );
     }
-  }, 500);
+  }, 400);
 };
 
 window.handleNoahKeyPress = function(event) {
