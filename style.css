@@ -120,39 +120,31 @@ h1{font-size:clamp(44px,12vw,68px);letter-spacing:-3px}h2{font-size:clamp(38px,1
   z-index: 9999;
   font-family: inherit;
   display: flex;
+  flex-direction: column;
   align-items: center;
-  gap: 10px;
+  gap: 6px;
 }
 
-/* Callout Badge Pill */
+/* Minimalist static text underneath avatar */
 #noah-badge {
-  background: var(--panel, #0D1219);
-  color: var(--text, #F7F7F4);
-  border: 1px solid var(--gold, #D4AF37);
-  padding: 8px 14px;
-  border-radius: 20px;
-  font-size: 11px;
-  font-weight: 700;
+  color: #ffffff;
+  font-size: 10px;
+  font-weight: 500;
   letter-spacing: 0.3px;
   cursor: pointer;
-  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.4);
   white-space: nowrap;
-  animation: noahPulse 3s infinite ease-in-out;
-  transition: all 0.2s ease;
+  background: transparent;
+  border: none;
+  padding: 0;
+  box-shadow: none;
+  transition: color 0.2s ease;
 }
 
 #noah-badge:hover {
-  background: var(--gold, #D4AF37);
-  color: #090D16;
-  transform: translateY(-2px);
+  color: var(--gold, #D4AF37);
 }
 
-@keyframes noahPulse {
-  0%, 100% { transform: translateY(0); }
-  50% { transform: translateY(-3px); }
-}
-
-/* Hide badge when chat window opens */
+/* Hide text label when chat window opens */
 #noah-chatbot-container.active #noah-badge {
   display: none;
 }
@@ -163,8 +155,7 @@ h1{font-size:clamp(44px,12vw,68px);letter-spacing:-3px}h2{font-size:clamp(38px,1
   border-radius: 50%;
   background: var(--gold);
   color: #090D16;
-  border: none;
-  font-size: 24px;
+  border: 2px solid var(--gold);
   cursor: pointer;
   box-shadow: 0 4px 14px rgba(0, 0, 0, 0.4);
   display: flex;
@@ -172,12 +163,12 @@ h1{font-size:clamp(44px,12vw,68px);letter-spacing:-3px}h2{font-size:clamp(38px,1
   justify-content: center;
   overflow: hidden;
   padding: 0;
-  transition: transform 0.2s ease, background 0.2s ease;
+  transition: transform 0.2s ease, border-color 0.2s ease;
 }
 
 #noah-toggle-btn:hover {
   transform: scale(1.05);
-  background: var(--gold2);
+  border-color: var(--gold2);
 }
 
 #noah-chat-window {
