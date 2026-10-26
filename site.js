@@ -44,7 +44,7 @@ window.addEventListener("popstate",function(){if(modalActiveState)closeBookingMo
 
 /* ==========================================
    ARKWAY CREATIVE — NOAH CHATBOT
-   Targeted refinement; other site features preserved.
+   Company-wide answers and service guidance.
    ========================================== */
 
 var noahState={lastTopic:"",lastQuestion:"",greeted:false,lastKeys:[],service:"",need:"",hasBeat:null,hasVocals:null,pending:"",fallbacks:0,turns:0};
@@ -91,16 +91,15 @@ function noahAddQuick(chips,noRestart){noahClearQuick();var box=document.getElem
 window.handleNoahQuick=function(label,text){noahClearQuick();window.appendNoahMessage(label,true);if(text==="__restart"){setTimeout(noahRestart,150);return;}setTimeout(function(){noahRespond(text)},150)};
 function noahRestart(){noahResetState();noahClearQuick();noahAnswer("Fresh start — what would you like help with?","",{chips:NOAH_MAIN,noRestart:true});}
 
-// Keep the visible launcher wording correct if a suitable text label already exists in the page.
+// Best-effort correction if the launcher already contains a text label.
 function noahFixLauncherLabel(){
  var candidates=$("#noah-chatbot-container button, #noah-chatbot-container a, #noah-chatbot-container [role='button'], button, a, [role='button']");
  candidates.forEach(function(el){var txt=(el.textContent||"").trim();if(/need guidance|ask noah/i.test(txt)&&txt.length<100){var label=el.querySelector("span");if(label)label.textContent="Need guidance? Ask Noah";else if(el.children.length===0)el.textContent="Need guidance? Ask Noah";}});
 }
-window.toggleNoahChat=function(){var container=document.getElementById("noah-chatbot-container"),win=document.getElementById("noah-chat-window"),openIcon=document.getElementById("noah-icon-open"),closeIcon=document.getElementById("noah-icon-close");if(!win)return;var isHidden=win.classList.contains("noah-hidden");if(isHidden){win.classList.remove("noah-hidden");if(container)container.classList.add("active");if(openIcon)openIcon.style.display="none";if(closeIcon)closeIcon.style.display="inline";if(!noahState.greeted)noahState.greeted=true;var msgs=document.getElementById("noah-messages");if(msgs&&!msgs.firstChild){window.appendNoahMessage("Hi! I’m Noah, your ArkWay guide. I can help you understand our services, compare options, find products, and check prices. What are you working on?",false);noahAddQuick(NOAH_MAIN,true);}noahRefreshLivePrices();}else{win.classList.add("noah-hidden");if(container)container.classList.remove("active");if(openIcon)openIcon.style.display="block";if(closeIcon)closeIcon.style.display="none";}};
+window.toggleNoahChat=function(){var container=document.getElementById("noah-chatbot-container"),win=document.getElementById("noah-chat-window"),openIcon=document.getElementById("noah-icon-open"),closeIcon=document.getElementById("noah-icon-close");if(!win)return;var isHidden=win.classList.contains("noah-hidden");if(isHidden){win.classList.remove("noah-hidden");if(container)container.classList.add("active");if(openIcon)openIcon.style.display="none";if(closeIcon)closeIcon.style.display="inline";if(!noahState.greeted)noahState.greeted=true;var msgs=document.getElementById("noah-messages");if(msgs&&!msgs.firstChild){window.appendNoahMessage("Hi! I’m Noah, your ArkWay guide. I can help you understand our company, explore services, compare options, find products, and check prices. What are you working on?",false);noahAddQuick(NOAH_MAIN,true);}noahRefreshLivePrices();}else{win.classList.add("noah-hidden");if(container)container.classList.remove("active");if(openIcon)openIcon.style.display="block";if(closeIcon)closeIcon.style.display="none";}};
 window.appendNoahMessage=function(text,isUser){var container=document.getElementById("noah-messages");if(!container)return;if(!container.getAttribute("aria-live")){container.setAttribute("aria-live","polite");container.style.overscrollBehavior="contain";}var msgDiv=document.createElement("div");msgDiv.className="noah-msg "+(isUser?"noah-msg-user":"noah-msg-bot");if(isUser)msgDiv.textContent=text;else msgDiv.innerHTML=text;container.appendChild(msgDiv);container.scrollTop=container.scrollHeight;};
 
-/* Live service-price lookup: first inspect the current page, then the site's Services page.
-   If no matching published price is found, keep the supplied fallback rather than guessing. */
+/* Read current published prices where possible; keep fallbacks if lookup fails. */
 function noahNorm(text){var t=String(text||"").toLowerCase().replace(/[’‘`']/g,"");t=t.replace(/&/g," and ").replace(/(\d),(?=\d{3}\b)/g,"$1");t=t.replace(/(ksh|kshs|kes)\s*/g,"ksh ");t=t.replace(/(\d+(?:\.\d+)?)\s*k\b/g,function(m,n){return String(Math.round(parseFloat(n)*1000))});t=t.replace(/[^a-z0-9\s]/g," ");return t.replace(/\s+/g," ").trim();}
 function noahPriceFromText(text){var m=String(text||"").match(/\b(from\s*)?(?:KSh|Kshs?|KES)\s*([\d,]+(?:\.\d{1,2})?)/i);if(!m)return null;var amount=Number(m[2].replace(/,/g,""));if(!isFinite(amount))return null;return {price:(m[1]?"from ":"")+"KSh "+amount.toLocaleString("en-KE"),amount:amount};}
 function noahReadPricesFromDoc(doc){var changed=0;NOAH_ORDER.forEach(function(key){var svc=NOAH_SERVICES[key],needle=noahNorm(svc.name),best=null,bestLen=Infinity;var all=doc.querySelectorAll("body *");for(var i=0;i<all.length;i++){var el=all[i];if(el.children.length>8)continue;var txt=(el.innerText||el.textContent||"").trim();if(!txt||txt.length>650)continue;var norm=noahNorm(txt);if(norm.indexOf(needle)===-1)continue;var parsed=noahPriceFromText(txt);if(parsed&&txt.length<bestLen){best=parsed;bestLen=txt.length;}}if(best){svc.price=best.price;svc.amount=best.amount;changed++;}});return changed;}
@@ -109,11 +108,12 @@ function noahRefreshLivePrices(){if(noahPriceLoad)return noahPriceLoad;noahPrice
 function noahPrices(){var out="<strong>Current ArkWay service rates (KSh)</strong><br/>";NOAH_ORDER.forEach(function(k){out+="• "+NOAH_SERVICES[k].name+" — "+NOAH_SERVICES[k].price+"<br/>";});return out+"<br/>Prices shown are the rates available on the website. For project-specific details, contact us.<br/>"+noahServicesLink()+"<br/>"+noahContactLink();}
 function noahAudio(){return "<strong>Audio production and services</strong><br/>We can help with recording, mixing and mastering, custom production, and live instruments. Tell me what you already have and what you want to finish, and I’ll point you to the best fit.<br/><br/>"+noahServicesLink();}
 function noahProducts(){return "<strong>The ArkWay Sound Vault</strong><br/>Browse beats, sample packs, loop kits, and other digital products. Click Buy on the product you want to open its Hustlesasa storefront page and see the product details.<br/><br/>"+noahProductsLink();}
+function noahCompanyAnswer(){return "<strong>ArkWay Creative — Media, Data &amp; Culture</strong><br/>ArkWay Creative is a creative media company that helps businesses, brands, artists, and organisations communicate ideas through audio, digital media, visual storytelling, and creative experiences.<br/><br/><strong>How we can help a business:</strong><br/>• <strong>Promote an offer or campaign:</strong> radio/social ads, jingles, and promotional audio.<br/>• <strong>Build a recognisable brand:</strong> creative assets and brand-focused media that help your message look and sound consistent.<br/>• <strong>Create professional audio:</strong> voiceovers, podcast/audio cleaning, music, and other sound for digital content.<br/>• <strong>Produce film and video projects:</strong> original scoring and sound for films, series, and visual stories.<br/>• <strong>Develop creative content and collaborations:</strong> production partnerships, digital sound products, and projects connected to creative culture and community.<br/><br/>Our approach combines creative production with a data-aware view of media and audiences. We’ll first understand what you’re trying to achieve, then help identify a suitable service or discuss a project-specific brief. Not every idea is a fixed package, so the team can confirm scope and deliverables before you commit.<br/><br/>What kind of business do you run, and what are you trying to achieve — more awareness, a campaign, better audio/content, or something else?<br/><br/>"+noahServicesLink()+"<br/>"+noahContactLink();}
 function noahLicensingAnswer(){return "Licensing terms can differ by product. Click Buy on the product you’re interested in to open its Hustlesasa page, then read the product description before purchasing. That is where the applicable usage and licensing details are provided.";}
 function noahFreeSampleAnswer(){return "Yes, designated free samples are free. Follow the instructions on the product page to access them. If you get stuck, tell me which step you’re on and I’ll help you find the next step.";}
 function noahPaymentAnswer(){return "Purchases are handled through the Hustlesasa storefront, which supports card payments for international customers. Click Buy on the product page to see the available payment options for your purchase.";}
 function noahHuman(){return "You can contact the ArkWay team directly:<br/><br/>• <strong>WhatsApp:</strong> +254 118 618 199<br/>• <strong>Email:</strong> arkwaycreative@gmail.com<br/><br/>"+noahContactLink()+"<br/>"+noahLink(NOAH_EMAIL,"Send an email →");}
-function noahFallback(){return "I can help you explore services, understand prices, find products, or explain how to buy. What are you working on — recording a song, finishing an existing recording, making a beat, or something else?";}
+function noahFallback(){return "I can help you understand ArkWay Creative, explore services, understand prices, find products, or explain how to buy. What are you working on — promoting a business, creating media, recording a song, finishing an existing recording, or finding a digital product?";}
 
 var NOAH_PATTERNS={
  mixmaster:/\b(mix|mixing|mixed|master|mastering|mastered|polish|external mix|external vocal|already recorded|recorded vocals)\b/,
@@ -145,58 +145,44 @@ d.hasBeatMention=/\b(have|got|already have|already got|i made)\b.{0,20}\b(beat|i
 d.hasVocalsMention=/\b(already recorded|have recorded|recorded my vocals|recorded the song|have a recording|my vocals are recorded)\b/.test(q);
 return d;}
 function noahServiceAnswer(key){var s=NOAH_SERVICES[key];return "<strong>"+s.name+" — "+s.price+"</strong><br/>"+NOAH_NOTES[key]+"<br/><br/>"+noahServicesLink()+"<br/>"+noahContactLink();}
-
-function noahRespondCore(raw){
-var S=noahState,q=noahNorm(raw);S.lastQuestion=q;S.turns++;
-if(!q){noahAnswer(noahFallback(),"",{keep:true,chips:NOAH_MAIN,noRestart:true});return;}
+function noahRespondCore(raw){var S=noahState,q=noahNorm(raw);S.lastQuestion=q;S.turns++;if(!q){noahAnswer(noahFallback(),"",{keep:true,chips:NOAH_MAIN,noRestart:true});return;}
 if(/\b(start over|restart|reset|main menu|start again)\b/.test(q)){noahRestart();return;}
 var d=noahDetect(q);
 if(/\b(hi|hello|hey|good morning|good afternoon|good evening)\b/.test(q)&&q.split(" ").length<6){noahAnswer("Hey! I’m Noah, your ArkWay guide. What can I help you with today?","",{keep:true,chips:NOAH_MAIN,noRestart:true});return;}
 if(/\b(thanks|thank you|cheers)\b/.test(q)){noahAnswer("You’re welcome! Want help choosing a service or finding a product?","",{keep:true,chips:[["Explore Services","what services do you offer"],["Find a Product","where can i buy your products"]]});return;}
+
+// Broad company intent is checked before prices, products, and individual services.
+if(/\b(what does arkway( creative)? do( for (a |my |our )?(business|businesses|brand|company|organisation|organization|artist|artists|client|clients))?|what can arkway( creative)? do( for (a |my |our )?(business|businesses|brand|company|organisation|organization|artist|artists|client|clients))?|how can arkway( creative)? help( me| us| (my |our )?(business|businesses|brand|company|organisation|organization|artist|artists))?|what does (the )?company do|what kind of company is arkway|what is arkway( creative)?|about arkway|tell me about arkway|who are you|what do you do|what services do you offer for businesses|what does arkway offer|what is your company about|what is your business about|tell me what arkway does|explain arkway|company overview|business services)\b/.test(q)){
+noahAnswer(noahCompanyAnswer(),"company",{keep:true,chips:[["Explore services","what services do you offer"],["Business advertising","i need advertising for my business"],["Find a product","where can i buy your products"],["Contact ArkWay","how do i contact you"]]});return;
+}
 if(d.hasBeatMention)S.hasBeat=true;
 if(d.hasVocalsMention)S.hasVocals=true;
 if(/\b(i dont have a beat|i do not have a beat|no beat|need a beat|make a beat)\b/.test(q))S.hasBeat=false;
 if(/\b(not recorded|havent recorded|have not recorded|need to record)\b/.test(q))S.hasVocals=false;
-
 if(d.licensing){noahAnswer(noahLicensingAnswer(),"products",{chips:[["Browse products","where can i buy your products"],["Contact ArkWay","how do i contact you"]]});return;}
 if(d.freeSample){noahAnswer(noahFreeSampleAnswer(),"products",{chips:[["Browse products","where can i buy your products"]]});return;}
 if(d.payment){noahAnswer(noahPaymentAnswer(),"products",{chips:[["Browse products","where can i buy your products"],["Contact ArkWay","how do i contact you"]]});return;}
 if(d.human||d.contact){noahAnswer(noahHuman(),"contact",{keep:true,chips:[]});return;}
 if(/\b(what does external|external mix|what is mixing|what is mastering|what does mix and master)\b/.test(q)){noahAnswer(noahServiceAnswer("mixmaster"),"audio",{keys:["mixmaster"]});return;}
-
 if(d.projectHelp){
- if(S.hasVocals===true||/\b(already recorded|recorded my song|recorded vocals|have a recording)\b/.test(q)){
-  noahAnswer("If your vocals are already recorded, <strong>External Vocal Mix &amp; Master — "+NOAH_SERVICES.mixmaster.price+"</strong> may be the right option. You provide the existing recording and instrumental; ArkWay mixes and masters them. If you also need new vocals recorded, tell me.","audio",{keys:["mixmaster"],chips:[["External Mix & Master","external mix and master"],["See all services","what services do you offer"]]});return;
- }
- if(S.hasBeat===true){
-  noahAnswer("Since you already have a beat, the <strong>Quick Vocal Session — "+NOAH_SERVICES.vocal.price+"</strong> is a good place to start: bring your instrumental and record your vocals. If your vocals are already recorded, the External Vocal Mix &amp; Master option may fit better.","audio",{keys:["vocal"],chips:[["Quick Vocal Session","quick vocal session"],["External Mix & Master","external mix and master"]]});return;
- }
- if(S.hasBeat===false){
-  noahAnswer("If you don’t have a beat yet, look at <strong>Full Custom Beat &amp; Song Production — "+NOAH_SERVICES.custom.price+"</strong>. It is the more relevant option to ask about for custom production. The team can confirm the exact scope for your song.","audio",{keys:["custom"],chips:[["Custom Production","custom beat production"],["See all services","what services do you offer"]]});return;
- }
- noahAnswer("I can help you choose. Have you already got a beat or instrumental, and have you recorded your vocals yet?","audio",{keep:true,pending:"project",chips:[["I have a beat","i already have a beat"],["I need a beat","i dont have a beat"],["I've recorded vocals","i have already recorded my vocals"]]});return;
+if(S.hasVocals===true||/\b(already recorded|recorded my song|recorded vocals|have a recording)\b/.test(q)){noahAnswer("If your vocals are already recorded, <strong>External Vocal Mix &amp; Master — "+NOAH_SERVICES.mixmaster.price+"</strong> may be the right option. You provide the existing recording and instrumental; ArkWay mixes and masters them. If you also need new vocals recorded, tell me.","audio",{keys:["mixmaster"],chips:[["External Mix & Master","external mix and master"],["See all services","what services do you offer"]]});return;}
+if(S.hasBeat===true){noahAnswer("Since you already have a beat, the <strong>Quick Vocal Session — "+NOAH_SERVICES.vocal.price+"</strong> is a good place to start: bring your instrumental and record your vocals. If your vocals are already recorded, the External Vocal Mix &amp; Master option may fit better.","audio",{keys:["vocal"],chips:[["Quick Vocal Session","quick vocal session"],["External Mix & Master","external mix and master"]]});return;}
+if(S.hasBeat===false){noahAnswer("If you don’t have a beat yet, look at <strong>Full Custom Beat &amp; Song Production — "+NOAH_SERVICES.custom.price+"</strong>. It is the more relevant option to ask about for custom production. The team can confirm the exact scope for your song.","audio",{keys:["custom"],chips:[["Custom Production","custom beat production"],["See all services","what services do you offer"]]});return;}
+noahAnswer("I can help you choose. Have you already got a beat or instrumental, and have you recorded your vocals yet?","audio",{keep:true,pending:"project",chips:[["I have a beat","i already have a beat"],["I need a beat","i dont have a beat"],["I've recorded vocals","i have already recorded my vocals"]]});return;
 }
-
-if(d.price){
- var relevant=d.keys.length===1?d.keys[0]:(S.service||(S.lastKeys.length===1?S.lastKeys[0]:""));
- var mentionedAmount=(q.match(/\b(\d{3,})\b/)||[])[1];
- if(!relevant&&mentionedAmount){var matches=NOAH_ORDER.filter(function(k){return String(NOAH_SERVICES[k].amount)===mentionedAmount;});if(matches.length===1)relevant=matches[0];}
- if(relevant&&NOAH_SERVICES[relevant]){noahAnswer(noahServiceAnswer(relevant),"audio",{keys:[relevant]});return;}
- if(S.pending==="project"||S.lastTopic==="audio"){noahAnswer("Which option do you mean — recording vocals over your own beat, mixing and mastering an existing recording, or custom production?","audio",{keep:true,chips:[["Quick Vocal Session","quick vocal session"],["External Mix & Master","external mix and master"],["Custom Production","custom beat production"]]});return;}
- noahAnswer(noahPrices(),"services",{chips:[["Help me choose","i dont know which service i need"],["Explore services","what services do you offer"]]});return;
-}
+if(d.price){var relevant=d.keys.length===1?d.keys[0]:(S.service||(S.lastKeys.length===1?S.lastKeys[0]:""));var mentionedAmount=(q.match(/\b(\d{3,})\b/)||[])[1];if(!relevant&&mentionedAmount){var matches=NOAH_ORDER.filter(function(k){return String(NOAH_SERVICES[k].amount)===mentionedAmount;});if(matches.length===1)relevant=matches[0];}if(relevant&&NOAH_SERVICES[relevant]){noahAnswer(noahServiceAnswer(relevant),"audio",{keys:[relevant]});return;}if(S.pending==="project"||S.lastTopic==="audio"){noahAnswer("Which option do you mean — recording vocals over your own beat, mixing and mastering an existing recording, or custom production?","audio",{keep:true,chips:[["Quick Vocal Session","quick vocal session"],["External Mix & Master","external mix and master"],["Custom Production","custom beat production"]]});return;}noahAnswer(noahPrices(),"services",{chips:[["Help me choose","i dont know which service i need"],["Explore services","what services do you offer"]]});return;}
 if(d.keys.length===1){var key=d.keys[0];noahAnswer(noahServiceAnswer(key),key==="film"?"film":"audio",{keys:[key]});return;}
 if(d.keys.length>1){noahAnswer("These options may fit what you described. Here are the current listed prices:<br/><br/>"+d.keys.map(function(k){return "• "+NOAH_SERVICES[k].name+" — "+NOAH_SERVICES[k].price;}).join("<br/>")+"<br/><br/>Tell me what you already have, and I can help narrow it down.","audio",{keys:[],chips:[["Help me choose","i dont know which service i need"],["Contact ArkWay","how do i contact you"]]});return;}
 if(d.product){noahAnswer(noahProducts(),"products",{chips:[["Ask about licensing","what are the licensing terms"],["Ask about free samples","are the free samples really free"]]});return;}
 if(d.services){noahAnswer(noahAudio(),"audio",{chips:[["Compare recording options","which recording service do i need"],["Get pricing","how much do your services cost"],["Browse products","where can i buy your products"]]});return;}
 if(d.book){noahAnswer("To get started, open the relevant service card and use its booking or inquiry option. You can also contact ArkWay directly and explain which service you need.<br/><br/>"+noahServicesLink()+"<br/>"+noahContactLink(),"audio",{keep:true,chips:[["View services","what services do you offer"],["Contact ArkWay","how do i contact you"]]});return;}
-if(/\b(what is arkway|about arkway|who are you|what do you do)\b/.test(q)){noahAnswer("ArkWay Creative is a creative media company offering audio production, digital sound products, and related creative services. I can help you explore the services or find the right product for your project.","",{keep:true,chips:NOAH_MAIN,noRestart:true});return;}
+if(/\b(what is arkway|about arkway|who are you|what do you do|what does arkway do|tell me about the company|company overview)\b/.test(q)){noahAnswer(noahCompanyAnswer(),"company",{keep:true,chips:[["Explore services","what services do you offer"],["Business advertising","i need advertising for my business"],["Contact ArkWay","how do i contact you"]]});return;}
 noahAnswer(noahFallback(),"",{keep:true,chips:NOAH_MAIN,noRestart:true});
 }
 function noahRespond(raw){noahRefreshLivePrices().then(function(){noahRespondCore(raw)});}
 window.sendNoahMessage=function(){var input=document.getElementById("noah-input");if(!input)return;var original=input.value.trim();if(!original)return;noahClearQuick();window.appendNoahMessage(original,true);input.value="";noahRespond(original);};
 window.handleNoahKeyPress=function(event){if(event.isComposing)return;if(event.key==="Enter"&&!event.shiftKey){event.preventDefault();window.sendNoahMessage();}};
 
-// Best-effort label correction when the launcher already contains a text label.
+// Correct the launcher text only when a matching existing label is found.
 if(document.readyState==="loading")document.addEventListener("DOMContentLoaded",noahFixLauncherLabel);else noahFixLauncherLabel();
 })();
