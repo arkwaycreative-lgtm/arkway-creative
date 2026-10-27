@@ -107,8 +107,8 @@ var NOAH_SERVICES = {
 var NOAH_ORDER = ["vocal", "mixmaster", "single", "custom", "guitar", "bass", "full", "ads", "film", "voice"];
 
 var NOAH_NOTES = {
-  vocal: "A good starting point if you need vocals recorded. If you also want them mixed and polished, there's the External Vocal Mix & Master option.",
-  mixmaster: "This is the listed option for mixing and mastering your vocals.",
+  vocal: "Bring your beat, record your vocals in the session, and leave with a mixed and mastered song. Mixing and mastering are part of the session, so you don't need to book them separately.",
+  mixmaster: "This is for songs that are already recorded: if you have your stems and they need mixing and mastering, this is the one. If you haven't recorded yet, the Quick Vocal Session takes you from recording to a mixed and mastered song.",
   single: "A bundled option for finishing a single. I don't have its exact contents here, so check the Services page or ask the team what's included.",
   custom: "This is the full beat-and-song production service, so it isn't a beat-only price.",
   guitar: "For acoustic or lead guitar parts on your track.",
@@ -563,25 +563,25 @@ function noahReleaseChips() {
 function noahRoadmap() {
   return "Most songs move through a few steps. Here's how ArkWay's listed services line up:<br/>" +
     "• Beat: Sound Vault beats, or Full Custom Beat & Song Production — KSh 8,500<br/>" +
-    "• Vocals: Quick Vocal Session — KSh 3,000<br/>" +
-    "• Polish: External Vocal Mix & Master — KSh 2,500<br/>" +
+    "• Record to finish: Quick Vocal Session — KSh 3,000 (bring your beat, leave with a mixed and mastered song)<br/>" +
+    "• Already recorded with stems: External Vocal Mix & Master — KSh 2,500<br/>" +
     "• Or the Complete Single Package — KSh 5,500<br/><br/>" +
     "Tell me which step you're on and I'll narrow it down.";
 }
 
 function noahHasBeatAnswer() {
-  var keys = ["vocal", "mixmaster", "single"];
-  return "Perfect — since you already have the beat, you can skip buying or commissioning one. What's left is usually recording the vocals, then mixing and mastering:<br/>" +
+  var keys = ["vocal", "single"];
+  return "Perfect — since you already have the beat, you can skip buying or commissioning one. The Quick Vocal Session is built for this: bring your beat, record your vocals, and leave with a mixed and mastered song.<br/>" +
     noahLines(keys) + "<br/><br/>" +
     "The Complete Single Package is listed separately, so check the Services page for exactly what it includes. Want guitar or bass added too?<br/><br/>" +
     noahServicesLink() + "<br/>" + noahContactLink();
 }
 
 function noahHasVocalsAnswer() {
-  var keys = ["mixmaster", "single"];
-  return "Great — then you're at the mixing and mastering stage:<br/>" +
+  var keys = ["mixmaster"];
+  return "Great — if your song is already recorded and you have the stems, External Vocal Mix & Master is the right fit:<br/>" +
     noahLines(keys) + "<br/><br/>" +
-    "Check the Services page for what the Complete Single Package includes, and confirm the files you have with the team.<br/><br/>" +
+    "Confirm the files you have with the team when you get in touch.<br/><br/>" +
     noahServicesLink() + "<br/>" + noahContactLink();
 }
 
@@ -786,8 +786,8 @@ function noahBudgetFlow(d) {
 
   var pool;
   if (d.keys.length) pool = d.keys.slice();
-  else if (S.need === "song" && S.hasVocals) pool = ["mixmaster", "single"];
-  else if (S.need === "song" && S.hasBeat) pool = ["vocal", "mixmaster", "single", "guitar", "bass"];
+  else if (S.need === "song" && S.hasVocals) pool = ["mixmaster"];
+  else if (S.need === "song" && S.hasBeat) pool = ["vocal", "single", "guitar", "bass"];
   else if (S.lastTopic === "film") pool = ["voice", "ads", "film"];
   else pool = NOAH_ORDER.slice();
 
@@ -955,19 +955,19 @@ function noahRespond(raw) {
 
   /* Where the visitor is in making a song */
   if (d.hasVocals && !d.keys.length) {
-    noahAnswer(noahHasVocalsAnswer(), "audio", { keys: ["mixmaster", "single"] });
+    noahAnswer(noahHasVocalsAnswer(), "audio", { keys: ["mixmaster"] });
     return;
   }
   if (d.hasBeat && !d.keys.length) {
-    noahAnswer(noahHasBeatAnswer(), "audio", { keys: ["vocal", "mixmaster", "single"],
-      chips: [["Record vocals", "i need to record vocals"], ["Mix & master", "can you mix and master my song"],
+    noahAnswer(noahHasBeatAnswer(), "audio", { keys: ["vocal", "single"],
+      chips: [["Record vocals", "i need to record vocals"], ["Already recorded?", "i already recorded my vocals"],
         ["Guitar or bass", "guitar and bass"]] });
     return;
   }
 
   /* Specific services */
   if (d.keys.length) {
-    var prefix = (S.hasBeat && d.keys.indexOf("custom") === -1 && S.need === "song") ?
+    var prefix = (S.hasBeat && d.keys.indexOf("vocal") !== -1 && S.need === "song") ?
       "Since you already have the beat, you can skip beat production." : "";
     noahSayServices(d.keys, d.keys.indexOf("film") !== -1 || d.keys.indexOf("ads") !== -1 ? "film" : "audio",
       { yes: d.yn, prefix: prefix });
